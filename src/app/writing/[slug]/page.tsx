@@ -19,7 +19,15 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: doc.title,
     description: doc.summary,
-    openGraph: { title: doc.title, description: doc.summary, type: "article" },
+    alternates: { canonical: doc.href },
+    openGraph: {
+      title: doc.title,
+      description: doc.summary,
+      type: "article",
+      url: doc.href,
+      publishedTime: doc.date,
+      modifiedTime: doc.updated ?? doc.date,
+    },
   };
 }
 
