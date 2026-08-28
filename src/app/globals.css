@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — technical-editorial / digital garden
+   Warm paper + ink, one restrained accent. Never hard-code a
+   color, font, or measure in a component; add a token here.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Surfaces */
+  --paper:        #fdfcfa;  /* page background — warm off-white */
+  --paper-raised: #f5f2ec;  /* cards, code blocks, table stripes */
+  --rule:         #e5dfd5;  /* hairlines, dividers */
+  --rule-strong:  #cec6b8;  /* emphasized borders */
+
+  /* Ink */
+  --ink:        #1b1917;  /* body text — warm near-black */
+  --ink-muted:  #57524b;  /* secondary prose, descriptions */
+  --ink-faint:  #8a8279;  /* metadata: dates, tags, labels */
+
+  /* Accent — links, tags, small marks. Used sparingly. */
+  --accent:       #a3441f;
+  --accent-hover: #7d3317;
+  --accent-tint:  #f3e7e0;
+
+  /* Reading measure — ~68 characters */
+  --measure: 68ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:        #141310;
+    --paper-raised: #1e1c17;
+    --rule:         #2f2b24;
+    --rule-strong:  #443f36;
+
+    --ink:        #e9e4db;
+    --ink-muted:  #a69f94;
+    --ink-faint:  #776f65;
+
+    --accent:       #e08055;
+    --accent-hover: #f19b73;
+    --accent-tint:  #2b1e16;
+  }
+}
+
+@theme inline {
+  --color-paper:        var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-rule:         var(--rule);
+  --color-rule-strong:  var(--rule-strong);
+
+  --color-ink:       var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-accent:       var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-tint:  var(--accent-tint);
+
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --font-mono:  var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Constrain any block to a comfortable reading measure. */
+@utility measure {
+  max-width: var(--measure);
+}
+
+/* Small-caps monospace label: dates, tags, institution names. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis-weight: none;
+  }
+
+  ::selection {
+    background: var(--accent-tint);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROSE — long-form MDX rendering. Applied to article bodies.
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer components {
+  .prose {
+    max-width: var(--measure);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .prose > * + * { margin-top: 1.25em; }
+
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    scroll-margin-top: 5rem;
+  }
+
+  .prose h2 { font-size: 1.5rem;   margin-top: 2.5em; }
+  .prose h3 { font-size: 1.1875rem; margin-top: 2em; }
+  .prose h4 { font-size: 1.0625rem; margin-top: 1.75em; color: var(--ink-muted); }
+
+  .prose h2 + *, .prose h3 + *, .prose h4 + * { margin-top: 0.6em; }
+
+  .prose a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: color-mix(in oklab, var(--accent) 40%, transparent);
+    transition: text-decoration-color 120ms ease, color 120ms ease;
+  }
+  .prose a:hover {
+    color: var(--accent-hover);
+    text-decoration-color: currentColor;
+  }
+
+  .prose strong { font-weight: 650; }
+
+  .prose ul, .prose ol { padding-left: 1.4em; }
+  .prose ul { list-style: none; }
+  .prose ul > li { position: relative; }
+  .prose ul > li::before {
+    content: "—";
+    position: absolute;
+    left: -1.4em;
+    color: var(--ink-faint);
+  }
+  .prose ol { list-style: decimal; }
+  .prose ol > li::marker { color: var(--ink-faint); font-family: var(--font-mono); font-size: 0.85em; }
+  .prose li + li { margin-top: 0.4em; }
+
+  .prose blockquote {
+    border-left: 2px solid var(--rule-strong);
+    padding-left: 1.15em;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+
+  .prose hr {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin-block: 2.5em;
+  }
+
+  /* Inline code */
+  .prose :not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.1em 0.35em;
+  }
+
+  /* Fenced code blocks (rehype-pretty-code) */
+  .prose pre {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    background: var(--paper-raised) !important;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1rem 1.15rem;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  .prose pre code { display: grid; background: transparent; }
+  .prose pre [data-line] { padding-inline: 0; }
+
+  /* rehype-pretty-code emits both themes; swap per color scheme. */
+  .prose code[data-theme] span { color: var(--shiki-light); }
+  @media (prefers-color-scheme: dark) {
+    .prose code[data-theme] span { color: var(--shiki-dark); }
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .prose th, .prose td {
+    border-bottom: 1px solid var(--rule);
+    padding: 0.55em 0.75em;
+    text-align: left;
+  }
+  .prose th {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+  }
+
+  .prose img, .prose video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+  }
+
+  /* Heading anchor links from rehype-autolink-headings */
+  .prose .heading-anchor {
+    color: var(--ink-faint);
+    text-decoration: none;
+    opacity: 0;
+    margin-left: 0.4em;
+    font-weight: 400;
+    transition: opacity 120ms ease;
+  }
+  .prose h2:hover .heading-anchor,
+  .prose h3:hover .heading-anchor,
+  .prose h4:hover .heading-anchor,
+  .prose .heading-anchor:focus-visible { opacity: 1; }
+
+  /* Wide content must scroll inside itself, never the page. */
+  .prose > pre,
+  .prose > table { overflow-x: auto; }
+}

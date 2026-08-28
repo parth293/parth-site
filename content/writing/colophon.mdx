@@ -1,0 +1,45 @@
+---
+title: "Colophon"
+date: "2026-08-28"
+summary: "How this site is built, and the constraints it was built under. A smoke test for the content pipeline as much as a note."
+tags: ["meta", "tooling"]
+---
+
+This site is a Next.js App Router project. Every article — this one included — is
+an `.mdx` file in `content/`, read at build time and rendered on the server.
+Publishing is writing a file and committing it.
+
+## The stack
+
+| Layer | Choice |
+| --- | --- |
+| Framework | Next.js (App Router) + TypeScript |
+| Styling | Tailwind CSS v4, tokens in `globals.css` |
+| Content | MDX + frontmatter, read from the filesystem |
+| Hosting | Vercel, auto-deploying from `main` |
+
+## Frontmatter
+
+Every file carries the same shape. Missing fields fail the build rather than
+rendering a blank page:
+
+```ts
+type Frontmatter = {
+  title: string
+  date: string      // ISO — "2026-08-28"
+  summary: string
+  tags?: string[]
+  draft?: boolean   // keeps a file in the repo, out of listings
+  updated?: string  // shown when newer than `date`
+}
+```
+
+## Constraints worth naming
+
+- One accent color, used only for links, tags, and small marks.
+- A reading measure of roughly 68 characters, enforced by a single utility.
+- No component hard-codes a color or a font. Tokens or nothing.
+- Sections are siblings in one collection, not three separate apps.
+
+> The point of the constraints is that adding the fiftieth article should be
+> exactly as cheap as adding the second.
