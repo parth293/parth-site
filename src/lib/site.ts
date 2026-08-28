@@ -6,7 +6,7 @@
 
 export const site = {
   name: "Parth Ajmera",
-  url: "https://parth-site.vercel.app", // TODO: swap for the real domain
+  url: "https://parth-site-rose.vercel.app",
   tagline:
     "Engineering rigor applied to regulated pharma — product, AI, and the compliance systems underneath.",
   email: "ajmera.parth8@gmail.com",
