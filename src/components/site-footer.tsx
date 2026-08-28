@@ -1,7 +1,13 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
 export function SiteFooter() {
+  // The pitch is screen-shared in interviews; site nav is a distraction there.
+  if (usePathname()?.startsWith("/pitch")) return null;
+
   return (
     <footer className="border-t border-rule mt-24">
       <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 py-8">

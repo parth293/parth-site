@@ -1,47 +1,32 @@
-@import "tailwindcss";
-
-/* ═══════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════
    DESIGN TOKENS — technical-editorial / digital garden
-   Warm paper + ink, one restrained accent. Never hard-code a
-   color, font, or measure in a component; add a token here.
-   ═══════════════════════════════════════════════════════════════ */
+
+   Light only, on purpose. The audience is mixed — recruiters, founders,
+   professors, VCs — and a bright, quiet page reads as credible to all of
+   them. Do not add a dark mode without revisiting that decision.
+
+   Never hard-code a color, font, or measure in a component; add a token.
+   ══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Surfaces */
-  --paper:        #fdfcfa;  /* page background — warm off-white */
-  --paper-raised: #f5f2ec;  /* cards, code blocks, table stripes */
-  --rule:         #e5dfd5;  /* hairlines, dividers */
-  --rule-strong:  #cec6b8;  /* emphasized borders */
+  /* Surfaces — near-white with just enough warmth to avoid feeling clinical */
+  --paper:        #fdfdfc;  /* page background */
+  --paper-raised: #f6f6f3;  /* cards, code blocks, table stripes */
+  --rule:         #e9e8e3;  /* hairlines, dividers */
+  --rule-strong:  #d2d0c9;  /* emphasized borders */
 
-  /* Ink */
-  --ink:        #1b1917;  /* body text — warm near-black */
-  --ink-muted:  #57524b;  /* secondary prose, descriptions */
-  --ink-faint:  #8a8279;  /* metadata: dates, tags, labels */
+  /* Ink — soft near-black, never pure #000 */
+  --ink:        #1f1e1c;  /* body text */
+  --ink-muted:  #5b5953;  /* secondary prose, descriptions */
+  --ink-faint:  #8f8d86;  /* metadata: dates, tags, labels */
 
   /* Accent — links, tags, small marks. Used sparingly. */
-  --accent:       #a3441f;
-  --accent-hover: #7d3317;
-  --accent-tint:  #f3e7e0;
+  --accent:       #2f6b4f;
+  --accent-hover: #24543e;
+  --accent-tint:  #e7efea;
 
   /* Reading measure — ~68 characters */
   --measure: 68ch;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper:        #141310;
-    --paper-raised: #1e1c17;
-    --rule:         #2f2b24;
-    --rule-strong:  #443f36;
-
-    --ink:        #e9e4db;
-    --ink-muted:  #a69f94;
-    --ink-faint:  #776f65;
-
-    --accent:       #e08055;
-    --accent-hover: #f19b73;
-    --accent-tint:  #2b1e16;
-  }
 }
 
 @theme inline {
@@ -205,11 +190,7 @@
   .prose pre code { display: grid; background: transparent; }
   .prose pre [data-line] { padding-inline: 0; }
 
-  /* rehype-pretty-code emits both themes; swap per color scheme. */
   .prose code[data-theme] span { color: var(--shiki-light); }
-  @media (prefers-color-scheme: dark) {
-    .prose code[data-theme] span { color: var(--shiki-dark); }
-  }
 
   .prose table {
     width: 100%;

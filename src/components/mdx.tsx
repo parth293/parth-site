@@ -21,7 +21,7 @@ export function Mdx({ source }: { source: string }) {
               rehypeSlug,
               [
                 rehypePrettyCode,
-                { theme: { light: "github-light", dark: "github-dark-dimmed" } },
+                { theme: "github-light" }, // light-only site; see globals.css
               ],
               [
                 rehypeAutolinkHeadings,
