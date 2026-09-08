@@ -1,0 +1,238 @@
+---
+title: "Heat Transfer"
+date: "2026-09-08"
+summary: "Heat transfer for bioprocessing — conduction and convection across bioreactor walls and jackets. Radiation is out of syllabus."
+tags: ["heat-transfer"]
+---
+
+## Modes of heat transfer
+
+There are three modes of heat transfer: **conduction**, **convection**, and
+**radiation**. Radiation is out of syllabus for this section.
+
+## Conduction
+
+**Conduction** is heat transfer that occurs through the transfer of
+vibrational energy between molecules, or through the movement of free
+electrons. No mobility or movement of matter is involved in conduction.
+
+![Hot fluid on the left, cold fluid on the right, separated by a metal wall in the middle; an arrow through the wall marks the direction of heat flow, and the wall's thickness is labelled B](/notes/bioprocess-eng/conduction-hot-cold-fluid-metal-wall.png)
+
+### Rate of heat transfer by conduction (differential form)
+
+$$
+\hat{Q} = -kA\frac{dT}{dy}
+$$
+
+- $\hat{Q}$ — rate of heat transfer, in watts ($\text{W}$)
+- $k$ — thermal conductivity of the wall, in watts per metre-kelvin
+  ($\text{W}/(\text{m} \cdot \text{K})$)
+- $A$ — area perpendicular to heat transfer, in square metres ($\text{m}^2$)
+- $dT/dy$ — temperature gradient, in kelvin per metre ($\text{K/m}$)
+
+The negative sign shows that heat is transferred from the hot side to the
+cold side.
+
+### Rate of heat transfer by conduction (finite-thickness form)
+
+$$
+\hat{Q} = -kA\frac{T_2 - T_1}{y}
+$$
+
+- $\hat{Q}$ — rate of heat transfer, in watts ($\text{W}$)
+- $k$ — thermal conductivity of the wall, in watts per metre-kelvin
+  ($\text{W}/(\text{m} \cdot \text{K})$)
+- $A$ — area perpendicular to heat transfer, in square metres ($\text{m}^2$)
+- $T_2, T_1$ — temperatures either side of the wall, in kelvin ($\text{K}$)
+- $y$ — distance component of thickness, in metres ($\text{m}$)
+
+The sign in front of $kA$ depends on which temperature is subtracted first:
+
+- Subtracting $T_{cold} - T_{hot}$: use a negative sign.
+- Subtracting $T_{hot} - T_{cold}$: use a positive sign.
+
+Either way, the final value of $\hat{Q}$ comes out positive.
+
+## Convection
+
+**Convection** is heat transfer that occurs through the movement of
+molecules.
+
+![Diagram of heat moving from a hot bulk fluid (Th) to a cold bulk fluid (Tc) through a metal wall: convection carries heat from Th to the hot-side wall temperature (Thw), conduction carries it through the wall from Thw to the cold-side wall temperature (Tcw), and convection carries it from Tcw to Tc](/notes/bioprocess-eng/convection-temperature-profile-composite-wall.png)
+
+Heat crossing from a hot bulk fluid to a cold bulk fluid through a wall moves
+in three steps:
+
+1. **Convection** — hot bulk fluid ($T_h$) to the hot-side wall temperature
+   ($T_{hw}$).
+2. **Conduction** — through the wall, from $T_{hw}$ to the cold-side wall
+   temperature ($T_{cw}$).
+3. **Convection** — $T_{cw}$ to the cold bulk fluid ($T_c$).
+
+Two temperature gradients drive the two convective steps:
+
+1. $T_h - T_{hw}$ — convection in the hot fluid.
+2. $T_{cw} - T_c$ — convection in the cold fluid.
+
+### Rate of heat transfer by convection
+
+$$
+\hat{Q} = hA \Delta T
+$$
+
+- $\hat{Q}$ — rate of heat transfer, in watts ($\text{W}$)
+- $h$ — individual heat transfer coefficient, in watts per square
+  metre-kelvin ($\text{W}/(\text{m}^2 \cdot \text{K})$)
+- $A$ — area, in square metres ($\text{m}^2$)
+- $\Delta T$ — temperature gradient, in kelvin ($\text{K}$)
+
+$h$ depends on:
+
+- Viscosity.
+- Fluid film thickness.
+- Flow velocity.
+- Thermal conductivity.
+
+## Nusselt number
+
+The **Nusselt number** is the ratio between convective heat transfer and
+conductive heat transfer.
+
+$$
+Nu = \frac{hD}{k_{fb}}
+$$
+
+- $Nu$ — Nusselt number (ratio of convective to conductive heat transfer), dimensionless
+- $h$ — individual heat transfer coefficient, in watts per square
+  metre-kelvin ($\text{W}/(\text{m}^2 \cdot \text{K})$)
+- $D$ — diameter of the pipe or tank, or characteristic length of the pipe,
+  in metres ($\text{m}$)
+- $k_{fb}$ — thermal conductivity of the bulk fluid, in watts per
+  metre-kelvin ($\text{W}/(\text{m} \cdot \text{K})$)
+
+## Prandtl number
+
+The **Prandtl number** is the ratio of molecular momentum to thermal
+diffusivity (or conductivity): $C_p \mu_b$ is the molecular momentum, and
+$k_{fb}$ is the thermal diffusivity (or conductivity).
+
+$$
+Pr = \frac{C_p \mu_b}{k_{fb}}
+$$
+
+- $Pr$ — Prandtl number (ratio of molecular momentum to thermal diffusivity), dimensionless
+- $C_p$ — heat capacity, in joules per kilogram-kelvin
+  ($\text{J}/(\text{kg} \cdot \text{K})$)
+- $\mu_b$ — viscosity of the bulk fluid, in pascal-seconds
+  ($\text{Pa} \cdot \text{s}$)
+- $k_{fb}$ — thermal conductivity of the bulk fluid, in watts per
+  metre-kelvin ($\text{W}/(\text{m} \cdot \text{K})$)
+
+> In these problems the chain typically runs backwards from what you want:
+> to get $\hat{Q}$ you need $h$; to get $h$ you need the Nusselt number; to
+> get the Nusselt number you need $k_{fb}$; and for $k_{fb}$ you use $Pr$.
+
+## Overall heat transfer coefficient
+
+The chain above requires measuring $\Delta T$ at each interface inside the
+bioprocess reactor, which is very difficult to measure. A newer methodology
+avoids this, using the **overall heat transfer coefficient** ($U$), in watts
+per square metre-kelvin ($\text{W}/(\text{m}^2 \cdot \text{K})$).
+
+### Rate of heat transfer using U
+
+$$
+\hat{Q} = UA \Delta T_{LMTD}
+$$
+
+- $\hat{Q}$ — rate of heat transfer, in watts ($\text{W}$)
+- $U$ — overall heat transfer coefficient, in watts per square metre-kelvin
+  ($\text{W}/(\text{m}^2 \cdot \text{K})$)
+- $A$ — area, in square metres ($\text{m}^2$)
+- $\Delta T_{LMTD}$ — logarithmic mean temperature difference, in kelvin
+  ($\text{K}$)
+
+### Logarithmic mean temperature difference (LMTD)
+
+$$
+\Delta T_{LMTD} = \frac{\Delta T_2 - \Delta T_1}{\ln(\Delta T_2 / \Delta T_1)}
+$$
+
+- $\Delta T_{LMTD}$ — logarithmic mean temperature difference, in kelvin
+  ($\text{K}$)
+- $\Delta T_2, \Delta T_1$ — temperature differences at the two ends of the
+  heat exchanger, in kelvin ($\text{K}$)
+
+### Flow arrangement: parallel vs. counter-current
+
+$\Delta T_1$ and $\Delta T_2$ depend on how the hot and cold fluids are
+routed through the exchanger:
+
+- **Parallel flow (co-current)**: both fluids enter at the same end and
+  exit at the same end.
+- **Counter-current flow**: the hot fluid's inlet pairs with the cold
+  fluid's outlet, and the hot fluid's outlet pairs with the cold fluid's
+  inlet.
+
+#### Worked example: LMTD for parallel vs. counter-current flow
+
+**Question.** A hot fluid enters a heat exchanger at $120\,^\circ\text{C}$
+and leaves at $80\,^\circ\text{C}$. A cold fluid enters at
+$20\,^\circ\text{C}$ and leaves at $50\,^\circ\text{C}$. Find the LMTD for
+(a) parallel flow and (b) counter-current flow.
+
+**Solution.**
+
+1. **Parallel flow (co-current)** — both fluids enter at the same end, so
+   the inlet ends pair together and the outlet ends pair together:
+
+   ![Temperature profile along the exchanger for parallel flow: the hot fluid falls from 120°C at x=0 to 80°C at x=1, the cold fluid rises from 20°C at x=0 to 50°C at x=1, both flowing left to right](/notes/bioprocess-eng/parallel-flow-temperature-profile.png)
+
+   - $\Delta T_1 = 120 - 20 = 100\,^\circ\text{C}$ (both inlets)
+   - $\Delta T_2 = 80 - 50 = 30\,^\circ\text{C}$ (both outlets)
+   - $\Delta T_{LMTD} = \dfrac{\Delta T_2 - \Delta T_1}{\ln(\Delta T_2 /
+     \Delta T_1)} = \dfrac{30 - 100}{\ln(30/100)} = \dfrac{-70}{-1.204}
+     \approx 58.14\,^\circ\text{C}$
+2. **Counter-current flow** — the hot inlet pairs with the cold outlet, and
+   the hot outlet pairs with the cold inlet:
+
+   ![Temperature profile along the exchanger for counter-current flow: the hot fluid falls from 120°C at x=0 to 80°C at x=1 flowing left to right, the cold fluid falls from 50°C at x=0 to 20°C at x=1 flowing right to left](/notes/bioprocess-eng/counter-current-flow-temperature-profile.png)
+
+   - $\Delta T_1 = 120 - 50 = 70\,^\circ\text{C}$ (hot inlet, cold outlet)
+   - $\Delta T_2 = 80 - 20 = 60\,^\circ\text{C}$ (hot outlet, cold inlet)
+   - $\Delta T_{LMTD} = \dfrac{60 - 70}{\ln(60/70)} = \dfrac{-10}{-0.1542}
+     \approx 64.87\,^\circ\text{C}$
+
+**Answer:** LMTD $\approx 58.14\,^\circ\text{C}$ for parallel flow, and
+$\approx 64.87\,^\circ\text{C}$ for counter-current flow — the
+counter-current arrangement gives the larger LMTD for the same four
+terminal temperatures.
+
+#### Why counter-current is never worse than parallel flow
+
+For fixed terminal temperatures (same hot-in/hot-out/cold-in/cold-out), let
+$\Delta H = T_{h,in} - T_{h,out}$ (how much the hot fluid cools) and
+$\Delta C = T_{c,out} - T_{c,in}$ (how much the cold fluid warms) — both
+positive in any real exchanger.
+
+- **The sum $\Delta T_1 + \Delta T_2$ is identical either way** — it works
+  out to $T_{h,in}+T_{h,out}-T_{c,in}-T_{c,out}$ for both arrangements. In
+  the worked example above: parallel gives $100+30=130$, counter-current
+  gives $70+60=130$ — the same.
+- **The spread differs.** For parallel flow, $\Delta T_1 - \Delta T_2 =
+  \Delta H + \Delta C$. For counter-current, $\Delta T_1 - \Delta T_2 =
+  \Delta H - \Delta C$. Since $\Delta H, \Delta C > 0$, $|\Delta H + \Delta
+  C| > |\Delta H - \Delta C|$ always — parallel flow's two $\Delta T$s are
+  always farther apart than counter-current's, given the same sum.
+
+The logarithmic mean of two positive numbers with a fixed sum is largest
+when the numbers are equal — it sits between the geometric and arithmetic
+mean, and moves toward the arithmetic mean as the numbers converge. Since
+counter-current always keeps $\Delta T_1$ and $\Delta T_2$ closer together
+than parallel flow does, its LMTD is always $\geq$ the parallel LMTD.
+
+The one case they tie: $\Delta H = 0$ or $\Delta C = 0$ — one side doesn't
+actually change temperature, as with a condensing vapor or boiling liquid
+at constant temperature. Then $\Delta T_1 = \Delta T_2$ for both
+arrangements and there is no difference between them. Outside that edge
+case, counter-current strictly wins.
