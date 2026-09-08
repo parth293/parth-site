@@ -2,46 +2,25 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { nav, site } from "@/lib/site";
+import { nav, site, pillarBySlug, type PillarSlug } from "@/lib/site";
 
-/**
- * The document control bar plus navigation. The top strip is the header block
- * of a controlled document — identifier, revision, effective date, page — and
- * it is what tells a visitor within one second what kind of object this is.
- */
-export function SiteHeader({ docId, rev }: { docId?: string; rev?: string }) {
+/** On an article beneath a notes pillar, name is `["notes", section, ...rest]` with rest non-empty. */
+function notesPillarCrumb(pathname: string | null) {
+  const parts = pathname?.split("/").filter(Boolean) ?? [];
+  if (parts.length < 3 || parts[0] !== "notes") return null;
+  return pillarBySlug[parts[1] as PillarSlug] ?? null;
+}
+
+export function SiteHeader() {
   const pathname = usePathname();
 
   // The pitch is screen-shared in interviews; site nav is a distraction there.
   if (pathname?.startsWith("/pitch")) return null;
 
-  const effective = new Date().toISOString().slice(0, 10);
+  const pillar = notesPillarCrumb(pathname);
 
   return (
-    <header className="border-b border-rule">
-      <div className="bg-paper-raised border-b border-rule">
-        <div className="mx-auto w-full max-w-[var(--container)] px-5 sm:px-8">
-          <dl className="flex flex-wrap items-baseline gap-x-8 gap-y-1 py-2.5">
-            <div className="flex items-baseline gap-2.5">
-              <dt className="label text-[length:var(--text-2xs)]">Document</dt>
-              <dd className="font-mono text-xs text-ink">
-                {docId ?? `${site.name} — Personal Record`}
-              </dd>
-            </div>
-            <div className="flex items-baseline gap-2.5">
-              <dt className="label text-[length:var(--text-2xs)]">Rev</dt>
-              <dd className="font-mono text-xs text-ink tabular-nums">{rev ?? "04"}</dd>
-            </div>
-            <div className="hidden sm:flex items-baseline gap-2.5">
-              <dt className="label text-[length:var(--text-2xs)]">Effective</dt>
-              <dd className="font-mono text-xs text-ink tabular-nums">
-                <time dateTime={effective}>{effective}</time>
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-
+    <header className="sticky top-0 z-40 border-b border-rule bg-paper/85 backdrop-blur-md backdrop-saturate-150">
       <div className="mx-auto w-full max-w-[var(--container)] px-5 sm:px-8">
         <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 py-4">
           <Link
@@ -75,6 +54,19 @@ export function SiteHeader({ docId, rev }: { docId?: string; rev?: string }) {
           </nav>
         </div>
       </div>
+
+      {pillar ? (
+        <div className="border-t border-rule">
+          <div className="mx-auto w-full max-w-[var(--container)] px-5 sm:px-8">
+            <Link
+              href={`/notes/${pillar.slug}`}
+              className="label inline-flex items-center gap-1.5 py-2 hover:text-accent transition-colors"
+            >
+              <span aria-hidden="true">←</span> {pillar.title}
+            </Link>
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }
