@@ -1,0 +1,312 @@
+---
+title: "Fluid Mechanics"
+date: "2026-09-07"
+summary: "Foundational fluid mechanics for bioprocessing — definitions, properties, and flow behavior behind bioreactors, pumps, and piping."
+tags: ["fluid-mechanics"]
+---
+
+## What is a fluid?
+
+A **fluid** is a substance that flows and takes the shape of the container it
+is in. Liquids and gases are both fluids — "fluid" is the broader category,
+not a synonym for "liquid."
+
+- Liquids are fluids.
+- Gases are fluids.
+
+## Classification of fluids
+
+### Ideal fluids vs. real (non-ideal) fluids
+
+- **Ideal fluids**: inviscid (zero viscosity), incompressible.
+- **Real (non-ideal) fluids**: viscous, compressible.
+
+### Newtonian vs. non-Newtonian fluids
+
+Another way to classify fluids, based on their flow behavior.
+
+## Rheology
+
+**Rheology** is the study of the flow of a fluid.
+
+A fluid is a substance that undergoes deformation when subjected to shearing
+stress.
+
+### Shear stress
+
+**Shear stress** is the tangential force applied per unit area.
+
+$$
+\tau = \frac{F}{A}
+$$
+
+- $\tau$ — shear stress, in pascals ($\text{Pa}$) or newtons per square metre
+  ($\text{N/m}^2$)
+- $F$ — tangential force, in newtons ($\text{N}$)
+- $A$ — area, in square metres ($\text{m}^2$)
+
+![Two parallel plates with fluid between them: force F applied over area A produces shear stress τ = F/A](/notes/bioprocess-eng/shear-stress-diagram.png)
+
+### Shear rate
+
+Shear rate is the strain that occurs within a fluid, representing the change
+in velocity of adjacent fluid layers over a distance.
+
+A fluid can be thought of as stacked layers, each moving at a different
+velocity. The topmost layer has no force acting on it from above, so it moves
+freely. Each layer below experiences a force from the layer above it, which
+slows it down further — down to the bottom-most layer, at the floor, which is
+nearly static, at zero velocity.
+
+![Fluid layers under an applied force, each moving at a different velocity: the topmost layer moves at v1, velocity decreases going down through the stack, and the bottom layer is at zero velocity — the velocity gradient over height h](/notes/bioprocess-eng/shear-rate-velocity-profile.png)
+
+$$
+\dot{\gamma} = \frac{v}{h}
+$$
+
+- $\dot{\gamma}$ — shear rate (velocity gradient), in reciprocal seconds
+  ($\text{s}^{-1}$)
+- $v$ — velocity of the topmost fluid layer, in metres per second ($\text{m/s}$)
+- $h$ — height of the fluid layer, in metres ($\text{m}$)
+
+### Viscosity
+
+**Viscosity** is the internal resistance of a fluid to continuous shear
+deformation, or to the rate of strain, under an applied shear stress.
+
+### Power law equation (Ostwald–de Waele model)
+
+For non-Newtonian fluids only.
+
+$$
+\tau = K \dot{\gamma}^n
+$$
+
+- $\tau$ — shear stress, in pascals ($\text{Pa}$)
+- $K$ — consistency index (generalized viscosity), in $\text{Pa} \cdot \text{s}^n$
+  (or $\text{N} \cdot \text{s}^n / \text{m}^2$): $K \uparrow \rightarrow$
+  viscosity $\uparrow$; $K \downarrow \rightarrow$ viscosity $\downarrow$
+- $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
+- $n$ — flow behaviour index (dimensionless)
+
+| $n$ | Fluid type | Behaviour |
+| --- | --- | --- |
+| $n = 1$ | Newtonian | — |
+| $n > 1$ | Dilatant (shear-thickening) | $\tau \uparrow \rightarrow \mu \uparrow$ |
+| $n < 1$ | Pseudoplastic (shear-thinning) | $\tau \uparrow \rightarrow \mu \downarrow$ — e.g. ketchup, which needs to be shaken |
+
+#### Worked example: reading $n$ off a log-log plot
+
+**Question.** In a log-log plot of shear stress ($\tau$) versus shear rate
+($\dot{\gamma}$), the slope of the line equals $n$, the flow behaviour index.
+For a shear-thinning (pseudoplastic) fluid, what is the value of $n$?
+
+**Solution.**
+
+1. Start from the power law equation: $\tau = K \dot{\gamma}^n$.
+2. Take the log of both sides:
+   $\log \tau = \log K + n \log \dot{\gamma}$.
+3. This is a straight line in $\log \tau$ vs. $\log \dot{\gamma}$ space, with
+   slope $n$ and $y$-intercept $\log K$ — so the slope read off a log-log
+   plot of $\tau$ against $\dot{\gamma}$ is exactly $n$.
+4. A shear-thinning (pseudoplastic) fluid is defined, per the table above, by
+   $n < 1$: apparent viscosity falls as shear stress rises.
+
+**Answer:** $n < 1$ — the log-log line is shallower than the $n = 1$
+Newtonian line (still positive slope, just less steep).
+
+#### Newton's law of viscosity
+
+When $n = 1$, $K$ is replaced by $\mu$ (mu), the dynamic viscosity:
+
+$$
+\tau = \mu \dot{\gamma} \quad \text{or} \quad \frac{\tau}{\dot{\gamma}} = \mu
+$$
+
+- $\tau$ — shear stress, in pascals ($\text{Pa}$)
+- $\mu$ — dynamic viscosity, in pascal-seconds ($\text{Pa} \cdot \text{s}$)
+- $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
+
+This is **Newton's law of viscosity**. Fluids that follow it are **Newtonian
+fluids**; fluids that don't are **non-Newtonian fluids**. Physical
+significance: for a Newtonian fluid, viscosity is constant — it is not
+affected by shear stress.
+
+![Shear stress τ plotted against shear rate for a Newtonian fluid: a straight line through the origin, where the slope is the viscosity (n = 1). Examples: water, S. cerevisiae broth, gases](/notes/bioprocess-eng/newtonian-fluid-curve.png)
+
+Examples of Newtonian fluids: water, *Saccharomyces cerevisiae* (S.
+cerevisiae) fermentation broth, and most gases.
+
+> *Saccharomyces cerevisiae* exhibits Newtonian behaviour at low biomass
+> concentration; at high cell density (greater than 50 g/L dry cell weight),
+> it becomes pseudoplastic — a fluid with dual nature.
+
+### Types of non-Newtonian fluids
+
+![Shear stress τ plotted against shear rate (du/dy) for every fluid type on one chart: ideal Bingham plastic (straight line from a positive yield stress), plastic fluid / Casson fluid (curving from the same yield stress), pseudoplastic (n less than 1, curving up steeply then flattening), Newtonian (n equals 1, a straight line through the origin), and dilatant (n greater than 1, curving up slowly then steeply) — bounded by the ideal solid (vertical axis) and ideal fluid (horizontal axis) limits](/notes/bioprocess-eng/fluid-classification-curves.png)
+
+#### Bingham plastics
+
+A Bingham plastic is a solid below the yield stress, and a viscous Newtonian
+fluid above the yield stress.
+
+Bingham plastics require a threshold shear stress — $\tau_0$ or $\tau_y$
+(yield stress) — before any shear rate is generated at all.
+
+![Shear stress τ plotted against shear rate for a Bingham plastic: flat at zero shear rate until the yield stress τ0 (or τy) is crossed, then rising linearly](/notes/bioprocess-eng/bingham-plastic-curve.png)
+
+$$
+\tau = \tau_y + \mu_p \dot{\gamma}
+$$
+
+- $\tau$ — shear stress, in pascals ($\text{Pa}$)
+- $\tau_y$ — yield stress, in pascals ($\text{Pa}$)
+- $\mu_p$ — plastic viscosity (also called apparent viscosity), in
+  pascal-seconds ($\text{Pa} \cdot \text{s}$)
+- $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
+
+Examples: tomato ketchup.
+
+#### Power law for Bingham plastics
+
+$$
+\mu_a = K \dot{\gamma}^{\,n-1}
+$$
+
+- $\mu_a$ — apparent viscosity, in pascal-seconds ($\text{Pa} \cdot \text{s}$)
+- $K$ — consistency index, in $\text{Pa} \cdot \text{s}^n$
+- $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
+- $n$ — flow behaviour index (dimensionless)
+
+#### Pseudoplastics
+
+$n < 1$. As shear stress increases, apparent viscosity decreases:
+$\tau \uparrow \rightarrow \mu_a \downarrow$.
+
+Examples: adhesives (e.g. Fevicol), polymer solutions, rubber solutions,
+xanthan gum, detergent slurry, mycelial fermentation broth, and human blood.
+
+#### Dilatant
+
+$n > 1$. As shear stress increases, viscosity also increases:
+$\tau \uparrow \rightarrow \mu_a \uparrow$.
+
+Examples: corn starch, cement slurry.
+
+#### Casson plastics
+
+Casson fluids show dual nature:
+
+- Below the threshold (yield) stress $\tau_0$: as $\tau$ increases, the fluid
+  behaves like a Bingham plastic.
+- Above $\tau_0$: as $\tau$ increases further, apparent viscosity decreases —
+  $\tau \uparrow \rightarrow \mu_a \downarrow$.
+
+Examples: printing ink, tomato ketchup, orange juice, human blood, chocolate.
+
+#### Comparing the fluid types
+
+| Fluid type | $n$ | Yield stress | Relation | Examples |
+| --- | --- | --- | --- | --- |
+| Newtonian | $n = 1$ | No | $\tau = \mu \dot{\gamma}$ | Water, *S. cerevisiae* broth, most gases |
+| Bingham plastic | — | Yes ($\tau_y$) | $\tau = \tau_y + \mu_p \dot{\gamma}$ | Tomato ketchup |
+| Pseudoplastic | $n < 1$ | No | $\tau \uparrow \rightarrow \mu_a \downarrow$ | Adhesives (Fevicol), polymer solutions, rubber solutions, xanthan gum, detergent slurry, mycelial fermentation broth, human blood |
+| Dilatant | $n > 1$ | No | $\tau \uparrow \rightarrow \mu_a \uparrow$ | Corn starch, cement slurry |
+| Casson plastic | — | Yes ($\tau_0$), dual nature | Bingham-like below $\tau_0$; pseudoplastic-like above | Printing ink, tomato ketchup, orange juice, human blood, chocolate |
+
+## Types of fluid flow
+
+Flow is classified into two regimes based on the pattern of fluid motion:
+**laminar** and **turbulent**.
+
+**Laminar flow** (streamlined flow) moves in parallel layers, with streamlines
+that never cross. It is slow-moving and not recommended for mixing.
+
+**Turbulent flow** is chaotic, irregular motion in which **eddies** form. It
+is recommended for mixing.
+
+![Two pipes compared: laminar flow shows straight, parallel arrows moving uniformly along the pipe; turbulent flow shows swirling, circular eddies scattered throughout the pipe](/notes/bioprocess-eng/laminar-turbulent-flow-pipe.png)
+
+| | Laminar flow | Turbulent flow |
+| --- | --- | --- |
+| Pattern of motion | Parallel layers; streamlines do not cross | Chaotic, irregular |
+| Velocity at a point | Steady with respect to time (non-chaotic) | Magnitude and direction both change; large, abrupt changes |
+| Eddies | None | Formed |
+| Speed | Slow-moving | — |
+| Mixing | Not recommended | Recommended |
+
+### Common confusion: vortex vs. turbulent flow
+
+Continuous rotation in a liquid produces a **vortex**. A vortex is often
+mistaken for turbulent flow, but it is not turbulent — it does not help
+mixing. Instead, it allows solids to settle out and precipitate toward the
+bottom.
+
+## Reynolds number
+
+The **Reynolds number** is the parameter that indicates whether a fluid is in
+laminar or turbulent flow. It represents the ratio of inertial forces to
+viscous forces in the fluid, and is dimensionless (unitless).
+
+### Reynolds number for stirred tank
+
+{/* importance: very-important */}
+
+$$
+Re = \frac{d_i^2 N_i \rho}{\mu}
+$$
+
+- $Re$ — Reynolds number, dimensionless
+- $d_i$ — diameter of the impeller, in metres ($\text{m}$)
+- $N_i$ — frequency of the impeller, in reciprocal seconds ($\text{s}^{-1}$)
+- $\rho$ — density of the fluid, in kilograms per cubic metre ($\text{kg/m}^3$)
+- $\mu$ — viscosity, in pascal-seconds ($\text{Pa} \cdot \text{s}$)
+- $Re < 10$ — laminar
+- $10 \le Re \le 10{,}000$ — transitional
+- $Re > 10{,}000$ — turbulent
+
+### Reynolds number for straight pipe
+
+$$
+Re = \frac{d v \rho}{\mu}
+$$
+
+- $Re$ — Reynolds number, dimensionless
+- $d$ — diameter of the pipe, in metres ($\text{m}$)
+- $v$ — average velocity of the fluid, in metres per second ($\text{m/s}$)
+- $\rho$ — density of the fluid, in kilograms per cubic metre ($\text{kg/m}^3$)
+- $\mu$ — viscosity, in pascal-seconds ($\text{Pa} \cdot \text{s}$)
+- $Re < 2{,}100$ — laminar
+- $Re > 4{,}000$ — turbulent
+
+### Flow regime by Reynolds number
+
+| System | Laminar | Transitional | Turbulent |
+| --- | --- | --- | --- |
+| Stirred tank | $Re < 10$ | $10 \le Re \le 10{,}000$ | $Re > 10{,}000$ |
+| Straight pipe | $Re < 2{,}100$ | — | $Re > 4{,}000$ |
+
+### Converting impeller speed: RPM to reciprocal seconds
+
+Impeller speed is often given in RPM (revolutions per minute), but $N_i$ in
+the equations above is in reciprocal seconds. Convert by dividing by 60:
+
+$$
+N_i \, [\text{s}^{-1}] = \frac{N_i \, [\text{RPM}]}{60}
+$$
+
+## Froude number
+
+The **Froude number** is the parameter that represents the ratio of inertial
+forces to gravitational (buoyancy) forces.
+
+### Froude number for stirred tank
+
+$$
+Fr = \frac{N_i^2 d_i}{g}
+$$
+
+- $Fr$ — Froude number, dimensionless
+- $N_i$ — frequency of the impeller, in reciprocal seconds ($\text{s}^{-1}$)
+- $d_i$ — diameter of the impeller, in metres ($\text{m}$)
+- $g$ — acceleration due to gravity, $9.8 \ \text{m/s}^2$

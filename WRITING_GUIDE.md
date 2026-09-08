@@ -106,6 +106,10 @@ real ending for a digital garden.
 with the physical intuition, then the math. Diagrams and worked numbers beat
 prose descriptions of equations.
 
+**`/notes/bioprocess-eng`** — Study notes, not essays: written to be scanned
+and memorized, not read once. Governed by its own stricter format — see
+[BIOPROCESS_ENG_GUIDE.md](BIOPROCESS_ENG_GUIDE.md) before writing here.
+
 **`/notes/gate-bt`** — Written in real time, not in retrospect. Present tense.
 Include what is not working. This section's credibility comes from being
 unfinished; do not clean it up into a success story.

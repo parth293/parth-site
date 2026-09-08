@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageShell, PageHeader } from "@/components/page-shell";
 import { DocList } from "@/components/doc-list";
+import { Section, Status } from "@/components/record";
 import { getNotes } from "@/lib/content";
 import { pillarBySlug, pillars, type PillarSlug } from "@/lib/site";
 
@@ -28,10 +30,27 @@ export default async function NotesSectionPage({ params }: Params) {
   return (
     <PageShell>
       <PageHeader eyebrow="Notes" title={pillar.title} lede={pillar.description} />
-      <DocList
-        docs={docs}
-        emptyMessage="This section is set up but not yet seeded. Articles land here as they get written."
-      />
+      <Section
+        number="1.0"
+        label="Entries"
+        note={
+          <>
+            <Status count={docs.length} unit="note" />
+            {pillar.slug === "bioprocess-eng" ? (
+              <p>
+                <Link href="/notes/bioprocess-eng/formulas" className="text-accent hover:text-accent-dim transition-colors">
+                  Formula sheet →
+                </Link>
+              </p>
+            ) : null}
+          </>
+        }
+      >
+        <DocList
+          docs={docs}
+          emptyMessage="This section is set up but not yet seeded. Articles land here as they get written."
+        />
+      </Section>
     </PageShell>
   );
 }

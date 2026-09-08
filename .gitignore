@@ -42,3 +42,6 @@ next-env.d.ts
 
 # claude code local settings
 .claude/settings.local.json
+
+# design explorations, screenshots — disposable
+/.design/

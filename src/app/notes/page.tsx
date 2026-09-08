@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageShell, PageHeader } from "@/components/page-shell";
 import { DocList } from "@/components/doc-list";
+import { Section, Status } from "@/components/record";
 import { getAllDocs, getNotes } from "@/lib/content";
 import { pillars } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Notes",
   description:
-    "Three evolving bodies of notes: pharmaceutical engineering, GATE-BT preparation, and technical sales engineering.",
+    "Four evolving bodies of notes: pharmaceutical engineering, bioprocess engineering, GATE-BT preparation, and technical sales engineering.",
 };
 
 export default async function NotesIndexPage() {
@@ -23,39 +24,40 @@ export default async function NotesIndexPage() {
       <PageHeader
         eyebrow="Digital garden"
         title="Notes"
-        lede="Three sections that grow over time rather than getting finished. Each has its own way of thinking; none of them is a tutorial series."
+        lede="Four sections that grow over time rather than getting finished. Each has its own way of thinking; none of them is a tutorial series."
       />
 
-      <div className="space-y-10 mb-20">
-        {sections.map(({ pillar, docs }) => (
-          <section key={pillar.slug}>
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <h2 className="text-xl font-semibold tracking-[-0.01em]">
-                <Link href={`/notes/${pillar.slug}`} className="text-ink hover:text-accent transition-colors">
-                  {pillar.title}
+      <div className="space-y-14">
+        <Section number="1.0" label="Sections on file">
+          <ul className="border-t-[length:var(--line-heavy)] border-rule-strong">
+            {sections.map(({ pillar, docs }, i) => (
+              <li key={pillar.slug} className="border-b border-rule">
+                <Link
+                  href={`/notes/${pillar.slug}`}
+                  className="group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-x-4 py-6 sm:grid-cols-[3rem_1fr_auto]"
+                >
+                  <span className="font-mono text-xs text-ink-faint tabular-nums self-start pt-1">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>
+                    <h2 className="text-lg font-semibold tracking-[-0.01em] text-ink group-hover:text-accent transition-colors text-balance">
+                      {pillar.title}
+                    </h2>
+                    <p className="measure mt-1.5 text-[0.9375rem] leading-relaxed text-ink-muted text-pretty">
+                      {pillar.summary}
+                    </p>
+                  </span>
+                  <Status count={docs.length} unit="note" />
                 </Link>
-              </h2>
-              <span className="label">
-                {docs.length} {docs.length === 1 ? "note" : "notes"}
-              </span>
-            </div>
-            <p className="measure mt-2 leading-relaxed text-ink-muted text-pretty">
-              {pillar.summary}
-            </p>
-            <Link
-              href={`/notes/${pillar.slug}`}
-              className="inline-block mt-3 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink-faint hover:text-accent transition-colors"
-            >
-              Enter section →
-            </Link>
-          </section>
-        ))}
-      </div>
+              </li>
+            ))}
+          </ul>
+        </Section>
 
-      <section>
-        <h2 className="label mb-5">Recently added across all sections</h2>
-        <DocList docs={recent} showCollection emptyMessage="No notes published yet." />
-      </section>
+        <Section number="2.0" label="Recently added across all sections">
+          <DocList docs={recent} showCollection emptyMessage="No notes published yet." />
+        </Section>
+      </div>
     </PageShell>
   );
 }

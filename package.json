@@ -7,18 +7,24 @@
     "build": "next build && node scripts/check-css.mjs",
     "start": "next start",
     "lint": "eslint",
-    "check:css": "node scripts/check-css.mjs"
+    "check:css": "node scripts/check-css.mjs",
+    "shoot": "node scripts/shoot.mjs",
+    "shoot:explore": "node scripts/shoot-explore.mjs"
   },
   "dependencies": {
+    "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
+    "katex": "^0.16.47",
     "next": "16.3.3",
     "next-mdx-remote": "^6.0.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "rehype-autolink-headings": "^7.1.0",
+    "rehype-katex": "^7.0.1",
     "rehype-pretty-code": "^0.14.5",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
     "shiki": "^4.4.3"
   },
   "devDependencies": {
@@ -28,6 +34,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.3",
+    "playwright": "^1.63.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

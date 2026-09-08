@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageShell, PageHeader } from "@/components/page-shell";
 import { DocList } from "@/components/doc-list";
+import { Section, Status } from "@/components/record";
 import { getWriting } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -18,10 +19,12 @@ export default async function WritingIndexPage() {
         title="Writing"
         lede="Less structured than the notes sections. Things I am thinking through, books I have read closely, arguments I want to make properly."
       />
-      <DocList
-        docs={docs}
-        emptyMessage="Nothing published yet. The first essays are in progress."
-      />
+      <Section number="1.0" label="Entries" note={<Status count={docs.length} unit="piece" />}>
+        <DocList
+          docs={docs}
+          emptyMessage="Nothing published yet. The first essays are in progress."
+        />
+      </Section>
     </PageShell>
   );
 }

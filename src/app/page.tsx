@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { DocList } from "@/components/doc-list";
+import { CrossRef, Section, Status } from "@/components/record";
 import { getAllDocs, getWriting } from "@/lib/content";
 import { pillars, site } from "@/lib/site";
 
 export default async function HomePage() {
   const [writing, all] = await Promise.all([getWriting(), getAllDocs()]);
 
-  // The fourth pillar alongside the three notes sections.
-  const cards = [
+  // Writing sits alongside the notes pillars as its own row.
+  const collections = [
     ...pillars.map((p) => ({
       href: `/notes/${p.slug}`,
       title: p.title,
@@ -24,81 +25,91 @@ export default async function HomePage() {
     },
   ];
 
+  const filled = collections.filter((c) => c.count > 0).length;
+  const recent = all.slice(0, 5);
+
   return (
     <PageShell>
-      <section className="mb-20">
-        <h1 className="measure text-3xl sm:text-[2.75rem] font-semibold tracking-[-0.025em] leading-[1.1] text-balance">
-          {site.name}
-        </h1>
-        <p className="measure mt-5 text-lg sm:text-xl leading-relaxed text-ink-muted text-pretty">
-          {site.tagline}
-        </p>
-        <p className="measure mt-4 leading-relaxed text-ink-muted text-pretty">
-          Six years at{" "}
-          <span className="font-mono text-[0.9em] text-ink">Leucine</span>, building and
-          selling GMP compliance software to pharmaceutical manufacturers — from
-          implementation specialist to Director of Strategic Initiatives. Trained as an
-          engineer at{" "}
-          <span className="font-mono text-[0.9em] text-ink">IIT BHU</span>. Currently
-          working out what comes next, in public.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <Link
-            href="/resume"
-            className="font-mono text-[0.7rem] uppercase tracking-[0.08em] border border-rule-strong px-4 py-2.5 text-ink hover:border-accent hover:text-accent transition-colors"
-          >
-            Read the resume
-          </Link>
-          <Link
-            href="/journey"
-            className="font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink-faint hover:text-accent transition-colors"
-          >
-            Or the longer story →
-          </Link>
-        </div>
-      </section>
+      <div className="space-y-14">
+        <Section number="1.0" label="Identification">
+          <h1 className="font-mono text-[length:var(--text-display)] font-medium tracking-[-0.01em] leading-[1.02] text-balance">
+            {site.name}
+          </h1>
+          <p className="measure mt-5 text-lg leading-snug text-ink italic font-serif text-pretty">
+            &ldquo;{site.tagline}&rdquo;
+          </p>
+          <p className="measure mt-5 leading-relaxed text-ink-muted text-pretty">
+            Six years at{" "}
+            <span className="font-mono text-[0.9em] text-ink">Leucine</span>, building and
+            selling GMP compliance software to pharmaceutical manufacturers — from
+            implementation specialist to Director of Strategic Initiatives. Trained as an
+            engineer at{" "}
+            <span className="font-mono text-[0.9em] text-ink">IIT BHU</span>. Currently
+            working out what comes next, in public.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3">
+            <CrossRef href="/resume">→ Resume</CrossRef>
+            <CrossRef href="/journey">→ Full history</CrossRef>
+          </div>
+        </Section>
 
-      <section className="mb-20">
-        <h2 className="label mb-5">What I am working on here</h2>
-        <div className="grid gap-px bg-rule sm:grid-cols-2 border border-rule">
-          {cards.map((card) => (
+        <Section
+          number="2.0"
+          label="Collections on file"
+          note={
+            <>
+              {filled} of {collections.length} collections carry an entry as of
+              this revision. The rest are open, not closed.
+            </>
+          }
+        >
+          <h2 className="text-2xl font-semibold tracking-[-0.01em] mb-4">Notes &amp; writing</h2>
+          <ul className="border-t border-rule-strong">
+            {collections.map((c, i) => (
+              <li key={c.href} className="border-b border-rule">
+                <Link
+                  href={c.href}
+                  className="group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-x-4 py-5 sm:grid-cols-[3rem_1fr_auto]"
+                >
+                  <span className="font-mono text-xs text-ink-faint tabular-nums self-start pt-1">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>
+                    <h3 className="text-lg font-semibold tracking-[-0.01em] text-ink group-hover:text-accent transition-colors text-balance">
+                      {c.title}
+                    </h3>
+                    <p className="mt-1 text-[0.9375rem] leading-relaxed text-ink-muted text-pretty measure">
+                      {c.summary}
+                    </p>
+                  </span>
+                  <Status count={c.count} unit="piece" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section
+          number="3.0"
+          label="Revision history"
+          note={<>Most recent entries across every collection, newest first.</>}
+        >
+          <div className="flex items-baseline justify-between gap-4 mb-4">
+            <h2 className="text-2xl font-semibold tracking-[-0.01em]">Recently added</h2>
             <Link
-              key={card.href}
-              href={card.href}
-              className="group bg-paper p-6 hover:bg-paper-raised transition-colors"
+              href="/writing"
+              className="font-mono text-xs uppercase tracking-[0.1em] text-ink-faint hover:text-accent transition-colors shrink-0"
             >
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="text-lg font-semibold tracking-[-0.01em] text-ink group-hover:text-accent transition-colors text-balance">
-                  {card.title}
-                </h3>
-                <span className="label shrink-0">
-                  {card.count} {card.count === 1 ? "piece" : "pieces"}
-                </span>
-              </div>
-              <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted text-pretty">
-                {card.summary}
-              </p>
+              All writing →
             </Link>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <div className="flex items-baseline justify-between gap-4 mb-5">
-          <h2 className="label">Recently added</h2>
-          <Link
-            href="/writing"
-            className="font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink-faint hover:text-accent transition-colors"
-          >
-            All writing →
-          </Link>
-        </div>
-        <DocList
-          docs={all.slice(0, 5)}
-          showCollection
-          emptyMessage="First pieces are being written. Check back shortly."
-        />
-      </section>
+          </div>
+          <DocList
+            docs={recent}
+            showCollection
+            emptyMessage="First pieces are being written. Check back shortly."
+          />
+        </Section>
+      </div>
     </PageShell>
   );
 }

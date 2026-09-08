@@ -1,7 +1,7 @@
-/** Standard page container. Every route wraps its content in this. */
+/** Standard page container — a Record, per DESIGN_BRIEF.md. */
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 py-14 sm:py-20">
+    <div className="mx-auto w-full max-w-[var(--container)] px-5 sm:px-8 py-8 sm:py-10">
       {children}
     </div>
   );
@@ -17,13 +17,13 @@ export function PageHeader({
   lede?: string;
 }) {
   return (
-    <header className="mb-12">
+    <header className="mb-14 pb-8 border-b-[length:var(--line-heavy)] border-rule-strong">
       {eyebrow ? <p className="label mb-3">{eyebrow}</p> : null}
-      <h1 className="text-3xl sm:text-[2.5rem] font-semibold tracking-[-0.02em] leading-[1.1] text-balance">
+      <h1 className="font-mono text-[length:var(--text-display)] font-medium tracking-[-0.01em] leading-[1.05] text-balance">
         {title}
       </h1>
       {lede ? (
-        <p className="measure mt-5 text-lg leading-relaxed text-ink-muted text-pretty">
+        <p className="measure mt-5 text-lg leading-relaxed text-ink-muted text-pretty font-serif">
           {lede}
         </p>
       ) : null}
