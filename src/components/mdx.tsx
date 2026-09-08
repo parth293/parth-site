@@ -1,8 +1,10 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeKatex from "rehype-katex";
 
 /**
  * Renders an MDX body with the site's plugin pipeline. Styling lives in
@@ -16,9 +18,10 @@ export function Mdx({ source }: { source: string }) {
         source={source}
         options={{
           mdxOptions: {
-            remarkPlugins: [remarkGfm],
+            remarkPlugins: [remarkGfm, remarkMath],
             rehypePlugins: [
               rehypeSlug,
+              rehypeKatex,
               [
                 rehypePrettyCode,
                 { theme: "github-light" }, // light-only site; see globals.css

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageShell, PageHeader } from "@/components/page-shell";
+import { Section } from "@/components/record";
 
 export const metadata: Metadata = {
   title: "Now",
@@ -7,8 +8,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * PHASE 5 — placeholder. A /now page (nownownow.com convention):
- * short, dated, rewritten rather than appended to.
+ * PHASE 5 content — an honest, marked placeholder rather than invented
+ * biography. Rewritten in place when updated, per the nownownow.com
+ * convention; not appended to.
  */
 export default function NowPage() {
   return (
@@ -18,11 +20,12 @@ export default function NowPage() {
         title="Now"
         lede="What has my attention at the moment — reading, building, preparing for."
       />
-      <div className="prose">
-        <p className="text-ink-faint italic">
-          Not written yet. This page ships in Phase 5.
+      <Section number="1.0" label="Awaiting entry">
+        <p className="measure text-ink-faint font-mono text-sm leading-relaxed">
+          Not written yet. This page is rewritten in place, not appended to, so it
+          stays honest about the current moment rather than a scrolling log.
         </p>
-      </div>
+      </Section>
     </PageShell>
   );
 }

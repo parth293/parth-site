@@ -1,52 +1,109 @@
 @import "tailwindcss";
 
+/* KaTeX bakes a 1.21em size bump into its own base font declaration
+   (calibrated to pair its default fonts at visual parity with common body
+   type). Next to our serif prose that makes every math glyph ~21% larger
+   than surrounding text — so a superscript or subscript, even after
+   KaTeX's own internal scaling-down, lands close to body-text size instead
+   of reading as clearly reduced. Reset the base to 1:1 with the
+   surrounding text; give display equations their own deliberate bump
+   instead, since scoped to their boxed callout that's a visual choice, not
+   a legibility bug.
+
+   This has to live unlayered, not inside `@layer components` below:
+   katex.min.css ships unlayered, and unlayered CSS always beats layered
+   CSS regardless of source order or specificity — a rule here would never
+   win against it from inside a layer. */
+.katex { font-size: 1em; }
+.katex-display > .katex { font-size: 1.15em; }
+
 /* ══════════════════════════════════════════════════════════════
-   DESIGN TOKENS — technical-editorial / digital garden
+   DESIGN TOKENS — "The Controlled Record"
+
+   A controlled document that is also a working notebook. The full
+   rationale, including what this direction deliberately sacrifices,
+   is in DESIGN_BRIEF.md. Read it before changing anything here.
 
    Light only, on purpose. The audience is mixed — recruiters, founders,
    professors, VCs — and a bright, quiet page reads as credible to all of
    them. Do not add a dark mode without revisiting that decision.
 
-   Never hard-code a color, font, or measure in a component; add a token.
+   Never hard-code a color, font, size, or measure in a component; add a
+   token. `npm run check:css` fails the build if the load-bearing ones
+   stop being emitted.
    ══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Surfaces — near-white with just enough warmth to avoid feeling clinical */
-  --paper:        #fdfdfc;  /* page background */
-  --paper-raised: #f6f6f3;  /* cards, code blocks, table stripes */
-  --rule:         #e9e8e3;  /* hairlines, dividers */
-  --rule-strong:  #d2d0c9;  /* emphasized borders */
+  /* Surfaces — warm near-white; the warmth is what keeps rigour from
+     tipping into clinical. */
+  --paper:        #faf8f2;  /* page background */
+  --paper-raised: #f1efe4;  /* document header bar, code, table stripes */
+  --paper-sunken: #ece9db;  /* inset fields, empty-state wells */
 
-  /* Ink — soft near-black, never pure #000 */
-  --ink:        #1f1e1c;  /* body text */
-  --ink-muted:  #5b5953;  /* secondary prose, descriptions */
-  --ink-faint:  #8f8d86;  /* metadata: dates, tags, labels */
+  /* Ink — warm near-black, never pure #000 */
+  --ink:        #1c1a15;  /* body text */
+  --ink-muted:  #57534a;  /* secondary prose, summaries */
+  --ink-faint:  #8c8778;  /* metadata: dates, labels, statuses */
 
-  /* Accent — links, tags, small marks. Used sparingly. */
-  --accent:       #2f6b4f;
-  --accent-hover: #24543e;
-  --accent-tint:  #e7efea;
+  /* Rules carry weight meaning: hairline separates rows, heavy separates
+     sections. A rule is never decorative. */
+  --rule:        #ddd7c5;
+  --rule-strong: #b9b29a;
 
-  /* Reading measure — ~68 characters */
-  --measure: 68ch;
+  /* The one accent — signature blue: the ink a wet original signature is
+     written in, so an original can be told from a photocopy. Links,
+     section numbers, status marks, figure strokes. Nothing else. */
+  --accent:      #1f3f8f;
+  --accent-dim:  #4a63a0;
+  --accent-tint: #e8ecf6;
+
+  /* Type scale */
+  --text-2xs:     0.6875rem;
+  --text-xs:      0.75rem;
+  --text-sm:      0.875rem;
+  --text-base:    1rem;
+  --text-md:      1.0625rem;
+  --text-lg:      1.375rem;
+  --text-xl:      1.75rem;
+  --text-2xl:     2.5rem;
+  --text-display: clamp(2.4rem, 5.6vw, 4.4rem);
+
+  /* Structure */
+  --u:          8px;      /* every margin and padding is a multiple */
+  --measure:    68ch;     /* ~68 characters of reading text */
+  --container:  1160px;   /* wide enough to carry a margin column */
+  --margin-col: 13rem;    /* the annotation column */
+  --line:        1px;     /* row separator */
+  --line-heavy:  2px;     /* section separator */
 }
 
 @theme inline {
   --color-paper:        var(--paper);
   --color-paper-raised: var(--paper-raised);
-  --color-rule:         var(--rule);
-  --color-rule-strong:  var(--rule-strong);
+  --color-paper-sunken: var(--paper-sunken);
 
   --color-ink:       var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-ink-faint: var(--ink-faint);
 
-  --color-accent:       var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-tint:  var(--accent-tint);
+  --color-rule:        var(--rule);
+  --color-rule-strong: var(--rule-strong);
 
-  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --color-accent:      var(--accent);
+  --color-accent-dim:  var(--accent-dim);
+  --color-accent-tint: var(--accent-tint);
+
+  --font-serif: var(--font-stix), "Iowan Old Style", Georgia, "Times New Roman", serif;
   --font-mono:  var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-2xs: var(--text-2xs);
+  --text-xs:  var(--text-xs);
+  --text-sm:  var(--text-sm);
+  --text-md:  var(--text-md);
+  --text-lg:  var(--text-lg);
+  --text-xl:  var(--text-xl);
+  --text-2xl: var(--text-2xl);
+  --text-display: var(--text-display);
 }
 
 /* Constrain any block to a comfortable reading measure. */
@@ -54,15 +111,51 @@
   max-width: var(--measure);
 }
 
-/* Small-caps monospace label: dates, tags, institution names. */
+/* Mono metadata label: dates, statuses, field names, section numbers. */
 @utility label {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
   line-height: 1.4;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-faint);
 }
+
+/* A labelled field — the atom of a controlled document. A value without a
+   label is a bug in this system. */
+@utility field-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: calc(var(--u) * 0.75);
+}
+
+/* Section number — 1.0, 2.1. Real navigation, not decoration. */
+@utility section-no {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Status mark. Empty collections say AWAITING ENTRY, never a bare 0. */
+@utility status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: var(--line) solid var(--rule);
+  padding: calc(var(--u) * 0.25) calc(var(--u) * 0.75);
+  white-space: nowrap;
+}
+
 
 @layer base {
   html {
@@ -85,7 +178,7 @@
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: 1px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -99,32 +192,97 @@
 
 /* ═══════════════════════════════════════════════════════════════
    PROSE — long-form MDX rendering. Applied to article bodies.
+   Article styling changes go here, never into a page component.
    ═══════════════════════════════════════════════════════════════ */
 
 @layer components {
   .prose {
-    max-width: var(--measure);
-    font-size: 1.0625rem;
-    line-height: 1.7;
+    font-size: var(--text-md);
+    line-height: 1.72;
     color: var(--ink);
   }
 
-  .prose > * + * { margin-top: 1.25em; }
+  .prose > * + * { margin-top: 1.3em; }
+
+  /* The reading measure applies to actual prose text — paragraphs,
+     headings, blockquotes — not to tables, equations, definition lists, or
+     images. Those read better at the full column width, especially in
+     reference-dense sections carrying a lot of notation side by side. */
+  .prose > p,
+  .prose > blockquote,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    max-width: var(--measure);
+  }
+
+  /* Display equations get their own boxed callout — they are the thing a
+     reader scans for on revision, so they need to visually break out of the
+     surrounding prose rather than read as just another paragraph. Overflow
+     is scrollable so a long equation can't force the page wider on mobile. */
+  .prose .katex-display {
+    margin: 1.5em 0;
+    padding: calc(var(--u) * 2) calc(var(--u) * 2.5);
+    border: var(--line) solid var(--rule);
+    background: var(--paper-raised);
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  /* Headings are numbered by counter — the document logic reaches into the
+     article body, it does not stop at the page furniture. */
+  .prose { counter-reset: h2; }
 
   .prose h2,
   .prose h3,
   .prose h4 {
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    scroll-margin-top: 5rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    scroll-margin-top: calc(var(--u) * 10);
   }
 
-  .prose h2 { font-size: 1.5rem;   margin-top: 2.5em; }
-  .prose h3 { font-size: 1.1875rem; margin-top: 2em; }
-  .prose h4 { font-size: 1.0625rem; margin-top: 1.75em; color: var(--ink-muted); }
+  .prose h2 {
+    counter-increment: h2;
+    counter-reset: h3;
+    font-size: var(--text-lg);
+    margin-top: 2.4em;
+    padding-top: calc(var(--u) * 1.5);
+    border-top: var(--line-heavy) solid var(--rule-strong);
+    display: flex;
+    gap: calc(var(--u) * 1.5);
+  }
+  .prose h2::before {
+    content: counter(h2) ".0";
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    flex: none;
+  }
 
-  .prose h2 + *, .prose h3 + *, .prose h4 + * { margin-top: 0.6em; }
+  .prose h3 {
+    counter-increment: h3;
+    font-size: var(--text-base);
+    margin-top: 2em;
+    display: flex;
+    gap: calc(var(--u) * 1.5);
+  }
+  .prose h3::before {
+    content: counter(h2) "." counter(h3);
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    flex: none;
+  }
+
+  .prose h4 {
+    font-size: var(--text-sm);
+    margin-top: 1.75em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .prose h2 + *, .prose h3 + *, .prose h4 + * { margin-top: 0.7em; }
 
   .prose a {
     color: var(--accent);
@@ -135,91 +293,104 @@
     transition: text-decoration-color 120ms ease, color 120ms ease;
   }
   .prose a:hover {
-    color: var(--accent-hover);
+    color: var(--accent-dim);
     text-decoration-color: currentColor;
   }
 
-  .prose strong { font-weight: 650; }
+  .prose strong { font-weight: 600; }
 
-  .prose ul, .prose ol { padding-left: 1.4em; }
+  /* List markers are mono and faint — they are metadata about structure,
+     the same as every other number on the site. */
+  .prose ul, .prose ol { padding-left: 1.6em; }
   .prose ul { list-style: none; }
   .prose ul > li { position: relative; }
   .prose ul > li::before {
     content: "—";
     position: absolute;
-    left: -1.4em;
+    left: -1.6em;
     color: var(--ink-faint);
+    font-family: var(--font-mono);
   }
   .prose ol { list-style: decimal; }
-  .prose ol > li::marker { color: var(--ink-faint); font-family: var(--font-mono); font-size: 0.85em; }
-  .prose li + li { margin-top: 0.4em; }
+  .prose ol > li::marker {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+  }
+  .prose li + li { margin-top: 0.45em; }
 
+  /* A blockquote is an annotation, set with one marker (italic + hanging
+     indent), not stacked with a bar and a tint as well. */
   .prose blockquote {
-    border-left: 2px solid var(--rule-strong);
-    padding-left: 1.15em;
+    padding-left: calc(var(--u) * 2.5);
     color: var(--ink-muted);
     font-style: italic;
   }
 
   .prose hr {
     border: 0;
-    border-top: 1px solid var(--rule);
+    border-top: var(--line) solid var(--rule);
     margin-block: 2.5em;
   }
 
-  /* Inline code */
   .prose :not(pre) > code {
     font-family: var(--font-mono);
-    font-size: 0.875em;
-    background: var(--paper-raised);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    padding: 0.1em 0.35em;
+    font-size: 0.85em;
+    color: var(--ink-muted);
+    letter-spacing: -0.01em;
   }
 
-  /* Fenced code blocks (rehype-pretty-code) */
   .prose pre {
     font-family: var(--font-mono);
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: var(--text-sm);
+    line-height: 1.65;
     background: var(--paper-raised) !important;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: 1rem 1.15rem;
+    border: var(--line) solid var(--rule);
+    border-left: var(--line-heavy) solid var(--rule-strong);
+    padding: calc(var(--u) * 1.5) calc(var(--u) * 2);
     overflow-x: auto;
     max-width: 100%;
   }
   .prose pre code { display: grid; background: transparent; }
   .prose pre [data-line] { padding-inline: 0; }
+  /* Monochrome code, on purpose: a five-colour syntax theme is exactly the
+     thing DESIGN_BRIEF.md rules out. Weight and italics carry emphasis. */
+  .prose code[data-theme] span,
+  .prose code[data-theme] span[style] { color: var(--ink) !important; }
 
-  .prose code[data-theme] span { color: var(--shiki-light); }
-
+  /* Tables are structural in a controlled document, not presentational. */
   .prose table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9375rem;
+    font-size: var(--text-sm);
+    overflow-x: auto;
   }
   .prose th, .prose td {
-    border-bottom: 1px solid var(--rule);
-    padding: 0.55em 0.75em;
+    border-bottom: var(--line) solid var(--rule);
+    padding: calc(var(--u) * 0.9) calc(var(--u) * 1.25);
     text-align: left;
+    vertical-align: top;
   }
-  .prose th {
+  /* Auto table layout shrinks short label columns disproportionately when
+     one column (usually the last — notes, examples, behaviour) carries far
+     more text than the rest. Pin every column but the last to its natural
+     width so "n = 1" or "Bingham plastic" never wraps just because a
+     neighbouring cell is a paragraph. */
+  .prose td:not(:last-child), .prose th:not(:last-child) {
+    white-space: nowrap;
+  }
+  .prose thead th {
+    border-bottom: var(--line-heavy) solid var(--rule-strong);
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
+    font-size: var(--text-2xs);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-faint);
     font-weight: 500;
   }
+  .prose img, .prose video { max-width: 100%; height: auto; }
 
-  .prose img, .prose video {
-    max-width: 100%;
-    height: auto;
-    border-radius: 3px;
-  }
-
-  /* Heading anchor links from rehype-autolink-headings */
+  /* Heading anchors from rehype-autolink-headings */
   .prose .heading-anchor {
     color: var(--ink-faint);
     text-decoration: none;
@@ -235,5 +406,5 @@
 
   /* Wide content must scroll inside itself, never the page. */
   .prose > pre,
-  .prose > table { overflow-x: auto; }
+  .prose > table { overflow-x: auto; display: block; }
 }

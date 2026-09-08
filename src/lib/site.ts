@@ -12,7 +12,7 @@ export const site = {
   email: "ajmera.parth8@gmail.com",
 } as const;
 
-export type PillarSlug = "pharma-eng" | "gate-bt" | "sales-eng";
+export type PillarSlug = "pharma-eng" | "bioprocess-eng" | "gate-bt" | "sales-eng";
 
 export type Pillar = {
   slug: PillarSlug;
@@ -31,6 +31,14 @@ export const pillars: readonly Pillar[] = [
       "Explainers on the unit operations, thermodynamics, and process control behind how drugs actually get made.",
     description:
       "Working notes on pharmaceutical sciences from an engineering angle — mass and energy balances, unit operations, process validation, and the physical chemistry that governs them.",
+  },
+  {
+    slug: "bioprocess-eng",
+    title: "Bioprocess Engineering",
+    summary:
+      "Notes on the biological unit operations — fermentation, cell culture, downstream purification — that turn an organism into a drug.",
+    description:
+      "Working notes on bioprocess engineering: upstream fermentation and cell culture, downstream separation and purification, bioreactor design and scale-up, and the process analytical technology that ties bioprocessing to GMP manufacturing.",
   },
   {
     slug: "gate-bt",

@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
-import { Source_Serif_4, IBM_Plex_Mono } from "next/font/google";
+import { STIX_Two_Text, IBM_Plex_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { site } from "@/lib/site";
+import "katex/dist/katex.min.css";
 import "./globals.css";
 
-const serif = Source_Serif_4({
-  variable: "--font-source-serif",
+// A Times-descended text face built for scientific and technical publishing —
+// correct for this domain, not merely tasteful. See DESIGN_BRIEF.md.
+const serif = STIX_Two_Text({
+  variable: "--font-stix",
   subsets: ["latin"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
 const mono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
