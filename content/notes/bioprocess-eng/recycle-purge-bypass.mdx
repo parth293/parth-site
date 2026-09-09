@@ -1,0 +1,78 @@
+---
+title: "Recycle, Purge, and Bypass"
+date: "2026-09-09"
+summary: "Recycle, purge, and bypass streams — how each reroutes material around or through a process unit, and why."
+tags: ["bioreactor-design"]
+---
+
+## Recycle, purge, and bypass streams
+
+**Recycle**, **bypass**, and **purge** are three ways a stream can be routed
+around or through a process unit, each solving a different problem: recycle
+raises conversion, bypass controls product concentration or temperature, and
+purge prevents build-up of unwanted material.
+
+## Recycle
+
+**Recycle** takes part of the product stream and routes it back to combine
+with the fresh feed at the process inlet.
+
+![Block diagram: a Feed stream enters a Process box and exits as Product; a Recycling stream splits off from the product stream and feeds back into the process inlet, combining with the fresh feed](/notes/bioprocess-eng/recycle-block-diagram.png)
+
+Reasons to recycle:
+
+- Increase residence time.
+- Increase overall conversion.
+- But: may reduce productivity beyond a point.
+
+## Bypass
+
+**Bypass** takes part of the feed stream and routes it around the process
+entirely, rejoining the product stream after the process.
+
+![Block diagram: a Feed stream enters a Process box and exits as Product; a Bypass stream splits off from the feed before the process box and rejoins the product stream after the process, without passing through the process](/notes/bioprocess-eng/bypass-block-diagram.png)
+
+Function:
+
+- When the product is too concentrated.
+- When temperature control is needed (exothermic process).
+
+## Purge system
+
+**Purge** removes part of the recycle stream from the system entirely,
+rather than returning all of it to the feed.
+
+![Block diagram: a Feed stream enters a Process box and exits as Product; a Recycle stream splits off from the product stream, and before rejoining the feed a portion of it is diverted as a Purge stream leaving the system](/notes/bioprocess-eng/purge-system-block-diagram.png)
+
+Function:
+
+- If an inert or impurity enters with the feed or forms inside the reactor,
+  recycling it can cause its build-up — a portion of the recycle must be
+  purged to prevent this.
+
+## Recycle vs. bypass vs. purge
+
+| | Splits from | Rejoins | Purpose |
+|---|---|---|---|
+| Recycle | Product stream | Feed, before the process | Increase residence time and overall conversion |
+| Bypass | Feed stream | Product, after the process | Control product concentration; temperature control for exothermic processes |
+| Purge | Recycle stream | Leaves the system (does not rejoin) | Prevent build-up of inerts or impurities |
+
+## Key points
+
+- **Recycle** returns part of the product stream to the feed to increase
+  residence time and overall conversion — but pushed too far, it can reduce
+  productivity.
+- **Bypass** diverts part of the feed around the process and rejoins it with
+  the product, used when the product is too concentrated or when
+  temperature control is needed for an exothermic process.
+- **Purge** bleeds off part of the recycle stream so inerts or impurities
+  entering with the feed, or forming inside the reactor, don't build up.
+
+## Common confusion
+
+Recycle, bypass, and purge all add a second stream around the process box,
+but they connect at different points: recycle splits from the **product**
+and rejoins the **feed**; bypass splits from the **feed** and rejoins the
+**product**, skipping the process; purge splits from the **recycle** stream
+and leaves the system rather than rejoining anything.
