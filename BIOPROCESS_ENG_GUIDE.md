@@ -74,7 +74,7 @@ transcribed and cleaned up into the shape above. When doing that:
   content he dictates.
 - **Every equation defines every symbol, with units, every time** — even a
   symbol already defined earlier in the note. This isn't just a formatting
-  preference: the Formula Sheet (below) extracts each equation as a
+  preference: the note's Formulas tab (below) extracts each equation as a
   standalone card, so an equation missing its own variable list will show
   up incomplete there.
 
@@ -87,24 +87,24 @@ transcribed and cleaned up into the shape above. When doing that:
   as `/notes/bioprocess-eng/<file>.png`. Give files descriptive kebab-case
   names matching what they show (`bingham-plastic-curve.png`), not the
   original screenshot filename.
-- **The Formula Sheet** (`/notes/bioprocess-eng/formulas`, built by
-  `src/lib/formulas.ts`) auto-extracts every equation across every note in
-  this pillar — no manual step needed when you add one. It works by
-  scanning for the exact pattern this guide already mandates: a heading
-  (`##`/`###`/`####`), then a `$$...$$` block, then a contiguous bullet list
-  of `- $symbol$ — definition, unit` lines directly beneath it. Breaking
-  that shape (e.g. inserting a paragraph between the equation and its
-  variable list) makes the equation vanish from the sheet, not error loudly
-  — so stick to the shape even when it feels rigid.
-- **Each note also gets a "Formulas" and "Worked examples" tab**
+- **Each note gets a "Formulas" and "Worked examples" tab**
   (`/notes/bioprocess-eng/<slug>/formulas` and `.../worked-examples`), scoped
   to just that note — built by `src/lib/formulas.ts` and
-  `src/lib/worked-examples.ts` respectively. A worked example is any heading
-  (`##`/`###`/`####`) whose text starts with "Worked example" — everything
-  under it up to the next heading of the same or shallower level is pulled
-  onto that tab and rendered as-is (so it can use bold, numbered lists,
-  inline and display math freely — unlike the formula-sheet extraction, this
-  one doesn't parse structure). Follow the shape already in
+  `src/lib/worked-examples.ts` respectively. There is no cross-note formula
+  sheet; formulas are surfaced per note, not on one aggregate page. The
+  Formulas tab auto-extracts every equation in the note — no manual step
+  needed when you add one — by scanning for the exact pattern this guide
+  already mandates: a heading (`##`/`###`/`####`), then a `$$...$$` block,
+  then a contiguous bullet list of `- $symbol$ — definition, unit` lines
+  directly beneath it. Breaking that shape (e.g. inserting a paragraph
+  between the equation and its variable list) makes the equation vanish from
+  the tab, not error loudly — so stick to the shape even when it feels rigid.
+  A worked example is any heading (`##`/`###`/`####`) whose text starts with
+  "Worked example" — everything under it up to the next heading of the same
+  or shallower level is pulled onto that tab and rendered as-is (so it can
+  use bold, numbered lists, inline and display math freely — unlike the
+  formulas-tab extraction, this one doesn't parse structure). Follow the
+  shape already in
   `content/notes/bioprocess-eng/fluid-mechanics.mdx`: a
   `#### Worked example: <what it's testing>` heading, a
   `**Question.**` paragraph, a `**Solution.**` paragraph with numbered
@@ -113,7 +113,7 @@ transcribed and cleaned up into the shape above. When doing that:
   `{/* importance: very-important */}` comment on its own line anywhere
   between the heading and the `$$` block. Every formula defaults to
   "important" (unadorned) — this comment is the only way to promote one to
-  "very-important", and it's what the Formula Sheet's filter reads. It must
+  "very-important", and it's what each note's Formulas tab filter reads. It must
   be the JSX-comment form (`{/* ... */}`), not an HTML comment
   (`<!-- ... -->`) — MDX compiles this content as JSX, and a bare
   `<!-- -->` fails the build.

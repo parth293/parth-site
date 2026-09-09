@@ -1,10 +1,10 @@
 import GithubSlugger from "github-slugger";
-import { getDoc, getNotes } from "./content";
+import { getDoc } from "./content";
 import type { PillarSlug } from "./site";
 
 /**
- * Pulls every display equation ($$...$$) out of a pillar's notes for a
- * standalone revision view — see BIOPROCESS_ENG_GUIDE.md's equation format,
+ * Pulls every display equation ($$...$$) out of a single note for that
+ * note's "Formulas" tab — see BIOPROCESS_ENG_GUIDE.md's equation format,
  * which this depends on: a heading, then a $$ block, then a bullet list of
  * "$symbol$ — definition, unit" lines directly underneath. Written against
  * that convention rather than a general LaTeX-in-Markdown parser.
@@ -81,11 +81,6 @@ function extractFormulas(body: string, noteTitle: string, noteHref: string): For
   }
 
   return formulas;
-}
-
-export async function getFormulas(pillar: PillarSlug): Promise<Formula[]> {
-  const docs = await getNotes(pillar);
-  return docs.flatMap((doc) => extractFormulas(doc.body, doc.title, doc.href));
 }
 
 /** Scoped to one note — powers that note's "Formulas" tab. */

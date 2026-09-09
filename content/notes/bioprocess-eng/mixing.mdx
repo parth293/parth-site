@@ -1,0 +1,204 @@
+---
+title: "Mixing"
+date: "2026-09-09"
+summary: "Mixing in bioreactors — CSTR design, bioreactor internals, power consumption, impeller types, and mixing time."
+tags: ["bioreactor-design", "scale-up"]
+---
+
+## Why mixing matters in bioreactors
+
+Mixing creates a homogeneous environment in the bioreactor, needed for:
+
+- Dispersing gases.
+- Promoting heat exchange.
+- Suspension of solid particles.
+- Dispersing immiscible liquids.
+
+## Continuous stirred tank reactor (CSTR)
+
+To achieve the goal of mixing, the design of a continuous stirred tank
+reactor (CSTR) is studied, understanding its different components.
+
+### General design ratios
+
+| Component | Ratio | Typical range |
+| --- | --- | --- |
+| Impeller diameter | $D_i / D_t$ | $1/3$ – $1/2$ (range for good mixing) |
+| Liquid height | $H_L / D_t$ | $1$ – $1.25$ |
+| Baffle width | $W_b / D_t$ | $1/10$ – $1/12$ |
+
+- $D_i$ — impeller diameter
+- $D_t$ — tank diameter
+- $H_L$ — height of liquid in the tank
+- $W_b$ — baffle width
+
+### Headspace
+
+The tank should never be filled completely with liquid, because gases are
+being released by microbes. Without that headspace, the gas released can
+cause pressure to rise and the tank to burst.
+
+## Parts of a bioreactor
+
+### Stirrer shaft
+
+The rod on which the impeller blades are attached, and which is itself
+attached to a motor. The motor powers and rotates the shaft, and the shaft
+rotates the blades.
+
+### Baffles
+
+**Baffles** are vertical metal sheets or strips attached to the inside of the
+tank, used to:
+
+- Break circulatory flow of the fluid.
+- Reduce gross vortex formation.
+- Produce turbulence and eddies.
+- Help exchange heat (coils for heat exchange are arranged around them).
+
+![Cutaway of a cylindrical bioreactor tank showing vertical baffle plates mounted against the inside wall](/notes/bioprocess-eng/baffle-arrangement-cutaway.png)
+
+A typical reactor uses 4 baffles.
+
+### Sparger (aerator)
+
+A **sparger** introduces gases into the liquid medium.
+
+![Diagram of sparger designs and a schematic comparing three gas sparger types: perforated plate, ladder distributor, and tri-nozzle sparger](/notes/bioprocess-eng/gas-sparger-types.png)
+
+| Sparger type | Used at | Note |
+| --- | --- | --- |
+| Perforated plate | Lab scale | Con: pores get blocked by fungal mycelia |
+| Tri-nozzle sparger / ladder distributor (ladder sparger) | Industrial scale | Large pores — don't get blocked |
+
+## Power consumption
+
+While mixing is important, bioreactors cannot be mixed at full speed. As
+power increases, shear stress on cells in the bulk fluid increases, and
+beyond a certain point the cells get lysed or damaged. This risk is highest
+for eukaryotes, which have no cell wall — prokaryotes and plants do have
+cell walls.
+
+### Units of power
+
+One watt equals:
+
+- $1\ \text{J/s}$ (one joule per second)
+- $1\ \text{N·m/s}$ (one newton-metre per second)
+- $1\ \text{kg·m}^2/\text{s}^3$ (one kilogram metre-squared per second-cubed)
+
+### Power number (Newton number, $N_p$)
+
+**Power number** ($N_p$) indicates the power required for agitating
+non-aerated fluids. In turbulent flow, $N_p$ is a constant depending on the
+type of impeller used; in laminar flow, $N_p$ is not constant.
+
+$$
+N_p = \frac{P}{\rho N_i^3 D_i^5}
+$$
+
+- $N_p$ — power number (Newton number), dimensionless
+- $P$ — power, in watts ($\text{W}$)
+- $\rho$ — density of the fluid, in kilograms per cubic metre ($\text{kg/m}^3$)
+- $N_i$ — impeller rotational speed, in reciprocal seconds ($\text{s}^{-1}$)
+- $D_i$ — impeller diameter, in metres ($\text{m}$)
+
+**Before solving any problem involving $N_p$, always assess whether the flow
+is turbulent or laminar first** — $N_p$ is only constant in turbulent flow.
+
+### Power in laminar flow
+
+In laminar flow, power is given by:
+
+$$
+P = K_L \mu N_i^2 D_i^3
+$$
+
+- $P$ — power, in watts ($\text{W}$)
+- $K_L$ — laminar power constant, a dimensionless constant depending on the
+  geometry of the impeller and tank (blade pitch, blade shape, number of
+  blades, vessel geometry)
+- $\mu$ — dynamic viscosity of the fluid, in pascal-seconds ($\text{Pa} \cdot \text{s}$)
+- $N_i$ — impeller rotational speed, in reciprocal seconds ($\text{s}^{-1}$)
+- $D_i$ — impeller diameter, in metres ($\text{m}$)
+
+## Impeller tip speed
+
+![Top-down view of a three-blade impeller rotating, with tip speed vectors shown tangential to each blade tip](/notes/bioprocess-eng/impeller-tip-speed-diagram.png)
+
+$$
+v_{tip} = \pi N_i D_i
+$$
+
+- $v_{tip}$ — impeller tip speed, in metres per second ($\text{m/s}$)
+- $N_i$ — impeller rotational speed, in reciprocal seconds ($\text{s}^{-1}$)
+- $D_i$ — impeller diameter, in metres ($\text{m}$)
+
+## Flow number ($F_l$ / $F_Q$)
+
+The effectiveness of the impeller for pumping the fluid is represented by a
+dimensionless number, the **flow number**.
+
+$$
+F_l = \frac{Q}{N_i D_i^3}
+$$
+
+- $F_l$ — flow number (also written $F_Q$), dimensionless
+- $Q$ — volumetric flow rate of fluid leaving the impeller blade, in cubic metres per second ($\text{m}^3/\text{s}$)
+- $N_i$ — impeller rotational speed, in reciprocal seconds ($\text{s}^{-1}$)
+- $D_i$ — impeller diameter, in metres ($\text{m}$)
+
+## Mixing time
+
+Mixing time should be as low as possible. If mixing time is high, when
+chemicals are added, the local region they are added to can shift in pH or
+other local conditions enough that the cells there die.
+
+### Calculating mixing time ($t_m$ / $T_m$)
+
+#### If power is given
+
+$$
+t_m = 5.9\, D_T^{2/3} \left(\frac{\rho V_L}{P}\right)^{1/3} \left(\frac{D_T}{D_i}\right)^{1/3}
+$$
+
+- $t_m$ — mixing time, in seconds ($\text{s}$)
+- $D_T$ — tank diameter, in metres ($\text{m}$)
+- $\rho$ — density of the fluid, in kilograms per cubic metre ($\text{kg/m}^3$)
+- $V_L$ — volume of liquid, in cubic metres ($\text{m}^3$)
+- $P$ — power, in watts ($\text{W}$)
+- $D_i$ — impeller diameter, in metres ($\text{m}$)
+
+#### If power number is given
+
+$$
+t_m = \frac{5.4}{N_i} \left(\frac{1}{N_p}\right)^{1/3} \left(\frac{D_T}{D_i}\right)^2
+$$
+
+- $t_m$ — mixing time, in seconds ($\text{s}$)
+- $N_i$ — impeller rotational speed, in reciprocal seconds ($\text{s}^{-1}$)
+- $N_p$ — power number, dimensionless
+- $D_T$ — tank diameter, in metres ($\text{m}$)
+- $D_i$ — impeller diameter, in metres ($\text{m}$)
+
+## Impeller
+
+### Axial flow vs. radial flow impellers
+
+**Axial flow impellers** discharge fluid primarily parallel to the impeller
+drive shaft, along the vertical axis, creating top-to-bottom bulk turnover.
+**Radial flow impellers** discharge fluid perpendicular to the drive shaft,
+radially outward to the vessel wall, where it splits into two circulation
+loops — one moving upward, one moving downward.
+
+![Axial flow impeller pushing fluid along the vertical shaft axis for top-to-bottom turnover, versus radial flow impeller pushing fluid outward toward the vessel wall in two circulation loops](/notes/bioprocess-eng/axial-vs-radial-flow-impellers.png)
+
+| Feature | Axial flow impeller | Radial flow impeller |
+| --- | --- | --- |
+| Discharge direction | Parallel to drive shaft (downward/axial) | Perpendicular to shaft (outward to walls) |
+| Primary mechanism | High volumetric pumping rate ($Q$) | High localized shear stress ($\tau$) |
+| Turbulent power number ($N_p$) | Low ($N_p \approx 0.3$–$1.5$) | High ($N_p \approx 4.5$–$6.0$) |
+| Shear sensitivity | Low shear (gentle mixing) | High shear (aggressive breakup) |
+| Gas dispersion capability | Poor (prone to gas cavity flooding) | Excellent (effective bubble breakup, high $k_L a$) |
+| Primary process use | Cell suspension, animal/plant cell culture, blending | Aerobic bacterial fermentation, gas-liquid mass transfer |
+| Standard examples | Marine propeller, pitched-blade turbine (PBT), hydrofoil (Lightnin A310) | Rushton 6-flat-blade turbine, paddle agitator |
