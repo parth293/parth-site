@@ -69,6 +69,12 @@ From the `lab-notebook` direction, which solved things this one had not:
 - Serif for reading, mono for metadata, labels, numbers, and status.
 - Reading measure 65–75 characters for all long-form.
 - No decorative motion. Transitions are 120ms colour changes, nothing else.
+  **Active exception, under live evaluation, not yet ratified**: the site
+  header floats, is translucent, and fades out based on mouse position near
+  the top of the viewport — real motion beyond a colour change, built
+  deliberately to try rather than translate into the document idiom. If it
+  doesn't earn its keep, revert `SiteHeader` and delete this line; if it
+  does, promote it to a real rule instead of an asterisk.
 - No skeuomorphism. No paper texture, no faux binding, no stamps, no
   handwriting, no sepia. This is a digital surface that absorbed a document's
   logic, not a picture of paper.
