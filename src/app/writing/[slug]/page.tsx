@@ -38,7 +38,7 @@ export default async function WritingPage({ params }: Params) {
 
   return (
     <PageShell>
-      <ArticleLayout doc={doc} backHref="/writing" backLabel="Writing">
+      <ArticleLayout doc={doc}>
         <Mdx source={doc.body} />
       </ArticleLayout>
     </PageShell>
