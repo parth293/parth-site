@@ -30,29 +30,51 @@ export default async function HomePage() {
 
   return (
     <PageShell>
-      <div className="space-y-14">
-        <Section number="1.0" label="Identification">
-          <h1 className="font-mono text-[length:var(--text-display)] font-medium tracking-[-0.01em] leading-[1.02] text-balance">
-            {site.name}
-          </h1>
-          <p className="measure mt-5 text-lg leading-snug text-ink italic font-serif text-pretty">
-            &ldquo;{site.tagline}&rdquo;
-          </p>
-          <p className="measure mt-5 leading-relaxed text-ink-muted text-pretty">
-            Six years at{" "}
-            <span className="font-mono text-[0.9em] text-ink">Leucine</span>, building and
-            selling GMP compliance software to pharmaceutical manufacturers — from
-            implementation specialist to Director of Strategic Initiatives. Trained as an
-            engineer at{" "}
-            <span className="font-mono text-[0.9em] text-ink">IIT BHU</span>. Currently
-            working out what comes next, in public.
-          </p>
-          <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3">
-            <CrossRef href="/resume">→ Resume</CrossRef>
-            <CrossRef href="/journey">→ Full history</CrossRef>
-          </div>
-        </Section>
+      <Section number="1.0" label="Identification">
+        <h1 className="font-mono text-[length:var(--text-display)] font-medium tracking-[-0.01em] leading-[1.02] text-balance">
+          {site.name}
+        </h1>
+        <p className="measure mt-5 text-lg leading-snug text-ink italic font-serif text-pretty">
+          &ldquo;{site.tagline}&rdquo;
+        </p>
+        <p className="measure mt-5 leading-relaxed text-ink-muted text-pretty">
+          Six years at{" "}
+          <span className="font-mono text-[0.9em] text-ink">Leucine</span>, building and
+          selling GMP compliance software to pharmaceutical manufacturers — from
+          implementation specialist to Director of Strategic Initiatives. Trained as an
+          engineer at{" "}
+          <span className="font-mono text-[0.9em] text-ink">IIT BHU</span>. Currently
+          working out what comes next, in public.
+        </p>
 
+        <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+          <Link
+            href="/resume"
+            className="inline-flex items-center gap-2 border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] text-ink transition-colors hover:bg-ink hover:text-paper"
+          >
+            Resume →
+          </Link>
+          <CrossRef href="/journey">Full history →</CrossRef>
+        </div>
+
+        <details className="mt-8 max-w-xs">
+          <summary className="cursor-pointer select-none font-mono text-xs uppercase tracking-[0.1em] text-ink-faint transition-colors hover:text-accent">
+            Contents on file
+          </summary>
+          <ul className="mt-3 space-y-1.5 border-l-2 border-rule pl-3">
+            {pillars.map((p) => (
+              <li key={p.slug}>
+                <CrossRef href={`/notes/${p.slug}`}>{p.title}</CrossRef>
+              </li>
+            ))}
+            <li>
+              <CrossRef href="/writing">Writing</CrossRef>
+            </li>
+          </ul>
+        </details>
+      </Section>
+
+      <div className="mt-20 space-y-14 sm:mt-24">
         <Section
           number="2.0"
           label="Collections on file"
