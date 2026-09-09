@@ -23,8 +23,7 @@ Add one `.mdx` file and commit. No code changes needed.
 
 ```
 content/notes/pharma-eng/<slug>.mdx   → /notes/pharma-eng/<slug>
-content/notes/gate-bt/<slug>.mdx      → /notes/gate-bt/<slug>
-content/notes/sales-eng/<slug>.mdx    → /notes/sales-eng/<slug>
+content/notes/gtm-eng/<slug>.mdx      → /notes/gtm-eng/<slug>
 content/writing/<slug>.mdx            → /writing/<slug>
 ```
 

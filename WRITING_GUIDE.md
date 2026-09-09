@@ -42,8 +42,7 @@ that only beats up weak opponents reads as marketing.
 
 **Own the uncertainty.** "I think," "I have seen this twice, which is not
 enough to generalize," "I do not know why this works" are all better than false
-confidence. The GATE-BT notes especially are written *while* preparing — that is
-the honest and more useful frame.
+confidence.
 
 ## Banned
 
@@ -88,8 +87,6 @@ industry...") or with what the piece is about ("In this post I will...").
 Good openings for this site look like:
 
 - "The first time I watched a batch get rejected, the reason was a signature."
-- "GATE-BT has a syllabus problem: it is broad enough that coverage is the wrong
-  strategy."
 - "Most technical sales advice assumes the buyer can say yes. In pharma, nobody
   can say yes alone."
 
@@ -109,10 +106,6 @@ prose descriptions of equations.
 **`/notes/bioprocess-eng`** — Study notes, not essays: written to be scanned
 and memorized, not read once. Governed by its own stricter format — see
 [BIOPROCESS_ENG_GUIDE.md](BIOPROCESS_ENG_GUIDE.md) before writing here.
-
-**`/notes/gate-bt`** — Written in real time, not in retrospect. Present tense.
-Include what is not working. This section's credibility comes from being
-unfinished; do not clean it up into a success story.
 
 **`/writing`** — More opinionated, more room to argue. Book notes state what the
 book got wrong, not just what it said.

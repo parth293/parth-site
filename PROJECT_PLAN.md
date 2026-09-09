@@ -40,14 +40,13 @@ Context for tone and positioning; not for direct reproduction.
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Hook, one-liner, 5 pillars (4 notes + writing), latest writing, resume CTA |
+| `/` | Hook, one-liner, 4 pillars (3 notes + writing), latest writing, resume CTA |
 | `/journey` | Narrative version of academic + professional background |
 | `/resume` | Web version + downloadable PDF |
-| `/notes` | Index across all four pillars |
+| `/notes` | Index across all three pillars |
 | `/notes/pharma-eng` | Pillar 1 — pharmaceutical sciences explainers |
 | `/notes/bioprocess-eng` | Pillar 2 — bioprocess engineering explainers |
-| `/notes/gate-bt` | Pillar 3 — GATE-BT preparation strategy |
-| `/notes/sales-eng` | Pillar 4 — technical sales engineering & philosophy |
+| `/notes/gtm-eng` | Pillar 3 — GTM engineering & philosophy |
 | `/writing` | Essays, book notes — general evolving writing |
 | `/now` | Current focus; updated periodically |
 
@@ -136,7 +135,7 @@ nav, and index pages follow automatically.
       + PDF).
 - [ ] **Phase 3 — Content system.** Harden the MDX collection pattern: tag
       filtering, per-tag pages, RSS.
-- [ ] **Phase 4 — Seed the four pillars.** Each `/notes/*` section gets an
+- [ ] **Phase 4 — Seed the three pillars.** Each `/notes/*` section gets an
       index/philosophy page plus 2–3 seed articles — enough to establish the
       section and let it grow.
 - [ ] **Phase 5 — Polish.** SEO metadata, Open Graph images for articles, `/now`
