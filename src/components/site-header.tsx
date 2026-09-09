@@ -4,11 +4,26 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { nav, site, pillarBySlug, type PillarSlug } from "@/lib/site";
 
-/** On an article beneath a notes pillar, name is `["notes", section, ...rest]` with rest non-empty. */
-function notesPillarCrumb(pathname: string | null) {
+type Crumb = { label: string; href: string };
+
+/** On an article beneath a notes pillar or under /writing, the section trail above the title. */
+function breadcrumbTrail(pathname: string | null): Crumb[] | null {
   const parts = pathname?.split("/").filter(Boolean) ?? [];
-  if (parts.length < 3 || parts[0] !== "notes") return null;
-  return pillarBySlug[parts[1] as PillarSlug] ?? null;
+
+  if (parts[0] === "notes" && parts.length >= 3) {
+    const pillar = pillarBySlug[parts[1] as PillarSlug];
+    if (!pillar) return null;
+    return [
+      { label: "Notes", href: "/notes" },
+      { label: pillar.title, href: `/notes/${pillar.slug}` },
+    ];
+  }
+
+  if (parts[0] === "writing" && parts.length >= 2) {
+    return [{ label: "Writing", href: "/writing" }];
+  }
+
+  return null;
 }
 
 export function SiteHeader() {
@@ -17,7 +32,7 @@ export function SiteHeader() {
   // The pitch is screen-shared in interviews; site nav is a distraction there.
   if (pathname?.startsWith("/pitch")) return null;
 
-  const pillar = notesPillarCrumb(pathname);
+  const trail = breadcrumbTrail(pathname);
 
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-paper/85 backdrop-blur-md backdrop-saturate-150">
@@ -55,15 +70,20 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {pillar ? (
+      {trail ? (
         <div className="border-t border-rule">
           <div className="mx-auto w-full max-w-[var(--container)] px-5 sm:px-8">
-            <Link
-              href={`/notes/${pillar.slug}`}
-              className="label inline-flex items-center gap-1.5 py-2 hover:text-accent transition-colors"
-            >
-              <span aria-hidden="true">←</span> {pillar.title}
-            </Link>
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-1.5 gap-y-1 py-2">
+              <span aria-hidden="true" className="label">←</span>
+              {trail.map((crumb, i) => (
+                <span key={crumb.href} className="flex items-center gap-1.5">
+                  {i > 0 ? <span aria-hidden="true" className="label">/</span> : null}
+                  <Link href={crumb.href} className="label hover:text-accent transition-colors">
+                    {crumb.label}
+                  </Link>
+                </span>
+              ))}
+            </nav>
           </div>
         </div>
       ) : null}

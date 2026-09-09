@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/page-shell";
-import { ArticleHeader } from "@/components/article";
+import { ArticleHeader, ArticleFooter } from "@/components/article";
 import { NoteTabs } from "@/components/note-tabs";
 import { getDoc, getNotes } from "@/lib/content";
 import { pillarBySlug, pillars, type PillarSlug } from "@/lib/site";
@@ -31,9 +31,10 @@ export default async function NoteLayout({
   return (
     <PageShell>
       <article>
-        <ArticleHeader doc={doc} backHref={`/notes/${pillar.slug}`} backLabel={pillar.title} />
+        <ArticleHeader doc={doc} />
         <NoteTabs basePath={`/notes/${pillar.slug}/${slug}`} />
         {children}
+        <ArticleFooter doc={doc} />
       </article>
     </PageShell>
   );
