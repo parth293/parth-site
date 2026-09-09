@@ -1,0 +1,172 @@
+---
+title: "Mass Transfer"
+date: "2026-09-09"
+summary: "Mass transfer for bioprocessing — film theory and the mechanisms behind gas-liquid and interphase transfer in bioreactors."
+draft: true
+---
+
+## Mass transfer by diffusion
+
+Mass transfer inside a bioreactor happens through diffusion.
+
+### Diffusion
+
+**Diffusion** is the thermal motion of fluid particles at any temperature
+above absolute zero — 0 K, or −273 °C.
+
+### Fick's law of diffusion
+
+**Fick's law of diffusion** states that molecules move from areas of higher
+concentration to areas of lower concentration.
+
+![Dense cluster of component A particles at higher concentration on the left, with arrows passing through a circular cross-sectional area toward a sparser cluster of the same particles at lower concentration on the right](/notes/bioprocess-eng/fick-law-diffusion-flux-diagram.png)
+
+Mass transfer of component A across a cross-sectional area perpendicular to
+the direction of diffusion can be explained by this law.
+
+$$
+J_A = \frac{N_A}{a} = -D_{AB}\frac{dC_A}{dy}
+$$
+
+- $J_A$ — mass flux of component A, in kilograms per square metre-second
+  ($\text{kg/(m}^2 \cdot \text{s)}$)
+- $N_A$ — rate of mass transfer of component A, in kilograms per second
+  ($\text{kg/s}$)
+- $a$ — cross-sectional area, perpendicular to the direction of diffusion, in
+  square metres ($\text{m}^2$) — not to be confused with the subscript $A$,
+  which denotes the diffusing component
+- $D_{AB}$ — diffusion coefficient of A through B, describing the ease of
+  diffusion, in square metres per second ($\text{m}^2/\text{s}$)
+- $C_A$ — mass concentration of component A, in kilograms per cubic metre
+  ($\text{kg/m}^3$)
+- $y$ — distance in the direction of diffusion, in metres ($\text{m}$)
+
+**The negative sign in the equation is because diffusion occurs from higher
+concentration to lower concentration.**
+
+## Film theory
+
+**Film theory** states that at the interface between two phases, there
+exists a thin, stagnant film or layer of fluid. Within this film, mass
+transfer occurs only via molecular diffusion.
+
+For example, when a bubble enters a bioreactor, a thin film of the same
+bulk fluid surrounds the bubble. This film makes it difficult for gas
+inside the bubble to diffuse out of the bubble and into the fluid.
+
+### Concentration profile across the film
+
+![Concentration profile of solute A across two phases in contact — organic phase bulk fluid on the left, aqueous phase bulk fluid on the right, separated by a phase boundary flanked by an organic film and an aqueous film; a curve shows concentration falling from CA1 in the aqueous bulk fluid, through CA1i and CA2i at the phase boundary, down to CA2 in the organic bulk fluid](/notes/bioprocess-eng/film-theory-concentration-profile-interface.png)
+
+A solute moves from the bulk fluid on one side, across the phase boundary,
+into the bulk fluid on the other side:
+
+1. In the bulk fluid of the first phase (e.g. the aqueous phase), the
+   solute is at concentration $C_{A1}$.
+2. Moving through that phase's film toward the phase boundary, the
+   concentration drops to $C_{A1i}$ (the interface concentration on this
+   side) — the film poses resistance to transfer, since diffusion is the
+   only way for the solute to move through it.
+3. At the phase boundary itself, there is no transfer resistance —
+   instantaneous thermodynamic equilibrium is established. The
+   concentration can rise or drop here, from $C_{A1i}$ to $C_{A2i}$,
+   because the solubility of the solute differs between the two phases —
+   the partition coefficient decides the concentration on each side.
+4. Moving across the second phase's film (e.g. the organic phase), the
+   concentration continues to drop, from $C_{A2i}$ down to $C_{A2}$ in
+   that phase's bulk fluid.
+
+Overall: $C_{A1} > C_{A1i} > C_{A2i} > C_{A2}$.
+
+Within each film, the concentration profile is **linear**. Film theory
+assumes steady-state molecular diffusion through the film with no
+accumulation, and integrating Fick's law under that assumption gives a
+straight-line concentration gradient — the same reasoning that gives a
+linear temperature profile across a wall in steady-state heat conduction.
+
+### Rate of mass transfer (film theory)
+
+Based on film theory, the mass transfer rate is:
+
+$$
+N_A = k_L\, a\, (C^* - C)
+$$
+
+- $N_A$ — volumetric rate of mass transfer, in gram-mole per cubic metre
+  per second ($\text{gmol}/(\text{m}^3 \cdot \text{s})$)
+- $k_L$ — (liquid) film mass-transfer coefficient, in metres per second
+  ($\text{m/s}$)
+- $a$ — interfacial area per unit volume, in square metres per cubic
+  metre ($\text{m}^2/\text{m}^3$)
+- $C^*$ — saturation concentration: the maximum concentration of the
+  solute that can dissolve in the liquid, in gram-mole per cubic metre
+  ($\text{gmol/m}^3$)
+- $C$ — bulk concentration: the current concentration of the solute in the
+  liquid, in gram-mole per cubic metre ($\text{gmol/m}^3$)
+
+$k_L$ is how fast the molecule crosses the film: the thinner the film, the
+higher $k_L$, and the faster the transfer.
+
+$C^* - C$ is the driving force for mass transfer: the bigger the
+difference between the saturation concentration and the bulk
+concentration, the more strongly the system pulls the solute into the
+liquid.
+
+### Interfacial area per unit volume ($a$)
+
+**Interfacial area per unit volume** ($a$) is the total interfacial area
+between the two phases, divided by the total volume of the liquid (the
+bulk liquid) in the vessel — not the total vessel volume including the gas
+phase. In practice, the gas phase (bubbles) occupies only a small fraction
+of the vessel, so the liquid volume is used as the "total volume" in this
+ratio.
+
+#### Worked example: why splitting a bubble raises $a$
+
+**Question.** A single spherical bubble of diameter $10\ \text{mm}$ rises
+through a bioreactor. Compare its interfacial area per unit volume, $a$,
+to that of 100 smaller bubbles occupying the same total gas volume.
+
+**Solution.**
+1. For a sphere, surface area $S = \pi d^2$ and volume $V = \pi d^3/6$, so
+   $a = S/V = 6/d$.
+2. Let $V$ be the total gas volume, held fixed whether it exists as one
+   bubble or is split into $n$ smaller bubbles.
+3. **One bubble**, diameter $d_1$: $V = \pi d_1^3/6$, so
+   $$
+   a_1 = \frac{S_1}{V} = \frac{6}{d_1}
+   $$
+4. **Split into $n$ equal bubbles**, same total volume $V$: each bubble
+   has volume $V/n$, and since volume scales with $d^3$, its diameter is
+   $$
+   d_n = \frac{d_1}{n^{1/3}}
+   $$
+5. Interfacial area per unit volume for the $n$ bubbles:
+   $$
+   a_n = \frac{6}{d_n} = \frac{6\, n^{1/3}}{d_1} = a_1\, n^{1/3}
+   $$
+6. Total interfacial area across all $n$ bubbles, $S_n = a_n V$, so
+   $S_n = n^{1/3} S_1$ — the same $V$ appears on both sides, so it cancels
+   out of the comparison entirely.
+7. Check with numbers: $d_1 = 10\ \text{mm} = 0.01\ \text{m}$ gives
+   $a_1 = 6/0.01 = 600\ \text{m}^2/\text{m}^3$. For $n = 100$,
+   $n^{1/3} \approx 4.64$, so
+   $a_{100} = a_1 \times 4.64 \approx 2790\ \text{m}^2/\text{m}^3$.
+
+**Answer:** Splitting the same total gas volume $V$ into $n$ equal bubbles
+multiplies both $a$ and the total interfacial area by $n^{1/3}$ —
+$a_n = a_1\, n^{1/3}$ — regardless of what $V$ or $d_1$ actually are. For
+$n = 100$ bubbles that is a $100^{1/3} \approx 4.64\times$ increase: from
+$600\ \text{m}^2/\text{m}^3$ (one $10\ \text{mm}$ bubble) to about
+$2790\ \text{m}^2/\text{m}^3$. This is also why the unit of $a$ is
+$\text{m}^2/\text{m}^3$: it is literally total interfacial area (in
+$\text{m}^2$) divided by total volume (in $\text{m}^3$).
+
+### Volumetric mass transfer coefficient ($k_L a$)
+
+While the equation above is true, $k_L$ and $a$ are difficult to measure
+separately in practice. So $k_L$ and $a$ are commonly combined into a
+single parameter, the **volumetric mass transfer coefficient**.
+
+- $k_L a$ — volumetric mass transfer coefficient, in reciprocal seconds
+  ($\text{s}^{-1}$)
