@@ -25,6 +25,13 @@ export type Frontmatter = {
   draft?: boolean;
   /** ISO date; shown as "last updated" when newer than `date`. */
   updated?: string;
+  /**
+   * Manual position within its collection (ascending), for a pillar that
+   * teaches in a sequence rather than a publish order — e.g. fluid
+   * mechanics before mixing before mass transfer. Docs without `order`
+   * fall back to newest-first by `date` and sort after any that have it.
+   */
+  order?: number;
 };
 
 export type Doc = Frontmatter & {
@@ -83,7 +90,12 @@ async function readCollection(dir: string, collection: Doc["collection"], hrefBa
 
   return docs
     .filter((d) => !d.draft || process.env.NODE_ENV === "development")
-    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    .sort((a, b) => {
+      if (a.order != null && b.order != null) return a.order - b.order;
+      if (a.order != null) return -1;
+      if (b.order != null) return 1;
+      return Date.parse(b.date) - Date.parse(a.date);
+    });
 }
 
 export function getNotes(pillar: PillarSlug): Promise<Doc[]> {

@@ -57,6 +57,13 @@
   --accent-dim:  #4a63a0;
   --accent-tint: #e8ecf6;
 
+  /* A second, bounded exception to "one accent": "Engineering" is the word
+     every pillar title shares, so it stays ink. The word in front of it is
+     the only thing that changes between pillars, and it shares one warm
+     copper tone — never used anywhere else on the site. See
+     DESIGN_BRIEF.md. */
+  --subject: #9c5228;
+
   /* Type scale */
   --text-2xs:     0.6875rem;
   --text-xs:      0.75rem;
@@ -92,6 +99,8 @@
   --color-accent:      var(--accent);
   --color-accent-dim:  var(--accent-dim);
   --color-accent-tint: var(--accent-tint);
+
+  --color-subject: var(--subject);
 
   --font-serif: var(--font-stix), "Iowan Old Style", Georgia, "Times New Roman", serif;
   --font-mono:  var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;

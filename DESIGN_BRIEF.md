@@ -58,7 +58,14 @@ From the `lab-notebook` direction, which solved things this one had not:
 ## Fixed rules
 
 - Light only. No dark mode without revisiting the audience decision.
-- One accent. Never a second hue, never a gradient.
+- One primary accent (signature blue), for links, section numbers, status
+  marks, figure strokes. Never a gradient.
+- **One narrow, named exception**: every notes pillar's subject noun (the
+  word in front of "Engineering") shares one warm copper tone, so
+  "Engineering" itself reads as the constant across pillars and the domain
+  reads as the variable — see the colophon. Two colours total, dual not
+  multi. Scoped to that one use; it does not license a general multi-colour
+  palette anywhere else on the site.
 - Serif for reading, mono for metadata, labels, numbers, and status.
 - Reading measure 65–75 characters for all long-form.
 - No decorative motion. Transitions are 120ms colour changes, nothing else.

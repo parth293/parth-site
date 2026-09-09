@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { nav, site, pillarBySlug, type PillarSlug } from "@/lib/site";
@@ -28,6 +29,21 @@ function breadcrumbTrail(pathname: string | null): Crumb[] | null {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const NEAR_TOP = 120;
+    const onMouseMove = (e: MouseEvent) => setVisible(e.clientY < NEAR_TOP);
+    const onScroll = () => {
+      if (window.scrollY < 10) setVisible(true);
+    };
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   // The pitch is screen-shared in interviews; site nav is a distraction there.
   if (pathname?.startsWith("/pitch")) return null;
@@ -35,58 +51,70 @@ export function SiteHeader() {
   const trail = breadcrumbTrail(pathname);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-rule bg-paper/85 backdrop-blur-md backdrop-saturate-150">
-      <div className="mx-auto w-full max-w-[var(--container)] px-5 sm:px-8">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 py-4">
-          <Link
-            href="/"
-            className="font-mono text-sm font-medium uppercase tracking-[0.12em] text-ink hover:text-accent transition-colors"
-          >
-            {site.name}
-          </Link>
-          <nav aria-label="Main">
-            <ul className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
-              {nav.map((item, i) => {
-                const active = pathname === item.href || pathname?.startsWith(`${item.href}/`);
-                return (
-                  <li key={item.href} className="flex items-baseline gap-1.5">
-                    <span className="font-mono text-[length:var(--text-2xs)] tabular-nums text-accent">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <Link
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      className={`font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:text-accent ${
-                        active ? "text-ink" : "text-ink-faint"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-        </div>
-      </div>
-
-      {trail ? (
-        <div className="border-t border-rule">
-          <div className="mx-auto w-full max-w-[var(--container)] px-5 sm:px-8">
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-1.5 gap-y-1 py-2">
-              <span aria-hidden="true" className="label">←</span>
-              {trail.map((crumb, i) => (
-                <span key={crumb.href} className="flex items-center gap-1.5">
-                  {i > 0 ? <span aria-hidden="true" className="label">/</span> : null}
-                  <Link href={crumb.href} className="label hover:text-accent transition-colors">
-                    {crumb.label}
-                  </Link>
-                </span>
-              ))}
+    <>
+    {/* Floating now, not in-flow — this spacer holds its place so page
+        content doesn't sit under it. Sized generously for the breadcrumb
+        row; a little extra air at the top costs less than an overlap. */}
+    <div className={trail ? "h-28" : "h-20"} aria-hidden="true" />
+    <div
+      className={`fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-3 transition-all duration-200 ease-out focus-within:translate-y-0 focus-within:opacity-100 ${
+        visible ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
+      }`}
+    >
+      <header className="w-full max-w-[var(--container)] rounded-2xl border border-rule bg-paper/50 shadow-sm backdrop-blur-lg backdrop-saturate-150">
+        <div className="px-5 sm:px-8">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 py-4">
+            <Link
+              href="/"
+              className="font-mono text-sm font-medium uppercase tracking-[0.12em] text-ink hover:text-accent transition-colors"
+            >
+              {site.name}
+            </Link>
+            <nav aria-label="Main">
+              <ul className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+                {nav.map((item, i) => {
+                  const active = pathname === item.href || pathname?.startsWith(`${item.href}/`);
+                  return (
+                    <li key={item.href} className="flex items-baseline gap-1.5">
+                      <span className="font-mono text-[length:var(--text-2xs)] tabular-nums text-accent">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <Link
+                        href={item.href}
+                        aria-current={active ? "page" : undefined}
+                        className={`font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:text-accent ${
+                          active ? "text-ink" : "text-ink-faint"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
             </nav>
           </div>
         </div>
-      ) : null}
-    </header>
+
+        {trail ? (
+          <div className="border-t border-rule">
+            <div className="px-5 sm:px-8">
+              <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-1.5 gap-y-1 py-2">
+                <span aria-hidden="true" className="label">←</span>
+                {trail.map((crumb, i) => (
+                  <span key={crumb.href} className="flex items-center gap-1.5">
+                    {i > 0 ? <span aria-hidden="true" className="label">/</span> : null}
+                    <Link href={crumb.href} className="label hover:text-accent transition-colors">
+                      {crumb.label}
+                    </Link>
+                  </span>
+                ))}
+              </nav>
+            </div>
+          </div>
+        ) : null}
+      </header>
+    </div>
+    </>
   );
 }

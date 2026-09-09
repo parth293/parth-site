@@ -3,6 +3,7 @@ title: "Mass Transfer"
 date: "2026-09-09"
 summary: "Mass transfer for bioprocessing — film theory and the mechanisms behind gas-liquid and interphase transfer in bioreactors."
 draft: true
+order: 3
 ---
 
 ## Mass transfer by diffusion
@@ -121,52 +122,231 @@ phase. In practice, the gas phase (bubbles) occupies only a small fraction
 of the vessel, so the liquid volume is used as the "total volume" in this
 ratio.
 
-#### Worked example: why splitting a bubble raises $a$
-
-**Question.** A single spherical bubble of diameter $10\ \text{mm}$ rises
-through a bioreactor. Compare its interfacial area per unit volume, $a$,
-to that of 100 smaller bubbles occupying the same total gas volume.
-
-**Solution.**
-1. For a sphere, surface area $S = \pi d^2$ and volume $V = \pi d^3/6$, so
-   $a = S/V = 6/d$.
-2. Let $V$ be the total gas volume, held fixed whether it exists as one
-   bubble or is split into $n$ smaller bubbles.
-3. **One bubble**, diameter $d_1$: $V = \pi d_1^3/6$, so
-   $$
-   a_1 = \frac{S_1}{V} = \frac{6}{d_1}
-   $$
-4. **Split into $n$ equal bubbles**, same total volume $V$: each bubble
-   has volume $V/n$, and since volume scales with $d^3$, its diameter is
-   $$
-   d_n = \frac{d_1}{n^{1/3}}
-   $$
-5. Interfacial area per unit volume for the $n$ bubbles:
-   $$
-   a_n = \frac{6}{d_n} = \frac{6\, n^{1/3}}{d_1} = a_1\, n^{1/3}
-   $$
-6. Total interfacial area across all $n$ bubbles, $S_n = a_n V$, so
-   $S_n = n^{1/3} S_1$ — the same $V$ appears on both sides, so it cancels
-   out of the comparison entirely.
-7. Check with numbers: $d_1 = 10\ \text{mm} = 0.01\ \text{m}$ gives
-   $a_1 = 6/0.01 = 600\ \text{m}^2/\text{m}^3$. For $n = 100$,
-   $n^{1/3} \approx 4.64$, so
-   $a_{100} = a_1 \times 4.64 \approx 2790\ \text{m}^2/\text{m}^3$.
-
-**Answer:** Splitting the same total gas volume $V$ into $n$ equal bubbles
-multiplies both $a$ and the total interfacial area by $n^{1/3}$ —
-$a_n = a_1\, n^{1/3}$ — regardless of what $V$ or $d_1$ actually are. For
-$n = 100$ bubbles that is a $100^{1/3} \approx 4.64\times$ increase: from
-$600\ \text{m}^2/\text{m}^3$ (one $10\ \text{mm}$ bubble) to about
-$2790\ \text{m}^2/\text{m}^3$. This is also why the unit of $a$ is
-$\text{m}^2/\text{m}^3$: it is literally total interfacial area (in
-$\text{m}^2$) divided by total volume (in $\text{m}^3$).
+For a sphere, $a = S/V = 6/d$ — so smaller bubbles mean higher $a$. Splitting
+a fixed total gas volume into $n$ equal bubbles multiplies $a$ (and the
+total interfacial area) by $n^{1/3}$: a single $10\ \text{mm}$ bubble gives
+$a = 600\ \text{m}^2/\text{m}^3$, while 100 smaller bubbles of the same
+total volume give $a \approx 2790\ \text{m}^2/\text{m}^3$. This is why
+sparging aims to break gas into fine bubbles rather than large ones.
 
 ### Volumetric mass transfer coefficient ($k_L a$)
 
-While the equation above is true, $k_L$ and $a$ are difficult to measure
-separately in practice. So $k_L$ and $a$ are commonly combined into a
-single parameter, the **volumetric mass transfer coefficient**.
+$k_L$ and $a$ are hard to measure separately, so they are lumped into a
+single **volumetric mass transfer coefficient**:
+
+$$
+N_A = k_L a\, (C^* - C)
+$$
 
 - $k_L a$ — volumetric mass transfer coefficient, in reciprocal seconds
   ($\text{s}^{-1}$)
+- $N_A$ — volumetric rate of mass transfer, in gram-mole per cubic metre
+  per second ($\text{gmol}/(\text{m}^3 \cdot \text{s})$)
+- $C^*$ — saturation concentration, in gram-mole per cubic metre
+  ($\text{gmol/m}^3$)
+- $C$ — bulk concentration, in gram-mole per cubic metre
+  ($\text{gmol/m}^3$)
+
+$k_L$ and $a$ change together (e.g. faster impeller speed raises both),
+so they're rarely separated in practice. In aerobic fermentation, $A$
+is oxygen, so $k_L a$ represents the bioreactor's **oxygen transfer
+capacity** — the standard parameter for bioreactor design and scale-up.
+
+## Oxygen uptake in a bioreactor
+
+### Rate of oxygen transfer
+
+$$
+N_A = k_L a\, (C^*_{AL} - C_{AL})
+$$
+
+- $N_A$ — volumetric rate of oxygen transfer (OTR), in gram-mole per
+  cubic metre per second ($\text{gmol}/(\text{m}^3 \cdot \text{s})$)
+- $k_L a$ — volumetric mass transfer coefficient, in reciprocal seconds
+  ($\text{s}^{-1}$)
+- $C^*_{AL}$ — saturation concentration of oxygen in the liquid (its
+  maximum solubility), in gram-mole per cubic metre ($\text{gmol/m}^3$)
+- $C_{AL}$ — instantaneous concentration of oxygen in the liquid, in
+  gram-mole per cubic metre ($\text{gmol/m}^3$)
+
+![Path of an oxygen molecule from a gas bubble to a cell's reaction site, numbered in eight steps: (1) interior of the bubble to the gas-liquid interface, (2) across the gas-liquid interface, (3) through the liquid film around the bubble, (4) across the bulk liquid, (5) through the liquid film around the cell, (6) across the liquid-cell interface, (7) to an individual cell within a clump, (8) through the cytoplasm to the reaction site — with k_L a labeling the overall path](/notes/bioprocess-eng/oxygen-transfer-resistance-steps.png)
+
+Oxygen travels from a gas bubble to a cell's reaction site through eight
+resistances in series:
+
+1. Transfer from the interior of the bubble to the gas-liquid interface
+2. Transfer across the gas-liquid interface
+3. Diffusion through the liquid film around the bubble
+4. Transport through the bulk liquid
+5. Diffusion through the liquid film around the cell
+6. Movement across the liquid-cell interface
+7. For cells in a clump, diffusion to the individual cell
+8. Transport through the cytoplasm to the reaction site
+
+**Step 3 — diffusion through the liquid film around the bubble — is the
+largest resistance**, which is why $k_L a$ (built around that film) is
+the parameter that governs overall oxygen transfer.
+
+### Factors affecting cellular oxygen demand
+
+1. Species of bacteria consuming the oxygen
+2. Growth phase the cells are in
+3. Nature of the carbon source fed to the cells
+
+### Rate of oxygen consumption per cell
+
+$$
+Q_O = q_O\, X
+$$
+
+- $q_O$ — specific oxygen uptake rate: oxygen required by one cell, in
+  gram-mole per gram (dry cell weight) per second
+  ($\text{gmol}/(\text{g} \cdot \text{s})$)
+- $X$ — biomass (cell) concentration, in grams (dry cell weight) per
+  cubic metre ($\text{g/m}^3$)
+- $Q_O$ — oxygen uptake rate of the whole bioreactor (OUR), in
+  gram-mole per cubic metre per second ($\text{gmol}/(\text{m}^3 \cdot
+  \text{s})$)
+
+### OTR equals OUR at steady state
+
+At steady state, oxygen is consumed as fast as it is supplied, so the
+oxygen transfer rate equals the oxygen uptake rate: $N_A = Q_O$, which
+gives
+
+$$
+k_L a\, (C^* - C) = q_O\, X
+$$
+
+### Dependence on dissolved oxygen concentration
+
+![Specific oxygen uptake rate plotted against dissolved oxygen concentration C_AL — the curve rises from the origin, climbs steeply, then flattens into a plateau past a critical concentration C_crit](/notes/bioprocess-eng/specific-oxygen-uptake-rate-vs-dissolved-oxygen.png)
+
+- If $C_{AL} < C_{crit}$: there isn't enough dissolved oxygen around the
+  cell, so it can't take up oxygen any faster than that supply allows.
+- If $C_{AL} > C_{crit}$: the cell is already taking up oxygen as fast
+  as it can, so more dissolved oxygen doesn't speed it up further.
+
+### Two special conditions
+
+**Maximum $k_L a$** — set $C_{AL} = C_{crit}$ in $N_A = Q_O$:
+
+$$
+k_{L}a_{max} = \frac{q_O\, X}{C^*_{AL} - C_{crit}}
+$$
+
+This is the minimum aeration/agitation capability a bioreactor must be
+designed for to keep the culture above $C_{crit}$ at a given cell load.
+
+**Maximum cell concentration** — set $C_{AL} = 0$ (no oxygen left in
+the bioreactor) in $N_A = Q_O$:
+
+$$
+X_{max} = \frac{k_L a\, C^*_{AL}}{q_O}
+$$
+
+This gives the theoretical ceiling on biomass density a given aeration
+setup can sustain — the limit you'd hit before scaling up oxygen
+supply.
+
+## Factors affecting $k_L a$
+
+### 1. Bubble size
+
+There's a reference bubble size around $2$–$3\ \text{mm}$:
+
+- **Bubble size $> 2$–$3\ \text{mm}$**: interfacial area $a$ drops, so
+  $k_L a$ decreases.
+- **Bubble size $< 2$–$3\ \text{mm}$**: surface tension turns tiny
+  bubbles into rigid spheres, which stops internal circulation and
+  slightly lowers $k_L$ — but the resulting jump in interfacial area
+  $a$ easily outweighs that drop, so $k_L a$ increases overall.
+
+### 2. Viscosity
+
+- **Viscosity↑** → resistance to OTR increases → $k_L a$ decreases.
+- **Viscosity↓** → resistance to OTR decreases → $k_L a$ increases.
+
+### 3. Stirrer speed
+
+$k_L a$ increases directly with stirrer speed.
+
+### 4. Temperature
+
+Temperature pulls $k_L a$ in two directions at once:
+
+- **Helps the kinetics:** temperature↑ → viscosity↓ and diffusivity
+  $D_{AB}$↑ → $k_L$↑, so $k_L a$↑.
+- **Hurts the driving force:** temperature↑ → gas solubility $C^*$↓
+  (dissolution is exothermic), shrinking $(C^* - C)$ in
+
+  $$
+  N_A = k_L a\, (C^* - C)
+  $$
+
+So higher temperature speeds up transfer kinetics but weakens the
+driving force behind it.
+
+## Methods of measuring $k_L a$
+
+### 1. Oxygen (gas) balance method
+
+Measure the oxygen flow rate into and out of the fermenter, and back
+out $N_A$ from the difference:
+
+$$
+N_A = \frac{1}{V_L}\Big[(F_g\, C_{AG})_{i} - (F_g\, C_{AG})_{o}\Big]
+$$
+
+- $V_L$ — volume of liquid in the fermenter, in cubic metres
+  ($\text{m}^3$)
+- $F_g$ — volumetric gas flow rate, in cubic metres per second
+  ($\text{m}^3/\text{s}$)
+- $C_{AG}$ — concentration of oxygen in the gas phase, in gram-mole per
+  cubic metre ($\text{gmol/m}^3$)
+- subscripts $i$, $o$ — inlet and outlet gas streams
+
+This measured $N_A$ is then equated to $N_A = k_L a\, (C^*_{AL} -
+C_{AL})$ to solve for $k_L a$.
+
+### 2. Dynamic gassing-out method (most important)
+
+Air supply to a respiring culture is cut off at $t_0$: with no more
+oxygen coming in, $C_{AL}$ falls as the cells keep consuming it (the
+OUR). Air is then switched back on, and $C_{AL}$ climbs back up toward
+a steady level $\bar{C}_{AL}$. Two points on that recovery curve,
+$(t_1, C_{AL_1})$ and $(t_2, C_{AL_2})$, give:
+
+![Dissolved oxygen C_AL plotted against time: a flat line drops sharply once air flow is stopped at t0 as the culture consumes oxygen (OUR), bottoms out, then climbs back up through two marked recovery points (t1, C_AL1) and (t2, C_AL2) toward a steady reoxygenated level C̄_AL](/notes/bioprocess-eng/dynamic-gassing-out-method-curve.png)
+
+$$
+k_L a = \frac{\ln\left(\dfrac{\bar{C}_{AL} - C_{AL_1}}{\bar{C}_{AL} - C_{AL_2}}\right)}{t_2 - t_1}
+$$
+
+- $t_0$ — time at which the oxygen supply is cut off
+- $t_1$, $t_2$ — two time points during reoxygenation, at which the
+  instantaneous oxygen concentrations are $C_{AL_1}$ and $C_{AL_2}$
+- $\bar{C}_{AL}$ — oxygen level reached at steady state after
+  reoxygenation
+
+($\ln$ is the natural log; if only base-10 log tables are available,
+$\ln x = 2.303 \log x$.)
+
+### 3. Sulphite oxidation method
+
+Sodium sulphite reacts with dissolved oxygen as fast as it enters the
+liquid:
+
+$$
+\text{Na}_2\text{SO}_3 + 0.5\, \text{O}_2 \rightarrow \text{Na}_2\text{SO}_4
+$$
+
+Because the sulphite binds oxygen immediately, no free oxygen
+accumulates in solution — $C_{AL} = 0$ — so the driving force collapses
+to just $C^*$:
+
+$$
+\text{OTR} = k_L a\, C^*
+\qquad\Rightarrow\qquad
+k_L a = \frac{\text{OTR}}{C^*}
+$$

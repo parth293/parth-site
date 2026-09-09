@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { STIX_Two_Text, IBM_Plex_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { getAllDocs } from "@/lib/content";
 import { site } from "@/lib/site";
 import "katex/dist/katex.min.css";
 import "./globals.css";
@@ -40,9 +41,11 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const entryCount = (await getAllDocs()).length;
+
   return (
     <html lang="en" className={`${serif.variable} ${mono.variable}`}>
       <body className="bg-paper text-ink font-serif min-h-dvh flex flex-col">
@@ -56,7 +59,7 @@ export default function RootLayout({
         <main id="main" className="flex-1 w-full">
           {children}
         </main>
-        <SiteFooter />
+        <SiteFooter entryCount={entryCount} />
       </body>
     </html>
   );
