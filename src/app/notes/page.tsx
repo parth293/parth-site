@@ -9,7 +9,7 @@ import { pillars } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Notes",
   description:
-    "Four evolving bodies of notes: pharmaceutical engineering, bioprocess engineering, GATE-BT preparation, and technical sales engineering.",
+    "Three evolving bodies of notes: pharmaceutical engineering, bioprocess engineering, and technical sales engineering.",
 };
 
 export default async function NotesIndexPage() {
@@ -24,7 +24,7 @@ export default async function NotesIndexPage() {
       <PageHeader
         eyebrow="Digital garden"
         title="Notes"
-        lede="Four sections that grow over time rather than getting finished. Each has its own way of thinking; none of them is a tutorial series."
+        lede="Three sections that grow over time rather than getting finished. Each has its own way of thinking; none of them is a tutorial series."
       />
 
       <div className="space-y-14">
