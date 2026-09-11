@@ -3,6 +3,7 @@ title: "Mixing"
 date: "2026-09-09"
 summary: "Mixing in bioreactors — CSTR design, bioreactor internals, power consumption, impeller types, and mixing time."
 tags: ["bioreactor-design", "scale-up"]
+order: 2
 ---
 
 ## Why mixing matters in bioreactors
@@ -27,10 +28,10 @@ reactor (CSTR) is studied, understanding its different components.
 | Liquid height | $H_L / D_t$ | $1$ – $1.25$ |
 | Baffle width | $W_b / D_t$ | $1/10$ – $1/12$ |
 
-- $D_i$ — impeller diameter
-- $D_t$ — tank diameter
-- $H_L$ — height of liquid in the tank
-- $W_b$ — baffle width
+- $D_i$ — impeller diameter, in metres ($\text{m}$)
+- $D_t$ — tank diameter, in metres ($\text{m}$)
+- $H_L$ — height of liquid in the tank, in metres ($\text{m}$)
+- $W_b$ — baffle width, in metres ($\text{m}$)
 
 ### Headspace
 
@@ -148,6 +149,19 @@ $$
 - $N_i$ — impeller rotational speed, in reciprocal seconds ($\text{s}^{-1}$)
 - $D_i$ — impeller diameter, in metres ($\text{m}$)
 
+### Common confusion: power number vs. flow number
+
+Both are built from the same $\rho$, $N_i$, $D_i$ terms and are easy to swap
+under exam pressure — the difference is what they measure and the power on
+$D_i$.
+
+| | Power number ($N_p$) | Flow number ($F_l$) |
+| --- | --- | --- |
+| Formula | $N_p = P/(\rho N_i^3 D_i^5)$ | $F_l = Q/(N_i D_i^3)$ |
+| Represents | Power drawn to agitate the fluid | Pumping capacity (volumetric throughput) |
+| Power on $D_i$ | $5$ | $3$ |
+| High value means | High shear / power draw (e.g. Rushton) | High bulk turnover (e.g. axial impellers) |
+
 ## Mixing time
 
 Mixing time should be as low as possible. If mixing time is high, when
@@ -202,3 +216,74 @@ loops — one moving upward, one moving downward.
 | Gas dispersion capability | Poor (prone to gas cavity flooding) | Excellent (effective bubble breakup, high $k_L a$) |
 | Primary process use | Cell suspension, animal/plant cell culture, blending | Aerobic bacterial fermentation, gas-liquid mass transfer |
 | Standard examples | Marine propeller, pitched-blade turbine (PBT), hydrofoil (Lightnin A310) | Rushton 6-flat-blade turbine, paddle agitator |
+
+### Types of impellers
+
+| Impeller | Flow | Shear | $N_p$ | Best for |
+| --- | --- | --- | --- | --- |
+| Rushton turbine | Radial | High | $\approx 5.0$ | Aerobic microbial fermentation — top $O_2$ transfer |
+| Marine propeller | Axial | Low | $0.3$–$0.5$ | Mammalian / plant cell culture |
+| Hydrofoil (A310) | Axial | Low–moderate | $0.25$–$0.3$ | Energy-efficient mixing, microbial + cell culture |
+| Pitched blade turbine | Axial | Moderate | — | Viscous fluids, suspensions, enzymatic reactions |
+| Anchor | Tangential | Low | — | High-viscosity, wall-scraping (gels, creams) |
+| Helical ribbon | Axial / helical | Low | — | Very high-viscosity, non-Newtonian fluids |
+
+#### Rushton turbine
+
+![Rushton turbine impeller, a radial-flow impeller with flat blades mounted on a central disc](/notes/bioprocess-eng/rushton-turbine.png)
+
+Highest shear of the six — not recommended for animal cells (shear-sensitive,
+no cell wall).
+
+#### Marine propeller
+
+![Large marine propeller mounted on a ship hull, an axial-flow impeller design](/notes/bioprocess-eng/marine-propeller.png)
+
+Gentle axial flow — default choice for delicate (mammalian/plant) cultures.
+
+#### Hydrofoil impeller (e.g., A310)
+
+![Hydrofoil impeller with three curved, low-pitch blades for energy-efficient axial flow](/notes/bioprocess-eng/hydrofoil-impeller-a310.png)
+
+Lowest power draw of the axial impellers — efficient mixing at moderate
+shear.
+
+#### Pitched blade turbine
+
+![Pitched blade turbine impeller with four flat blades angled off the horizontal for up- or down-pumping flow](/notes/bioprocess-eng/pitched-blade-turbine.png)
+
+Only impeller here that runs in both up-pumping and down-pumping
+configurations.
+
+#### Anchor impeller
+
+![Anchor impeller shaped to match the curvature of the tank wall, used to scrape the vessel wall](/notes/bioprocess-eng/anchor-impeller.png)
+
+Blades match the tank wall's curvature and scrape it directly — the only one
+here built to prevent wall buildup.
+
+#### Helical ribbon impeller
+
+![Helical ribbon impeller with a ribbon blade wound in a spiral around the central shaft](/notes/bioprocess-eng/helical-ribbon-impeller.png)
+
+Ribbon blade spirals around the shaft — for the thickest, most
+viscosity-challenged fluids of the six (polymerization mixtures, biomass
+slurries).
+
+## Key points
+
+- **Mixing time** should be minimized — a slow mix lets local pH or
+  concentration spikes near the addition point kill nearby cells.
+- **Baffles** break circulatory flow and vortex formation, converting it
+  into turbulence and eddies; a standard reactor uses 4.
+- **Power number** ($N_p$) is constant only in turbulent flow — in laminar
+  flow it depends on Reynolds number, so always check the flow regime first.
+- **Flow number** ($F_l$) scales with $D_i^3$ while **power number** scales
+  with $D_i^5$ — the two formulas look alike but respond very differently to
+  impeller size.
+- Radial (Rushton) impellers give high shear and high $O_2$ transfer; axial
+  impellers (propeller, hydrofoil, pitched blade) give low-to-moderate shear
+  and high pumping — never use Rushton for shear-sensitive cultures.
+- Viscosity ladder for impeller choice: pitched blade → anchor → helical
+  ribbon, as fluids get thicker and more non-Newtonian; anchor is the only
+  one built to scrape the tank wall.

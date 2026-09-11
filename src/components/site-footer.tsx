@@ -4,8 +4,16 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
-/** Closes the record. Kept to the same field grammar as the header. */
-export function SiteFooter() {
+/**
+ * Closes the record. Kept to the same field grammar as the header.
+ *
+ * `entryCount` is the live, real number of published pieces across every
+ * collection — computed server-side in layout.tsx via getAllDocs(). It's
+ * this site's answer to a refrain like Snowpiercer's "1001 cars long": not
+ * a fixed, mythic number, but a real one that keeps changing, because the
+ * record is never finished.
+ */
+export function SiteFooter({ entryCount }: { entryCount: number }) {
   // The pitch is screen-shared in interviews; site nav is a distraction there.
   if (usePathname()?.startsWith("/pitch")) return null;
 
@@ -15,7 +23,8 @@ export function SiteFooter() {
         <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3">
           <p className="font-mono text-xs text-ink-faint">
             <span className="label mr-2.5">End of record</span>
-            © {new Date().getFullYear()} {site.name}
+            {entryCount} {entryCount === 1 ? "entry" : "entries"} filed · ©{" "}
+            {new Date().getFullYear()} {site.name}
           </p>
           <div className="flex gap-6 font-mono text-xs uppercase tracking-[0.1em]">
             <a

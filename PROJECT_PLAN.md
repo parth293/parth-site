@@ -46,7 +46,7 @@ Context for tone and positioning; not for direct reproduction.
 | `/notes` | Index across all three pillars |
 | `/notes/pharma-eng` | Pillar 1 — pharmaceutical sciences explainers |
 | `/notes/bioprocess-eng` | Pillar 2 — bioprocess engineering explainers |
-| `/notes/sales-eng` | Pillar 3 — technical sales engineering & philosophy |
+| `/notes/gtm-eng` | Pillar 3 — GTM engineering & philosophy |
 | `/writing` | Essays, book notes — general evolving writing |
 | `/now` | Current focus; updated periodically |
 

@@ -12,7 +12,7 @@ export const site = {
   email: "ajmera.parth8@gmail.com",
 } as const;
 
-export type PillarSlug = "pharma-eng" | "bioprocess-eng" | "sales-eng";
+export type PillarSlug = "pharma-eng" | "bioprocess-eng" | "gtm-eng";
 
 export type Pillar = {
   slug: PillarSlug;
@@ -41,12 +41,12 @@ export const pillars: readonly Pillar[] = [
       "Working notes on bioprocess engineering: upstream fermentation and cell culture, downstream separation and purification, bioreactor design and scale-up, and the process analytical technology that ties bioprocessing to GMP manufacturing.",
   },
   {
-    slug: "sales-eng",
-    title: "Technical Sales Engineering",
+    slug: "gtm-eng",
+    title: "GTM Engineering",
     summary:
-      "What it takes to sell complex software into regulated industries — and the philosophy behind doing it honestly.",
+      "Treating go-to-market like a system with parts, not a talent — discovery, technical validation, procurement, and why the honest version wins.",
     description:
-      "Notes from six years selling and delivering GMP compliance software to pharma manufacturers: discovery, technical validation, procurement in regulated environments, and why the honest version wins.",
+      "Notes from six years selling and delivering GMP compliance software to pharma manufacturers, generalized into how GTM works as an engineered system: discovery, technical validation, procurement in regulated environments, and the mechanisms behind why the honest pitch wins deals the polished one doesn't.",
   },
 ] as const;
 

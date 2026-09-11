@@ -58,10 +58,23 @@ From the `lab-notebook` direction, which solved things this one had not:
 ## Fixed rules
 
 - Light only. No dark mode without revisiting the audience decision.
-- One accent. Never a second hue, never a gradient.
+- One primary accent (signature blue), for links, section numbers, status
+  marks, figure strokes. Never a gradient.
+- **One narrow, named exception**: every notes pillar's subject noun (the
+  word in front of "Engineering") shares one warm copper tone, so
+  "Engineering" itself reads as the constant across pillars and the domain
+  reads as the variable — see the colophon. Two colours total, dual not
+  multi. Scoped to that one use; it does not license a general multi-colour
+  palette anywhere else on the site.
 - Serif for reading, mono for metadata, labels, numbers, and status.
 - Reading measure 65–75 characters for all long-form.
 - No decorative motion. Transitions are 120ms colour changes, nothing else.
+  **Active exception, under live evaluation, not yet ratified**: the site
+  header floats, is translucent, and fades out based on mouse position near
+  the top of the viewport — real motion beyond a colour change, built
+  deliberately to try rather than translate into the document idiom. If it
+  doesn't earn its keep, revert `SiteHeader` and delete this line; if it
+  does, promote it to a real rule instead of an asterisk.
 - No skeuomorphism. No paper texture, no faux binding, no stamps, no
   handwriting, no sepia. This is a digital surface that absorbed a document's
   logic, not a picture of paper.
