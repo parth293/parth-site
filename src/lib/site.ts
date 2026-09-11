@@ -12,7 +12,7 @@ export const site = {
   email: "ajmera.parth8@gmail.com",
 } as const;
 
-export type PillarSlug = "pharma-eng" | "bioprocess-eng" | "gate-bt" | "sales-eng";
+export type PillarSlug = "pharma-eng" | "bioprocess-eng" | "sales-eng";
 
 export type Pillar = {
   slug: PillarSlug;
@@ -39,14 +39,6 @@ export const pillars: readonly Pillar[] = [
       "Notes on the biological unit operations — fermentation, cell culture, downstream purification — that turn an organism into a drug.",
     description:
       "Working notes on bioprocess engineering: upstream fermentation and cell culture, downstream separation and purification, bioreactor design and scale-up, and the process analytical technology that ties bioprocessing to GMP manufacturing.",
-  },
-  {
-    slug: "gate-bt",
-    title: "GATE-BT Preparation",
-    summary:
-      "A strategy and syllabus breakdown for the GATE Biotechnology paper, written while preparing for it.",
-    description:
-      "How I am preparing for GATE-BT: syllabus decomposition, source selection, spaced revision, and problem-solving patterns. Written in public as it happens, not in retrospect.",
   },
   {
     slug: "sales-eng",
