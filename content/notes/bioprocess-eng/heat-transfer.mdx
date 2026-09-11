@@ -113,9 +113,10 @@ $$
 
 ## Prandtl number
 
-The **Prandtl number** is the ratio of molecular momentum to thermal
-diffusivity (or conductivity): $C_p \mu_b$ is the molecular momentum, and
-$k_{fb}$ is the thermal diffusivity (or conductivity).
+The **Prandtl number** is the ratio of momentum diffusivity (kinematic
+viscosity, $\nu = \mu/\rho$) to thermal diffusivity ($\alpha = k/(\rho C_p)$).
+Dividing both by $\rho$ cancels it out, leaving $Pr = C_p \mu_b / k_{fb}$ —
+the form actually used below.
 
 $$
 Pr = \frac{C_p \mu_b}{k_{fb}}
@@ -252,3 +253,27 @@ actually change temperature, as with a condensing vapor or boiling liquid
 at constant temperature. Then $\Delta T_1 = \Delta T_2$ for both
 arrangements and there is no difference between them. Outside that edge
 case, counter-current strictly wins.
+
+## Key points
+
+- **Conduction** moves heat via vibrational energy or free electrons, with
+  no movement of matter; the sign on Fourier's law only tracks direction —
+  $\hat{Q}$ itself always comes out positive.
+- Heat crossing a jacketed wall moves in three steps: convection (bulk fluid
+  to wall), conduction (through the wall), convection (wall to bulk fluid) —
+  driven by two separate $\Delta T$s, one per convective step.
+- **Nusselt number** ($Nu = hD/k_{fb}$) is the convective-to-conductive heat
+  transfer ratio; **Prandtl number** ($Pr = C_p\mu_b/k_{fb}$) is the
+  momentum-diffusivity-to-thermal-diffusivity ratio — the calculation chain
+  runs $Pr \to Nu \to h \to \hat{Q}$, backwards from what you actually want.
+- **Overall heat transfer coefficient** $U$ avoids measuring $\Delta T$ at
+  each wall interface: $1/U = 1/h_1 + x/k + 1/h_2$ combines both film
+  coefficients with the wall's own conduction resistance.
+- $\Delta T_{LMTD} = (\Delta T_2 - \Delta T_1)/\ln(\Delta T_2/\Delta T_1)$.
+  For fixed terminal temperatures, $\Delta T_1 + \Delta T_2$ is identical for
+  parallel and counter-current flow, but counter-current keeps
+  $\Delta T_1$ and $\Delta T_2$ closer together — so its LMTD is always
+  $\geq$ parallel flow's, never smaller.
+- The two arrangements only tie when one fluid doesn't change temperature at
+  all (a condensing vapor or boiling liquid) — otherwise counter-current
+  always wins.

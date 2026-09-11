@@ -26,6 +26,40 @@ Reasons to recycle:
 - Increase overall conversion.
 - But: may reduce productivity beyond a point.
 
+Recycle raises **overall conversion** (of the fresh feed, across the whole
+recycle loop) — it does not necessarily raise **single-pass conversion**
+(reactor inlet to outlet, one pass). Diluting the reactor's inlet with
+partially-converted recycle material typically *lowers* single-pass
+conversion; as the recycle ratio grows large, per-pass performance
+approaches that of a CSTR (the lowest per-pass conversion for a given
+volume), even as overall conversion of fresh feed climbs.
+
+## Cell recycle and washout
+
+**Cell recycle** separates cells out of a bioreactor's outflow (settler,
+centrifuge, or membrane) and pumps them back into the tank, so only
+cell-free liquid actually leaves — like a sieve that catches marbles while
+water drains straight through.
+
+In a normal chemostat, liquid and cells leave at the same rate, so cells
+must regrow exactly as fast as they're flushed out. Push the flow rate past
+$\mu_{max}$ (the fastest cells can grow) and they're flushed out faster than
+they can replace themselves — **washout**.
+
+Cell recycle decouples the two residence times a simple chemostat locks
+together:
+
+- **Hydraulic retention time (HRT)** $= V/F = 1/D$ — how long the liquid
+  stays in the reactor.
+- **Biomass retention time** — how long cells stay, now stretched out
+  because the separator returns them instead of letting them leave.
+
+Because cells are held back rather than washed out with the liquid, they no
+longer need to grow as fast as the liquid flows through — so the reactor
+can run at a dilution rate above $\mu_{max}$ without washing out. The better
+the separator concentrates cells back into the recycle stream, the further
+above $\mu_{max}$ the flow rate can go before washout.
+
 ## Bypass
 
 **Bypass** takes part of the feed stream and routes it around the process
@@ -51,6 +85,12 @@ Function:
   recycling it can cause its build-up — a portion of the recycle must be
   purged to prevent this.
 
+At steady state, whatever inert or impurity enters with the fresh feed has
+nowhere to go but out with the purge — the recycle stream itself is
+internal to the loop and doesn't add or remove any of it. That balance is
+what sets how large the purge needs to be for a given feed impurity level
+and a given allowed build-up in the loop.
+
 ## Recycle vs. bypass vs. purge
 
 | | Splits from | Rejoins | Purpose |
@@ -64,6 +104,12 @@ Function:
 - **Recycle** returns part of the product stream to the feed to increase
   residence time and overall conversion — but pushed too far, it can reduce
   productivity.
+- Recycle raises **overall** conversion of fresh feed, not necessarily
+  **single-pass** conversion — per-pass performance typically drops toward
+  CSTR-like behavior as the recycle ratio grows.
+- **Cell recycle** decouples hydraulic retention time ($1/D$) from biomass
+  retention time — returning cells that would otherwise wash out lets a
+  bioreactor run at a dilution rate above $\mu_{max}$ without washing out.
 - **Bypass** diverts part of the feed around the process and rejoins it with
   the product, used when the product is too concentrated or when
   temperature control is needed for an exothermic process.
@@ -77,3 +123,11 @@ but they connect at different points: recycle splits from the **product**
 and rejoins the **feed**; bypass splits from the **feed** and rejoins the
 **product**, skipping the process; purge splits from the **recycle** stream
 and leaves the system rather than rejoining anything.
+
+**Overall conversion vs. single-pass conversion** — "recycle increases
+conversion" is true for **overall** conversion (fresh feed in, unreacted
+material eventually recovered and reacted), but recycle typically *lowers*
+**single-pass** conversion (just reactor inlet to outlet), because the
+reactor inlet is diluted with partially-converted recycle material instead
+of pure fresh feed. These are not the same number, and a claim that recycle
+"always increases conversion across the reactor vessel" is conflating them.

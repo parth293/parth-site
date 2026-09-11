@@ -123,10 +123,29 @@ ratio.
 
 For a sphere, $a = S/V = 6/d$ — so smaller bubbles mean higher $a$. Splitting
 a fixed total gas volume into $n$ equal bubbles multiplies $a$ (and the
-total interfacial area) by $n^{1/3}$: a single $10\ \text{mm}$ bubble gives
-$a = 600\ \text{m}^2/\text{m}^3$, while 100 smaller bubbles of the same
-total volume give $a \approx 2790\ \text{m}^2/\text{m}^3$. This is why
-sparging aims to break gas into fine bubbles rather than large ones.
+total interfacial area) by $n^{1/3}$. This is why sparging aims to break gas
+into fine bubbles rather than large ones.
+
+#### Worked example: interfacial area from bubble size
+
+**Question.** A sparger releases a fixed volume of gas as a single bubble of
+diameter $10\ \text{mm}$. What is the interfacial area per unit volume ($a$)
+for (a) that single bubble, and (b) the same total gas volume split instead
+into 100 equal smaller bubbles?
+
+**Solution.**
+
+1. For a sphere, $a = 6/d$.
+2. Single bubble: $d = 10\ \text{mm} = 0.01\ \text{m}$, so
+   $a = 6/0.01 = 600\ \text{m}^2/\text{m}^3$.
+3. Splitting a fixed total gas volume into $n$ equal bubbles scales $a$ by
+   $n^{1/3}$ (smaller diameter, more total surface for the same volume).
+4. For $n = 100$: $a = 600 \times 100^{1/3} \approx 600 \times 4.64 \approx
+   2790\ \text{m}^2/\text{m}^3$.
+
+**Answer:** $a \approx 600\ \text{m}^2/\text{m}^3$ for the single bubble,
+rising to $\approx 2790\ \text{m}^2/\text{m}^3$ once split into 100 smaller
+bubbles of the same total volume.
 
 ### Volumetric mass transfer coefficient ($k_L a$)
 
@@ -214,7 +233,7 @@ oxygen transfer rate equals the oxygen uptake rate: $N_A = Q_O$, which
 gives
 
 $$
-k_L a\, (C^* - C) = q_O\, X
+k_L a\, (C^*_{AL} - C_{AL}) = q_O\, X
 $$
 
 ### Dependence on dissolved oxygen concentration
@@ -349,3 +368,31 @@ $$
 \qquad\Rightarrow\qquad
 k_L a = \frac{\text{OTR}}{C^*}
 $$
+
+## Key points
+
+- **Fick's law** ($J_A = -D_{AB}\, dC_A/dy$) always runs high concentration
+  to low; **film theory** assumes a linear concentration profile across each
+  stagnant film — steady-state diffusion, no accumulation, same reasoning as
+  linear conduction through a wall.
+- At the phase boundary itself there is no resistance — instantaneous
+  equilibrium — and it's the **partition coefficient**, not diffusion, that
+  decides the concentration jump between the two phases there.
+- $k_L$ and $a$ move together and can't be measured separately, so they're
+  lumped into $k_La$, the **volumetric mass transfer coefficient** — in
+  aerobic fermentation this is the reactor's oxygen transfer capacity, the
+  standard scale-up parameter.
+- Of the eight resistances between a gas bubble and a cell's reaction site,
+  diffusion through the **liquid film around the bubble** is the largest —
+  which is why $k_La$ (built around that film) governs overall O$_2$
+  transfer.
+- At steady state, OTR = OUR: $k_La(C^*_{AL} - C_{AL}) = q_O X$. Setting
+  $C_{AL} = C_{crit}$ gives the minimum $k_La$ a reactor needs to design
+  for; setting $C_{AL} = 0$ gives the maximum biomass a given aeration setup
+  can sustain.
+- **Temperature is a trade-off for $k_La$**: it speeds up the kinetics
+  (viscosity↓, diffusivity↑ → $k_L$↑) but shrinks the driving force
+  (solubility $C^*$↓, since dissolution is exothermic).
+- The **dynamic gassing-out method** is the standard way to measure $k_La$:
+  cut the air supply, let dissolved O$_2$ fall, restart it, and read $k_La$
+  off the slope of the recovery curve between two timepoints.

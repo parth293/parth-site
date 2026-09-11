@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageShell, PageHeader } from "@/components/page-shell";
 import { DocList } from "@/components/doc-list";
@@ -29,6 +30,14 @@ export default async function NotesSectionPage({ params }: Params) {
   return (
     <PageShell>
       <PageHeader eyebrow="Notes" title={pillar.title} lede={pillar.description} />
+      <p className="mb-14 -mt-8 font-mono text-sm">
+        <Link
+          href={`/notes/${pillar.slug}/revision`}
+          className="text-accent hover:text-accent-dim transition-colors"
+        >
+          Revision sheet →
+        </Link>
+      </p>
       <Section
         number="1.0"
         label="Entries"

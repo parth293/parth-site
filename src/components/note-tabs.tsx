@@ -5,11 +5,12 @@ import { usePathname } from "next/navigation";
 
 const TABS = [
   { label: "Notes", suffix: "" },
+  { label: "Key points", suffix: "/key-points" },
   { label: "Formulas", suffix: "/formulas" },
   { label: "Worked examples", suffix: "/worked-examples" },
 ] as const;
 
-/** The three fixed views for a single note — Notes / Formulas / Worked examples. */
+/** The four fixed views for a single note — Notes / Key points / Formulas / Worked examples. */
 export function NoteTabs({ basePath }: { basePath: string }) {
   const pathname = usePathname();
 

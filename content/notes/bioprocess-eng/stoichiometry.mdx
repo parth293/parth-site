@@ -1,0 +1,579 @@
+---
+title: "Cell Stoichiometry"
+date: "2026-09-10"
+summary: "Elemental and electron balances for aerobic microbial growth — the general growth equation with product formation, respiratory quotient, degree of reduction, yield coefficients, and theoretical oxygen demand."
+tags: ["kinetics", "upstream"]
+order: 6
+---
+
+## General equation of aerobic growth
+
+The **general equation of aerobic growth** balances a carbon source
+($C_wH_xO_yN_z$) and a nitrogen source ($H_gO_hN_i$) against oxygen,
+forming biomass ($CH_\alpha O_\beta N_\delta$, per mole of carbon — a
+"C-mole" basis), carbon dioxide, and water:
+
+$$
+C_wH_xO_yN_z + aO_2 + bH_gO_hN_i \rightarrow cCH_\alpha O_\beta N_\delta + dCO_2 + eH_2O
+$$
+
+- $w, x, y, z$ — subscripts of the carbon source's molecular formula
+- $a$ — stoichiometric coefficient of oxygen (mol)
+- $b$ — stoichiometric coefficient of the nitrogen source (mol)
+- $g, h, i$ — subscripts of the nitrogen source's molecular formula
+- $c$ — stoichiometric coefficient of biomass (mol)
+- $\alpha, \beta, \delta$ — subscripts of the biomass formula, on a C-mole
+  basis (one carbon atom per formula unit)
+- $d$ — stoichiometric coefficient of carbon dioxide (mol)
+- $e$ — stoichiometric coefficient of water (mol)
+
+There are five unknown coefficients ($a, b, c, d, e$) but only four
+elemental balances (C, H, O, N), so the system is one equation short. That
+missing equation has to come from somewhere else — a measured **respiratory
+quotient**, a measured biomass yield, or an **available electron balance**
+(both covered below).
+
+#### Worked example: aerobic growth on glycine
+
+**Question.** A culture grows aerobically on glycine ($C_2H_5NO_2$) as its
+sole carbon and nitrogen source, with ammonia ($NH_3$) as a supplementary
+nitrogen source and an assumed cell formula of $CH_{1.8}O_{0.5}N_{0.2}$.
+If $1\ \text{mol}$ of biomass forms per mole of glycine consumed, find the
+remaining stoichiometric coefficients.
+
+**Solution.**
+
+1. Write the equation with the known subscripts. Glycine gives
+   $w=2, x=5, y=2, z=1$; ammonia gives $g=3, h=0, i=1$; biomass is
+   $\alpha=1.8, \beta=0.5, \delta=0.2$; and $c = 1$ is given:
+   $C_2H_5NO_2 + aO_2 + bNH_3 \rightarrow 1\,CH_{1.8}O_{0.5}N_{0.2} + dCO_2 + eH_2O$.
+2. **Carbon balance:** $2 = c + d = 1 + d \Rightarrow d = 1$.
+3. **Nitrogen balance:** $1 + b = 0.2c = 0.2(1) = 0.2 \Rightarrow b = -0.8$.
+   $b$ comes out negative — glycine alone already supplies more nitrogen
+   than $1\ \text{mol}$ of biomass needs, so $0.8\ \text{mol}$ of $NH_3$ is
+   actually a **product**, not a reactant.
+4. **Hydrogen balance:** $5 + 3b = 1.8c + 2e$. Substituting $b = -0.8$:
+   $5 - 2.4 = 1.8 + 2e \Rightarrow 2.6 = 1.8 + 2e \Rightarrow e = 0.4$.
+5. **Oxygen balance:** $2 + 2a = 0.5c + 2d + e = 0.5 + 2 + 0.4 = 2.9
+   \Rightarrow 2a = 0.9 \Rightarrow a = 0.45$.
+6. Check every balance against the final numbers (C: $2 = 1+1$; H:
+   $5 = 1.8 + 0.8 + 2.4$; O: $2.9 = 0.5+2+0.4$; N: $1 = 0.2+0.8$) — all hold.
+
+**Answer:**
+$C_2H_5NO_2 + 0.45\,O_2 \rightarrow CH_{1.8}O_{0.5}N_{0.2} + CO_2 + 0.4\,H_2O + 0.8\,NH_3$
+
+## Respiratory quotient (RQ)
+
+**Respiratory quotient (RQ)** is the ratio of the rate of carbon dioxide
+produced to the rate of oxygen consumed during aerobic metabolism.
+
+$$
+RQ = \frac{\text{no. of moles of } CO_2 \text{ produced}}{\text{no. of moles of } O_2 \text{ consumed}}
+$$
+
+- $RQ$ — respiratory quotient (dimensionless)
+
+- $RQ \approx 1$ for carbohydrates — little rearrangement needed between
+  substrate and $CO_2$.
+- $RQ < 1$ for more reduced substrates such as fats or hydrocarbons —
+  extra $O_2$ is needed per $CO_2$ released.
+- $RQ > 1$ for already-oxidized substrates, such as organic acids or amino
+  acids.
+
+#### Worked example: RQ for growth on glycine
+
+**Question.** Using the balanced equation from the worked example above,
+find the respiratory quotient.
+
+**Solution.**
+
+1. From the worked example: $d = 1\ \text{mol } CO_2$ and
+   $a = 0.45\ \text{mol } O_2$.
+2. $RQ = d/a = 1/0.45$.
+3. $1/0.45 = 2.22$ (to two decimal places).
+
+**Answer:** $RQ \approx 2.22$ — well above $1$, consistent with glycine
+already being a partly-oxidized, nitrogen-rich substrate.
+
+## Available electrons
+
+**Available electrons** are the number of electrons a substance can
+transfer to oxygen on combustion to $CO_2$, $H_2O$, and $N_2$. Available
+electrons can also be considered the valency of each element in the
+substance.
+
+| Element | Valency (available e⁻ per atom) |
+| --- | --- |
+| $C$ | $+4$ |
+| $H$ | $+1$ |
+| $O$ | $-2$ |
+| $P$ | $+5$ |
+| $S$ | $+6$ |
+| $N$ | variable — depends on the compound |
+
+$N$ has no fixed valency — found the same way as any oxidation state, by
+setting the sum of valencies in the compound to zero (or to its charge,
+for an ion):
+
+- $-3$ in $NH_3$ or an organic amine
+- $0$ in $N_2$
+- $+5$ in $NO_3^-$
+
+#### Worked example: available electrons in glycine
+
+**Question.** Find the number of available electrons in glycine
+($C_2H_5NO_2$), treating its nitrogen as amino nitrogen (same reference
+state as $NH_3$).
+
+**Solution.**
+
+1. Assign valencies: $C = +4$, $H = +1$, $O = -2$, $N = -3$ (amino
+   nitrogen).
+2. Multiply each valency by the number of atoms of that element:
+   $C: 2 \times 4 = 8$; $H: 5 \times 1 = 5$; $O: 2 \times (-2) = -4$;
+   $N: 1 \times (-3) = -3$.
+3. Sum: $8 + 5 - 4 - 3 = 6$.
+
+**Answer:** Glycine has $6$ available electrons per mole.
+
+## Degree of reduction ($\gamma$)
+
+**Degree of reduction ($\gamma$)** is the number of available electrons in
+a substance, normalized per carbon atom.
+
+$$
+\gamma = \frac{\text{no. of available electrons}}{\text{no. of carbon atoms}}
+$$
+
+- $\gamma$ — degree of reduction (dimensionless)
+
+#### Worked example: degree of reduction of glycine
+
+**Question.** Find the degree of reduction of glycine.
+
+**Solution.**
+
+1. Available electrons in glycine $= 6$ (from the worked example above).
+2. Glycine has $2$ carbon atoms.
+3. $\gamma = 6/2 = 3$.
+
+**Answer:** $\gamma_{\text{glycine}} = 3$.
+
+| Substrate | Formula | $\gamma$ |
+| --- | --- | --- |
+| Carbon dioxide | $CO_2$ | $0$ |
+| Glycine | $C_2H_5NO_2$ | $3$ |
+| Glucose | $C_6H_{12}O_6$ | $4$ |
+| Acetic acid | $C_2H_4O_2$ | $4$ |
+| Methanol | $CH_4O$ | $6$ |
+| Ethanol | $C_2H_6O$ | $6$ |
+| Methane | $CH_4$ | $8$ |
+| Typical biomass | $CH_{1.8}O_{0.5}N_{0.2}$ | $\approx 4.2$ |
+
+A higher $\gamma$ means the substrate is more reduced (more available
+electrons per carbon) — more oxygen is needed to fully oxidize it. $CO_2$
+sits at $\gamma = 0$ because it *is* the reference state for carbon — every
+other compound's degree of reduction is measured relative to it. $CH_4$, with
+no oxygen and the maximum possible hydrogen, is the highest-$\gamma$
+single-carbon compound there is.
+
+## Conservation of available electrons
+
+**Available electrons are conserved** in a bioreaction, the same way atoms
+are: every electron entering in the carbon source leaves again — in
+biomass, in extracellular product, or transferred to $O_2$ as the electron
+acceptor. This principle supplies the fifth equation the general growth
+equation is missing (see above).
+
+### Electron balance for growth alone
+
+$$
+\gamma_S w = \gamma_X c + 4a + 8n
+$$
+
+- $\gamma_S$ — degree of reduction of the carbon source (dimensionless)
+- $w$ — moles of carbon per mole of carbon source (mol)
+- $\gamma_X$ — degree of reduction of biomass (dimensionless)
+- $c$ — stoichiometric coefficient of biomass (mol)
+- $a$ — stoichiometric coefficient of $O_2$ (mol)
+- $n$ — moles of nitrate-nitrogen reduced to the amine level needed for
+  biomass (mol) — $0$ if $NH_3$ is the nitrogen source
+
+The $4a$ term is $O_2$ acting as the electron acceptor:
+$O_2 + 4H^+ + 4e^- \rightarrow 2H_2O$, so **one mole of $O_2$ is worth $4$
+electron equivalents**. The $8n$ term exists only when the nitrogen source
+is $NO_3^-$ (or another nitrogen source more oxidized than $NH_3$): biomass
+nitrogen is always incorporated at the amine level ($-3$ valency, same as
+$NH_3$), so nitrate nitrogen ($+5$ valency) has to be reduced by $8$
+electrons per atom before it can be used — electrons that come out of the
+carbon source's reducing power and compete with $O_2$ for them.
+
+#### Worked example: electron balance with nitrate as the nitrogen source
+
+**Question.** A culture grows aerobically on glucose ($C_6H_{12}O_6$) using
+nitrate ($NO_3^-$) as its sole nitrogen source, forming biomass
+$CH_{1.8}O_{0.5}N_{0.2}$. If $0.5\ \text{mol}$ of biomass forms per mole of
+glucose consumed, find the moles of $O_2$ consumed per mole of glucose.
+
+**Solution.**
+
+1. Degree of reduction of glucose: $\gamma_S = 4$ (from the table above),
+   with $w = 6$ carbon atoms per mole.
+2. Degree of reduction of biomass: $\gamma_X = 4(1) + 1.8 - 2(0.5) - 3(0.2)
+   = 4.2$ — using amine-nitrogen valency, because that's the oxidation
+   state nitrogen sits at once it's inside the cell, regardless of the feed.
+3. Moles of nitrogen reduced: the biomass formula has $\delta = 0.2$ mol N
+   per C-mole, and $c = 0.5\ \text{mol}$ biomass forms, so
+   $n = 0.2 \times 0.5 = 0.1\ \text{mol}$.
+4. Electron balance: $\gamma_S w = \gamma_X c + 4a + 8n$
+   $\Rightarrow 4(6) = 4.2(0.5) + 4a + 8(0.1)$
+   $\Rightarrow 24 = 2.1 + 4a + 0.8 \Rightarrow 4a = 21.1 \Rightarrow a =
+   5.275$.
+
+**Answer:** $5.275\ \text{mol}\ O_2$ per mole of glucose. Re-running the
+same balance with $NH_3$ instead ($n=0$) gives $a = 5.475\ \text{mol}$ —
+more $O_2$, not less. $\gamma_X$ was $4.2$ in both cases; what changed is
+that nitrate reduction diverted $0.8$ of the substrate's available
+electrons away from $O_2$, so less $O_2$ was needed to balance the rest.
+
+### Electron balance per C-mole of substrate
+
+Cell yield is often reported as $Y_{X/S}$ — **C-mol biomass per C-mol
+substrate**, not mole of biomass per mole of substrate. On that basis, one
+C-mole of substrate already stands in for $w=1$, so $Y_{X/S}$ can be
+substituted directly for $c$:
+
+$$
+\gamma_S = \gamma_X\, Y_{X/S} + 4a + 8n
+$$
+
+- $\gamma_S$ — degree of reduction of the substrate (dimensionless)
+- $\gamma_X$ — degree of reduction of biomass (dimensionless)
+- $Y_{X/S}$ — cell yield, C-mol biomass per C-mol substrate (dimensionless)
+- $a$ — moles of $O_2$ consumed per C-mole of substrate (mol)
+- $n$ — moles of nitrate-nitrogen reduced per C-mole of substrate (mol) —
+  $0$ if $NH_3$ is the nitrogen source
+
+#### Worked example: oxygen requirement from cell yield and degrees of reduction
+
+**Question.** Yeast grows aerobically on glucose with ammonia as the
+nitrogen source. The cell yield $Y_{X/S} = 0.50$ C-mol biomass / C-mol
+glucose. The degree of reduction of glucose is $4.00$ and of biomass is
+$4.20$. Find the oxygen requirement $a$, in mol $O_2$ per C-mol glucose.
+
+**Solution.**
+
+1. $NH_3$ is the nitrogen source, so $n = 0$.
+2. $\gamma_S = \gamma_X Y_{X/S} + 4a \Rightarrow 4.00 = 4.20(0.50) + 4a$.
+3. $4.20 \times 0.50 = 2.10$.
+4. $4.00 - 2.10 = 1.90 = 4a \Rightarrow a = 0.475$.
+
+**Answer:** $a = 0.475\ \text{mol}\ O_2$ per C-mol glucose.
+
+### General equation with product formation
+
+When a cell also excretes an extracellular product, the general growth
+equation gains a sixth term:
+
+$$
+C_wH_xO_yN_z + aO_2 + bH_gO_hN_i \rightarrow cCH_\alpha O_\beta N_\delta + fC_jH_kO_lN_m + dCO_2 + eH_2O
+$$
+
+- $f$ — stoichiometric coefficient of the product (mol)
+- $j, k, l, m$ — subscripts of the product's molecular formula — written
+  as the real molecule (e.g. $C_2H_6O$ for ethanol), not on a C-mole basis
+  the way biomass is
+
+There are now six unknowns ($a, b, c, d, e, f$) but still only four
+elemental balances, so two more relations are needed — typically two
+measured yields, or one measured yield plus the electron balance below.
+
+### Electron balance with product formation
+
+$$
+\gamma_S w = \gamma_X c + \gamma_P j f + 4a + 8n
+$$
+
+- $\gamma_P$ — degree of reduction of the product (dimensionless)
+- $j$ — carbon atoms per product molecule (same $j$ as the product's
+  formula subscript above) — needed because, unlike biomass, the product
+  isn't written on a C-mole basis, so its electron total is
+  $\gamma_P \times j$ per mole, not $\gamma_P$ alone
+
+Setting $f = 0$ recovers the growth-only balance above.
+
+#### Worked example: fermentation of glucose to ethanol
+
+**Question.** *Saccharomyces cerevisiae* ferments glucose anaerobically to
+ethanol and carbon dioxide, with no biomass formed and no oxygen consumed:
+$C_6H_{12}O_6 \rightarrow f\,C_2H_5OH + d\,CO_2$. Find $f$ and $d$, and
+confirm the result conserves available electrons.
+
+**Solution.**
+
+1. Carbon balance: $6 = 2f + d$.
+2. No biomass and no $O_2$ means $c = 0, a = 0$ (and $n = 0$), so the
+   electron balance reduces to $\gamma_S w = \gamma_P j f$.
+3. $\gamma_S = 4$ (glucose, $6$ carbons) and $\gamma_P = 6$ (ethanol, $2$
+   carbons per molecule), from the degree-of-reduction table above:
+   $4(6) = 6(2)f \Rightarrow 24 = 12f \Rightarrow f = 2$.
+4. Substitute into the carbon balance: $6 = 2(2) + d \Rightarrow d = 2$.
+
+**Answer:** $C_6H_{12}O_6 \rightarrow 2\,C_2H_5OH + 2\,CO_2$ — the classic
+fermentation equation. All $24$ of glucose's available electrons land in
+ethanol; none go to $CO_2$ ($\gamma = 0$) or $O_2$ (none consumed).
+
+## Yield coefficients
+
+**Yield coefficients** measure how much of the substrate consumed ends up
+in biomass or in product, most often reported on a **mass basis** — grams
+formed per gram of substrate consumed. This is a different convention from
+the C-mole-basis $Y_{X/S}$ used in the electron balance above; both are in
+everyday use, so always check which one a number is quoting.
+
+$$
+Y_{X/S} = \frac{\Delta X}{\Delta S} \qquad\qquad Y_{P/S} = \frac{\Delta P}{\Delta S}
+$$
+
+- $Y_{X/S}$ — biomass yield on substrate, mass basis, in grams of biomass
+  per gram of substrate consumed ($\text{g/g}$)
+- $Y_{P/S}$ — product yield on substrate, mass basis, in grams of product
+  per gram of substrate consumed ($\text{g/g}$)
+- $\Delta X$, $\Delta P$, $\Delta S$ — biomass formed, product formed, and
+  substrate consumed, in grams ($\text{g}$)
+
+From a balanced equation, $Y_{X/S} = cMW_X/MW_S$ and $Y_{P/S} = fMW_P/MW_S$,
+where $MW_X$, $MW_P$, $MW_S$ are the formula weights of biomass, product,
+and substrate.
+
+#### Worked example: mass-basis $Y_{X/S}$ for growth on glycine
+
+**Question.** Using the glycine worked example above ($c = 1$), find the
+mass-basis $Y_{X/S}$.
+
+**Solution.**
+
+1. Formula weight of biomass $CH_{1.8}O_{0.5}N_{0.2}$:
+   $MW_X = 12.011 + 1.8(1.008) + 0.5(15.999) + 0.2(14.007) =
+   24.63\ \text{g/mol}$.
+2. Formula weight of glycine $C_2H_5NO_2$:
+   $MW_S = 2(12.011) + 5(1.008) + 14.007 + 2(15.999) =
+   75.07\ \text{g/mol}$.
+3. $Y_{X/S} = cMW_X/MW_S = (1)(24.63)/75.07 = 0.328\ \text{g/g}$.
+
+**Answer:** $Y_{X/S} \approx 0.33\ \text{g biomass/g glycine}$.
+
+## Maximum theoretical yield
+
+**Maximum theoretical yield** is the ceiling on $Y_{X/S}$ or $Y_{P/S}$: the
+value reached if every available electron in the substrate landed in
+biomass (or in product) with none spent on $O_2$.
+
+### Maximum biomass yield ($Y_{X/S}^{max}$)
+
+Setting $a = 0$ and $f = 0$ in the electron balance gives the ceiling on
+$c$:
+
+$$
+\gamma_S w = \gamma_X c_{max}
+$$
+
+- $c_{max}$ — moles of biomass per mole of substrate at the theoretical
+  ceiling (mol)
+
+#### Worked example: maximum $Y_{X/S}$ for growth on glycine
+
+**Question.** Find the theoretical maximum biomass yield on glycine, mass
+basis.
+
+**Solution.**
+
+1. $c_{max} = \gamma_S w/\gamma_X = (3)(2)/4.2 = 1.43\ \text{mol
+   biomass/mol glycine}$.
+2. $Y_{X/S}^{max} = c_{max}MW_X/MW_S = (1.43)(24.63)/75.07 =
+   0.469\ \text{g/g}$.
+
+**Answer:** $Y_{X/S}^{max} \approx 0.47\ \text{g/g}$ — well above the
+$0.33\ \text{g/g}$ actually achieved in the worked example above, because
+that reaction also spent electrons on $O_2$ ($a = 0.45\ \text{mol}$). This
+is a theoretical ceiling, not a target real aerobic growth reaches.
+
+### Maximum product yield ($Y_{P/S}^{max}$)
+
+Setting $a = 0$ and $c = 0$ in the electron balance gives the ceiling on
+$f$:
+
+$$
+\gamma_S w = \gamma_P j f_{max}
+$$
+
+- $f_{max}$ — moles of product per mole of substrate at the theoretical
+  ceiling (mol)
+
+#### Worked example: maximum $Y_{P/S}$ for glucose fermented to ethanol
+
+**Question.** Find $Y_{P/S}^{max}$ for ethanol from glucose, and compare it
+to the fermentation worked example above.
+
+**Solution.**
+
+1. That fermentation already has $a = 0$ and $c = 0$, so it sits exactly at
+   the ceiling: $f_{max} = f = 2$.
+2. $MW_P$ (ethanol, $C_2H_6O$) $= 2(12.011) + 6(1.008) + 15.999 =
+   46.07\ \text{g/mol}$.
+3. $Y_{P/S}^{max} = f_{max}MW_P/MW_S = (2)(46.07)/180.16 =
+   0.511\ \text{g/g}$.
+
+**Answer:** $Y_{P/S}^{max} \approx 0.51\ \text{g ethanol/g glucose}$ — the
+textbook figure for anaerobic yeast fermentation, and here it's also the
+*actual* yield, since the reaction never spends electrons on growth or
+$O_2$.
+
+## Theoretical oxygen demand (ThOD)
+
+**Theoretical oxygen demand (ThOD)** is the $O_2$ needed to fully oxidize a
+substance to $CO_2$, $H_2O$, and $N_2$ — the electron-balance ceiling on
+$O_2$ consumption, reached when $c = 0$ and $f = 0$ (no biomass, no
+product; every electron goes to $O_2$).
+
+$$
+\text{ThOD} = \frac{\text{available electrons per mole}}{4}
+$$
+
+- $\text{ThOD}$ — theoretical oxygen demand, in moles of $O_2$ per mole of
+  substance ($\text{mol } O_2/\text{mol}$); multiply by $32\ \text{g/mol}$
+  and divide by the molar mass for a mass basis ($\text{g } O_2/\text{g}$)
+
+#### Worked example: ThOD of glycine
+
+**Question.** Find the theoretical oxygen demand of glycine, in grams of
+$O_2$ per gram of glycine.
+
+**Solution.**
+
+1. Available electrons in glycine $= 6$ (from the worked example above).
+2. $\text{ThOD} = 6/4 = 1.5\ \text{mol } O_2/\text{mol glycine}$.
+3. Convert to mass: $1.5 \times 32/75.07 = 0.639\ \text{g } O_2/\text{g
+   glycine}$.
+
+**Answer:** $\text{ThOD} \approx 0.64\ \text{g } O_2/\text{g glycine}$.
+
+$Y_{X/S}^{max}$, $Y_{P/S}^{max}$, and ThOD are the same electron balance
+($\gamma_S w = \gamma_X c + \gamma_P j f + 4a + 8n$), just with a different
+pair of terms zeroed out — all electrons to biomass, all to product, or
+all to $O_2$.
+
+## Elemental composition of biomass
+
+A biomass (dry cell) formula written on a C-mole basis —
+$CH_\alpha O_\beta N_\delta S_\epsilon P_\zeta$ — gives each element's
+**mass contribution** to dry biomass as (subscript × atomic weight),
+divided by the total formula weight.
+
+$$
+\%\,\text{element}_i = \frac{n_i M_i}{\sum_j n_j M_j} \times 100
+$$
+
+- $n_i$ — subscript (atom count) of element $i$ in the biomass formula,
+  dimensionless
+- $M_i$ — atomic weight of element $i$, in grams per mole ($\text{g/mol}$)
+- $\sum_j n_j M_j$ — sum of (subscript × atomic weight) over every element
+  in the formula, in grams per mole ($\text{g/mol}$) — the total C-mole
+  formula weight
+
+#### Worked example: carbon contribution to yeast dry biomass
+
+**Question.** The elemental composition of the dry biomass of a yeast
+species is $CH_{1.6}O_{0.4}N_{0.2}S_{0.0024}P_{0.017}$. Calculate the
+contribution of carbon to dry biomass, to two decimal places.
+
+**Solution.**
+
+1. Multiply each subscript by its atomic weight ($C = 12.011$,
+   $H = 1.008$, $O = 15.999$, $N = 14.007$, $S = 32.06$, $P = 30.974$):
+   - $C: 1 \times 12.011 = 12.011$
+   - $H: 1.6 \times 1.008 = 1.613$
+   - $O: 0.4 \times 15.999 = 6.400$
+   - $N: 0.2 \times 14.007 = 2.801$
+   - $S: 0.0024 \times 32.06 = 0.077$
+   - $P: 0.017 \times 30.974 = 0.527$
+2. Sum all contributions to get the total formula weight:
+   $12.011 + 1.613 + 6.400 + 2.801 + 0.077 + 0.527 = 23.43$.
+3. Divide carbon's contribution by the total and convert to a percentage:
+   $12.011 / 23.43 \times 100 = 51.27\%$.
+
+**Answer:** Carbon contributes $51.27\%$ of dry biomass.
+
+## Key points
+
+- The **general growth equation** has five unknown coefficients but only
+  four elemental balances (C, H, O, N) — a fifth relation (measured $RQ$,
+  measured yield, or an electron balance) is always needed to solve it.
+- If a nitrogen-containing carbon source supplies more nitrogen than the
+  biomass formed needs, the nitrogen-source coefficient $b$ comes out
+  negative — meaning $NH_3$ is a **product**, not a reactant.
+- **Respiratory quotient** $RQ = \dfrac{\text{mol } CO_2}{\text{mol } O_2}$:
+  $\approx 1$ for carbohydrates, $< 1$ for reduced substrates (fats,
+  hydrocarbons), $> 1$ for already-oxidized substrates (organic acids,
+  amino acids).
+- **Available electrons** = the sum of (valency × atom count) for every
+  element in a formula; $C=+4$, $H=+1$, $O=-2$, $P=+5$, $S=+6$ are fixed,
+  but $N$'s valency depends on the compound it's found in.
+- **Degree of reduction** $\gamma$ = available electrons ÷ number of
+  carbon atoms — it measures how reduced a substance is per carbon, and is
+  what lets an electron balance replace an elemental balance when solving
+  the general growth equation. $CO_2$ is the zero-point ($\gamma=0$); $CH_4$
+  is the highest single-carbon value ($\gamma=8$).
+- **One mole of $O_2$ = $4$ electron equivalents** — this is the $4a$ term
+  in the available electron balance, and follows directly from
+  $O_2 + 4H^+ + 4e^- \rightarrow 2H_2O$.
+- **$\gamma_X$ (biomass) doesn't depend on the nitrogen source** — it's
+  fixed by biomass's elemental composition, using amine-nitrogen ($-3$)
+  valency, because that's the level nitrogen sits at once it's inside the
+  cell either way. Feeding $NO_3^-$ instead of $NH_3$ changes the electron
+  balance instead (an extra $8$ electrons per N atom to reduce nitrate down
+  to the amine level), which shows up as lower $O_2$ demand, not a lower
+  $\gamma_X$.
+- A biomass elemental formula is written **per C-mole** (one carbon atom
+  per formula unit), so mass-percent composition is just each element's
+  (subscript × atomic weight) over the formula's total weight.
+- **Product formation adds a sixth term** to the general equation
+  ($f\,C_jH_kO_lN_m$) and a matching term to the electron balance
+  ($\gamma_P j f$) — the product's electron total needs the $\times j$
+  because, unlike biomass, it isn't written on a C-mole basis.
+- **Maximum theoretical yield** ($Y_{X/S}^{max}$, $Y_{P/S}^{max}$) is the
+  electron balance with $O_2$ zeroed out — all substrate electrons land in
+  biomass or product instead. Real aerobic cultures always fall below it,
+  since some electrons are always spent on $O_2$.
+- **Theoretical oxygen demand (ThOD)** is the same electron balance run the
+  other way: $c = f = 0$, every electron goes to $O_2$ — the $O_2$ needed
+  to fully combust the substance.
+
+## Common confusion
+
+**Changing the nitrogen source vs. changing $\gamma_X$** — it's tempting to
+think that feeding $NO_3^-$ instead of $NH_3$ "uses up" some of nitrogen's
+reducing power and lowers biomass's degree of reduction. It doesn't:
+$\gamma_X$ is fixed by what's actually in the cell (amine nitrogen, $-3$
+valency) and never changes with the feed. The nitrate/ammonia choice only
+changes the *electron balance* around growth — nitrate has to be reduced by
+$8\ e^-$ per N atom before it can be assimilated, and those electrons come
+out of the carbon source's budget instead of going to $O_2$.
+
+**Proof, for $CH_{1.8}O_{0.5}N_{0.2}$ biomass:**
+$\gamma_X = 4(1) + 1(1.8) - 2(0.5) - 3(0.2) = 4 + 1.8 - 1 - 0.6 = 4.2$.
+
+Nothing in this line references the feed — the $-3$ is amine-nitrogen
+valency, fixed because that's the oxidation state nitrogen has *once it's
+in the cell*, not the state it arrived in. So $\gamma_X = 4.2$ whether the
+nitrogen source was $NH_3$ or $NO_3^-$.
+
+**C-mole $Y_{X/S}$ vs. mass-basis $Y_{X/S}$** — the same symbol is used for
+two different numbers. The C-mole version (C-mol biomass/C-mol substrate,
+used in the electron balance) and the mass-basis version (g biomass/g
+substrate, used everywhere else) will not match numerically, because they
+carry different formula weights in the conversion. For the glycine example
+above, $c = 1\ \text{mol biomass/mol glycine}$ is already a molar ratio
+(not C-mole, since glycine has $2$ carbons), while $Y_{X/S} = 0.33\
+\text{g/g}$ is the same result on a mass basis — always check which basis
+a reported $Y_{X/S}$ is on before using it in a calculation.
