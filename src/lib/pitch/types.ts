@@ -43,6 +43,17 @@ export type Product = {
   what: string;
   /** Why it is technically or scientifically non-trivial. */
   hard: string;
+  /** Facility/company types this product is sold into. */
+  targetAccounts: string[];
+  /** Buyer and user personas — titles, not names. */
+  targetPeople: string[];
+  /** Concrete, numbers-first results. */
+  outcomesAchieved: string[];
+  /** One line: what happens to the buyer if they don't act. */
+  costOfInaction: string;
+  /** Anonymized wins, per the Story.profile convention below — richly
+   *  profiled, never named, unless explicitly written otherwise. */
+  keyAccountsWon: string[];
 };
 
 /** The six stages of an enterprise sales cycle, as run in regulated pharma. */
