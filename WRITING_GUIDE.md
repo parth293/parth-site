@@ -107,6 +107,11 @@ prose descriptions of equations.
 and memorized, not read once. Governed by its own stricter format — see
 [BIOPROCESS_ENG_GUIDE.md](BIOPROCESS_ENG_GUIDE.md) before writing here.
 
+**`/notes/biotech-eng`** — Study notes, not essays, same as bioprocess-eng:
+definitions and mechanisms written to be scanned and memorized. Bold a term on
+first use, put a unit on every number, use a table the moment two things could
+be confused for each other.
+
 **`/writing`** — More opinionated, more room to argue. Book notes state what the
 book got wrong, not just what it said.
 

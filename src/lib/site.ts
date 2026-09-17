@@ -12,7 +12,7 @@ export const site = {
   email: "ajmera.parth8@gmail.com",
 } as const;
 
-export type PillarSlug = "pharma-eng" | "bioprocess-eng" | "gtm-eng";
+export type PillarSlug = "pharma-eng" | "bioprocess-eng" | "biotech-eng" | "gtm-eng";
 
 export type Pillar = {
   slug: PillarSlug;
@@ -39,6 +39,14 @@ export const pillars: readonly Pillar[] = [
       "Notes on the biological unit operations — fermentation, cell culture, downstream purification — that turn an organism into a drug.",
     description:
       "Working notes on bioprocess engineering: upstream fermentation and cell culture, downstream separation and purification, bioreactor design and scale-up, and the process analytical technology that ties bioprocessing to GMP manufacturing.",
+  },
+  {
+    slug: "biotech-eng",
+    title: "Biotechnological Engineering",
+    summary:
+      "The biochemistry, cell and molecular biology, and genetics underneath biotech — the science, not the unit operations built on top of it.",
+    description:
+      "Working notes on the biological sciences that biotechnology is built on: biochemistry and biomolecules, cell and molecular biology, genetics, immunology, and the recombinant DNA toolkit — the science layer beneath bioprocess-eng's unit operations.",
   },
   {
     slug: "gtm-eng",
