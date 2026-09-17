@@ -9,8 +9,10 @@ import { pillars } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Notes",
   description:
-    "Three evolving bodies of notes: pharmaceutical engineering, bioprocess engineering, and GTM engineering.",
+    "Four evolving bodies of notes: pharmaceutical engineering, bioprocess engineering, biotechnological engineering, and GTM engineering.",
 };
+
+const SECTION_COUNT_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six"];
 
 export default async function NotesIndexPage() {
   const sections = await Promise.all(
@@ -18,13 +20,14 @@ export default async function NotesIndexPage() {
   );
   const all = await getAllDocs();
   const recent = all.filter((d) => d.collection !== "writing").slice(0, 5);
+  const countWord = SECTION_COUNT_WORDS[pillars.length] ?? String(pillars.length);
 
   return (
     <PageShell>
       <PageHeader
         eyebrow="Digital garden"
         title="Notes"
-        lede="Three sections that grow over time rather than getting finished. Each has its own way of thinking; none of them is a tutorial series."
+        lede={`${countWord} sections that grow over time rather than getting finished. Each has its own way of thinking; none of them is a tutorial series.`}
       />
 
       <div className="space-y-14">

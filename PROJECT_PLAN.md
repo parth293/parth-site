@@ -12,7 +12,8 @@ governs structure and code.
 Simultaneously:
 
 - An identity/credibility hub — who I am, my background, my resume.
-- A digital garden of four evolving knowledge projects, plus general writing.
+- A digital garden of evolving knowledge sections — four notes pillars, plus
+  general writing.
 
 It is meant to keep evolving indefinitely — new notes, new essays, updated
 journey — not a one-time static portfolio.
@@ -40,18 +41,19 @@ Context for tone and positioning; not for direct reproduction.
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Hook, one-liner, 4 pillars (3 notes + writing), latest writing, resume CTA |
+| `/` | Hook, one-liner, 5 pillars (4 notes + writing), latest writing, resume CTA |
 | `/journey` | Narrative version of academic + professional background |
 | `/resume` | Web version + downloadable PDF |
-| `/notes` | Index across all three pillars |
+| `/notes` | Index across all four pillars |
 | `/notes/pharma-eng` | Pillar 1 — pharmaceutical sciences explainers |
 | `/notes/bioprocess-eng` | Pillar 2 — bioprocess engineering explainers |
-| `/notes/gtm-eng` | Pillar 3 — GTM engineering & philosophy |
+| `/notes/biotech-eng` | Pillar 3 — biochemistry, cell/molecular biology, genetics |
+| `/notes/gtm-eng` | Pillar 4 — GTM engineering & philosophy |
 | `/writing` | Essays, book notes — general evolving writing |
 | `/now` | Current focus; updated periodically |
 
 Each `/notes/*` section has its own index/philosophy page plus a growing list of
-articles. All four are **siblings under one `/notes` collection type**, not
+articles. All five are **siblings under one `/notes` collection type**, not
 separate apps — sections within this one repo, not separate domains.
 Splitting one out later is easy if it ever needs it.
 
@@ -135,7 +137,7 @@ nav, and index pages follow automatically.
       + PDF).
 - [ ] **Phase 3 — Content system.** Harden the MDX collection pattern: tag
       filtering, per-tag pages, RSS.
-- [ ] **Phase 4 — Seed the three pillars.** Each `/notes/*` section gets an
+- [ ] **Phase 4 — Seed the four pillars.** Each `/notes/*` section gets an
       index/philosophy page plus 2–3 seed articles — enough to establish the
       section and let it grow.
 - [ ] **Phase 5 — Polish.** SEO metadata, Open Graph images for articles, `/now`
