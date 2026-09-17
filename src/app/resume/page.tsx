@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Resume",
-  description: "Structured resume — education, experience, and selected work.",
+  description: "Structured resume — education and experience, product by product.",
 };
 
 /**
@@ -17,13 +17,20 @@ export const metadata: Metadata = {
  * never drift apart. No PDF exists yet — that is stated plainly below rather
  * than linking a file that 404s.
  */
+/** Titles condensed to one per phase (the last title held during that
+ *  phase), paired with its period — no new facts, just `roles` compressed
+ *  into a single scannable line. Full per-phase detail stays at /journey. */
+const rolesHeld = roles
+  .map((role) => `${role.titles[role.titles.length - 1]} (${role.period})`)
+  .join(" → ");
+
 export default function ResumePage() {
   return (
     <PageShell>
       <PageHeader
         eyebrow="Curriculum vitae"
         title="Resume"
-        lede="Education, experience, and selected work — the structured version of the journey."
+        lede="Education and experience, product by product — the structured version of the journey."
       />
 
       <div className="mb-10 flex flex-wrap items-center justify-between gap-4 border border-rule bg-paper-raised px-5 py-4">
@@ -55,29 +62,27 @@ export default function ResumePage() {
           }
         >
           <h2 className="text-xl font-semibold tracking-[-0.01em] mb-4">{company.name}</h2>
-          <ol className="space-y-8">
-            {[...roles].reverse().map((role) => (
-              <li key={role.phase} className="border-t border-rule pt-5">
+          <Field label="Roles held" className="mb-8">
+            {rolesHeld}
+          </Field>
+          <ol className="space-y-8 border-t-[length:var(--line-heavy)] border-rule-strong">
+            {products.map((p) => (
+              <li key={p.name} className="border-b border-rule pt-5 pb-5">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="font-semibold tracking-[-0.01em]">{role.titles.join(" / ")}</h3>
-                  <span className="label">{role.period}</span>
+                  <h3 className="font-semibold tracking-[-0.01em]">{p.name}</h3>
+                  <span className="label">{p.line}</span>
                 </div>
-                <p className="mt-1.5 measure text-sm text-ink-muted leading-relaxed">
-                  {role.thesis}
-                </p>
-                <ul className="mt-3 space-y-1 text-sm leading-relaxed text-ink">
-                  {role.jobs.map((j) => (
-                    <li key={j} className="pl-4 relative">
-                      <span className="absolute left-0 text-ink-faint font-mono">—</span>
-                      {j}
-                    </li>
-                  ))}
-                </ul>
-                {role.skills.length > 0 ? (
-                  <p className="mt-3 font-mono text-xs text-ink-faint leading-relaxed">
-                    {role.skills.join(" · ")}
-                  </p>
-                ) : null}
+                <p className="mt-1.5 measure text-sm text-ink-muted leading-relaxed">{p.what}</p>
+                <p className="mt-1.5 text-xs text-ink-faint leading-relaxed italic">{p.hard}</p>
+                <div className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                  <Field label="Target accounts">{p.targetAccounts.join(" · ")}</Field>
+                  <Field label="Target people">{p.targetPeople.join(" · ")}</Field>
+                  <Field label="Outcomes achieved">{p.outcomesAchieved.join(" · ")}</Field>
+                  <Field label="Cost of inaction">{p.costOfInaction}</Field>
+                  <Field label="Key accounts won" className="sm:col-span-2">
+                    {p.keyAccountsWon.join(" · ")}
+                  </Field>
+                </div>
               </li>
             ))}
           </ol>
@@ -92,23 +97,6 @@ export default function ResumePage() {
             <Field label="Period">{education.period}</Field>
             <Field label="Honours">{education.honours.join(", ")}</Field>
           </div>
-        </Section>
-
-        <Section number="4.0" label="Selected work" note={<>Products shipped at {company.name}.</>}>
-          <ul className="border-t-[length:var(--line-heavy)] border-rule-strong">
-            {products.map((p) => (
-              <li key={p.name} className="border-b border-rule py-5 grid gap-1 sm:grid-cols-[10rem_1fr]">
-                <div>
-                  <p className="font-semibold tracking-[-0.005em]">{p.name}</p>
-                  <p className="label mt-0.5">{p.line}</p>
-                </div>
-                <div>
-                  <p className="text-sm leading-relaxed text-ink-muted">{p.what}</p>
-                  <p className="mt-1.5 text-xs text-ink-faint leading-relaxed italic">{p.hard}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
         </Section>
       </div>
     </PageShell>
