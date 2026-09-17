@@ -1,0 +1,2293 @@
+---
+title: "GATE BT 2026 — Solved Paper"
+date: "2026-09-13"
+summary: "The full GATE 2026 Biotechnology (BT) question paper, solved question-by-question and tagged against the GATE BT syllabus tree."
+tags: ["gate-bt", "2026", "past-paper", "solved"]
+syllabusRef: "pharma-eng/gate-bt-syllabus"
+---
+
+The GATE 2026 Biotechnology (BT) paper, organized by IIT Guwahati: 65
+questions total — General Aptitude (Q1–10), then the BT subject section
+(Q11–65). Each question below is tagged with its item number from
+[the GATE BT syllabus](/notes/pharma-eng/gate-bt-syllabus) (`section.topic.item`)
+so counts can be rolled up to see which areas get tested most — see the
+**Topics** tab above for the running breakdown. General Aptitude questions
+aren't part of that syllabus tree and are tagged `general-aptitude` instead,
+shown separately there.
+
+## General Aptitude (Q1–10)
+
+#### Q1 — 1 mark, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** "He often \_\_\_\_\_ the numbers. False claims are not going to
+help. Honesty \_\_\_\_\_ trust," said the manager. Choose the option with the
+correct order of words to fill the blanks.
+
+- (A) exaggerates; engenders
+- (B) excels; encourages
+- (C) aggravates; alleviates
+- (D) diminishes; eliminates
+
+<details>
+<summary>Solution</summary>
+
+The second sentence ("False claims are not going to help")
+tells us the first blank describes a dishonest habit with numbers — so the
+first blank must mean overstates, not understates: rules out (C) and (D).
+Between (A) and (B), "excels the numbers" isn't idiomatic (excel is
+intransitive here), while "exaggerates the numbers" is exactly the dishonest
+habit the sentence is warning about. For the second blank, "honesty
+engenders trust" (engenders = brings about) is the standard sense — "honesty
+encourages trust" is grammatically fine but weaker/less precise than the
+intended pairing, and (A) reads cleanly as a matched pair.
+
+**Answer: (A) exaggerates; engenders**
+
+</details>
+
+#### Q2 — 1 mark, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** In the sequence of tiles shown, the missing tile (marked "?")
+should be which pattern?
+
+![Five tiles in a row: 2 dots, 3 dots, a dashed tile marked "?", 7 dots, then 11 dots](/notes/pharma-eng/gate-bt-2026-q2-tile-sequence.png)
+
+![The four answer options: (A) 4 dots in a 2×2 square, (B) 5 dots in a dice-five pattern, (C) 6 dots in two columns of three, (D) 8 dots in a 3×3 grid missing one corner](/notes/pharma-eng/gate-bt-2026-q2-options.png)
+
+- (A) 4 dots (2×2 square)
+- (B) 5 dots
+- (C) 6 dots
+- (D) 8 dots
+
+<details>
+<summary>Solution</summary>
+
+The dot counts are the first five prime numbers: 2, 3, ?, 7, 11. The
+missing (3rd) tile is the 3rd prime, 5.
+
+**Answer: (B) 5 dots**
+
+</details>
+
+#### Q3 — 1 mark, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** A school has 100 students distributed among 1st to 10th
+standards. Which one of the following statements is always correct?
+
+- (A) There are at least 10 students who belong to the same standard.
+- (B) There is at least one student in each standard.
+- (C) There are at most 10 students in 10th standard.
+- (D) The total number of students from 1st to 5th standards is at least 50.
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Pigeonhole principle */}
+
+$$
+\text{at least one group has} \ge \left\lceil \frac{n}{k} \right\rceil \text{items}
+$$
+
+- $n$ — total number of items
+- $k$ — number of groups the items are split into
+
+This is a pigeonhole argument: 100 students spread over 10
+standards average exactly 10 per standard, so at least one standard must
+have 10 or more — if every standard had 9 or fewer, the total would be at
+most 90 < 100, a contradiction. (B), (C), and (D) each describe one possible
+distribution, not one forced by the numbers (e.g. all 100 students could be
+in a single standard, satisfying (A) but violating (B), (C), and (D)).
+
+**Answer: (A)**
+
+</details>
+
+#### Q4 — 1 mark, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** How many 3-digit numbers can be formed using three distinct
+single-digit prime numbers?
+
+- (A) 64
+- (B) 24
+- (C) 12
+- (D) 4
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Permutations (ordered selection, no repetition) */}
+
+$$
+P(n,r) = \frac{n!}{(n-r)!}
+$$
+
+- $n$ — total number of items available
+- $r$ — number chosen and arranged (order matters)
+
+The single-digit primes are 2, 3, 5, 7 — four digits. A
+3-digit number using three *distinct* ones is an ordered selection of 3 from
+4 (order matters, since 235 ≠ 253), and none of these digits is 0 so every
+arrangement is a valid 3-digit number. Count = $P(4,3) = 4 \times 3 \times 2 = 24$.
+
+**Answer: (B) 24**
+
+</details>
+
+#### Q5 — 1 mark, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** In a group of students, 10 students like Mathematics, 12
+students like English, 4 students like both Mathematics and English, and 6
+students like neither. The number of students in the group is ____.
+
+- (A) 18
+- (B) 20
+- (C) 24
+- (D) 32
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Inclusion–exclusion (two sets) */}
+
+$$
+|A \cup B| = |A| + |B| - |A \cap B|
+$$
+
+- $|A|$, $|B|$ — count of items with property $A$, with property $B$
+- $|A \cap B|$ — count of items with both properties
+
+By inclusion-exclusion, students who like at least one subject
+= $10 + 12 - 4 = 18$. Adding the 6 who like neither: total $= 18 + 6 = 24$.
+
+**Answer: (C) 24**
+
+</details>
+
+#### Q6 — 2 marks, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** Charity : P :: Retaliation : Q. Choose the appropriate pair of
+words P and Q that fit the analogy.
+
+- (A) P = Parsimonious; Q = Vengeful
+- (B) P = Altruistic; Q = Amicable
+- (C) P = Resentful; Q = Spiteful
+- (D) P = Magnanimous; Q = Vindictive
+
+<details>
+<summary>Solution</summary>
+
+The analogy pairs an act with the trait of a person who
+performs it: charity is done by someone who is magnanimous (generous), and
+retaliation is done by someone who is vindictive (bent on revenge). (A)
+pairs charity with its *opposite* trait (parsimonious = stingy), breaking
+the pattern; (B) and (C) don't consistently match either act to its
+performer's trait.
+
+**Answer: (D) P = Magnanimous; Q = Vindictive**
+
+</details>
+
+#### Q7 — 2 marks, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** A paper shown in Panel I is folded along the dashed lines to
+construct a cube; the shaded regions in Panel I appear on the outer surface
+of the cube. Referring to the cubes in Panel II, which one of the options is
+correct — (i) only, (ii) only, both, or neither?
+
+![Panel I: a six-square net (a column of four squares, with one extra square attached to the right of the top square and one to the right of the bottom square), marked with a triangle, a solid square, a small square, a diamond, and two more triangles. Panel II shows two candidate folded cubes, (i) and (ii), each with a diamond on the front face and shading on the top and right faces.](/notes/pharma-eng/gate-bt-2026-q7-cube-net.png)
+
+- (A) Only (i) can correspond to the unfolded cube in Panel I.
+- (B) Only (ii) can correspond to the unfolded cube in Panel I.
+- (C) Both (i) and (ii) can correspond to the unfolded cube in Panel I.
+- (D) Neither (i) nor (ii) can correspond to the unfolded cube in Panel I.
+
+<details>
+<summary>Solution</summary>
+
+The diamond-square sits two folds away from the top-left square in both
+directions, so it lands on the same face regardless of fold order, and
+both rendered options correctly put it on the front face — that part
+doesn't discriminate between (i) and (ii). The solid-black square and the
+two corner triangles are what differ between them, and tracing exactly
+which cube edge each lands on (by physically folding the net, or walking
+through it face by face) shows only option (i) reproduces the shading in
+Panel I correctly — (ii) has one of the corner triangles on the wrong
+face/orientation.
+
+**Answer: (A) Only (i)**
+
+</details>
+
+#### Q8 — 2 marks, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** Consider a cube with its 8 corners labelled a–h. All corners
+are colored such that any two corners connected by an edge must be different
+colors. The minimum number of colors required is ____.
+
+![A cube with corners labelled a, b, c, d on the top face and e, f, g, h on the bottom face, edges connecting each top corner to the one below it](/notes/pharma-eng/gate-bt-2026-q8-cube-graph.png)
+
+- (A) 8
+- (B) 4
+- (C) 3
+- (D) 2
+
+<details>
+<summary>Solution</summary>
+
+The cube's vertex-edge graph is bipartite: split the 8
+corners into two sets by parity — e.g. label each corner by how many of its
+3 binary coordinates are 1; every edge of a cube connects a vertex of even
+parity to one of odd parity, never same-to-same. Coloring one parity class
+one color and the other a second color satisfies the constraint, and one
+color alone can't work since adjacent corners would clash — so the minimum
+is 2.
+
+**Answer: (D) 2**
+
+</details>
+
+#### Q9 — 2 marks, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** Four hills H1–H4 satisfy: (i) neither H2 nor H3 is
+easternmost; (ii) neither H2 nor H3 is westernmost; (iii) neither the
+easternmost nor the westernmost hill is the southernmost; (iv) two hills
+are located to the west of H2; (v) the southernmost hill has at least two
+hills to its east. The southernmost hill is ____.
+
+- (A) H1
+- (B) H2
+- (C) H3
+- (D) H4
+
+<details>
+<summary>Solution</summary>
+
+From (i) and (ii), H2 and H3 occupy the two *middle*
+west–east positions, leaving H1 and H4 to occupy the westernmost and
+easternmost ends (in some order). From (iv), exactly two hills lie west of
+H2, which fixes H2 at the 3rd position from the west; H3 then takes the 2nd
+position. From (v), the southernmost hill must have ≥2 hills to its east,
+which is only possible from the 1st or 2nd position (west–east). From (iii),
+the southernmost hill can't be at the westernmost (1st) or easternmost (4th)
+position. The only position satisfying both is the 2nd — which is H3.
+
+**Answer: (C) H3**
+
+</details>
+
+#### Q10 — 2 marks, MCQ
+
+{/* syllabus: general-aptitude */}
+
+**Question.** Circle $C_1$ (center $O_1$, radius $r_1$) touches square VWXY
+at points P and Q; circle $C_2$ (center $O_2$, radius $r_2$) touches the
+square at points R and S. The two circles touch each other at T. Given
+$r_1 = 1\text{ cm}$ and $\overline{VY} = \overline{VW} = 4\text{ cm}$, find
+$r_2$.
+
+![Square VWXY with circle C1 (radius r1 = 1 cm, center O1) inscribed in the bottom-left corner touching sides at P and Q, and circle C2 (radius r2, center O2) inscribed in the top-right corner touching sides at R and S, the two circles tangent to each other at T](/notes/pharma-eng/gate-bt-2026-q10-circles-in-square.png)
+
+- (A) $4 - 3\sqrt{2}$
+- (B) $1 + 2\sqrt{2}$
+- (C) $7 - 4\sqrt{2}$
+- (D) $5 + 3\sqrt{2}$
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: External tangency of two circles */}
+
+$$
+|O_1O_2| = r_1 + r_2
+$$
+
+- $O_1, O_2$ — centers of the two circles
+- $r_1, r_2$ — their radii (consistent length units)
+
+1. **Set up coordinates.** Place the square so $W$ is at the origin. Reading
+   off the figure, going around the square the corners are
+   $W=(0,0)$, $X=(4,0)$, $Y=(4,4)$, $V=(0,4)$ — a $4\times4$ square, since
+   $\overline{VW}=\overline{VY}=4\text{ cm}$ are two of its sides.
+
+2. **Place $O_1$.** $C_1$ sits in the $W$ corner, tangent to the two sides
+   that meet there ($WV$, the left side $x=0$, and $WX$, the bottom side
+   $y=0$). A circle tangent to a line is at a distance equal to its radius
+   from that line — so being tangent to *both* $x=0$ and $y=0$ pins its
+   center at $(r_1, r_1)$. With $r_1=1$: $O_1=(1,1)$.
+
+3. **Place $O_2$.** Same logic, opposite corner: $C_2$ sits in the $Y$
+   corner, tangent to the top side ($y=4$) and the right side ($x=4$). Being
+   at distance $r_2$ from each pins its center at
+   $(4-r_2,\ 4-r_2)$ — $r_2$ *in* from each of those two sides.
+
+4. **Use the tangency condition between the circles.** The two circles
+   touch each other externally at $T$ (they're outside one another, just
+   grazing at one point) — for two externally tangent circles, the distance
+   between centers equals the sum of the radii:
+   $$
+   |O_1O_2| = r_1+r_2
+   $$
+   This is the one geometric fact that turns the picture into an equation
+   in $r_2$ (everything else is just substitution).
+
+5. **Write out the distance.** Using the distance formula between
+   $O_1=(1,1)$ and $O_2=(4-r_2,\ 4-r_2)$:
+   $$
+   |O_1O_2| = \sqrt{(4-r_2-1)^2 + (4-r_2-1)^2} = \sqrt{2(3-r_2)^2} = \sqrt{2}\,(3-r_2)
+   $$
+   (both coordinate differences are the same, $3-r_2$, because $O_1$ and
+   $O_2$ sit symmetrically on the square's diagonal — so the two squared
+   terms are identical, and $\sqrt{2\cdot(\cdot)^2}$ simplifies to
+   $\sqrt2$ times that quantity.)
+
+6. **Set the two expressions for $|O_1O_2|$ equal** (step 4's requirement,
+   using step 5's formula, with $r_1=1$):
+   $$
+   \sqrt{2}\,(3 - r_2) = 1 + r_2
+   $$
+
+7. **Solve for $r_2$.** Expand the left side, then collect every $r_2$ term
+   on one side:
+   $$
+   3\sqrt{2} - \sqrt{2}\,r_2 = 1 + r_2
+   $$
+   $$
+   3\sqrt{2} - 1 = r_2 + \sqrt{2}\,r_2 = r_2\left(1+\sqrt{2}\right)
+   $$
+   $$
+   r_2 = \frac{3\sqrt{2}-1}{1+\sqrt{2}}
+   $$
+
+8. **Rationalize the denominator**, so the answer matches the form of the
+   options (no surd on the bottom). Multiply top and bottom by
+   $(\sqrt2-1)$ — chosen because $(1+\sqrt2)(\sqrt2-1)$ collapses to a plain
+   number, clearing the denominator:
+   $$
+   (1+\sqrt{2})(\sqrt{2}-1) = \sqrt{2}-1+2-\sqrt{2} = 1
+   $$
+   $$
+   (3\sqrt{2}-1)(\sqrt{2}-1) = 3\sqrt2\cdot\sqrt2 - 3\sqrt2 - \sqrt2 + 1 = 6 - 4\sqrt{2} + 1 = 7-4\sqrt{2}
+   $$
+   So $r_2 = \dfrac{7-4\sqrt2}{1} = 7-4\sqrt{2}$.
+
+9. **Sanity-check the number**, not just the algebra: $7-4\sqrt2 \approx
+   7 - 5.657 = 1.34\text{ cm}$. That's positive (a radius has to be), and
+   less than 3 cm (needed for step 5's $3-r_2$ to be positive, i.e. for
+   $O_2$ to still be past $O_1$ along the diagonal) — both checks pass, so
+   the answer is geometrically sensible, not just an artifact of the
+   algebra.
+
+**Answer: (C) $7 - 4\sqrt{2}$**
+
+</details>
+
+## BT Subject — one-mark MCQ (Q11–35)
+
+#### Q11 — 1 mark, MCQ
+
+{/* syllabus: 1.2.1 */}
+
+**Question.** Consider the two functions $f_1(x) = \dfrac{x^2-4}{x-2}$ and
+$f_2(x) = x^2 - 2x + 2$. Which of the following is the value of
+$(f_1(x) + f_2(x))$ as $x \to 2$?
+
+- (A) 0
+- (B) 6
+- (C) 8
+- (D) $\infty$
+
+<details>
+<summary>Solution</summary>
+
+$f_1$ has a removable discontinuity at $x=2$: factoring,
+$f_1(x) = \dfrac{(x-2)(x+2)}{x-2} = x+2$ for $x \neq 2$, so
+$\lim_{x\to 2} f_1(x) = 4$. $f_2$ is a polynomial (continuous everywhere), so
+$\lim_{x\to 2} f_2(x) = f_2(2) = 4-4+2 = 2$. Sum of the limits: $4+2=6$.
+
+**Answer: (B) 6**
+
+</details>
+
+#### Q12 — 1 mark, MCQ
+
+{/* syllabus: 1.1.3 */}
+
+**Question.** Which of the following is one of the eigenvalues for the
+matrix given below?
+
+$$
+\begin{bmatrix} 3 & 4 \\ 4 & -3 \end{bmatrix}
+$$
+
+- (A) 1
+- (B) 3
+- (C) 5
+- (D) 7
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Eigenvalues of a matrix (characteristic equation) */}
+
+$$
+\det(A - \lambda I) = 0
+$$
+
+- $A$ — the square matrix
+- $\lambda$ — an eigenvalue
+- $I$ — the identity matrix of the same size as $A$
+
+Solve $\det(A - \lambda I) = 0$:
+$(3-\lambda)(-3-\lambda) - 16 = 0 \Rightarrow \lambda^2 - 9 - 16 = 0
+\Rightarrow \lambda^2 = 25 \Rightarrow \lambda = \pm 5$.
+
+**Answer: (C) 5**
+
+</details>
+
+#### Q13 — 1 mark, MCQ
+
+{/* syllabus: 1.2.1 */}
+
+**Question.** Which of the following functions has the highest area under
+the curve between $x=0$ and $x=10$?
+
+- (A) $y = x + 8$
+- (B) $y = 3x$
+- (C) $y = 2x + 1$
+- (D) $y = x + 2$
+
+<details>
+<summary>Solution</summary>
+
+Each area is $\int_0^{10} y\,dx$: (A) gives
+$[x^2/2+8x]_0^{10}=50+80=130$; (B) gives $[3x^2/2]_0^{10}=150$; (C) gives
+$[x^2+x]_0^{10}=100+10=110$; (D) gives $[x^2/2+2x]_0^{10}=50+20=70$. (B) is
+largest.
+
+_Approximate syllabus mapping: the listed syllabus has no standalone
+"definite integration" line item, so this is filed under 1.2.1 (calculus)
+as the closest fit — flagging in case you'd rather leave it untagged._
+
+**Answer: (B) $y=3x$**
+
+</details>
+
+#### Q14 — 1 mark, MCQ
+
+{/* syllabus: 6.3.8 */}
+
+**Question.** Cancer cells display a high level of heterogeneity in the
+expression of TP53 protein. Which of the following techniques can be
+directly used to determine the intra-tumoral heterogeneity of TP53
+expression in a given tumor sample, without resorting to additional cell
+separation techniques?
+
+- (A) Immunoblotting
+- (B) Flow cytometry
+- (C) ELISA
+- (D) Quantitative RT-PCR
+
+<details>
+<summary>Solution</summary>
+
+Immunoblotting, ELISA, and qRT-PCR all report a single bulk
+average across the whole sample, which by construction cannot reveal
+cell-to-cell heterogeneity. Flow cytometry measures TP53 signal in each
+dissociated single cell and reports the full distribution across the
+population — no upfront sorting/separation into subpopulations is needed to
+see that heterogeneity, since it shows up directly as a spread in the
+per-cell histogram.
+
+**Answer: (B) Flow cytometry**
+
+</details>
+
+#### Q15 — 1 mark, MCQ
+
+{/* syllabus: 4.2.11 */}
+
+**Question.** The transfer function of a Proportional-Integral (PI)
+controller $G_C(s)$ is given by
+$G_C(s) = K_C\left(1 + \dfrac{1}{\tau_I s}\right)$, where $K_C$ is the
+controller gain, $\tau_I$ is the controller integral time constant, and $s$
+is the Laplace variable. The role of the integral component of the
+controller is to ____.
+
+- (A) integrate the difference between the process and manipulated variable
+- (B) integrate the difference between the set point and disturbance variable
+- (C) integrate the difference between the set point and the measured variable
+- (D) integrate the difference between the input and output variable
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: PI controller transfer function */}
+
+$$
+G_C(s) = K_C\left(1 + \frac{1}{\tau_I s}\right)
+$$
+
+- $K_C$ — controller gain
+- $\tau_I$ — integral time constant ($\text{s}$ or $\text{min}$)
+- $s$ — Laplace variable
+
+A controller acts on the error signal, $e(t) = $ set point −
+measured (process) variable. The integral term in a PI controller
+accumulates (integrates) this error over time to drive out steady-state
+offset — that's specifically the set point vs. measured-variable
+difference, not the manipulated variable, disturbance, or a generic
+input/output pair.
+
+**Answer: (C)**
+
+</details>
+
+#### Q16 — 1 mark, MCQ
+
+{/* syllabus: 2.1.3 */}
+
+**Question.** Which of the following enzymes is involved in the protection
+of cells from reactive oxygen species?
+
+- (A) Hexokinase
+- (B) Glucose 6-phosphate dehydrogenase
+- (C) Enolase
+- (D) Pyruvate kinase
+
+<details>
+<summary>Solution</summary>
+
+Glucose-6-phosphate dehydrogenase (G6PD) is the committed,
+rate-limiting step of the pentose phosphate pathway, and its product is the
+NADPH used to regenerate reduced glutathione (GSH) — the cell's main
+buffer against reactive oxygen species. Hexokinase, enolase, and pyruvate
+kinase are glycolytic enzymes with no direct role in redox defense.
+
+**Answer: (B) Glucose 6-phosphate dehydrogenase**
+
+</details>
+
+#### Q17 — 1 mark, MCQ
+
+{/* syllabus: 2.2.6 */}
+
+**Question.** In nitrogen fixation, to reduce nitrogen to ammonia, which one
+of the following shows the correct order of electron flow?
+
+- (A) Ferredoxin → reductase → nitrogenase
+- (B) NADH → reductase → nitrogenase
+- (C) Ferredoxin → nitrogenase → reductase
+- (D) Reductase → NADH → nitrogenase
+
+<details>
+<summary>Solution</summary>
+
+In the nitrogenase complex, ferredoxin donates electrons to
+the Fe-protein (dinitrogenase reductase), which uses ATP hydrolysis to pass
+those electrons one at a time to the MoFe-protein (dinitrogenase, i.e.
+"nitrogenase" proper), which is where N₂ is actually reduced to ammonia.
+So the order is ferredoxin → reductase → nitrogenase.
+
+**Answer: (A)**
+
+</details>
+
+#### Q18 — 1 mark, MCQ
+
+{/* syllabus: 2.3.7 */}
+
+**Question.** For monoclonal antibody production, hypoxanthine ____.
+
+- (A) allows DNA synthesis in the absence of de novo dTMP synthesis
+- (B) allows purine synthesis in cells containing HGPRT
+- (C) induces cell fusion
+- (D) prevents de novo nucleotide synthesis
+
+<details>
+<summary>Solution</summary>
+
+Hybridoma selection uses HAT medium (hypoxanthine,
+aminopterin, thymidine). Aminopterin blocks de novo purine and thymidylate
+synthesis, so surviving cells must run the salvage pathway instead.
+Hypoxanthine feeds that salvage pathway specifically for purines, via
+HGPRT (hypoxanthine-guanine phosphoribosyltransferase) — myeloma fusion
+partners are chosen to be HGPRT-deficient, so only fused hybridomas (which
+inherit HGPRT from the B cell) can use hypoxanthine to survive. (A)
+describes thymidine's role in the same medium, not hypoxanthine's.
+
+**Answer: (B)**
+
+</details>
+
+#### Q19 — 1 mark, MCQ
+
+{/* syllabus: 4.2.6 */}
+
+**Question.** Which one of the following proteins would elute third in gel
+filtration chromatography from a mixture of four proteins given below?
+
+- (A) Insulin (6 kDa)
+- (B) Myoglobin (17 kDa)
+- (C) Thrombin (37 kDa)
+- (D) Albumin (66 kDa)
+
+<details>
+<summary>Solution</summary>
+
+In gel filtration (size-exclusion) chromatography, larger
+proteins are excluded from the pores of the resin and elute first, while
+smaller proteins get retained longer and elute last — the opposite order to
+molecular weight. Elution order here is Albumin (66 kDa, 1st) → Thrombin
+(37 kDa, 2nd) → Myoglobin (17 kDa, 3rd) → Insulin (6 kDa, 4th/last).
+
+**Answer: (B) Myoglobin (17 kDa)**
+
+</details>
+
+#### Q20 — 1 mark, MCQ
+
+{/* syllabus: 2.2.8 */}
+
+**Question.** Which one of the following antibiotics blocks protein chain
+elongation by preventing the action of peptidyl transferase?
+
+- (A) Bleomycin
+- (B) Rifampicin
+- (C) Chloramphenicol
+- (D) Tetracycline
+
+<details>
+<summary>Solution</summary>
+
+Chloramphenicol binds the 50S ribosomal subunit and directly
+inhibits peptidyl transferase, blocking peptide bond formation during
+elongation. Bleomycin damages DNA (not a translation inhibitor); rifampicin
+inhibits bacterial RNA polymerase (transcription, not translation); and
+tetracycline blocks aminoacyl-tRNA from binding the ribosomal A site — a
+different elongation-blocking mechanism, not peptidyl transferase
+inhibition.
+
+**Answer: (C) Chloramphenicol**
+
+</details>
+
+#### Q21 — 1 mark, MCQ
+
+{/* syllabus: 2.1.7 */}
+
+**Question.** The catalytic efficiency of an enzyme following
+Michaelis-Menten kinetics is defined by ____.
+
+- (A) $k_{Cat}$
+- (B) $V_{max} / k_{Cat}$
+- (C) $k_{Cat} / K_M$
+- (D) $k_{Cat} / V_{max}$
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Catalytic efficiency */}
+
+$$
+\text{Catalytic efficiency} = \frac{k_{cat}}{K_M}
+$$
+
+- $k_{cat}$ — turnover number ($\text{s}^{-1}$)
+- $K_M$ — Michaelis constant ($\text{mol L}^{-1}$)
+
+Catalytic efficiency is the standard Michaelis-Menten figure
+of merit for how effectively an enzyme converts substrate at low
+(non-saturating) concentration, defined as $k_{cat}/K_M$ — $k_{cat}$ alone
+just measures turnover rate at saturation, without accounting for how
+tightly the enzyme binds substrate ($K_M$).
+
+**Answer: (C) $k_{Cat}/K_M$**
+
+</details>
+
+#### Q22 — 1 mark, MCQ
+
+{/* syllabus: 3.3.4 */}
+
+**Question.** The RNA primer synthesized during bacterial DNA replication
+is removed by ____.
+
+- (A) DNA gyrase
+- (B) DNA Polymerase I
+- (C) Primase
+- (D) DNA Polymerase III
+
+<details>
+<summary>Solution</summary>
+
+Primase (C) *lays down* the RNA primer, and DNA Polymerase
+III (D) extends it into new DNA — neither removes it. DNA gyrase (A)
+relieves supercoiling ahead of the replication fork. DNA Polymerase I
+carries a 5'→3' exonuclease activity that excises the RNA primer and then
+fills the resulting gap with DNA, before DNA ligase seals the nick.
+
+**Answer: (B) DNA Polymerase I**
+
+</details>
+
+#### Q23 — 1 mark, MCQ
+
+{/* syllabus: 2.1.1 */}
+
+**Question.** Match the carbohydrates in Column I with the correct
+glycosidic linkages involved in Column II.
+
+| Column I | Column II |
+| --- | --- |
+| P. Amylose | 1. β(1→4) |
+| Q. Sucrose | 2. α(1→4) |
+| R. Amylopectin | 3. α1→β2 |
+| S. Cellulose | 4. α(1→4), α(1→6) |
+
+- (A) P-4; Q-3; R-2; S-1
+- (B) P-2; Q-1; R-4; S-3
+- (C) P-2; Q-3; R-4; S-1
+- (D) P-1; Q-3; R-4; S-2
+
+<details>
+<summary>Solution</summary>
+
+Amylose is a linear glucose polymer joined entirely by
+α(1→4) bonds → 2. Amylopectin is the branched form of starch: α(1→4)
+along each chain plus α(1→6) at branch points → 4. Cellulose is a linear
+glucose polymer joined by β(1→4) bonds → 1. Sucrose is glucose linked to
+fructose through their anomeric carbons, an α1→β2 glycosidic bond → 3.
+So P-2; Q-3; R-4; S-1.
+
+**Answer: (C)**
+
+</details>
+
+#### Q24 — 1 mark, MCQ
+
+{/* syllabus: 4.1.11 */}
+
+**Question.** The correct sequence of the four steps involved in anaerobic
+production of biogas from complex organics is:
+
+- (A) Hydrolysis → Acidogenesis → Acetogenesis → Methanogenesis
+- (B) Methanogenesis → Acetogenesis → Acidogenesis → Hydrolysis
+- (C) Acidogenesis → Hydrolysis → Methanogenesis → Acetogenesis
+- (D) Hydrolysis → Methanogenesis → Acidogenesis → Acetogenesis
+
+<details>
+<summary>Solution</summary>
+
+Anaerobic digestion breaks complex organics down in stages:
+hydrolysis first splits polymers (carbohydrates, proteins, lipids) into
+soluble monomers; acidogenesis ferments those into volatile fatty acids,
+alcohols, CO₂, and H₂; acetogenesis converts those products into acetate,
+CO₂, and H₂; methanogenesis then converts the acetate/CO₂/H₂ pool into
+methane — necessarily last, since it consumes the products of the stage
+before it.
+
+**Answer: (A)**
+
+</details>
+
+#### Q25 — 1 mark, MCQ
+
+{/* syllabus: 2.1.5 */}
+
+**Question.** Which one of the following options represents the products
+of light reactions of photosynthesis in plants?
+
+- (A) O₂/NADH/H₂
+- (B) O₂/NADP⁺/CO₂
+- (C) O₂/NADPH/ATP
+- (D) O₂/NADP⁺/ATP
+
+<details>
+<summary>Solution</summary>
+
+The light reactions split water (releasing O₂), and use that
+electron flow plus the proton gradient to generate both ATP (via
+photophosphorylation) and NADPH (via reduction of NADP⁺ at the end of the
+electron transport chain) — both feed the Calvin cycle. CO₂ is a Calvin
+cycle *input*, not a light-reaction product, and NADH (not NADPH) is the
+respiratory carrier, ruling out (A), (B), and (D).
+
+**Answer: (C) O₂/NADPH/ATP**
+
+</details>
+
+#### Q26 — 1 mark, MCQ
+
+{/* syllabus: 6.2.7 */}
+
+**Question.** Which component of the CRISPR/Cas9 gene editing system is
+NOT of natural origin?
+
+- (A) Cas9 protein
+- (B) CRISPR repeats
+- (C) PAM sequence
+- (D) sgRNA
+
+<details>
+<summary>Solution</summary>
+
+Cas9 protein, CRISPR repeats, and the PAM sequence are all
+native to the bacterial/archaeal CRISPR immune system. The single guide
+RNA (sgRNA) is a laboratory construct: it's an engineered fusion of the
+natural crRNA and tracrRNA into one chimeric molecule, built specifically
+to simplify Cas9 targeting for genome editing — it doesn't exist as such in
+nature.
+
+**Answer: (D) sgRNA**
+
+</details>
+
+## BT Subject — one-mark MSQ (Q27–30)
+
+#### Q27 — 1 mark, MSQ
+
+{/* syllabus: 1.3.2 */}
+
+**Question.** The equation $\dfrac{d^2y}{dx^2} - y = 0$ has a solution of
+the form $y = e^{Ax}$. The value(s) of $A$ satisfying this is/are:
+
+- (A) 0
+- (B) 1
+- (C) -1
+- (D) $-\infty$
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Characteristic equation (2nd-order linear ODE) */}
+
+$$
+\frac{d^2y}{dx^2} + p\frac{dy}{dx} + qy = 0, \quad y=e^{Ax} \;\Rightarrow\; A^2+pA+q=0
+$$
+
+- $p, q$ — constant coefficients of the ODE
+- $A$ — a root of the characteristic equation (an exponent of a valid solution)
+
+Substituting $y=e^{Ax}$ gives $A^2 e^{Ax} - e^{Ax} = 0
+\Rightarrow A^2 = 1 \Rightarrow A = \pm 1$. Both roots are valid — this is
+a second-order linear ODE with constant coefficients, and its
+characteristic equation has two real roots, each giving a valid
+exponential solution.
+
+**Answer: (B) 1 and (C) -1**
+
+</details>
+
+#### Q28 — 1 mark, MSQ
+
+{/* syllabus: 2.1.5 */}
+
+**Question.** Which of the following drugs inhibit(s) ATP-ADP translocase?
+
+- (A) Oligomycin
+- (B) Atractyloside
+- (C) Amytal
+- (D) Bongkrekic acid
+
+<details>
+<summary>Solution</summary>
+
+ATP-ADP translocase (the adenine nucleotide translocator,
+ANT) shuttles ADP into and ATP out of the mitochondrial matrix. Atractyloside
+blocks it by locking it in the cytosol-facing conformation, and bongkrekic
+acid blocks it by locking it in the matrix-facing conformation instead —
+both are classic, textbook ANT inhibitors. Oligomycin acts elsewhere, on
+the $F_o$ subunit of ATP synthase; amytal blocks Complex I of the electron
+transport chain. Neither touches the translocase itself.
+
+**Answer: (B) Atractyloside and (D) Bongkrekic acid**
+
+</details>
+
+#### Q29 — 1 mark, MSQ
+
+{/* syllabus: 3.2.9 */}
+
+**Question.** Which of the following is/are extra-cellular matrix
+protein(s)?
+
+- (A) Myosin
+- (B) Fibronectin
+- (C) Lamin
+- (D) Collagen
+
+<details>
+<summary>Solution</summary>
+
+Fibronectin and collagen are both secreted structural
+components of the extracellular matrix. Myosin is an intracellular motor
+protein (cytoskeletal, not secreted), and lamin is a structural protein of
+the nuclear lamina, inside the cell — neither is part of the ECM.
+
+**Answer: (B) Fibronectin and (D) Collagen**
+
+</details>
+
+#### Q30 — 1 mark, MSQ
+
+{/* syllabus: 6.4.1 */}
+
+**Question.** BLAST and its extensions can be used to determine similarity
+of a query protein sequence with which of the following database(s)?
+
+- (A) A database of translated nucleotide sequences
+- (B) A database of binding ligands and small translated peptides
+- (C) A database of protein structures
+- (D) A database of binding, linking and self-assembling proteins
+
+<details>
+<summary>Solution</summary>
+
+A protein query can be searched with `tblastn` against a database of
+translated nucleotide sequences (A) — this is a standard BLAST extension,
+and it's the only option that names a real BLAST-searchable database type.
+(B), (C), and (D) don't correspond to standard BLAST targets — a protein
+structure database (C) is searched by structural-alignment tools (e.g.
+DALI), not BLAST's sequence-comparison model, even though the PDB's
+sequences are themselves BLAST-searchable via `pdbaa`.
+
+**Answer: (A)**
+
+</details>
+
+## BT Subject — one-mark NAT (Q31–35)
+
+#### Q31 — 1 mark, NAT
+
+{/* syllabus: 1.4.1 */}
+
+**Question.** The mean of the following series is ____. (rounded off to
+three decimal places)
+
+$$
+0.01,\ 0.02,\ 0.03,\ \dots,\ 1
+$$
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Mean of an arithmetic series */}
+
+$$
+\bar{x} = \frac{a_1+a_n}{2}
+$$
+
+- $a_1$ — first term of the series
+- $a_n$ — last term of the series
+
+This is an arithmetic series (step 0.01, from 0.01 to 1.00 —
+100 terms). For an arithmetic series, the mean equals the average of the
+first and last terms: $(0.01+1.00)/2 = 0.505$.
+
+**Answer: 0.505**
+
+</details>
+
+#### Q32 — 1 mark, NAT
+
+{/* syllabus: 4.1.2 */}
+
+**Question.** You are characterizing a new enzyme isolated and purified in
+the laboratory. If the maximum velocity of the enzyme is
+$1800\ \mu\text{mol L}^{-1}\text{min}^{-1}$ and the total concentration of
+the enzyme in the reaction mixture is $1.5\ \mu M$, then the turnover
+number of the enzyme is ____ s⁻¹. (answer in integer)
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Turnover number (k_cat) */}
+
+$$
+k_{cat} = \frac{V_{max}}{[E]_{total}}
+$$
+
+- $V_{max}$ — maximum reaction velocity
+- $[E]_{total}$ — total enzyme concentration
+
+Turnover number $k_{cat} = V_{max}/[E]_{total} =
+1800/1.5 = 1200\ \text{min}^{-1}$. Converting to per-second:
+$1200/60 = 20\ \text{s}^{-1}$.
+
+**Answer: 20**
+
+</details>
+
+#### Q33 — 1 mark, NAT
+
+{/* syllabus: 2.2.4 */}
+
+**Question.** To determine the viable cell count of a bacterial culture,
+you have plated $50\ \mu L$ of a 100-fold diluted sample of the culture on
+a nutrient agar plate and obtained 20 colonies after overnight incubation.
+The viable cell count of the culture is ____ CFU mL⁻¹. (answer in integer)
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Viable cell count from a dilution plate (CFU/mL) */}
+
+$$
+\text{CFU mL}^{-1} = \frac{\text{colonies counted}}{\text{volume plated (mL)}} \times \text{dilution factor}
+$$
+
+- $\text{dilution factor}$ — reciprocal of the dilution fraction (e.g. 100 for a 100-fold dilution)
+
+Colony count in the plated volume gives the diluted sample's
+concentration first: $20\ \text{colonies} / 0.05\ \text{mL} =
+400\ \text{CFU mL}^{-1}$ in the *diluted* sample. Since the sample was
+diluted 100-fold before plating, the original culture's concentration is
+100× that: $400 \times 100 = 40{,}000\ \text{CFU mL}^{-1}$.
+
+**Answer: 40000**
+
+</details>
+
+#### Q34 — 1 mark, NAT
+
+{/* syllabus: 2.1.5 */}
+
+**Question.** Given below is the Gibbs free energy change (ΔG) in kilo
+Joules per electron equivalent (kJ e⁻eq⁻¹) at pH 7.0, of organic and
+inorganic half reactions.
+
+Acetate synthesis:
+$$
+\tfrac{1}{8}\text{CO}_2 + \tfrac{1}{8}\text{HCO}_3^- + \text{H}^+ + e^-
+\rightarrow \tfrac{1}{8}\text{CH}_3\text{COO}^- + \tfrac{3}{8}\text{H}_2\text{O}
+\quad \Delta G = 27.4\ \text{kJ e}^-\text{eq}^{-1}
+$$
+
+Reduction reaction:
+$$
+\tfrac{1}{4}\text{O}_2 + \text{H}^+ + e^- \rightarrow \tfrac{1}{2}\text{H}_2\text{O}
+\quad \Delta G = -78.72\ \text{kJ e}^-\text{eq}^{-1}
+$$
+
+The free energy change of acetate oxidation to CO₂, H₂O and HCO₃⁻ is
+____ kJ e⁻eq⁻¹. (rounded off to two decimal places)
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Overall reaction free energy from half-reactions */}
+
+$$
+\Delta G_{rxn} = \Delta G_{donor\,(oxidation)} + \Delta G_{acceptor\,(reduction)}
+$$
+
+- $\Delta G_{donor}$ — the electron-donor half-reaction, written as an oxidation
+- $\Delta G_{acceptor}$ — the electron-acceptor half-reaction, written as a reduction
+
+This is asking for a full aerobic oxidation reaction, so it needs *both*
+half-reactions combined, not just the acetate one on its own — that's why
+the O₂ half-reaction is given at all.
+
+1. **Acetate is the electron donor, and it's being oxidized** — the reverse
+   of the given "acetate synthesis" (reduction) half-reaction. Reversing a
+   half-reaction flips the sign of its ΔG:
+   $$
+   \Delta G_{\text{acetate oxidation}} = -27.4\ \text{kJ e}^-\text{eq}^{-1}
+   $$
+
+2. **O₂ is the electron acceptor, and it's being reduced** — exactly as
+   given, no sign flip needed:
+   $$
+   \Delta G_{\text{O}_2\text{ reduction}} = -78.72\ \text{kJ e}^-\text{eq}^{-1}
+   $$
+
+3. **Combine the two per-electron-equivalent half-reactions into the
+   overall reaction.** Because both are already normalized to one electron
+   equivalent, the overall reaction's free energy is simply their sum (the
+   electron donor supplies the electron, the acceptor consumes it — add the
+   two ΔG's to get the net driving force of the coupled redox reaction):
+   $$
+   \Delta G_{\text{overall}} = \Delta G_{\text{donor (oxidation)}} + \Delta G_{\text{acceptor (reduction)}}
+   = -27.4 + (-78.72) = -106.12\ \text{kJ e}^-\text{eq}^{-1}
+   $$
+
+**Answer: -106.12**
+
+</details>
+
+#### Q35 — 1 mark, NAT
+
+{/* syllabus: 6.3.5 */}
+
+**Question.** You have purified an enzyme using a series of chromatographic
+methods. It was observed that a $10\ \mu g\ mL^{-1}$ of this purified
+enzyme converted 10 mM substrate per hour at 25°C and pH 7. Its specific
+activity is ____ IU $\mu g^{-1}$. (rounded off to three decimal places)
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Specific activity */}
+
+$$
+\text{Specific activity} = \frac{\text{Activity (IU)}}{\text{mass of enzyme}}
+$$
+
+- $\text{IU}$ — international unit, 1 µmol of substrate converted per minute
+
+Working per mL: the reaction rate is $10\ \text{mM/hr} =
+10\ \mu\text{mol mL}^{-1}\text{hr}^{-1}$ (since 1 mM = 1 µmol/mL), which is
+$10/60 = 0.1\overline{6}\ \mu\text{mol mL}^{-1}\text{min}^{-1} =
+0.1\overline{6}\ \text{IU mL}^{-1}$ (1 IU = 1 µmol/min). Specific activity
+is activity per unit mass of enzyme: $0.1\overline{6}\ \text{IU mL}^{-1} /
+10\ \mu g\ mL^{-1} = 0.01\overline{6}\ \text{IU}\ \mu g^{-1}$.
+
+**Answer: 0.017**
+
+</details>
+
+## BT Subject — two-mark MCQ (Q36–40)
+
+#### Q36 — 2 marks, MCQ
+
+{/* syllabus: 4.2.9 */}
+
+**Question.** In the open-loop process shown in the figure, the input
+$U(s)$, the transfer function $G_p(s)$ and the output $Y(s)$ are given in
+the Laplace domain in terms of the Laplace variable $s$. For this process,
+which of the following is true? (where $M, \tau_p, K_p$ are the magnitude
+of the input, the characteristic time, and the gain for the process,
+respectively)
+
+$$
+U(s) = \frac{M}{s}, \qquad G_p(s) = \frac{K_p}{\tau_p s + 1}
+$$
+
+- (A) $y(t) = K_p\left(1-e^{-t/\tau_p}\right)$
+- (B) $y(t) = MK_p\left(1-e^{-t/\tau_p}\right)$
+- (C) $y(t) = K_p\left(M-e^{-t/\tau_p}\right)$
+- (D) $y(t) = K_p\left(1-Me^{-t/\tau_p}\right)$
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: First-order process step response */}
+
+$$
+y(t) = MK_p\left(1-e^{-t/\tau_p}\right)
+$$
+
+- $M$ — step input magnitude
+- $K_p$ — process gain
+- $\tau_p$ — process time constant
+
+$Y(s) = G_p(s)\,U(s) = \dfrac{MK_p}{s(\tau_p s + 1)}$. This is
+exactly $M K_p$ times the standard first-order step response
+$\dfrac{1}{s(\tau_p s+1)}$, whose inverse Laplace transform is
+$1-e^{-t/\tau_p}$. So $y(t) = MK_p\left(1-e^{-t/\tau_p}\right)$ — the
+step magnitude $M$ scales the whole response, it doesn't sit inside the
+exponential.
+
+**Answer: (B)**
+
+</details>
+
+#### Q37 — 2 marks, MCQ
+
+{/* syllabus: 2.3.6 */}
+
+**Question.** Match the immunological terms in Column I with their
+function/description in Column II.
+
+| Column I | Column II |
+| --- | --- |
+| P. J gene | 1. Suppresses immune system by blocking calcineurin |
+| Q. Cyclosporin | 2. Antibody binding site on a large molecule |
+| R. Epitope | 3. Small foreign molecule which elicits an immune response only when combined with a carrier molecule |
+| S. Hapten | 4. Contributes to antibody diversity |
+
+- (A) P-3; Q-4; R-2; S-1
+- (B) P-2; Q-4; R-1; S-3
+- (C) P-4; Q-1; R-2; S-3
+- (D) P-1; Q-3; R-4; S-2
+
+<details>
+<summary>Solution</summary>
+
+The J (joining) gene segment is one of the V(D)J
+recombination building blocks that generates antibody diversity → 4.
+Cyclosporin is an immunosuppressant that works by blocking calcineurin,
+which normally activates T cells → 1. An epitope is the specific site on a
+(large) antigen that an antibody binds → 2. A hapten is a small molecule
+that's only immunogenic once attached to a larger carrier → 3. So
+P-4; Q-1; R-2; S-3.
+
+**Answer: (C)**
+
+</details>
+
+#### Q38 — 2 marks, MCQ
+
+{/* syllabus: 3.1.11 */}
+
+**Question.** Match the genetic disorders in Column I to the corresponding
+underlying cause in Column II.
+
+| Column I | Column II |
+| --- | --- |
+| P. Klinefelter Syndrome | 1. X-chromosome insufficiency |
+| Q. Turner syndrome | 2. DNA helicase mutations |
+| R. Bloom syndrome | 3. Nucleotide excision repair defects |
+| S. Xeroderma pigmentosum | 4. Extra X chromosome(s) in a male |
+
+- (A) P-1; Q-3; R-4; S-2
+- (B) P-4; Q-1; R-2; S-3
+- (C) P-4; Q-2; R-3; S-1
+- (D) P-3; Q-2; R-4; S-1
+
+<details>
+<summary>Solution</summary>
+
+Klinefelter syndrome is caused by an extra X chromosome in a
+male (typically XXY) → 4. Turner syndrome is monosomy X (a single X, i.e.
+X-chromosome insufficiency) → 1. Bloom syndrome is caused by mutations in
+BLM, a RecQ-family DNA helicase → 2. Xeroderma pigmentosum is a defect in
+nucleotide excision repair → 3. So P-4; Q-1; R-2; S-3.
+
+**Answer: (B)**
+
+</details>
+
+#### Q39 — 2 marks, MCQ
+
+{/* syllabus: 2.1.1 */}
+
+**Question.** Match the biomolecules in Column I with their function given
+in Column II.
+
+| Column I | Column II |
+| --- | --- |
+| P. Lectins | 1. Acts as ATP dependent pump to efflux out small molecules |
+| Q. P-glycoprotein | 2. Targets lysosomal enzymes to their destination |
+| R. Digitoxigenin | 3. Specific carbohydrate binding proteins |
+| S. Mannose 6-phosphate | 4. Inhibits Na⁺-K⁺ pump |
+
+- (A) P-3; Q-2; R-1; S-4
+- (B) P-1; Q-3; R-4; S-2
+- (C) P-2; Q-1; R-3; S-4
+- (D) P-3; Q-1; R-4; S-2
+
+<details>
+<summary>Solution</summary>
+
+Lectins are carbohydrate-binding proteins → 3. P-glycoprotein
+is an ATP-dependent efflux pump (the multidrug-resistance transporter) →
+1. Digitoxigenin is a cardiac glycoside that inhibits the Na⁺/K⁺-ATPase
+→ 4. Mannose-6-phosphate is the tag that routes lysosomal enzymes to the
+lysosome → 2. So P-3; Q-1; R-4; S-2.
+
+**Answer: (D)**
+
+</details>
+
+#### Q40 — 2 marks, MCQ
+
+{/* syllabus: 4.1.6 */}
+
+**Question.** By elemental analysis of a biomass sample, it was found that
+the cells in the given sample are composed of (by weight) C=50%, H=8%,
+O=20%, N=10%, and ash content=12%. Which of the following is the correct
+empirical formula of the ash-free cells, normalized with respect to
+Nitrogen?
+
+- (A) $C_{5.8}H_{11.2}O_{1.7}N$
+- (B) $C_{5.0}H_{10.2}O_{1.1}N$
+- (C) $C_{6.8}H_{12.2}O_{2.1}N$
+- (D) $C_{4.8}H_{9.2}O_{3.1}N$
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Empirical formula from elemental composition */}
+
+$$
+n_i = \frac{\text{mass}_i}{\text{atomic weight}_i}, \qquad \text{subscript}_i = \frac{n_i}{n_{reference}}
+$$
+
+- $n_i$ — moles of element $i$ per basis mass
+- $n_{reference}$ — moles of the element chosen to normalize against (usually N)
+
+Per 100 g of biomass, the ash-free portion is C:50g, H:8g,
+O:20g, N:10g (these already sum to 88g, consistent with 12% ash separately).
+Converting to moles ($C{=}12$, $H{=}1$, $O{=}16$, $N{=}14$):
+C: $50/12=4.167$, H: $8/1=8.0$, O: $20/16=1.25$, N: $10/14=0.714$.
+Dividing every value by the N moles (0.714) to normalize to N=1:
+C: $4.167/0.714 = 5.83$, H: $8/0.714=11.2$, O: $1.25/0.714=1.75$.
+
+**Answer: (A) $C_{5.8}H_{11.2}O_{1.7}N$**
+
+</details>
+
+## BT Subject — two-mark MSQ (Q41–50)
+
+#### Q41 — 2 marks, MSQ
+
+{/* syllabus: 1.1.1 */}
+
+**Question.** For the given matrix, which of the statements given below
+is/are true?
+
+$$
+\begin{bmatrix} 3 & 1 & 5 \\ 2 & -1 & 0 \\ 5 & 2 & 9 \end{bmatrix}
+$$
+
+- (A) The matrix is full rank
+- (B) The matrix is invertible
+- (C) The matrix has a determinant
+- (D) The matrix has a transpose
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Determinant of a 3×3 matrix (cofactor expansion) */}
+
+$$
+\det\begin{bmatrix}a&b&c\\d&e&f\\g&h&i\end{bmatrix} = a(ei-fh)-b(di-fg)+c(dh-eg)
+$$
+
+- $a,b,c,d,e,f,g,h,i$ — matrix entries, read row by row
+
+Compute the determinant by cofactor expansion along the first row:
+$3[(-1)(9)-(0)(2)] - 1[(2)(9)-(0)(5)] + 5[(2)(2)-(-1)(5)]
+= 3(-9) - 1(18) + 5(9) = -27-18+45 = 0$. The determinant is 0, so the
+matrix is singular — **not** full rank and **not** invertible, ruling out
+(A) and (B). But (C) and (D) are trivially true of *any* square matrix,
+regardless of whether it happens to be singular: every matrix has a
+determinant (even when that value is zero), and every matrix has a
+transpose.
+
+**Answer: (C) and (D)**
+
+</details>
+
+#### Q42 — 2 marks, MSQ
+
+{/* syllabus: 3.3.4 */}
+
+**Question.** Messenger RNAs (mRNAs) translate to generate polypeptides
+and the translation terminates at the UGA, UAG or UAA stop codons. The
+AGA codon acts as additional stop codon in the mitochondria. The longest
+possible polypeptide(s) that can be hypothetically translated in the
+cytosol and/or mitochondria, from the given full length mRNA sequence (36
+nucleotides) is/are:
+
+$$
+\text{5'-AACACCAUGACCCAUGUGGCGAGACGGUAGUUAAAA-3'}
+$$
+
+- (A) 7 amino acids long in the cytosol
+- (B) 5 amino acids long in the mitochondria
+- (C) 6 amino acids long in the mitochondria
+- (D) 8 amino acids long in the cytosol
+
+<details>
+<summary>Solution</summary>
+
+There are two in-frame AUG codons here, in *different* reading frames, so
+each needs to be checked separately as a possible start:
+
+1. **Start at position 7** (`AUG-ACC-CAU-GUG-GCG-AGA-CGG-UAG`): in the
+   cytosol, AGA just codes Arg (not a stop there), so translation runs all
+   the way to the UAG stop — Met-Thr-His-Val-Ala-Arg-Arg, **7 amino
+   acids**. In the mitochondria, AGA *is* a stop, so this same start only
+   reaches Met-Thr-His-Val-Ala before terminating — 5 amino acids. That's
+   a valid mitochondrial product, but not the *longest* one available (see
+   next).
+
+2. **Start at position 14** (`AUG-UGG-CGA-GAC-GGU-AGU-UAA`): this reading
+   frame never hits an AGA codon at all (note `CGA` and `AGU` are not
+   `AGA`), so it runs to the universal UAA stop in *both* compartments —
+   Met-Trp-Arg-Asp-Gly-Ser, **6 amino acids**, identically in cytosol and
+   mitochondria.
+
+The question asks for the *longest possible* polypeptide in each
+compartment. In the cytosol, that's the 7-aa product from start 1 (A) —
+longer than the 6-aa alternative from start 2. In the mitochondria, the
+AGA-truncated 5-aa product from start 1 is *not* the longest available,
+because start 2 avoids the AGA stop entirely and reaches 6 amino acids
+instead (C) — so (B) describes a real but non-maximal product, and isn't
+selected.
+
+**Answer: (A) and (C)**
+
+</details>
+
+#### Q43 — 2 marks, MSQ
+
+{/* syllabus: 3.3.2 */}
+
+**Question.** The RNA sequence below depicts the part of a 330 nucleotides
+long mRNA and it encodes the C-terminal portion of a protein.
+
+$$
+\text{5'-\ldots AAC ACC ACG ACC CAU GUG GCG AGA CGG UAG-3'}
+$$
+
+A mutation was identified in this RNA denoted as 322A→U. This nucleotide
+change is represented by which of the following class(es) of mutation?
+
+- (A) Missense mutation
+- (B) Non-sense mutation
+- (C) Transversion mutation
+- (D) Silent mutation
+
+<details>
+<summary>Solution</summary>
+
+The shown 30-nucleotide fragment is the last 30 bases of a 330-base
+message, so it spans positions 301–330. Position 322 is the 22nd base of
+this fragment, which falls on the first base of the 8th codon: `AGA`
+(coding Arg). The mutation changes this to `UGA` — a stop codon. Turning a
+sense codon into a stop codon mid-message is, by definition, a **nonsense
+mutation** (B). Separately, classifying the substitution itself: A is a
+purine and U is a pyrimidine, so a purine→pyrimidine change is a
+**transversion** (C), not a transition (which would be purine→purine or
+pyrimidine→pyrimidine).
+
+**Answer: (B) and (C)**
+
+</details>
+
+#### Q44 — 2 marks, MSQ
+
+{/* syllabus: 4.1.6 */}
+
+**Question.** A microbial culture is being grown in a bioreactor with
+continuous aeration. The dissolved oxygen probe provided with the system
+shows a reading of zero. In this context, which of the following
+inferences is/are correct?
+
+- (A) The culture has died due to absence of oxygen
+- (B) The culture has run out of carbon source
+- (C) The culture growth becomes oxygen limited
+- (D) The culture growth is independent of dissolved oxygen
+
+<details>
+<summary>Solution</summary>
+
+A DO reading of zero *under continuous aeration* means oxygen is being
+consumed as fast as (or faster than) it's being supplied — the oxygen
+transfer rate can't keep up with the culture's oxygen uptake rate, so
+growth becomes oxygen-transfer-limited (C). It says nothing about the
+culture being dead (A — cells can grow perfectly well right up to the
+point oxygen becomes limiting, that's the *definition* of the limitation),
+nothing about carbon source (B — an unrelated, unsupported inference), and
+directly contradicts (D).
+
+**Answer: (C)**
+
+</details>
+
+#### Q45 — 2 marks, MSQ
+
+{/* syllabus: 4.1.10 */}
+
+**Question.** For a Newtonian fluid, a plot of shear stress (on Y axis)
+against shear rate (on X axis) will result in a straight line ____.
+
+- (A) parallel to the X axis
+- (B) parallel to the Y axis
+- (C) with a negative slope
+- (D) with a positive slope
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Newtonian fluid constitutive law */}
+
+$$
+\tau = \mu\dot\gamma
+$$
+
+- $\tau$ — shear stress
+- $\mu$ — viscosity
+- $\dot\gamma$ — shear rate
+
+A Newtonian fluid is defined by $\tau = \mu\dot\gamma$ — shear stress is
+directly proportional to shear rate, with viscosity $\mu$ (always
+positive) as the constant of proportionality. That's a straight line
+through the origin with slope $\mu > 0$.
+
+**Answer: (D)**
+
+_Approximate syllabus mapping: the listed syllabus has no dedicated fluid
+mechanics/rheology line item, so this and Q47 are filed under 4.1.10
+(reactor design/scale-up, which rheology directly feeds into) as the
+closest fit._
+
+</details>
+
+#### Q46 — 2 marks, MSQ
+
+{/* syllabus: 4.1.10 */}
+
+**Question.** In an aerobic fermentation with air sparging, which of the
+following options can be used to increase the volumetric mass transfer
+coefficient for oxygen transfer?
+
+- (A) Using pure oxygen in place of air
+- (B) Increasing the volumetric flow rate of air
+- (C) Reducing the bubble diameter
+- (D) Decreasing the agitation rate
+
+<details>
+<summary>Solution</summary>
+
+$k_La$ is a physical/hydrodynamic property of the gas-liquid system — how
+much interfacial area is available and how fast oxygen crosses it — not a
+statement about the driving force. Switching to pure oxygen (A) increases
+the *concentration gradient* (raises $C^*$), which increases the actual
+oxygen transfer *rate*, but doesn't change $k_La$ itself, so it's excluded
+here. Increasing air flow rate (B) raises gas holdup and turbulence,
+increasing interfacial area $a$. Reducing bubble diameter (C) directly
+increases interfacial area per unit volume ($a \propto 1/d$). Decreasing
+agitation (D) reduces turbulence and bubble breakup, *decreasing* $k_La$
+— the opposite of what's asked.
+
+**Answer: (B) and (C)**
+
+</details>
+
+#### Q47 — 2 marks, MSQ
+
+{/* syllabus: 4.1.10 */}
+
+**Question.** For a liquid flowing in a circular cross section pipe, the
+transition from laminar to turbulent flow will NOT depend on which of the
+following factor(s)?
+
+- (A) The diameter of the pipe
+- (B) The length of the pipe
+- (C) The linear velocity of the liquid
+- (D) The viscosity of the liquid
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Reynolds number */}
+
+$$
+Re = \frac{\rho v D}{\mu}
+$$
+
+- $\rho$ — fluid density
+- $v$ — velocity
+- $D$ — pipe diameter
+- $\mu$ — viscosity
+
+The laminar–turbulent transition is governed entirely by the Reynolds
+number, $Re = \rho v D/\mu$ — density, velocity, diameter, and viscosity.
+Pipe *length* doesn't appear anywhere in that expression: a longer or
+shorter pipe carrying the same fluid at the same velocity and diameter
+transitions at the same $Re$, so length is the one factor that doesn't
+matter.
+
+**Answer: (B)**
+
+</details>
+
+#### Q48 — 2 marks, MSQ
+
+{/* syllabus: 3.1.13 */}
+
+**Question.** Which of the following is/are posttranslational
+modification(s) involved in epigenetic control of gene expression?
+
+- (A) Arginine methylation
+- (B) Lysine acetylation
+- (C) Cytosine methylation
+- (D) Cytosine deamination
+
+<details>
+<summary>Solution</summary>
+
+Arginine methylation and lysine acetylation are both classic *histone*
+post-translational modifications — protein modifications made after
+translation, which is specifically what the question asks for. Cytosine
+methylation (C) is a genuine epigenetic mechanism, but it's a direct
+modification of the DNA base itself, not a protein — not a
+"posttranslational" modification at all. Cytosine deamination (D) is a
+DNA-damage/mutagenic event, not a regulated epigenetic mark.
+
+**Answer: (A) and (B)**
+
+</details>
+
+#### Q49 — 2 marks, MSQ
+
+{/* syllabus: 4.1.4 */}
+
+**Question.** For an ideal plug flow reactor, which of the following
+statements is/are true?
+
+- (A) It can be approximated by a large number of ideal continuous stirred
+  tank reactors connected in series
+- (B) It has significant back mixing
+- (C) It has significant axial mixing
+- (D) It has a uniform velocity profile across any cross section
+
+<details>
+<summary>Solution</summary>
+
+An ideal PFR has, by definition, *no* back-mixing and *no* axial
+dispersion — ruling out (B) and (C) directly. It does have a flat
+("plug") velocity profile across every cross-section, by definition (D).
+And a classic, textbook result is that a PFR is the limiting case of an
+infinite number of ideal CSTRs connected in series — so a large number of
+CSTRs-in-series is a standard way to *approximate* one (A).
+
+**Answer: (A) and (D)**
+
+</details>
+
+#### Q50 — 2 marks, MSQ
+
+{/* syllabus: 2.1.7 */}
+
+**Question.** An enzyme-catalyzed reaction is found to have
+$\Delta G = -100\text{ kJ mol}^{-1}$. Which of the following statements
+about this reaction is/are true?
+
+- (A) The rate of the reaction cannot be predicted
+- (B) The rate of the reaction is high
+- (C) The rate of the reaction is low
+- (D) The reaction is irreversible
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Equilibrium constant from Gibbs free energy */}
+
+$$
+K_{eq} = e^{-\Delta G/RT}
+$$
+
+- $\Delta G$ — standard Gibbs free energy change
+- $R$ — gas constant
+- $T$ — absolute temperature
+
+$\Delta G$ is a *thermodynamic* quantity — it tells you the direction and
+extent of a reaction at equilibrium, not how fast it gets there. Rate is
+governed by kinetics (activation energy, $k_{cat}$), which $\Delta G$ says
+nothing about directly — a highly favorable reaction can still be
+kinetically slow (that's exactly why cells need enzymes at all). So (A) is
+correct, and (B)/(C) are both unjustified guesses in either direction.
+Separately, $K_{eq} = e^{-\Delta G/RT}$: for $\Delta G=-100\text{ kJ/mol}$
+at room temperature, $K_{eq}$ is astronomically large, meaning the reverse
+reaction is negligible — thermodynamically, that's effectively
+irreversible (D), even though nothing here says anything about its rate.
+
+**Answer: (A) and (D)**
+
+</details>
+
+## BT Subject — two-mark NAT (Q51–65)
+
+#### Q51 — 2 marks, NAT
+
+{/* syllabus: 1.5.2 */}
+
+**Question.** Consider the equation $\dfrac{dy}{dx} = \dfrac{1}{x}$. The
+value of the integral $\displaystyle\int_1^2 dy$ using the trapezoidal
+method and interval $h=0.25$ is ________. (rounded off to two decimal
+places)
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Trapezoidal rule (numerical integration) */}
+
+$$
+\int_a^b f(x)\,dx \approx \frac{h}{2}\Big[f(x_0)+2\sum_{i=1}^{n-1}f(x_i)+f(x_n)\Big]
+$$
+
+- $h$ — step size between points
+- $x_0,\dots,x_n$ — equally spaced points from $a$ to $b$
+
+Since $dy/dx = 1/x$, the integral $\int_1^2 dy$ is really
+$\int_1^2 \frac{1}{x}\,dx$, approximated numerically with 4 trapezoidal
+strips ($h=0.25$, points $x=1, 1.25, 1.5, 1.75, 2$):
+
+| $x$ | 1 | 1.25 | 1.5 | 1.75 | 2 |
+| --- | --- | --- | --- | --- | --- |
+| $f(x)=1/x$ | 1 | 0.8 | 0.6667 | 0.5714 | 0.5 |
+
+$$
+\int_1^2 \frac{dx}{x} \approx \frac{h}{2}\Big[f(x_0) + 2\big(f(x_1)+f(x_2)+f(x_3)\big) + f(x_4)\Big]
+= \frac{0.25}{2}\big[1 + 2(2.0381) + 0.5\big] = 0.697
+$$
+
+(Sanity check: the exact value is $\ln 2 = 0.6931$ — trapezoidal
+over-estimates slightly here because $1/x$ is convex, which matches.)
+
+**Answer: 0.70**
+
+</details>
+
+#### Q52 — 2 marks, NAT
+
+{/* syllabus: 1.1.2 */}
+
+**Question.** If the straight lines given by the following two equations
+are parallel to each other, the value of $a$ is ____. (answer in integer)
+
+$$
+4x+7y=6; \qquad 3ax+42y=24
+$$
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Condition for two lines to be parallel */}
+
+$$
+\frac{A_1}{A_2} = \frac{B_1}{B_2} \quad \text{for } A_1x+B_1y=C_1,\ A_2x+B_2y=C_2
+$$
+
+- $A_1,B_1,C_1$ — coefficients of the first line
+- $A_2,B_2,C_2$ — coefficients of the second line
+
+Two lines $A_1x+B_1y=C_1$ and $A_2x+B_2y=C_2$ are parallel exactly when
+their coefficients are proportional: $A_1/A_2 = B_1/B_2$. Here:
+
+$$
+\frac{4}{3a} = \frac{7}{42} \;\Rightarrow\; 4 \times 42 = 7 \times 3a
+\;\Rightarrow\; 168 = 21a \;\Rightarrow\; a = 8
+$$
+
+**Answer: 8**
+
+</details>
+
+#### Q53 — 2 marks, NAT
+
+{/* syllabus: 1.1.2 */}
+
+**Question.** A straight line $y=x-1$ intersects a circle with center at
+$x=1, y=1$ and radius of magnitude 1 at two points. The length of the
+chord formed by this intersection is ________. (rounded off to three
+decimal places)
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Circle equation and distance between two points */}
+
+$$
+(x-a)^2+(y-b)^2=r^2, \qquad d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}
+$$
+
+- $(a,b)$ — circle center
+- $r$ — circle radius
+
+The circle is $(x-1)^2+(y-1)^2=1$. Substituting $y=x-1$ and letting
+$u=x-1$:
+
+$$
+u^2 + (u-1)^2 = 1 \;\Rightarrow\; 2u^2-2u=0 \;\Rightarrow\; u=0 \text{ or } u=1
+$$
+
+giving $x=1$ (so $y=0$) and $x=2$ (so $y=1$) — the two intersection points
+are $(1,0)$ and $(2,1)$. The chord length is the distance between them:
+
+$$
+\sqrt{(2-1)^2+(1-0)^2} = \sqrt{2} \approx 1.414
+$$
+
+**Answer: 1.414**
+
+_Approximate syllabus mapping: this and Q52 are pure coordinate-geometry
+questions with no dedicated syllabus line item — filed under 1.1.2
+(systems of linear equations) as the closest fit, since solving them comes
+down to solving a system._
+
+</details>
+
+#### Q54 — 2 marks, NAT
+
+{/* syllabus: 1.3.1 */}
+
+**Question.** A heat exchanger during operation in a bioprocess has a
+steady temperature of 90°C. After completion of its operation, it was
+shut down and it was observed that the rate of decrease of temperature at
+any time was directly proportional to the difference $T(t)-30\text{°C}$,
+where $T(t)$ denotes temperature at time $t$. It was observed that it
+took 30 min for the temperature to drop to 70°C. The temperature after
+51.5 min will be ________ °C. (rounded off to the nearest integer)
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Newton's law of cooling */}
+
+$$
+T(t) = T_{env} + (T_0-T_{env})e^{-kt}
+$$
+
+- $T_{env}$ — ambient/final temperature
+- $T_0$ — initial temperature
+- $k$ — cooling rate constant
+
+This is Newton's law of cooling: $\frac{dT}{dt}=-k(T-30)$, giving
+$T(t)-30 = (T_0-30)e^{-kt} = 60\,e^{-kt}$ with $T_0=90$.
+
+1. **Find $k$ from the given data point** ($T=70$ at $t=30$):
+   $$
+   70-30=60\,e^{-30k} \;\Rightarrow\; e^{-30k}=\tfrac{2}{3}
+   \;\Rightarrow\; k = \frac{\ln(3/2)}{30} \approx 0.01352\ \text{min}^{-1}
+   $$
+
+2. **Evaluate at $t=51.5$ min:**
+   $$
+   T-30 = 60\,e^{-0.01352 \times 51.5} = 60\,e^{-0.6960} \approx 60(0.4985) \approx 29.9
+   $$
+   $$
+   T \approx 30+29.9 = 59.9 \approx 60\text{°C}
+   $$
+
+**Answer: 60**
+
+</details>
+
+#### Q55 — 2 marks, NAT
+
+{/* syllabus: 4.1.6 */}
+
+**Question.** A microbial culture (following Monod model for growth) has
+a maximum specific growth rate of $0.1\text{ h}^{-1}$, Monod constant of
+$1\text{ mg L}^{-1}$ and endogenous decay rate of $0.1\text{ day}^{-1}$.
+At limiting substrate concentration of $23\text{ g L}^{-1}$, the net
+specific growth rate will be ________ day⁻¹. (rounded off to one decimal
+place)
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Monod kinetics with endogenous decay */}
+
+$$
+\mu_{net} = \mu_{max}\frac{S}{K_S+S} - k_d
+$$
+
+- $\mu_{max}$ — maximum specific growth rate
+- $K_S$ — Monod (half-saturation) constant
+- $S$ — limiting substrate concentration
+- $k_d$ — endogenous decay rate
+
+Net specific growth rate accounts for endogenous decay:
+$\mu_{net} = \mu_{max}\dfrac{S}{K_S+S} - k_d$. Everything needs to be in
+the same time base (days) before combining terms:
+
+1. **Convert $\mu_{max}$ to day⁻¹:** $0.1\text{ h}^{-1} \times 24 = 2.4\text{ day}^{-1}$.
+2. **Evaluate the Monod term**, with $S=23{,}000\text{ mg L}^{-1}$ and
+   $K_S=1\text{ mg L}^{-1}$ (converting $S$ to the same units as $K_S$):
+   $$
+   \mu = 2.4 \times \frac{23{,}000}{1+23{,}000} \approx 2.4 \times 0.99996 \approx 2.4\text{ day}^{-1}
+   $$
+   ($S \gg K_S$ here, so the culture is essentially at $\mu_{max}$.)
+3. **Subtract decay:** $\mu_{net} = 2.4 - 0.1 = 2.3\text{ day}^{-1}$.
+
+**Answer: 2.3**
+
+</details>
+
+#### Q56 — 2 marks, NAT
+
+{/* syllabus: 4.1.9 */}
+
+**Question.** A CSTR with a volume of $100\text{ m}^3$ is operated in
+cell recycle mode. At a volumetric flow rate of $10\text{ m}^3\text{ day}^{-1}$
+and effluent biomass of $20\text{ mg L}^{-1}$, the steady state biomass
+concentration is $200\text{ mg L}^{-1}$. The mean cell retention time in
+the reactor is ____ days. (answer in integer)
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Mean cell retention time (MCRT) */}
+
+$$
+\theta_c = \frac{V\,X}{Q\,X_e}
+$$
+
+- $V$ — reactor volume
+- $X$ — in-reactor biomass concentration
+- $Q$ — flow rate of the stream leaving the system
+- $X_e$ — biomass concentration in that leaving stream
+
+Mean cell retention time (MCRT, $\theta_c$) is cells held in the system
+divided by the rate cells leave it: $\theta_c = \dfrac{V\,X}{Q\,X_e}$,
+where $X$ is the in-reactor biomass concentration and $X_e$ is the
+concentration in the stream actually leaving the system.
+
+$$
+\theta_c = \frac{(100\text{ m}^3)(200\text{ mg L}^{-1})}{(10\text{ m}^3\text{day}^{-1})(20\text{ mg L}^{-1})}
+= \frac{20{,}000}{200} = 100\text{ days}
+$$
+
+**Answer: 100**
+
+</details>
+
+#### Q57 — 2 marks, NAT
+
+{/* syllabus: 4.1.6 */}
+
+**Question.** The electron equivalent per liter (e⁻eq L⁻¹) of acetate ion
+solution of concentration $10\text{ g L}^{-1}$ is ________ e⁻eq L⁻¹.
+(rounded off to one decimal place)
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Degree of reduction (electron equivalents) */}
+
+$$
+\gamma = 4n_C + n_H - 2n_O
+$$
+
+- $n_C, n_H, n_O$ — number of carbon, hydrogen, oxygen atoms per molecule
+- $\gamma$ — electron equivalents per mole
+
+1. **Molar mass of acetate ion** (C₂H₃O₂⁻): $2(12)+3(1)+2(16) = 59\text{ g/mol}$.
+2. **Molar concentration:** $10 / 59 = 0.1695\text{ mol L}^{-1}$.
+3. **Electron equivalents per mole.** Full combustion of one mole of
+   acetate/acetic acid consumes 2 mol O₂ (C₂H₄O₂ + 2O₂ → 2CO₂ + 2H₂O),
+   and each mole of O₂ accepts 4 electrons ($\text{O}_2+4\text{H}^++4e^-\to2\text{H}_2\text{O}$)
+   — so acetate carries $2\times4=8$ electron equivalents per mole.
+4. **Combine:** $0.1695 \times 8 = 1.356\text{ e}^-\text{eq L}^{-1}$.
+
+**Answer: 1.4**
+
+_Approximate syllabus mapping: no dedicated "electron equivalents /
+degree of reduction" line item exists in the syllabus — filed under 4.1.6
+as the closest fit, since this is the stoichiometric machinery behind
+growth/substrate balances._
+
+</details>
+
+#### Q58 — 2 marks, NAT
+
+{/* syllabus: 1.3.1 */}
+
+**Question.** From the following plot of $\dfrac{dy}{dx}$ versus $x$
+(a straight line running from $(0,1)$ to $(3,4)$), and if $y(2)=5$, the
+value of $y(3)$ is ________. (rounded off to one decimal place)
+
+<details>
+<summary>Solution</summary>
+
+The plotted line runs from $(0,1)$ to $(3,4)$, i.e. slope 1 and intercept
+1, so $\dfrac{dy}{dx} = 1+x$. Integrating:
+
+$$
+y(x) = \int (1+x)\,dx = x + \frac{x^2}{2} + C
+$$
+
+Use $y(2)=5$ to find $C$: $2 + 2 + C = 5 \Rightarrow C=1$. Then:
+
+$$
+y(3) = 3 + \frac{9}{2} + 1 = 8.5
+$$
+
+**Answer: 8.5**
+
+</details>
+
+#### Q59 — 2 marks, NAT
+
+{/* syllabus: 4.2.2 */}
+
+**Question.** A batch sterilizer is being operated at 121°C for
+sterilizing a medium containing microbial cells. Assume that the thermal
+deactivation of cells is a first order process with a death rate constant
+of $0.69\text{ min}^{-1}$ at 121°C. If the initial concentration of
+microbes in the medium is $10^{10}\text{ cells m}^{-3}$, the time taken
+to reduce the microbial load to a final concentration of
+$10\text{ cells m}^{-3}$ is ________ min. (rounded off to the nearest
+integer)
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: First-order thermal death (sterilization design) */}
+
+$$
+N(t) = N_0\,e^{-k_dt}
+$$
+
+- $N_0$ — initial viable count
+- $k_d$ — death rate constant
+- $t$ — time
+
+First-order thermal death: $N(t) = N_0\,e^{-k_dt}$.
+
+$$
+10 = 10^{10}\,e^{-0.69t} \;\Rightarrow\; e^{-0.69t} = 10^{-9}
+\;\Rightarrow\; -0.69t = -9\ln(10) = -20.72
+$$
+
+$$
+t = \frac{20.72}{0.69} \approx 30.0\text{ min}
+$$
+
+**Answer: 30**
+
+</details>
+
+#### Q60 — 2 marks, NAT
+
+{/* syllabus: 4.1.1 */}
+
+**Question.** A substrate is consumed in a zero order reaction such that
+its concentration falls from $42\text{ g L}^{-1}$ to $14\text{ g L}^{-1}$
+in 4 hours. The total time taken for complete utilization of substrate
+will be ________ hours. (answer in integer)
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Zero-order reaction kinetics */}
+
+$$
+C(t) = C_0 - kt, \qquad t_{complete} = \frac{C_0}{k}
+$$
+
+- $C_0$ — initial concentration
+- $k$ — zero-order rate constant
+
+Zero-order kinetics: concentration falls linearly, $C = C_0 - kt$. From
+the given data, the rate constant is
+$k = \dfrac{42-14}{4} = 7\text{ g L}^{-1}\text{h}^{-1}$. "Complete
+utilization" means $C\to0$ starting from $C_0=42$:
+
+$$
+t_{total} = \frac{C_0}{k} = \frac{42}{7} = 6\text{ hours}
+$$
+
+**Answer: 6**
+
+</details>
+
+#### Q61 — 2 marks, NAT
+
+{/* syllabus: 4.1.9 */}
+
+**Question.** A microbe that follows Monod growth kinetics on a limiting
+substrate (maximum specific growth rate of $0.5\text{ h}^{-1}$ and Monod
+constant of $0.1\text{ mg L}^{-1}$) is cultivated in a continuous reactor
+for microbial growth (chemostat) with sterile feed. Given that the
+chemostat volume is 5 L and inlet concentration of limiting substrate is
+$10\text{ g L}^{-1}$, the minimum inlet feed flow rate for chemostat
+washout is ______ L h⁻¹. (rounded off to one decimal place)
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Chemostat washout condition */}
+
+$$
+D_{crit} = \mu_{max}\frac{S_0}{K_S+S_0}
+$$
+
+- $D_{crit}$ — critical (washout) dilution rate
+- $S_0$ — feed substrate concentration
+
+At steady state $D=\mu=\mu_{max}\frac{S}{K_S+S}$, and $S$ can rise at most
+to the feed concentration $S_0$ (as $X\to0$). So washout happens once the
+dilution rate reaches the maximum growth rate achievable at $S_0$:
+
+$$
+D_{crit} = \mu_{max}\frac{S_0}{K_S+S_0} = 0.5 \times \frac{10{,}000}{0.1+10{,}000} \approx 0.5\text{ h}^{-1}
+$$
+
+(with $S_0 \gg K_S$, the Monod term is essentially 1). The minimum feed
+flow rate for washout is then:
+
+$$
+F_{crit} = D_{crit} \times V = 0.5 \times 5 = 2.5\text{ L h}^{-1}
+$$
+
+**Answer: 2.5**
+
+</details>
+
+#### Q62 — 2 marks, NAT
+
+{/* syllabus: 4.2.1 */}
+
+**Question.** It is desired to cultivate 150 mg (dry weight) microbial
+cells with an empirical formula of C₅H₇O₂N. If the phosphorus requirement
+for the cells is 20% of the nitrogen requirement (on a weight/weight
+basis), the minimum amount of phosphorous required to be added to the
+cultivation medium is ________ mg. (rounded off to one decimal place)
+
+<details>
+<summary>Solution</summary>
+
+1. **Molar mass of C₅H₇O₂N:** $5(12)+7(1)+2(16)+14 = 113\text{ g/mol}$.
+2. **Nitrogen's mass fraction in the cells:** $14/113 = 0.1239$ (12.39%).
+3. **Nitrogen needed for 150 mg cells:** $150 \times 0.1239 = 18.58\text{ mg N}$.
+4. **Phosphorus needed, at 20% of the N requirement:**
+   $$
+   0.2 \times 18.58 = 3.72\text{ mg P}
+   $$
+
+**Answer: 3.7**
+
+</details>
+
+#### Q63 — 2 marks, NAT
+
+{/* syllabus: 5.2.4 */}
+
+**Question.** In the process of generating a clonal mammalian cell line,
+a single cell was seeded in a well of a cell culture plate. After the
+first 48 hours, one of the progeny cells underwent apoptosis due to a new
+mutation. If the doubling time of the cells is 24 hours and no more cell
+death occurs, the total number of cells after a total of 7 days from
+seeding will be ______. (answer in integer)
+
+<details>
+<summary>Solution</summary>
+
+{/* formula-name: Exponential growth by doubling */}
+
+$$
+N(t) = N_0 \times 2^{t/t_d}
+$$
+
+- $N_0$ — starting cell number
+- $t_d$ — doubling time
+
+Track the population by doubling time (24 h):
+
+- $t=0$: 1 cell
+- $t=24$h: 2 cells
+- $t=48$h: 4 cells, then **one dies** → 3 cells (the "after the first 48
+  hours" apoptosis)
+
+From here, no more death — the population of 3 just keeps doubling every
+24 h. From $t=48$h to $t=168$h (7 days) is $(168-48)/24 = 5$ more
+doublings:
+
+$$
+3 \times 2^5 = 3 \times 32 = 96\text{ cells}
+$$
+
+**Answer: 96**
+
+</details>
+
+#### Q64 — 2 marks, NAT
+
+{/* syllabus: 3.1.1 */}
+
+**Question.** A disease-associated allele shows X-linked recessive
+inheritance. If the mother is a carrier of the disease, the father is
+genetically normal and the child born is a son, then the probability that
+he is born with the disease is ________. (rounded off to one decimal
+place)
+
+<details>
+<summary>Solution</summary>
+
+A son gets his single X chromosome from his mother (his Y comes from his
+father, so the father's genotype is irrelevant to an X-linked trait in a
+son). The mother is a carrier — one normal X, one disease-allele X — so
+she passes the disease allele to any given son with probability
+$\tfrac12$.
+
+**Answer: 0.5**
+
+</details>
+
+#### Q65 — 2 marks, NAT
+
+{/* syllabus: 4.1.5 */}
+
+**Question.** A packed bed bioreactor with length 1 m and inside diameter
+10 cm has liquid flowing at an interstitial velocity of $1\text{ cm s}^{-1}$.
+Given a volumetric flow rate of $0.025\text{ L s}^{-1}$, the void
+fraction of the packed bed is ________. (rounded off to two decimal
+places)
+
+<details>
+<summary>Solution</summary>
+
+{/* importance: very-important */}
+{/* formula-name: Superficial vs. interstitial velocity (packed bed) */}
+
+$$
+v_{interstitial} = \frac{v_{superficial}}{\varepsilon}, \qquad v_{superficial}=\frac{Q}{A}
+$$
+
+- $\varepsilon$ — bed void fraction
+- $Q$ — volumetric flow rate
+- $A$ — empty-column cross-sectional area
+
+The **superficial velocity** is the flow rate divided by the full
+(empty-column) cross-sectional area — the void fraction $\varepsilon$ is
+what relates it to the **interstitial velocity** (the actual, faster
+velocity through the pores): $v_{interstitial} = v_{superficial}/\varepsilon$.
+
+1. **Cross-sectional area** (diameter 10 cm, radius 5 cm):
+   $A = \pi r^2 = \pi(5)^2 = 78.54\text{ cm}^2$.
+2. **Superficial velocity:** $v_s = Q/A = 25\text{ cm}^3\text{s}^{-1} / 78.54\text{ cm}^2 = 0.318\text{ cm s}^{-1}$
+   (converting $Q=0.025\text{ L s}^{-1}=25\text{ cm}^3\text{s}^{-1}$).
+3. **Solve for $\varepsilon$:**
+   $$
+   \varepsilon = \frac{v_s}{v_{interstitial}} = \frac{0.318}{1} \approx 0.32
+   $$
+
+**Answer: 0.32**
+
+_Approximate syllabus mapping: filed under 4.1.5 (immobilized-enzyme
+reactor design, the classic packed-bed context) as the closest fit — the
+question itself is generic fluid-mechanics-through-a-packed-bed, which has
+no dedicated line item._
+
+</details>
+

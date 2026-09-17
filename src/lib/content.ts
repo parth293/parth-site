@@ -32,6 +32,12 @@ export type Frontmatter = {
    * fall back to newest-first by `date` and sort after any that have it.
    */
   order?: number;
+  /**
+   * "pillar/slug" of a syllabus-shaped note (see gate-syllabus.ts) to resolve
+   * this note's per-question `{/* syllabus: <code> *\/}` tags against, for its
+   * "Topics" tab. Only meaningful alongside those tags.
+   */
+  syllabusRef?: string;
 };
 
 export type Doc = Frontmatter & {

@@ -3,21 +3,51 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const TABS = [
-  { label: "Notes", suffix: "" },
-  { label: "Key points", suffix: "/key-points" },
-  { label: "Formulas", suffix: "/formulas" },
-  { label: "Worked examples", suffix: "/worked-examples" },
-] as const;
+type Tab = { label: string; suffix: string };
 
-/** The four fixed views for a single note — Notes / Key points / Formulas / Worked examples. */
-export function NoteTabs({ basePath }: { basePath: string }) {
+const ALWAYS: Tab = { label: "Notes", suffix: "" };
+const OPTIONAL: Record<"keyPoints" | "formulas" | "workedExamples" | "topics", Tab> = {
+  keyPoints: { label: "Key points", suffix: "/key-points" },
+  formulas: { label: "Formulas", suffix: "/formulas" },
+  workedExamples: { label: "Worked examples", suffix: "/worked-examples" },
+  topics: { label: "Topics", suffix: "/topics" },
+};
+
+export type NoteTabAvailability = {
+  keyPoints: boolean;
+  formulas: boolean;
+  workedExamples: boolean;
+  topics: boolean;
+};
+
+/**
+ * The views available for a single note. "Notes" always shows; the rest only
+ * appear when the note actually has that kind of content, so a syllabus
+ * reference or a past-paper note doesn't carry three permanently-empty tabs.
+ */
+export function NoteTabs({
+  basePath,
+  available,
+}: {
+  basePath: string;
+  available: NoteTabAvailability;
+}) {
   const pathname = usePathname();
+
+  const tabs: Tab[] = [
+    ALWAYS,
+    ...(available.topics ? [OPTIONAL.topics] : []),
+    ...(available.keyPoints ? [OPTIONAL.keyPoints] : []),
+    ...(available.formulas ? [OPTIONAL.formulas] : []),
+    ...(available.workedExamples ? [OPTIONAL.workedExamples] : []),
+  ];
+
+  if (tabs.length === 1) return null;
 
   return (
     <nav aria-label="Note sections" className="mb-10 -mt-2">
       <ul className="flex flex-wrap gap-x-6 border-b border-rule">
-        {TABS.map((tab) => {
+        {tabs.map((tab) => {
           const href = `${basePath}${tab.suffix}`;
           const active = pathname === href;
           return (
