@@ -66,7 +66,7 @@ export default async function NoteFormulasPage({ params, searchParams }: Params 
                 <div className="flex items-baseline gap-3">
                   <h2
                     className="font-mono text-sm font-medium text-ink"
-                    dangerouslySetInnerHTML={{ __html: renderInlineLine(f.heading) }}
+                    dangerouslySetInnerHTML={{ __html: renderInlineLine(f.name ?? f.heading) }}
                   />
                   {f.importance === "very-important" ? (
                     <span className="font-mono text-[length:var(--text-2xs)] font-medium uppercase tracking-[0.1em] text-ink">

@@ -13,10 +13,17 @@ import type { PillarSlug } from "./site";
 export type Importance = "important" | "very-important";
 
 export type Formula = {
-  /** Nearest preceding heading (##, ###, or ####) — used as the formula's name. */
+  /** Nearest preceding heading (##, ###, or ####) — used as the formula's name, unless `name` overrides it. */
   heading: string;
   /** Anchor id matching what rehype-slug assigns that heading in the article. */
   headingSlug: string;
+  /**
+   * Set via a `{/* formula-name: <text> *\/}` comment before the equation —
+   * lets a formula living under a generic heading (e.g. a numbered
+   * question) carry its own memorable name on the Formulas tab, instead of
+   * showing as that heading's raw text.
+   */
+  name?: string;
   latex: string;
   /** Raw "$symbol$ — definition" lines from the bullet list beneath the equation. */
   vars: string[];
@@ -27,6 +34,7 @@ export type Formula = {
 };
 
 const IMPORTANCE_COMMENT = /^\{\/\*\s*importance:\s*(very-important|important)\s*\*\/\}$/;
+const NAME_COMMENT = /^\{\/\*\s*formula-name:\s*(.+?)\s*\*\/\}$/;
 
 function extractFormulas(body: string, noteTitle: string, noteHref: string): Formula[] {
   const lines = body.split("\n");
@@ -36,6 +44,7 @@ function extractFormulas(body: string, noteTitle: string, noteHref: string): For
   let heading = "";
   let headingSlug = "";
   let importance: Importance = "important";
+  let name: string | undefined;
 
   for (let i = 0; i < lines.length; i++) {
     const headingMatch = lines[i].match(/^#{2,4}\s+(.+)$/);
@@ -43,12 +52,19 @@ function extractFormulas(body: string, noteTitle: string, noteHref: string): For
       heading = headingMatch[1].trim();
       headingSlug = slugger.slug(heading);
       importance = "important";
+      name = undefined;
       continue;
     }
 
     const importanceMatch = lines[i].trim().match(IMPORTANCE_COMMENT);
     if (importanceMatch) {
       importance = importanceMatch[1] as Importance;
+      continue;
+    }
+
+    const nameMatch = lines[i].trim().match(NAME_COMMENT);
+    if (nameMatch) {
+      name = nameMatch[1];
       continue;
     }
 
@@ -76,7 +92,15 @@ function extractFormulas(body: string, noteTitle: string, noteHref: string): For
       vars.push(bullet);
     }
 
-    formulas.push({ heading, headingSlug, latex, vars, importance, noteTitle, noteHref });
+    // Only a $$ block that actually carries the variable-definition list
+    // counts as a extracted "formula" — otherwise every incidental worked
+    // arithmetic step (e.g. inside a numbered solution) would show up on
+    // the Formulas tab too. Bioprocess-eng notes already always pair $$
+    // with vars, so this changes nothing there.
+    if (vars.length > 0) {
+      formulas.push({ heading, headingSlug, name, latex, vars, importance, noteTitle, noteHref });
+    }
+    name = undefined;
     i = j;
   }
 
