@@ -1,0 +1,129 @@
+---
+title: "The bioprocess engineering problems in pharma have moved past monoclonal antibodies"
+date: "2026-09-18"
+summary: "The grad school tracker I'm building is scoped to protein production cost, but almost every program on it sits inside one field: pharmaceutical bioprocess engineering. Working through how big it actually is, what it makes, and where the genuinely unsolved problems are before picking a lab."
+tags: ["bioprocess", "pharma", "career"]
+---
+
+The [grad school tracker](/writing/grad-school-tracker-protein-production) I'm
+building is scoped narrowly to protein production cost, but almost every
+program on it sits inside a much wider field: bioprocess engineering applied
+to pharmaceutical and life-sciences manufacturing. Before I screen labs any
+further, I wanted to understand that field on its own terms — how big it
+actually is, what products run through it, and where the open first-principles
+problems are, rather than assuming monoclonal antibodies and vaccines are
+still the interesting part.
+
+## How big this actually is
+
+Market-research estimates for "bioprocessing" vary by roughly 2x depending on
+what a given firm counts as in scope, so I'm treating these as order-of-magnitude,
+not precise. [Fortune Business
+Insights](https://www.fortunebusinessinsights.com/bioprocess-technology-market-103097)
+puts the bioprocess technology market at around USD 51.4 billion in 2026, growing
+at a 15.6% CAGR through 2034. [Grand View
+Research](https://www.grandviewresearch.com/industry-analysis/large-small-scale-bioprocessing-biopharmaceutical-manufacturing-market)
+scopes the broader large- and small-scale biopharmaceutical manufacturing
+market at around USD 104 billion in 2026, growing at roughly 11.5% a year toward
+2035. Continuous bioprocessing specifically — the subset replacing
+batch-and-hold steps with an inline process — is smaller, around USD 7.3 billion
+in 2026, but growing at a similar clip. Whatever the exact number, the
+direction and the driver are consistent across every source: growth is coming
+from biologics — monoclonal antibodies, vaccines, and cell and gene
+therapies — not small-molecule drugs, which is where bioprocess engineering
+as a discipline actually lives.
+
+## What products actually require this science
+
+Bioprocess engineering isn't one product category, it's the manufacturing
+layer underneath several very different ones:
+
+- **Monoclonal antibodies (mAbs)** — grown in mammalian cell culture
+  (mostly CHO cells) in stirred-tank bioreactors, still the largest biologics
+  category by revenue and volume.
+- **Vaccines** — both the older recombinant/inactivated kind and the newer
+  mRNA-lipid nanoparticle (LNP) kind, which is a genuinely different
+  manufacturing process, not just a new molecule in an old process.
+- **Cell and gene therapies (CGT)** — CAR-T cell therapies and viral
+  vector-based gene therapies (AAV, lentivirus), where the "drug" is a living
+  or biologically-derived product manufactured per patient or per batch, not
+  a chemical made at scale.
+- **Recombinant proteins and enzymes** — insulin, clotting factors, growth
+  hormone: the oldest and most mature category, closest in spirit to my
+  whey-protein starting point, just with a regulatory bar several orders of
+  magnitude higher.
+- **Biosimilars** — patent-expired biologics remanufactured cheaper, which
+  is where India specifically competes.
+- **Antibody-drug conjugates (ADCs)** — a mAb produced by bioprocessing,
+  then chemically conjugated to a cytotoxic payload, so the field sits at the
+  join between bioprocess and synthetic chemistry.
+
+## Where the growth and the open problems actually are
+
+The mAb platform is the mature end of this field. Titers went from roughly
+1 g/L to double-digit g/L over about 25 years of cell-line and media
+engineering — a genuine engineering success story, but also why it's not
+where the interesting unsolved problems are anymore. Three areas are, and
+they're where I'm now pointing the lab search:
+
+**Viral vector manufacturing for cell and gene therapy.** This is the
+sharpest bottleneck in the field. The vector manufacturing market itself is
+growing fast — [one industry
+estimate](https://pharmasource.global/content/guides/category-guide/viral-vector-manufacturing-in-pharmaceutical-development-a-comprehensive-guide/)
+puts it at USD 3.55 billion in 2026 growing toward USD 9 billion by 2031 — but
+[reporting on the manufacturing
+side](https://www.news-medical.net/life-sciences/Cell-Gene-Therapy-Manufacturing-Closing-the-Scale-Up-Gap.aspx)
+is blunt about why: viral vectors are produced by living cells, have to
+assemble correctly, and then have to be purified without being destroyed,
+and today's affinity resins mostly can't tell a full capsid carrying genetic
+payload apart from an empty one. Autologous CAR-T, where each batch treats
+one patient, reportedly [costs USD 250,000 to USD 450,000 per
+infusion](https://www.arcticzymes.com/blogs/why-gene-therapy-is-so-expensive-reducing-viral-vector-costs)
+to manufacture — there's no mAb-style learning curve yet because there's no
+single process serving many patients to improve.
+
+**mRNA-LNP manufacturing physics.** In the lab, LNPs form in microfluidic
+chips where the flow is strictly laminar. At manufacturing scale, that
+technology usually gets swapped for impingement-jet or T-mixers running in
+turbulent flow, and [that swap alone changes particle size, encapsulation
+efficiency, and
+morphology](https://www.creative-biolabs.com/lipid-based-delivery/scalability-challenges-mrna-lnp-manufacturing.htm)
+enough to force teams to re-optimize formulations they'd already finalized.
+That's a fluid mechanics and mixing problem before it's a formulation
+problem, which is closer to what I actually studied than anything else on
+this list.
+
+**Biosimilars manufacturing in India specifically.** This is the one with a
+direct path back to my own return-to-India framing. [Grand View
+Research](https://www.grandviewresearch.com/horizon/outlook/biosimilars-market/india)
+puts India's biosimilars market at roughly USD 184 million in 2026, heading
+toward USD 1 billion by 2035 at around 21% CAGR, driven by biologics patent
+expiries and government incentive schemes — [reportedly including a new
+₹10,000 crore Biopharma SHAKTI
+initiative](https://www.globenewswire.com/news-release/2026/02/16/3238646/0/en/India-Biosimilars-Market-Trends-and-Forecasts-2026-2035-Biologics-Patent-Expirations-Strategic-Partnerships-and-Government-Incentives-Driving-Opportunities.html)
+announced in the 2026–27 union budget to build out India's biologics
+manufacturing and regulatory capacity. This is the version of the field
+where "cheaper protein production in India," the question I started with,
+maps most literally.
+
+## The core challenge underneath all three
+
+Strip the product away and the same first-principles problem shows up in
+every one of these: what works at bench scale, in a small, well-mixed,
+laminar or near-homogeneous system, does not scale linearly to a
+manufacturing vessel or mixer where flow regimes, gradients, and shear all
+change. A shake flask doesn't have oxygen or pH gradients; a 2,000-liter
+bioreactor does. A microfluidic chip is laminar; a production-scale jet mixer
+is turbulent. That gap — scale-down models that predict manufacturing
+behavior instead of getting rebuilt from scratch at every scale — is the
+actual research problem sitting underneath vector yield, LNP encapsulation
+efficiency, and biosimilar cost of goods alike. It's also the reason my own
+background in fluid mechanics and mixing is more directly relevant here than
+I'd assumed when I was only looking at this through the whey lens.
+
+That's specific enough to be worth its own list rather than folding into the
+protein-production tracker: I'm keeping it as a separate [pharma bioprocess
+tracker](/writing/grad-school-tracker-pharma-bioprocess), screening for labs
+specifically working on vector purification, LNP mixing scale-up, or
+scale-down modeling for continuous downstream processing — not just "works
+on bioprocessing."
