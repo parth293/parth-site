@@ -1,0 +1,113 @@
+---
+title: "Can whey protein actually get cheaper?"
+date: "2026-09-18"
+summary: "An Indian supplement brand published its raw whey costs: ₹1,475/kg to ₹3,700/kg in eleven months. Working through where the real cost levers sit, and where there aren't any."
+tags: ["bioprocess", "economics", "problem-statement"]
+---
+
+An Indian supplement brand recently [published its own raw material
+costs](https://onlywhatsneeded.in/engage/whey-tracker): ₹1,475 per kg of raw
+whey in July 2025, ₹3,700 per kg by June 2026. Just over a doubling, most of
+it packed into the last three months of that window. Their fully-loaded
+selling price is heading to ₹4,500–5,000 per kg to match.
+
+I have no reason to doubt the numbers, and the four causes they list are all
+real: GLP-1 drugs pushing protein demand up sharply, whey supply that cannot
+grow without more cheese production growing with it, protein going mainstream
+beyond athletes, and India importing almost all its whey in dollars and euros
+while the rupee weakens. What I want to work through is the question their
+post doesn't ask, because it isn't the brand's job to ask it: is ₹3,700 a
+price the market is stuck with, or is some of it slack that better process
+and supply design could take out?
+
+## The part that isn't a lever
+
+Start with the constraint that rules a few ideas out immediately. Whey is not
+a product a dairy sets out to make. It's the liquid left over when milk is
+curdled to pull out casein for cheese or paneer, and it only exists because
+that curdling happened. You cannot tell a dairy to "make more whey" the way
+you'd tell a fab to run another shift — the volume of whey is fixed the
+moment the volume of cheese is fixed. So "increase supply" only works by
+increasing cheese and paneer output for its own reasons, with whey riding
+along as a co-product. That's a decade-scale dairy-industry shift, not
+something a protein brand or a process engineer changes this year.
+
+That rules out the most obvious lever. It leaves three that are real:
+capturing whey that already exists but isn't being processed, cutting the
+cost of turning liquid whey into powder, and substituting a different protein
+source for some of the volume.
+
+## Capturing whey that already gets thrown away
+
+India makes an enormous amount of paneer and chhena, and both are made by
+curdling milk exactly like cheese is — with a whey stream as the byproduct.
+The difference is that a cheese plant is usually built to also run
+ultrafiltration and spray-drying on its whey, because it was designed as an
+industrial dairy operation from the start. A huge share of India's paneer is
+made by small local producers with none of that downstream equipment, so the
+whey goes down the drain instead of into a dryer.
+
+I don't have a real number for what fraction of Indian paneer whey is
+captured versus wasted — I'd guess it's low outside of large organized
+dairies, but that's a guess, not a figure I can defend. If it's genuinely
+low, this is the closest thing to free supply in the whole system: the milk
+has already been paid for and processed once, and the whey is a sunk
+byproduct rather than a new input you have to source and pay for at
+whatever price the global market sets. The catch is capital. Ultrafiltration
+membranes plus a spray dryer are a real plant, not an add-on, so this only
+pencils out at a scale bigger than most paneer producers run at — which
+argues for aggregation (a central UF/drying facility multiple small paneer
+makers sell liquid whey into) rather than every producer building their own.
+
+## Cutting the cost of the process, not the input
+
+Assume the whey volume is fixed. There's still a processing cost stacked on
+top of the raw whey price, and it isn't free of slack either. Two spots stand
+out:
+
+- **Evaporation before spray drying** is the single biggest energy draw in
+  the whole line, because you're boiling most of the water out of a dilute
+  stream before you can dry it. Mechanical vapour recompression reuses the
+  vapour's own heat instead of venting it, and retrofitting it onto an
+  existing evaporator is a real, known lever for cutting that energy cost —
+  not a moonshot, just capital most Indian mid-size plants haven't spent yet.
+- **Yield loss in ultrafiltration and diafiltration** — protein that ends up
+  fouling the membrane or leaving in the permeate instead of the retentate —
+  is money that was already spent on raw whey and then lost during
+  processing. Every percentage point of yield recovered is a percentage
+  point less raw whey you need to buy for the same output.
+
+Neither of these touches the ₹3,700 figure. Both reduce how much of that
+₹3,700 you need per kg of finished powder, which is the same thing from a
+selling-price standpoint.
+
+## Substitution — where the ethical line actually is
+
+The brand's post draws a hard line against "cheap amino acids to inflate the
+protein number" and quiet reformulation, and that line is correct — spiking
+a protein test with free amino acids to game the number on the label is
+fraud, not cost engineering. But there's a real technique on the other side
+of that line: blending declared, tested amounts of a cheaper complete
+protein — soy or pea isolate, milk protein concentrate — into a labeled
+blend product sold as a separate, cheaper SKU next to the pure-whey one. That
+isn't hiding anything; it's giving a price-sensitive customer an honest
+choice instead of one option at whatever price pure whey now costs.
+
+The other substitution path is further out: whey protein made by
+fermentation rather than by cows, where an engineered yeast or fungal strain
+is grown to express the same milk proteins directly. Perfect Day is the name
+most associated with this. It decouples protein supply from cheese output
+entirely, which is the actual fix for the co-product constraint above. I
+don't know where that technology's production cost sits today relative to
+dairy whey, and I'd be guessing if I gave a number — the honest state of that
+lever is that it exists and matters directionally, not that it's cost
+competitive yet.
+
+## What I'd want to know next
+
+The whole domestic-capture argument stands or falls on one number I don't
+have: what share of India's paneer and chhena whey is actually going
+uncaptured right now. If it's a rounding error, the aggregation model in the
+second section isn't worth building. If it's large, it's the cheapest lever
+on this list, because the milk is already paid for. That's the number that
+would change how much weight I put on this piece.
