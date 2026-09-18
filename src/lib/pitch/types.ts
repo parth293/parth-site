@@ -21,6 +21,16 @@ export type Education = {
   labs: { area: string; work: string }[];
   /** The B.Tech-vs-B.Pharm argument, which is the actual differentiator. */
   contrast: { dimension: string; bpharm: string; mine: string }[];
+  /** Full semester-by-semester transcript, grades included. This is the
+   *  granular record behind `coursework` — kept separate because it's
+   *  chronological and grade-bearing, meant for someone who asks for the
+   *  actual transcript rather than the capability-area summary. */
+  transcript: {
+    year: string;
+    period: string;
+    note?: string;
+    subjects: { name: string; grade?: string }[];
+  }[];
 };
 
 export type Role = {

@@ -97,6 +97,94 @@ export default function ResumePage() {
             <Field label="Period">{education.period}</Field>
             <Field label="Honours">{education.honours.join(", ")}</Field>
           </div>
+
+          <div className="mt-8 overflow-x-auto">
+            <p className="label mb-3">Why this is not a B.Pharm</p>
+            <table className="w-full min-w-[34rem] border-collapse text-sm">
+              <thead>
+                <tr>
+                  {["Dimension", "Standard B.Pharm", "This degree"].map((h) => (
+                    <th
+                      key={h}
+                      className="label border-b border-rule-strong pb-2 pr-4 text-left font-normal"
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {education.contrast.map((row) => (
+                  <tr key={row.dimension}>
+                    <td className="border-b border-rule py-2.5 pr-4 align-top font-medium">
+                      {row.dimension}
+                    </td>
+                    <td className="border-b border-rule py-2.5 pr-4 align-top text-ink-faint">
+                      {row.bpharm}
+                    </td>
+                    <td className="border-b border-rule py-2.5 align-top text-ink-muted">
+                      {row.mine}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <details className="group mt-8 border-t border-rule pt-4">
+            <summary className="label cursor-pointer list-none transition-colors hover:text-accent">
+              Full academic record — coursework, labs, transcript ▸
+            </summary>
+
+            <div className="mt-6 grid gap-7 sm:grid-cols-2">
+              {education.coursework.map((group) => (
+                <div key={group.group}>
+                  <h4 className="text-[0.9375rem] font-semibold mb-1">{group.group}</h4>
+                  {group.note ? (
+                    <p className="mb-2 text-sm text-ink-faint text-pretty">{group.note}</p>
+                  ) : null}
+                  <p className="text-sm leading-relaxed text-ink-muted">
+                    {group.subjects.join(" · ")}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <h4 className="label mb-3 mt-8">Wet lab exposure</h4>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {education.labs.map((lab) => (
+                <li key={lab.area} className="text-sm leading-relaxed">
+                  <span className="font-medium">{lab.area}</span>
+                  <span className="text-ink-muted"> — {lab.work}</span>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="label mb-3 mt-8">Semester-by-semester transcript</h4>
+            <div className="space-y-6">
+              {education.transcript.map((yr) => (
+                <div key={yr.year}>
+                  <p className="mb-2 font-mono text-xs uppercase tracking-[0.06em] text-ink-faint">
+                    {yr.year} · {yr.period}
+                    {yr.note ? <span className="text-ink-muted"> — {yr.note}</span> : null}
+                  </p>
+                  <ul className="grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
+                    {yr.subjects.map((s) => (
+                      <li
+                        key={s.name}
+                        className="flex items-baseline justify-between gap-3 text-sm leading-relaxed"
+                      >
+                        <span className="text-ink-muted">{s.name}</span>
+                        {s.grade ? (
+                          <span className="font-mono text-xs text-ink-faint">{s.grade}</span>
+                        ) : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </details>
         </Section>
       </div>
     </PageShell>
