@@ -12,7 +12,12 @@ export const site = {
   email: "ajmera.parth8@gmail.com",
 } as const;
 
-export type PillarSlug = "pharma-eng" | "bioprocess-eng" | "biotech-eng" | "gtm-eng";
+export type PillarSlug =
+  | "pharma-eng"
+  | "bioprocess-eng"
+  | "biotech-eng"
+  | "gtm-eng"
+  | "gate-eng";
 
 export type Pillar = {
   slug: PillarSlug;
@@ -55,6 +60,14 @@ export const pillars: readonly Pillar[] = [
       "Treating go-to-market like a system with parts, not a talent — discovery, technical validation, procurement, and why the honest version wins.",
     description:
       "Notes from six years selling and delivering GMP compliance software to pharma manufacturers, generalized into how GTM works as an engineered system: discovery, technical validation, procurement in regulated environments, and the mechanisms behind why the honest pitch wins deals the polished one doesn't.",
+  },
+  {
+    slug: "gate-eng",
+    title: "GATE Engineering",
+    summary:
+      "The GATE Biotechnology syllabus and past papers, worked the way an engineer studies for an exam — taxonomy first, then tagged, solved papers against it.",
+    description:
+      "Working notes built for GATE Biotechnology prep: the syllabus broken into a section → topic → item taxonomy, past papers solved question-by-question and tagged against that tree, and book-coverage tracking to see which regions of the syllabus are still thin.",
   },
 ] as const;
 
