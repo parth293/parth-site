@@ -131,6 +131,264 @@ $$
 - $pH$ — measure of acidity, unitless
 - $[H^+]$ — hydrogen ion concentration, mol/L
 
+## Acids, Bases and pH
+
+- **Brønsted-Lowry acid** — a substance that donates a proton (H⁺).
+- **Brønsted-Lowry base** — a substance that accepts a proton (H⁺).
+
+### Ionization of HCl in water
+
+$$
+\underbrace{HCl}_{\text{acid}_1} + \underbrace{H_2O}_{\text{base}_2} \rightleftharpoons \underbrace{Cl^-}_{\text{base}_1} + \underbrace{H_3O^+}_{\text{acid}_2}
+$$
+
+- $HCl$ — acid 1: donates a proton to become its conjugate base, $Cl^-$
+- $Cl^-$ — conjugate base of $HCl$
+- $H_2O$ — base 2: accepts a proton to become its conjugate acid, $H_3O^+$
+- $H_3O^+$ — conjugate acid of $H_2O$
+
+Conjugate acid-base pairs: $HCl / Cl^-$ and $H_3O^+ / H_2O$.
+
+- **Strong acids** ionize completely in aqueous solution.
+- **Weak acids** do not ionize completely — some HA remains undissociated
+  at equilibrium.
+- **Equilibrium** — rate of the forward reaction equals rate of the
+  reverse reaction; no net change in concentration.
+
+### Acid dissociation constant ($K_a$)
+
+$$
+HA \rightleftharpoons H^+ + A^-
+$$
+
+$$
+K_a = \dfrac{[H^+][A^-]}{[HA]}
+$$
+
+- $HA$ — undissociated acid
+- $H^+$ — hydrogen ion (proton)
+- $A^-$ — conjugate base of $HA$
+- $K_a$ — acid dissociation constant (also acid ionization constant, or
+  acidity constant), mol/L
+
+$K_a$ measures an acid's tendency to lose a proton and form its conjugate
+base — the equilibrium constant of that ionization.
+
+### $pK_a$
+
+$$
+pK_a = -\log K_a
+$$
+
+- $pK_a$ — negative log of $K_a$, unitless
+- $K_a$ — acid dissociation constant, mol/L
+
+$pK_a$ is the standard way weak acids' proton-donating strength is
+reported. The stronger the tendency to dissociate a proton, the larger
+$K_a$ and the **lower** $pK_a$.
+
+| Acid | Type | $K_a$ (mol/L) | $pK_a$ |
+| --- | --- | --- | --- |
+| HCl | Strong | $\sim 10^7$ | $\sim -7$ |
+| Acetic acid ($CH_3COOH$) | Weak | $1.8 \times 10^{-5}$ | $4.76$ |
+
+A strong acid like $HCl$ ionizes essentially completely, so $K_a$ is huge
+and $pK_a$ is a large negative number. A weak acid like acetic acid only
+partly ionizes, so $K_a$ is small and $pK_a$ is a small positive number.
+
+### pH and $pK_a$ — the Henderson-Hasselbalch equation
+
+$$
+pH = pK_a + \log \dfrac{[A^-]}{[HA]}
+$$
+
+- $pH$ — measure of acidity of the solution, unitless
+- $pK_a$ — acid dissociation constant of the acid in question, unitless
+- $[A^-]$ — conjugate base concentration, mol/L
+- $[HA]$ — undissociated acid concentration, mol/L
+
+Relates a buffered solution's pH to its $pK_a$ and the ratio of
+conjugate base to undissociated acid present.
+
+- When $[A^-] = [HA]$, the ratio is $1$ and $\log(1) = 0$, so
+  $pH = pK_a$.
+- **Physical significance** — at $pH = pK_a$, the acid is exactly 50%
+  dissociated: equal concentrations of $HA$ and $A^-$. This is the
+  buffer's midpoint, where it has the greatest capacity to resist a pH
+  change from added acid or base.
+
+## Titration
+
+- **Titration** — a technique for determining the concentration of a
+  solution of unknown concentration by reacting it with a solution of
+  known concentration, added incrementally until the reaction is
+  complete.
+- **Titrant** — the solution of known concentration, added incrementally
+  (e.g. from a burette).
+- **Analyte** — the solution of unknown concentration being determined.
+
+### Titrating a weak acid with a strong base
+
+1. The titrant (a strong base, e.g. $NaOH$) is added to the acid (the
+   analyte) in small increments.
+2. Addition continues until the acid is fully neutralized.
+3. The point of neutralization is determined with an indicator dye
+   (color change) or a pH meter.
+
+### Titration curve
+
+- **Titration curve** — a plot of the solution's pH (y-axis) against the
+  amount of $OH^-$ (titrant) added (x-axis).
+
+![Titration curve of acetic acid: pH (0–9) plotted against OH⁻ equivalents added (0–1). The curve starts near pH 2–3, rises, then flattens into a buffering plateau centered at 0.5 equivalents where pH = pKa = 4.76 (buffering region pH 3.76 to 5.76, shaded). It then rises steeply again approaching 1.0 equivalents — the equivalence point and the curve's inflection point — before leveling off near pH 7.5–8, where the solution is mostly CH₃COO⁻.](/notes/biotech-eng/titration-curve-acetic-acid.png)
+
+### Sequence of the curve, in order as $OH^-$ is added
+
+Picture a beaker of acetic acid, and you're dripping $NaOH$ in slowly.
+
+1. **Start** (0 equivalents) — the beaker holds almost nothing but
+   intact $CH_3COOH$ molecules; only a tiny fraction have broken apart
+   into $H^+$ and $CH_3COO^-$. Lots of free $H^+$ around, so pH is low.
+2. **Early rise** — you start adding drops of $OH^-$. Each one grabs a
+   free $H^+$ and becomes water. There's barely any $CH_3COO^-$ around
+   yet to cushion this, so the free-$H^+$ count drops fast and pH
+   climbs quickly.
+3. **Buffering zone begins** — enough $CH_3COOH$ has now turned into
+   $CH_3COO^-$ that both are floating around in similar amounts. From
+   here, each drop of $OH^-$ reacts with a $CH_3COOH$ molecule instead
+   of depleting free $H^+$ directly — and there's so much $CH_3COOH$ in
+   reserve that this barely moves the pH. This is the flat stretch on
+   the graph (roughly $pK_a \pm 1$; for acetic acid, pH $3.76$ to
+   $5.76$).
+4. **Half-equivalence point** (0.5 equivalents) — exactly half the
+   original $CH_3COOH$ has now been converted, so $CH_3COOH$ and
+   $CH_3COO^-$ are sitting in the beaker in equal amounts. Right here,
+   $pH = pK_a$ ($4.76$ for acetic acid) — the dead centre of the flat
+   stretch, and the point where the buffer can soak up the most added
+   acid or base before pH actually moves.
+5. **Buffering zone ends** — most of the $CH_3COOH$ is used up now.
+   With little acid left in reserve to react with incoming $OH^-$, pH
+   starts climbing faster again.
+6. **Equivalence point / inflection point** (1.0 equivalents) — every
+   $CH_3COOH$ molecule has now been converted to $CH_3COO^-$ — you've
+   added exactly as much $OH^-$ as there was acid to begin with. The
+   curve is climbing at its steepest right here. Because $CH_3COO^-$ is
+   a weak base, it pulls a little $H^+$ back out of water, so the
+   solution actually sits above pH $7$ — mildly basic.
+7. **Endpoint** — the moment you, running the titration, actually
+   notice this has happened: the indicator dye suddenly changes color,
+   or the pH meter reading jumps. Ideally this lines up with step 6.
+8. **Past equivalence** — keep adding $NaOH$ now and it's just excess
+   strong base piling up with no more acid left to react with; pH keeps
+   rising, then flattens out high, set by how much extra $NaOH$ you've
+   poured in.
+
+### Common confusion
+
+- The **inflection point** (steepest slope) is the **equivalence point**
+  — not the point where $pH = pK_a$. The point where $pH = pK_a$ is the
+  **half-equivalence point**, sitting in the flat buffering zone, the
+  opposite of where the curve is steepest.
+
+### Mirror case: titrating a weak base with a strong acid
+
+Same procedure, reversed: the titrant is a strong acid (e.g. $HCl$), the
+analyte is a weak base (e.g. $NH_3$). Because acid is being added to a
+base instead of base to an acid, the curve descends as titrant is added,
+instead of rising.
+
+![Titration curve of NH3 titrated by HCl: pH (0–12) plotted against mL of HCl added (0–50). The curve starts near pH 11, descends gradually through a buffering plateau around 10–12 mL where pH = pKa(NH4+) = 9.25 — the half-equivalence point — then drops steeply around 25 mL through pH 5.28, the equivalence point and inflection point, before leveling off near pH 1.4–2 as excess HCl accumulates.](/notes/biotech-eng/titration-weak-base-strong-acid.png)
+
+| | Weak acid + strong base (acetic acid + $NaOH$) | Weak base + strong acid ($NH_3$ + $HCl$) |
+| --- | --- | --- |
+| Titrant | $OH^-$ | $H^+$ |
+| Curve direction | pH rises as titrant is added | pH falls as titrant is added |
+| Species at equivalence point | conjugate base, $A^-$ | conjugate acid, $NH_4^+$ |
+| pH at equivalence point | $> 7$ ($A^-$ hydrolyzes, raising pH) | $< 7$ ($NH_4^+$ hydrolyzes, lowering pH) |
+| pH at half-equivalence point | $pH = pK_a$ of $HA$ | $pH = pK_a$ of $NH_4^+$ |
+
+- Equivalence-point pH is not always $7$ — it depends on which species
+  (conjugate acid or conjugate base) is left in solution and how it
+  hydrolyzes.
+
+## Buffers
+
+- **Buffer** — an aqueous solution that resists changes to its pH when
+  a small amount of acid or base is added, or when it is diluted.
+
+### Acidic and basic buffers
+
+| | Composition | pH |
+| --- | --- | --- |
+| Acidic buffer | weak acid + its conjugate base | $< 7$ |
+| Basic buffer | weak base + its conjugate acid | $> 7$ |
+
+### Common physiological buffer systems
+
+- **Phosphate buffer** — weak acid $H_2PO_4^-$, conjugate base
+  $HPO_4^{2-}$.
+- **Bicarbonate buffer** — weak acid $H_2CO_3$ (carbonic acid),
+  conjugate base $HCO_3^-$ (bicarbonate ion):
+  $H_2CO_3 \rightleftharpoons H^+ + HCO_3^-$. Unlike the phosphate
+  buffer, $H_2CO_3$ is itself in equilibrium with dissolved $CO_2$
+  ($CO_2 + H_2O \rightleftharpoons H_2CO_3$), so the lungs (via
+  breathing out $CO_2$) and the kidneys (via excreting $HCO_3^-$) can
+  both adjust this buffer — it's the main buffer of blood plasma.
+
+### What a buffer's pH range and capacity depend on
+
+1. **Nature of the conjugate pair** — its $pK_a$ sets which pH the
+   buffer is centered on.
+2. **Concentrations of the pair** — the concentrations of $HA$ and
+   $A^-$ set how much added acid or base the buffer can absorb.
+
+### Conditions for an acid buffer to exist
+
+1. The solution must contain a weak acid and its salt (the conjugate
+   base).
+2. The concentrations of the weak acid and its conjugate base must be
+   reasonably similar.
+
+### Mechanism — the common ion effect
+
+Buffers operate on the **common ion effect**. The salt fully
+dissociates, flooding the solution with the conjugate base ion ($A^-$)
+— the same ion the weak acid's own ionization ($HA \rightleftharpoons
+H^+ + A^-$) produces. That excess of $A^-$ pushes the weak acid's
+equilibrium back toward $HA$ (Le Chatelier's principle), leaving both
+$HA$ and $A^-$ sitting in solution at reasonably similar
+concentrations, ready to react with whatever is added.
+
+#### Worked example: acetic acid / sodium acetate buffer
+
+**Question.** How does a mixture of acetic acid ($CH_3COOH$) and sodium
+acetate ($CH_3COONa$) resist pH change when a strong acid, a strong
+base, or water is added?
+
+**Solution.**
+
+1. Sodium acetate is a salt and dissociates completely:
+   $CH_3COONa \rightarrow CH_3COO^- + Na^+$ — this supplies a large,
+   standing reservoir of the conjugate base, $CH_3COO^-$.
+2. Acetic acid is a weak acid, so it stays mostly undissociated:
+   $CH_3COOH \rightleftharpoons CH_3COO^- + H^+$. The solution now holds
+   both $CH_3COOH$ and $CH_3COO^-$ at reasonably similar concentrations
+   — satisfying the conditions for a buffer.
+3. **Add a strong acid** ($H^+$): the reservoir of $CH_3COO^-$ absorbs
+   it — $CH_3COO^- + H^+ \rightarrow CH_3COOH$. $H^+$ is consumed
+   converting conjugate base into acid, so pH barely changes.
+4. **Add a strong base** ($OH^-$): the acid neutralizes it —
+   $CH_3COOH + OH^- \rightarrow CH_3COO^- + H_2O$. The acid is consumed
+   converting into conjugate base and water, so pH barely changes.
+5. **Dilute with water**: $[CH_3COOH]$ and $[CH_3COO^-]$ both drop by
+   the same factor, so their ratio is unchanged — by the
+   Henderson-Hasselbalch equation, pH stays (nearly) the same.
+
+**Answer:** Because $CH_3COOH$ and $CH_3COO^-$ are both present in
+reasonably similar amounts, any added $H^+$ or $OH^-$ is consumed
+converting one species into the other rather than accumulating freely
+in solution, so pH shifts only slightly.
+
 ## Key points
 
 - Atomic number = protons; mass number = protons + neutrons.
@@ -153,3 +411,43 @@ $$
 - Pure water: $[H^+] = 10^{-7}$ mol/L, neutral. Acidic: $[H^+] > 10^{-7}$ M.
   Basic: $[H^+] < 10^{-7}$ M.
 - $pH = -\log[H^+]$.
+- Brønsted-Lowry: acid donates H⁺, base accepts H⁺. $HCl + H_2O
+  \rightleftharpoons Cl^- + H_3O^+$ — conjugate pairs $HCl/Cl^-$ and
+  $H_3O^+/H_2O$.
+- Strong acids ionize completely; weak acids don't.
+- $K_a = [H^+][A^-]/[HA]$ — an acid's tendency to donate its proton;
+  the equilibrium constant of $HA \rightleftharpoons H^+ + A^-$.
+- $pK_a = -\log K_a$. Larger $K_a$ → lower $pK_a$ → stronger acid.
+  Strong acid ($HCl$): $K_a \sim 10^7$, $pK_a \sim -7$. Weak acid
+  (acetic acid): $K_a = 1.8 \times 10^{-5}$, $pK_a = 4.76$.
+- Henderson-Hasselbalch: $pH = pK_a + \log([A^-]/[HA])$. When
+  $[A^-] = [HA]$, $pH = pK_a$ — the acid is 50% dissociated, the
+  buffer's point of maximum capacity.
+- Titration: titrant (known conc.) added to analyte (unknown conc.)
+  until the reaction is complete. A weak acid is titrated with a strong
+  base; the titration curve plots pH vs. $OH^-$ added.
+- Equivalence point = inflection point (steepest slope): moles titrant
+  added = moles acid originally present. Half-equivalence point
+  ($[HA]=[A^-]$, $pH=pK_a$) sits in the flat buffering zone instead —
+  the two are easily confused but are opposite points on the curve.
+- Curve order (weak acid + strong base, as $OH^-$ is added): start
+  (low pH) → early rise → buffering zone begins → half-equivalence
+  ($pH=pK_a$) → buffering zone ends → equivalence/inflection point
+  ($pH>7$, endpoint detected here) → past equivalence, pH levels off.
+- Mirror case: weak base + strong acid ($NH_3$ + $HCl$) — curve falls
+  instead of rises; equivalence-point pH is $< 7$ (conjugate acid
+  $NH_4^+$ hydrolyzes) instead of $> 7$.
+- Buffer = resists pH change on adding acid/base or on dilution.
+  Acidic buffer (weak acid + conjugate base), $pH<7$; basic buffer
+  (weak base + conjugate acid), $pH>7$. Physiological examples:
+  phosphate buffer ($H_2PO_4^-/HPO_4^{2-}$), bicarbonate buffer
+  ($H_2CO_3/HCO_3^-$ — blood's main buffer, tunable by lungs and
+  kidneys).
+- Buffer range/capacity depend on the conjugate pair's $pK_a$ and on
+  their concentrations. Requires a weak acid + its salt, at reasonably
+  similar concentrations — works via the common ion effect (excess
+  $A^-$ from the salt suppresses the acid's own ionization).
+- Acetic acid/sodium acetate buffer: $CH_3COO^-$ (from the fully
+  dissociated salt) mops up added $H^+$; $CH_3COOH$ mops up added
+  $OH^-$; dilution leaves the $[A^-]/[HA]$ ratio — and so the pH —
+  unchanged.
