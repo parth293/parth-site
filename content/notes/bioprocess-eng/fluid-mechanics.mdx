@@ -260,6 +260,12 @@ $$
 
 Examples: printing ink, tomato ketchup, orange juice, human blood, chocolate.
 
+> Human blood's yield stress comes from **rouleaux formation**: at low shear
+> rates, red blood cells stack together like a column of coins, and breaking
+> that stacked structure apart requires a threshold stress — the physical
+> origin of blood's Casson-type yield behaviour. At higher shear rates the
+> rouleaux break up and blood thins like a normal pseudoplastic fluid.
+
 #### Herschel–Bulkley model
 
 The **Herschel–Bulkley model** generalizes Bingham plastics and power law
@@ -288,6 +294,73 @@ recovers the Bingham plastic equation.
 | Dilatant | $n > 1$ | No | $\tau \uparrow \rightarrow \mu_a \uparrow$ | Corn starch, cement slurry |
 | Casson plastic | — | Yes ($\tau_0$), dual nature | Bingham-like below $\tau_0$; pseudoplastic-like above | Printing ink, tomato ketchup, orange juice, human blood, chocolate |
 
+### Time-dependent vs. time-independent non-Newtonian fluids
+
+Non-Newtonian fluids also split into two families based on whether apparent
+viscosity depends on the *duration* of shearing, not just its rate.
+
+- **Time-independent fluids**: apparent viscosity depends only on the
+  instantaneous shear rate or shear stress. Every type covered above —
+  Bingham plastic, pseudoplastic, dilatant, Casson plastic, Herschel–Bulkley —
+  is time-independent.
+- **Time-dependent fluids**: apparent viscosity changes with how long a
+  constant shear rate has been applied. **Thixotropic** and **rheopectic**
+  fluids are the two types.
+
+#### Thixotropic fluids
+
+A **thixotropic** fluid's apparent viscosity decreases over time under a
+constant shear rate, then recovers (thickens back up) once shearing stops and
+the fluid rests.
+
+Examples: ketchup, yogurt, gels, paints, printer ink.
+
+#### Rheopectic fluids
+
+A **rheopectic** (anti-thixotropic) fluid's apparent viscosity increases over
+time under a constant shear rate — the opposite of thixotropic behaviour.
+Rheopexy is rare.
+
+Examples: gypsum paste, some clay suspensions, cream.
+
+#### Comparing time-dependent fluids
+
+| Fluid type | Apparent viscosity at constant shear rate | Examples |
+| --- | --- | --- |
+| Thixotropic | Decreases with time | Ketchup, yogurt, gels, paints, printer ink |
+| Rheopectic | Increases with time | Gypsum paste, some clay suspensions, cream |
+
+#### Worked example: time-dependent vs. time-independent classification (GATE-style)
+
+**Question.** Select the CORRECT statements regarding time-dependent and
+time-independent non-Newtonian fluids:
+
+(A) Pseudoplastic fluids exhibit shear-thinning behaviour independent of the
+duration of shear.
+(B) Thixotropic fluids show a time-dependent decrease in apparent viscosity
+at a constant shear rate.
+(C) Rheopectic fluids show a time-dependent decrease in viscosity under
+constant shear.
+(D) Bingham plastics do not flow until the applied shear stress exceeds the
+threshold yield stress.
+
+**Solution.**
+
+1. Pseudoplastic fluids are time-independent: shear-thinning
+   ($\mu_a \downarrow$ as $\dot\gamma \uparrow$) depends only on the
+   instantaneous shear rate, not on how long shear has been applied —
+   (A) is correct.
+2. Thixotropic fluids are defined by exactly this: apparent viscosity falls
+   over time at a fixed shear rate — (B) is correct.
+3. Rheopectic fluids are the opposite of thixotropic: apparent viscosity
+   *increases* over time at a fixed shear rate, not decreases — (C) is
+   incorrect (it describes thixotropic behaviour, mislabeled as rheopectic).
+4. Bingham plastics stay solid until $\tau$ exceeds the yield stress $\tau_y$,
+   then flow like a Newtonian fluid — (D) is correct, matching
+   $\tau = \tau_y + \mu_p \dot\gamma$.
+
+**Answer:** A, B, and D are correct; C is incorrect.
+
 ## Types of fluid flow
 
 Flow is classified into two regimes based on the pattern of fluid motion:
@@ -308,6 +381,21 @@ is recommended for mixing.
 | Eddies | None | Formed |
 | Speed | Slow-moving | — |
 | Mixing | Not recommended | Recommended |
+| Velocity profile across pipe diameter | Parabolic — maximum at the centreline, zero at the wall | Flatter (plug-like) across most of the diameter, dropping sharply only in a thin layer near the wall |
+
+### Velocity profile in pipe flow
+
+In laminar pipe flow, momentum only transfers between adjacent layers by
+molecular viscosity, which produces a smooth **parabolic** velocity profile:
+fastest at the centreline, zero at the wall.
+
+In turbulent pipe flow, the chaotic mixing from eddies constantly transfers
+momentum across the cross-section, dragging the near-wall fluid up and the
+centre fluid down — flattening the profile into a near-**plug flow** shape
+over most of the diameter, with a thin, steep drop confined to the wall
+region.
+
+_[Image to come — cross-section of a pipe comparing velocity profiles: laminar flow's smooth parabolic curve peaking at the centreline vs. turbulent flow's flatter, plug-like profile with a steep drop only near the wall]_
 
 ### Common confusion: vortex vs. turbulent flow
 
@@ -389,6 +477,38 @@ $$
 - $d_i$ — diameter of the impeller, in metres ($\text{m}$)
 - $g$ — acceleration due to gravity, $9.8 \ \text{m/s}^2$
 
+### Worked example: rheology models across fluid mechanics topics (GATE-style)
+
+**Question.** Which of the following statements regarding fluid rheology
+models is/are TRUE?
+
+(a) The Casson equation is given by $\sqrt{\tau} = \sqrt{\tau_y} +
+\sqrt{K_c \dot\gamma}$.
+(b) For human blood, rouleaux formation at low shear rates contributes to
+yield stress behaviour.
+(c) Dilatant fluids show an increase in apparent viscosity with decreasing
+shear rate.
+(d) In pipe flow, turbulent flow has a flatter velocity profile across the
+tube diameter compared to laminar flow.
+
+**Solution.**
+
+1. (a) matches the Casson equation exactly
+   ($\sqrt\tau = \sqrt{\tau_0} + \sqrt{K_c\dot\gamma}$, with $\tau_y$ here
+   used interchangeably with $\tau_0$ for the yield stress) — correct.
+2. (b) is the physical mechanism behind blood's yield-stress behaviour: red
+   blood cells stack into rouleaux at low shear rates, and disrupting that
+   structure needs a threshold stress — correct.
+3. (c) inverts the definition of dilatant behaviour: $n > 1$ means
+   $\tau \uparrow \rightarrow \mu_a \uparrow$, i.e. viscosity rises with
+   *increasing* shear rate, not decreasing — incorrect.
+4. (d) matches the velocity-profile comparison above: turbulent eddies
+   redistribute momentum across the cross-section, flattening the profile
+   into a near-plug shape versus laminar flow's parabolic profile —
+   correct.
+
+**Answer:** (a), (b), and (d) are correct; (c) is incorrect.
+
 ## Key points
 
 - **Ideal fluids** are inviscid and incompressible (a hypothetical
@@ -403,6 +523,11 @@ $$
 - **Bingham plastics** need a yield stress $\tau_y$ before they flow at all;
   **Casson** and **Herschel–Bulkley** fluids combine a yield stress with
   shear-thinning/power-law behaviour above it.
+- Non-Newtonian fluids also split by time-dependence: Bingham, pseudoplastic,
+  dilatant, Casson, and Herschel–Bulkley are all **time-independent**
+  (viscosity depends only on instantaneous shear rate); **thixotropic**
+  fluids thin over time at constant shear rate, **rheopectic** fluids
+  thicken over time at constant shear rate.
 - Reynolds number thresholds differ by system: stirred tank is laminar below
   $Re = 10$ and turbulent above $Re = 10{,}000$; straight pipe is laminar
   below $Re = 2{,}100$ and turbulent above $Re = 4{,}000$ — don't cross-apply
@@ -410,3 +535,10 @@ $$
 - Turbulent flow (with eddies) is needed for mixing; laminar flow is not, and
   neither is a vortex — a vortex is easy to mistake for turbulence but
   actually promotes settling, not mixing.
+- Laminar pipe flow gives a **parabolic** velocity profile (peak at
+  centreline, zero at wall); turbulent pipe flow flattens it into a
+  near-**plug flow** shape, with the steep drop confined to a thin near-wall
+  layer.
+- Human blood's Casson-type yield stress comes from **rouleaux
+  formation** — red blood cells stacking at low shear rates — not from a
+  generic "blood is thick" explanation.
