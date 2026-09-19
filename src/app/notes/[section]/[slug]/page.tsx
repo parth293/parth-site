@@ -4,6 +4,7 @@ import { Mdx } from "@/components/mdx";
 import { QuestionNav } from "@/components/question-nav";
 import { getDoc } from "@/lib/content";
 import { getQuestionHeadingsForNote } from "@/lib/questions";
+import { isUnlocked } from "@/lib/unlock";
 import type { PillarSlug } from "@/lib/site";
 
 type Params = { params: Promise<{ section: string; slug: string }> };
@@ -31,7 +32,7 @@ export default async function NotePage({ params }: Params) {
   const { section, slug } = await params;
   const pillar = section as PillarSlug;
   const [doc, questions] = await Promise.all([
-    getDoc(pillar, slug),
+    getDoc(pillar, slug, await isUnlocked()),
     getQuestionHeadingsForNote(pillar, slug),
   ]);
   if (!doc) notFound();

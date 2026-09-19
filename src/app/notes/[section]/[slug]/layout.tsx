@@ -3,6 +3,7 @@ import { PageShell } from "@/components/page-shell";
 import { ArticleHeader, ArticleFooter } from "@/components/article";
 import { NoteTabs } from "@/components/note-tabs";
 import { getDoc, getNotes } from "@/lib/content";
+import { isUnlocked } from "@/lib/unlock";
 import { getKeyPointsForNote } from "@/lib/key-points";
 import { getFormulasForNote } from "@/lib/formulas";
 import { getWorkedExamplesForNote } from "@/lib/worked-examples";
@@ -30,7 +31,7 @@ export default async function NoteLayout({
   const pillar = pillarBySlug[section as PillarSlug];
   if (!pillar) notFound();
 
-  const doc = await getDoc(pillar.slug, slug);
+  const doc = await getDoc(pillar.slug, slug, await isUnlocked());
   if (!doc) notFound();
 
   const [keyPoints, formulas, workedExamples, syllabusTags, bookCoverage] = await Promise.all([

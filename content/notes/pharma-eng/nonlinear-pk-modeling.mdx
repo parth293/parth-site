@@ -1,0 +1,71 @@
+---
+title: "Nonlinear PK modelling"
+date: "2026-09-19"
+summary: "Most drugs scale predictably with dose — double the dose, double the concentration. Nonlinear PK is what happens once that assumption breaks."
+order: 3
+tags: ["pk-pd"]
+---
+
+A drug is "linear" when its behaviour scales predictably with dose: double
+the dose, double the concentration in blood, because the body clears it at
+a constant rate — water through a fixed pipe. Most drugs, at normal doses,
+work this way, and the maths describing them is simple, clean exponentials.
+
+Some drugs break that assumption, because the enzymes metabolising them
+saturate. Once those enzymes are working at full capacity, more drug
+doesn't mean faster clearance — it just piles up disproportionately. This
+is nonlinear PK, and the standard maths for it — Michaelis-Menten
+kinetics — is the same maths used to describe saturating enzyme behaviour
+in biochemistry generally.
+
+A few other routes into nonlinearity, beyond enzyme saturation:
+
+- **Saturable protein binding** — a drug binds blood proteins that have
+  limited capacity; past that limit, more of the drug is free and active.
+- **Saturable transport** — the transporters that move a drug into cells
+  get overwhelmed at high concentration.
+- **Target-mediated drug disposition (TMDD)** — common in biologics: the
+  drug binds its target so tightly and specifically that the target itself
+  becomes a major route of clearance.
+- **Auto-induction or auto-inhibition** — the drug changes the activity of
+  the enzymes that metabolise it, over time, altering its own PK as
+  treatment continues.
+
+Phenytoin (epilepsy), warfarin (anticoagulation), and most monoclonal
+antibodies are nonlinear. Dosing a nonlinear drug as if it were linear —
+assuming the safe, well-tolerated response at a low dose will scale
+smoothly to a higher one — is a real way to hurt someone.
+
+## Where it sits in development
+
+Nonlinear PK modelling gets called in wherever a drug's behaviour looks
+unusual, rather than as a routine step every drug goes through. It matters
+most acutely during Phase I dose escalation — the step where a trial moves
+from a safe low dose toward a therapeutic one — because an undetected
+nonlinearity is exactly what makes that transition dangerous.
+
+## What's actually settled, and what isn't
+
+Michaelis-Menten kinetics for small molecules has been textbook material
+since the 1970s — phenytoin and ethanol are the standard teaching examples.
+What's genuinely still being built:
+
+- **TMDD models for next-generation biologics** — bispecific and
+  trispecific antibodies, antibody-drug conjugates — where the existing
+  models, built for simple single-target antibodies, don't hold once a
+  drug binds two targets at once.
+- **Gene and cell therapy PK** is close to a blank page: how a viral vector
+  distributes through the body, gets taken up by cells, and is cleared
+  doesn't have an established modelling tradition to draw on yet.
+- **Predicting nonlinearity onset ahead of time** — at what dose does a
+  given drug stop behaving linearly — is currently mostly discovered after
+  the fact, in a trial, rather than predicted beforehand from the
+  molecule's properties.
+- **Nonlinear PK in sick patients** — inflammation, organ failure, a large
+  tumour burden all plausibly change where saturation kicks in, but the
+  patients most likely to need the drug are exactly the ones usually
+  excluded from the studies that build these models.
+
+As with the other notes in this pillar, I'm not going to attach a
+confidence percentage to how "solved" this field is — that's a judgement
+call, not a number I can source.

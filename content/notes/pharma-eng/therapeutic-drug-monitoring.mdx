@@ -1,0 +1,70 @@
+---
+title: "Therapeutic drug monitoring"
+date: "2026-09-19"
+summary: "Where pharmacokinetics meets the actual bedside — measuring a drug's level in a specific patient's blood and adjusting their dose in real time."
+order: 8
+tags: ["pk-pd"]
+---
+
+Most drugs are dosed by a simple approximation — a standard amount for a
+70kg adult, adjusted a bit for age. For most drugs, in most patients, the
+therapeutic window is wide enough that this approximation is safe. For a
+handful of drugs, it isn't.
+
+Take tacrolimus, given to transplant patients to stop organ rejection. Too
+little, and the immune system attacks the new organ. Too much, and the drug
+itself damages the kidneys and raises infection and cancer risk. The gap
+between "too little" and "too much" is a concentration range narrow enough
+to fit on one graph, and the dose needed to land in that range can vary
+ten- to twentyfold between individual patients. You can't guess this dose
+safely — you have to measure it.
+
+Therapeutic drug monitoring (TDM) is the practice of measuring a drug's
+concentration in a patient's blood, usually at a specific time relative to
+the last dose, and using that measurement to adjust their individual dose
+toward a target range associated with good outcomes. The classic TDM drugs
+are tacrolimus and cyclosporine (transplant), vancomycin and the
+aminoglycosides (serious infection), phenytoin and carbamazepine
+(epilepsy), lithium (bipolar disorder), methotrexate, and digoxin (heart
+failure).
+
+The modern version of this — model-informed precision dosing (MIPD) — uses
+a Bayesian algorithm that combines a patient's own measured levels with a
+population PK model (see [pharmacometrics](/notes/pharma-eng/pharmacometrics))
+to predict that specific patient's PK parameters and calculate an
+individualised dose in close to real time.
+
+## Where it sits in development
+
+Unlike most of the rest of this pillar, TDM sits almost entirely at the
+post-approval, clinical-use end of the pipeline — it's practised in
+hospitals, transplant centres, and infectious disease units, not mainly in
+a drug-development lab. Earlier-stage work still feeds it: Phase I/II data
+identifies whether a drug needs TDM at all (is the therapeutic window
+narrow? is patient variability high?), and the target concentration range
+that TDM is measured against usually comes out of the same
+exposure-response analysis that sets the drug's dosing recommendation.
+
+## What's actually settled, and what isn't
+
+Classical trough-level TDM for drugs like digoxin and phenytoin has been
+routine clinical practice for more than fifty years. What's moving now:
+
+- **MIPD at scale.** The science of Bayesian dose individualisation is
+  proven — the constraint is adoption. Most hospitals still don't use it
+  even for vancomycin, where the clinical case for switching from
+  trough-only monitoring to full exposure-guided dosing is well
+  established.
+- **TDM for biologics** — monitoring blood levels of drugs like
+  infliximab or adalimumab in inflammatory bowel disease — has real
+  evidence behind it for a few specific drugs, but target ranges are still
+  poorly defined for most biologics, and clinical uptake is inconsistent.
+- **TDM in critically ill patients** is a distinct problem: fluid shifts,
+  altered protein binding, and augmented renal clearance mean a model
+  built on stable outpatients doesn't transfer cleanly to the ICU.
+- **Point-of-care measurement** — getting a drug level back in minutes at
+  the bedside instead of hours from a central lab — would make TDM
+  practical for drugs where it currently isn't, but the technology isn't
+  there yet for most of the classic TDM drugs.
+- **Pediatric TDM** target ranges are, more often than not, extrapolated
+  from adult data rather than established directly in children.

@@ -1,0 +1,75 @@
+---
+title: "Systems pharmacology"
+date: "2026-09-19"
+summary: "Classical pharmacology studies one target, one effect. Systems pharmacology treats a drug's effect as a perturbation to a whole biological network instead."
+order: 9
+tags: ["pharmacology"]
+---
+
+Classical pharmacology finds a receptor, designs a molecule that binds it,
+and measures what happens — clean, and often not enough. Biology doesn't
+respond to a drug by flipping one switch; it responds through cascades of
+interacting proteins, feedback loops, and compensatory pathways that a
+single-target experiment can't see. That's a real part of why drugs that
+work cleanly in a test tube often fail in patients: the target genuinely
+binds, but the network around it responds in ways the isolated experiment
+never predicted.
+
+Systems pharmacology takes the network seriously, combining three things at
+once: mechanistic biology (the actual signalling pathways and gene
+regulatory networks a drug touches), mathematics (ordinary differential
+equations and network models that simulate how those pathways behave over
+time), and pharmacokinetics (drug concentration, integrated with the
+network model so it captures how the biological system evolves over days
+or weeks of treatment, not just at one instant). The result is a
+computational model of how a disease's biology responds to treatment —
+including feedback loops, resistance mechanisms, and combination effects —
+built to inform trial design, dose selection, and which patients are
+likely to respond at all.
+
+In industry, this discipline is usually called QSP — quantitative systems
+pharmacology — and it's the frontier that
+[pharmacometrics](/notes/pharma-eng/pharmacometrics) is actively expanding
+into as drug development moves further into combination therapies and
+biologics.
+
+## Where it sits in development
+
+Systems pharmacology sits earlier than most of the PK/PD work in this
+pillar — primarily discovery and translational science, though it's
+increasingly reaching into later clinical stages. In discovery, it's used
+for network-level target identification: which node in a disease network,
+if perturbed, actually shifts the system toward health. In translational
+work, it supports animal-to-human dose prediction. In Phase II, it can
+guide which measurable biomarker actually predicts clinical benefit, and in
+Phase III, which patient subpopulation is likeliest to respond, based on
+their baseline biology. Regulatory use is still early — the FDA has been
+exploring systems-pharmacology models specifically in oncology, but this
+isn't yet a routine part of a submission the way a PopPK report is.
+
+## What's actually settled, and what isn't
+
+This is younger, as a discipline, than any other subfield in this pillar.
+The underlying mathematical frameworks and specific well-characterised
+signalling pathways (MAPK, PI3K/AKT/mTOR, and a handful of others) are
+established; a genuinely comprehensive, validated model of a whole disease
+network isn't. What's open:
+
+- **Predicting drug combination effects from first principles.** Why two
+  drugs that each work alone sometimes fail, or become toxic, together is
+  something a systems model should in principle be able to predict — in
+  practice, oncology combination regimens are still selected largely by
+  empirical trial and error.
+- **Modelling acquired resistance** — how cancer cells, bacteria, or
+  viruses evolve under drug pressure — is only partially captured by
+  current models.
+- **Multi-scale integration**, connecting molecular-level biology through
+  cellular and tissue behaviour to a clinical outcome in one validated
+  framework, doesn't really exist yet for any disease. Some people call
+  the eventual patient-specific version of this a "digital twin"; it's an
+  aspiration more than a working method right now.
+- **Immuno-oncology specifically** is a hard open problem: the tumour
+  microenvironment is an ecosystem of cancer cells, immune cells, stromal
+  cells, and vasculature, and only a minority of patients respond to
+  checkpoint inhibitors — a systems model that reliably predicted who
+  would respond, and why, would be a genuinely large result.

@@ -1,0 +1,62 @@
+---
+title: "Population pharmacokinetics"
+date: "2026-09-19"
+summary: "Give a hundred people the same dose and you get a hundred different responses — PopPK is the statistics of why, built from sparse, real-world data instead of intensive single-patient sampling."
+order: 2
+tags: ["pk-pd"]
+---
+
+Give the same drug, at the same dose, to a hundred different people, and
+you'll get close to a hundred different responses. One person clears it in
+four hours; another takes twelve. One gets the intended effect; a third
+gets toxicity at the same dose that did nothing for the first two. Age,
+weight, kidney function, genetics, diet, other medications — all of it
+moves the number.
+
+Classical pharmacokinetics was built to characterise one patient at a time,
+intensively: many blood draws, controlled conditions. That tells you almost
+nothing about the hundred-person spread above. Population pharmacokinetics
+(PopPK) flips the approach — sparse data (a few blood samples per person,
+at irregular real-world times) across many patients, fed into a statistical
+model that separates out three things at once: the typical drug behaviour
+across the population, how much individuals vary around that typical
+behaviour, and which patient characteristics — age, renal function, a
+genetic variant — actually explain that variation.
+
+The mathematical engine behind this is nonlinear mixed-effects modelling
+(NLME); the software that's been the industry standard since the 1970s is
+called NONMEM.
+
+## Where it sits in development
+
+PopPK is unusual among PK/PD subfields in that it's used across the entire
+pipeline, not just one stage — animal PopPK projecting human PK in
+preclinical work, sparse-sampling PopPK in Phase I and II identifying which
+covariates matter, large-scale PopPK in Phase III supporting the dose that
+actually gets approved, and a PopPK report as a standard, expected
+component of every NDA/BLA regulatory submission.
+
+## What's actually settled, and what isn't
+
+The statistical methodology — NLME modelling, covariate analysis, the
+regulatory expectations around a PopPK report — is mature; it's been the
+standard approach for decades. What's still actively moving:
+
+- **Biologics.** Monoclonal antibodies, antibody-drug conjugates, and
+  fusion proteins behave very differently from small molecules, and the
+  models built for small-molecule PK don't extrapolate cleanly.
+- **Novel modalities** — mRNA and gene therapy PK — are close to uncharted;
+  there isn't an established modelling tradition to lean on yet.
+- **Machine learning integration** — using ML to find which covariates
+  matter in high-dimensional genomic or proteomic data, rather than testing
+  them one at a time by hand — is an active area, not a settled one.
+- **Pediatric and neonatal PopPK** is a real regulatory gap: children
+  aren't small adults, and developmental physiology changes the picture in
+  ways adult-derived models don't capture.
+- **Real-world-data PopPK**, built from electronic health records instead
+  of clean trial data, is genuinely harder — real-world data is messy in
+  ways clinical trial data by design isn't — and still being worked out.
+
+I don't have a reliable figure for how much of the field is "mature" versus
+"frontier" — any such split is someone's rough characterisation, mine
+included, not a measured statistic.
