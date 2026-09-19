@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation";
 type Tab = { label: string; suffix: string };
 
 const ALWAYS: Tab = { label: "Notes", suffix: "" };
-const OPTIONAL: Record<"keyPoints" | "formulas" | "workedExamples" | "topics", Tab> = {
+const OPTIONAL: Record<"keyPoints" | "formulas" | "workedExamples" | "topics" | "bookCoverage", Tab> = {
   keyPoints: { label: "Key points", suffix: "/key-points" },
   formulas: { label: "Formulas", suffix: "/formulas" },
   workedExamples: { label: "Worked examples", suffix: "/worked-examples" },
   topics: { label: "Topics", suffix: "/topics" },
+  bookCoverage: { label: "Book coverage", suffix: "/book-coverage" },
 };
 
 export type NoteTabAvailability = {
@@ -18,6 +19,7 @@ export type NoteTabAvailability = {
   formulas: boolean;
   workedExamples: boolean;
   topics: boolean;
+  bookCoverage: boolean;
 };
 
 /**
@@ -40,6 +42,7 @@ export function NoteTabs({
     ...(available.keyPoints ? [OPTIONAL.keyPoints] : []),
     ...(available.formulas ? [OPTIONAL.formulas] : []),
     ...(available.workedExamples ? [OPTIONAL.workedExamples] : []),
+    ...(available.bookCoverage ? [OPTIONAL.bookCoverage] : []),
   ];
 
   if (tabs.length === 1) return null;

@@ -3,6 +3,7 @@ title: "GATE BT Syllabus (2027)"
 date: "2026-09-10"
 summary: "The GATE 2027 Biotechnology syllabus broken into section, topic, and item — a three-level taxonomy for tagging past-paper questions."
 tags: ["gate-bt", "syllabus", "reference"]
+syllabusRef: "pharma-eng/gate-bt-syllabus"
 ---
 
 The GATE 2027 Biotechnology (BT) syllabus, published by the organizing
@@ -257,3 +258,47 @@ score best.
 - 6.4.8 Knowledge discovery in biochemical databases
 - 6.4.9 Metagenomics
 - 6.4.10 Metabolic engineering and systems biology
+
+## Book coverage
+
+Reference books checked against this syllabus, one table per book. Coverage is
+judged at topic level (`Full`, `Partial`, `None`), not item — a table of
+contents can tell you a chapter exists, not that it hits every item inside a
+syllabus topic. Read a `Full` as "plausible from the chapter titles," not
+"verified against the actual pages."
+
+### Pathfinder Biotechnology — A Problem Approach
+
+| Code | Topic | Coverage | Notes |
+| --- | --- | --- | --- |
+| 1.1 | Linear Algebra | None | Ch. 1–10 are pure biology; no matrices, determinants, or eigenvalues anywhere in the contents. |
+| 1.2 | Calculus | None | No multivariable calculus, partial derivatives, or series in the contents. |
+| 1.3 | Differential Equations | None | No ODEs or Laplace transforms anywhere. |
+| 1.4 | Probability and Statistics | None | No distributions, correlation, or Bayesian content. |
+| 1.5 | Numerical Methods | None | No root-finding, quadrature, or ODE-solving methods. |
+| 2.1 | Biochemistry | Full | Ch. 1 (water, pH, buffers, bioenergetics) and Ch. 2.1–2.12 (amino acids, nucleic acids, carbohydrates, lipids, enzyme kinetics and inhibition), plus Ch. 3 (glycolysis, TCA cycle, oxidative phosphorylation, photosynthesis), cover every item and then some. |
+| 2.2 | Microbiology | Full | Ch. 5 (cell structure, genome, growth, culture media, horizontal gene transfer, taxonomy, toxins) matches nearly every item; "history of microbiology" isn't a separate heading, likely folded into the chapter intro. |
+| 2.3 | Immunology | Full | Ch. 6 tracks the syllabus almost item-for-item: innate/adaptive immunity, MHC, antibody structure and diversity, hybridoma technology, T cells, complement, hypersensitivity, transplantation, vaccines. |
+| 3.1 | Genetics and Evolutionary Biology | Full | Ch. 7.1–7.11 and 7.17–7.23 cover Mendelian genetics, gene interaction, linkage and mapping, extranuclear inheritance, cytogenetics, population genetics, and evolution; bacterial genetics is cross-referenced from Ch. 5.5. |
+| 3.2 | Cell Biology | Full | Ch. 4 covers membranes, transport, organelles, cytoskeleton, protein targeting, cell signalling, the cell cycle, and apoptosis in more detail than the syllabus asks for. |
+| 3.3 | Molecular Biology | Partial | RNA interference (7.13), epigenetics (7.14), the genetic code and translation (7.15–7.16), and mutation (7.17) are covered — but the contents page has an unexplained gap between 7.11 (p. 711) and 7.13 (p. 838), with 7.12's subsections carrying no page numbers at all. Replication, transcription, and DNA repair likely sit in that gap but can't be confirmed from the contents alone. |
+| 4.1 | Bioreaction Engineering | Partial | Ch. 9.2–9.5 cover energy balance, bioreactor types, mass balances, scale-up, and enzyme technology conceptually, but the syllabus's quantitative side — Thiele modulus, effectiveness factor, Damköhler number, structured growth models, reactor sizing — isn't reflected in the headings across the chapter's ~25 pages. |
+| 4.2 | Upstream and Downstream Processing | Partial | Ch. 9.6–9.7 name the same unit operations (filtration, centrifugation, chromatography, extraction), but there's no process-control content at all — no controllers, tuning, or first/second-order response, which is roughly a third of this syllabus item. |
+| 5.1 | Plants | Full | Ch. 8.16–8.17 cover transgenic plants, tissue culture, totipotency, somaclonal variation, and somatic hybridization; hairy root culture and artificial seeds aren't separate headings but likely sit under "applications" (8.17.6). |
+| 5.2 | Animals | Full | Ch. 8.13, 8.14, and 8.18 cover culture media, cell lines, transgenesis, knockouts, nuclear transfer, and cloning; hybridoma technology is covered instead in Ch. 6.12. Stem cell technology and knock-in animals aren't explicit headings. |
+| 5.3 | Microbes | Partial | Nothing in the contents is framed as industrial or clinical microbiology; Ch. 9's bioprocess chapter covers the general "how" of production but has no dedicated treatment of screening strategies or product classes like biofuels, bioplastics, or industrial enzymes. |
+| 6.1 | Recombinant DNA Technology | Full | Ch. 8.1–8.12 match closely: enzymes, vectors by host, DNA delivery, selection markers, expression vectors, DNA libraries, genome mapping, DNA profiling. Transposon-based gene targeting and recombination-based cloning aren't separate headings. |
+| 6.2 | Molecular Tools | None | PCR, blotting, in-situ hybridization, DNA fingerprinting, site-directed mutagenesis, CRISPR-Cas, and biosensors don't appear anywhere in the contents. "8.1 DNA cloning" might touch some of this, but its page number was illegible in the copy checked, so its contents are unconfirmed. |
+| 6.3 | Analytical Tools | None | No microscopy, spectroscopy, electrophoresis, immunoassay, or flow cytometry heading anywhere. "2.4 Protein analysis" is the closest match, and it's a single subsection inside the biomolecules chapter, not a methods treatment. |
+| 6.4 | Computational Tools | Partial | Ch. 10 (15 pages, p. 1043–1057) covers sequence analysis, genomics, transcriptomics, and proteomics at survey level, but gene prediction, functional annotation, structure prediction, and metagenomics aren't itemized, and the chapter is too short to expect real depth. |
+
+Strong on Sections 2 and 3 — biochemistry, microbiology, immunology, genetics,
+and cell biology are covered as thoroughly as the syllabus needs, sometimes
+more. Section 1 (engineering mathematics) gets zero coverage, which is
+expected from a biology text but still needs a separate source. The real gaps
+are inside Section 6: molecular tools (PCR, blotting, CRISPR, fingerprinting)
+and analytical tools (microscopy, spectroscopy, immunoassays, flow cytometry)
+have no dedicated treatment at all, and Section 4's process-control content is
+entirely absent. On its own, this book is not adequate coverage — pair it with
+a lab-techniques reference for Section 6.2–6.3 and a bioprocess/reactor-design
+text for the quantitative half of Section 4.
