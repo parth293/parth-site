@@ -7,6 +7,7 @@ import { getKeyPointsForNote } from "@/lib/key-points";
 import { getFormulasForNote } from "@/lib/formulas";
 import { getWorkedExamplesForNote } from "@/lib/worked-examples";
 import { getSyllabusTagsForNote } from "@/lib/syllabus-tags";
+import { getBookCoverageForNote } from "@/lib/book-coverage";
 import { pillarBySlug, pillars, type PillarSlug } from "@/lib/site";
 
 type Params = { params: Promise<{ section: string; slug: string }> };
@@ -32,11 +33,12 @@ export default async function NoteLayout({
   const doc = await getDoc(pillar.slug, slug);
   if (!doc) notFound();
 
-  const [keyPoints, formulas, workedExamples, syllabusTags] = await Promise.all([
+  const [keyPoints, formulas, workedExamples, syllabusTags, bookCoverage] = await Promise.all([
     getKeyPointsForNote(pillar.slug, slug),
     getFormulasForNote(pillar.slug, slug),
     getWorkedExamplesForNote(pillar.slug, slug),
     getSyllabusTagsForNote(pillar.slug, slug),
+    getBookCoverageForNote(pillar.slug, slug),
   ]);
 
   return (
@@ -50,6 +52,7 @@ export default async function NoteLayout({
             formulas: formulas.length > 0,
             workedExamples: workedExamples.length > 0,
             topics: syllabusTags.length > 0,
+            bookCoverage: bookCoverage.length > 0,
           }}
         />
         {children}
