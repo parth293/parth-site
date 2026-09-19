@@ -9,7 +9,7 @@ import { pillars } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Notes",
   description:
-    "Four evolving bodies of notes: pharmaceutical engineering, bioprocess engineering, biotechnological engineering, and GTM engineering.",
+    "Five evolving bodies of notes: pharmaceutical engineering, bioprocess engineering, biotechnological engineering, GTM engineering, and GATE engineering.",
 };
 
 const SECTION_COUNT_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six"];

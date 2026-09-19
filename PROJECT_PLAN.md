@@ -12,7 +12,7 @@ governs structure and code.
 Simultaneously:
 
 - An identity/credibility hub — who I am, my background, my resume.
-- A digital garden of evolving knowledge sections — four notes pillars, plus
+- A digital garden of evolving knowledge sections — five notes pillars, plus
   general writing.
 
 It is meant to keep evolving indefinitely — new notes, new essays, updated
@@ -41,19 +41,20 @@ Context for tone and positioning; not for direct reproduction.
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Hook, one-liner, 5 pillars (4 notes + writing), latest writing, resume CTA |
+| `/` | Hook, one-liner, 6 pillars (5 notes + writing), latest writing, resume CTA |
 | `/journey` | Narrative version of academic + professional background |
 | `/resume` | Web version + downloadable PDF |
-| `/notes` | Index across all four pillars |
+| `/notes` | Index across all five pillars |
 | `/notes/pharma-eng` | Pillar 1 — pharmaceutical sciences explainers |
 | `/notes/bioprocess-eng` | Pillar 2 — bioprocess engineering explainers |
 | `/notes/biotech-eng` | Pillar 3 — biochemistry, cell/molecular biology, genetics |
 | `/notes/gtm-eng` | Pillar 4 — GTM engineering & philosophy |
+| `/notes/gate-eng` | Pillar 5 — GATE Biotechnology syllabus + solved past papers |
 | `/writing` | Essays, book notes — general evolving writing |
 | `/now` | Current focus; updated periodically |
 
 Each `/notes/*` section has its own index/philosophy page plus a growing list of
-articles. All five are **siblings under one `/notes` collection type**, not
+articles. All six are **siblings under one `/notes` collection type**, not
 separate apps — sections within this one repo, not separate domains.
 Splitting one out later is easy if it ever needs it.
 

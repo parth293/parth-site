@@ -2,7 +2,7 @@ import { getDoc } from "./content";
 import type { PillarSlug } from "./site";
 
 /**
- * Parses a syllabus-shaped note (see content/notes/pharma-eng/gate-bt-syllabus.mdx)
+ * Parses a syllabus-shaped note (see content/notes/gate-eng/gate-bt-syllabus.mdx)
  * into its full section → topic → item structure, so a tagged past-paper
  * note can show human-readable labels and the complete syllabus (including
  * items no question has hit yet) instead of just the codes that happen to
@@ -58,7 +58,7 @@ function parseSyllabusTree(body: string): SyllabusSection[] {
   return sections;
 }
 
-/** `ref` is "pillar/slug", e.g. "pharma-eng/gate-bt-syllabus". */
+/** `ref` is "pillar/slug", e.g. "gate-eng/gate-bt-syllabus". */
 export async function getSyllabusTree(ref: string): Promise<SyllabusSection[]> {
   const [pillar, slug] = ref.split("/");
   const doc = await getDoc(pillar as PillarSlug, slug);
