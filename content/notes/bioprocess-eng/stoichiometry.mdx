@@ -71,7 +71,9 @@ $$
 RQ = \frac{\text{no. of moles of } CO_2 \text{ produced}}{\text{no. of moles of } O_2 \text{ consumed}}
 $$
 
-- $RQ$ — respiratory quotient (dimensionless)
+- $RQ$ — respiratory quotient (ratio of CO$_2$ produced to O$_2$
+  consumed — indicates how reduced or oxidized the substrate is),
+  dimensionless
 
 - $RQ \approx 1$ for carbohydrates — little rearrangement needed between
   substrate and $CO_2$.
@@ -145,7 +147,9 @@ $$
 \gamma = \frac{\text{no. of available electrons}}{\text{no. of carbon atoms}}
 $$
 
-- $\gamma$ — degree of reduction (dimensionless)
+- $\gamma$ — degree of reduction (available electrons per carbon atom —
+  measures how reduced/energy-rich a substance is; higher $\gamma$ needs
+  more $O_2$ to fully oxidize), dimensionless
 
 #### Worked example: degree of reduction of glycine
 
@@ -191,9 +195,12 @@ $$
 \gamma_S w = \gamma_X c + 4a + 8n
 $$
 
-- $\gamma_S$ — degree of reduction of the carbon source (dimensionless)
+- $\gamma_S$ — degree of reduction of the carbon source (how reduced/
+  electron-rich the feedstock is, per carbon atom), dimensionless
 - $w$ — moles of carbon per mole of carbon source (mol)
-- $\gamma_X$ — degree of reduction of biomass (dimensionless)
+- $\gamma_X$ — degree of reduction of biomass (electron content of the cell
+  material per carbon atom — fixed by amine-nitrogen valency, independent
+  of the nitrogen source fed), dimensionless
 - $c$ — stoichiometric coefficient of biomass (mol)
 - $a$ — stoichiometric coefficient of $O_2$ (mol)
 - $n$ — moles of nitrate-nitrogen reduced to the amine level needed for
@@ -247,9 +254,14 @@ $$
 \gamma_S = \gamma_X\, Y_{X/S} + 4a + 8n
 $$
 
-- $\gamma_S$ — degree of reduction of the substrate (dimensionless)
-- $\gamma_X$ — degree of reduction of biomass (dimensionless)
-- $Y_{X/S}$ — cell yield, C-mol biomass per C-mol substrate (dimensionless)
+- $\gamma_S$ — degree of reduction of the substrate (how reduced/
+  electron-rich the feedstock is, per carbon atom), dimensionless
+- $\gamma_X$ — degree of reduction of biomass (electron content of the cell
+  material per carbon atom — fixed by amine-nitrogen valency, independent
+  of the nitrogen source fed), dimensionless
+- $Y_{X/S}$ — cell yield (what fraction of substrate carbon ends up as new
+  biomass, on a C-mole basis), C-mol biomass per C-mol substrate
+  (dimensionless)
 - $a$ — moles of $O_2$ consumed per C-mole of substrate (mol)
 - $n$ — moles of nitrate-nitrogen reduced per C-mole of substrate (mol) —
   $0$ if $NH_3$ is the nitrogen source
@@ -294,7 +306,8 @@ $$
 \gamma_S w = \gamma_X c + \gamma_P j f + 4a + 8n
 $$
 
-- $\gamma_P$ — degree of reduction of the product (dimensionless)
+- $\gamma_P$ — degree of reduction of the product (electron content of the
+  excreted product per carbon atom), dimensionless
 - $j$ — carbon atoms per product molecule (same $j$ as the product's
   formula subscript above) — needed because, unlike biomass, the product
   isn't written on a C-mole basis, so its electron total is
@@ -335,10 +348,12 @@ $$
 Y_{X/S} = \frac{\Delta X}{\Delta S} \qquad\qquad Y_{P/S} = \frac{\Delta P}{\Delta S}
 $$
 
-- $Y_{X/S}$ — biomass yield on substrate, mass basis, in grams of biomass
-  per gram of substrate consumed ($\text{g/g}$)
-- $Y_{P/S}$ — product yield on substrate, mass basis, in grams of product
-  per gram of substrate consumed ($\text{g/g}$)
+- $Y_{X/S}$ — biomass yield on substrate (fraction of substrate mass
+  converted into biomass), mass basis, in grams of biomass per gram of
+  substrate consumed ($\text{g/g}$)
+- $Y_{P/S}$ — product yield on substrate (fraction of substrate mass
+  converted into product), mass basis, in grams of product per gram of
+  substrate consumed ($\text{g/g}$)
 - $\Delta X$, $\Delta P$, $\Delta S$ — biomass formed, product formed, and
   substrate consumed, in grams ($\text{g}$)
 
@@ -379,7 +394,8 @@ $$
 $$
 
 - $c_{max}$ — moles of biomass per mole of substrate at the theoretical
-  ceiling (mol)
+  ceiling (the highest possible biomass yield — reached only if every
+  substrate electron went to biomass, none to $O_2$) (mol)
 
 #### Worked example: maximum $Y_{X/S}$ for growth on glycine
 
@@ -408,7 +424,8 @@ $$
 $$
 
 - $f_{max}$ — moles of product per mole of substrate at the theoretical
-  ceiling (mol)
+  ceiling (the highest possible product yield — reached only if every
+  substrate electron went to product, none to $O_2$) (mol)
 
 #### Worked example: maximum $Y_{P/S}$ for glucose fermented to ethanol
 
@@ -440,7 +457,9 @@ $$
 \text{ThOD} = \frac{\text{available electrons per mole}}{4}
 $$
 
-- $\text{ThOD}$ — theoretical oxygen demand, in moles of $O_2$ per mole of
+- $\text{ThOD}$ — theoretical oxygen demand ($O_2$ needed to fully combust
+  the substance — the ceiling on $O_2$ consumption, reached when no
+  electrons go to biomass or product), in moles of $O_2$ per mole of
   substance ($\text{mol } O_2/\text{mol}$); multiply by $32\ \text{g/mol}$
   and divide by the molar mass for a mass basis ($\text{g } O_2/\text{g}$)
 
@@ -474,6 +493,9 @@ $$
 \%\,\text{element}_i = \frac{n_i M_i}{\sum_j n_j M_j} \times 100
 $$
 
+- $\%\,\text{element}_i$ — mass contribution of element $i$ to dry biomass
+  (what fraction of the cell's dry weight that element accounts for),
+  percent ($\%$)
 - $n_i$ — subscript (atom count) of element $i$ in the biomass formula,
   dimensionless
 - $M_i$ — atomic weight of element $i$, in grams per mole ($\text{g/mol}$)

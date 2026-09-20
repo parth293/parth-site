@@ -45,8 +45,9 @@ $$
 \tau = \frac{F}{A}
 $$
 
-- $\tau$ — shear stress, in pascals ($\text{Pa}$) or newtons per square metre
-  ($\text{N/m}^2$)
+- $\tau$ — shear stress (tangential force per unit area, resisting relative
+  sliding between adjacent fluid layers), in pascals ($\text{Pa}$) or newtons
+  per square metre ($\text{N/m}^2$)
 - $F$ — tangential force, in newtons ($\text{N}$)
 - $A$ — area, in square metres ($\text{m}^2$)
 
@@ -88,7 +89,9 @@ $$
 \nu = \frac{\mu}{\rho}
 $$
 
-- $\nu$ — kinematic viscosity, in square metres per second ($\text{m}^2/\text{s}$)
+- $\nu$ — kinematic viscosity (momentum diffusivity — viscous effect on the
+  fluid, independent of its mass or force), in square metres per second
+  ($\text{m}^2/\text{s}$)
 - $\mu$ — dynamic viscosity, in pascal-seconds ($\text{Pa} \cdot \text{s}$)
 - $\rho$ — density of the fluid, in kilograms per cubic metre ($\text{kg/m}^3$)
 
@@ -109,7 +112,8 @@ $$
   (or $\text{N} \cdot \text{s}^n / \text{m}^2$): $K \uparrow \rightarrow$
   viscosity $\uparrow$; $K \downarrow \rightarrow$ viscosity $\downarrow$
 - $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
-- $n$ — flow behaviour index (dimensionless)
+- $n$ — flow behaviour index (exponent that classifies shear-thinning vs.
+  shear-thickening behaviour), dimensionless
 
 | $n$ | Fluid type | Behaviour |
 | --- | --- | --- |
@@ -130,10 +134,14 @@ $$
 \mu_a = K \dot{\gamma}^{\,n-1}
 $$
 
-- $\mu_a$ — apparent viscosity, in pascal-seconds ($\text{Pa} \cdot \text{s}$)
+- $\mu_a$ — apparent viscosity (the effective, shear-rate-dependent viscosity
+  of a non-Newtonian fluid at an instant — stands in for constant $\mu$ in
+  equations built for Newtonian fluids), in pascal-seconds ($\text{Pa} \cdot
+  \text{s}$)
 - $K$ — consistency index, in $\text{Pa} \cdot \text{s}^n$
 - $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
-- $n$ — flow behaviour index (dimensionless)
+- $n$ — flow behaviour index (exponent that classifies shear-thinning vs.
+  shear-thickening behaviour), dimensionless
 
 #### Worked example: apparent viscosity change with shear rate
 
@@ -182,7 +190,9 @@ $$
 $$
 
 - $\tau$ — shear stress, in pascals ($\text{Pa}$)
-- $\mu$ — dynamic viscosity, in pascal-seconds ($\text{Pa} \cdot \text{s}$)
+- $\mu$ — dynamic viscosity (constant for a Newtonian fluid — independent of
+  the shear stress or shear rate applied), in pascal-seconds
+  ($\text{Pa} \cdot \text{s}$)
 - $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
 
 This is **Newton's law of viscosity**. Fluids that follow it are **Newtonian
@@ -218,7 +228,8 @@ $$
 $$
 
 - $\tau$ — shear stress, in pascals ($\text{Pa}$)
-- $\tau_y$ — yield stress, in pascals ($\text{Pa}$)
+- $\tau_y$ — yield stress (threshold stress that must be exceeded before the
+  material begins to flow at all), in pascals ($\text{Pa}$)
 - $\mu_p$ — plastic viscosity (also called apparent viscosity), in
   pascal-seconds ($\text{Pa} \cdot \text{s}$)
 - $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
@@ -254,7 +265,8 @@ $$
 $$
 
 - $\tau$ — shear stress, in pascals ($\text{Pa}$)
-- $\tau_0$ — Casson yield stress, in pascals ($\text{Pa}$)
+- $\tau_0$ — Casson yield stress (threshold stress below which the fluid
+  behaves like a Bingham plastic), in pascals ($\text{Pa}$)
 - $K_c$ — Casson viscosity coefficient, in pascal-seconds ($\text{Pa} \cdot \text{s}$)
 - $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
 
@@ -276,10 +288,12 @@ $$
 $$
 
 - $\tau$ — shear stress, in pascals ($\text{Pa}$)
-- $\tau_y$ — yield stress, in pascals ($\text{Pa}$)
+- $\tau_y$ — yield stress (threshold stress that must be exceeded before the
+  material begins to flow at all), in pascals ($\text{Pa}$)
 - $K$ — consistency index, in $\text{Pa} \cdot \text{s}^n$
 - $\dot{\gamma}$ — shear rate, in reciprocal seconds ($\text{s}^{-1}$)
-- $n$ — flow behaviour index (dimensionless)
+- $n$ — flow behaviour index (exponent that classifies shear-thinning vs.
+  shear-thickening behaviour), dimensionless
 
 Setting $\tau_y = 0$ recovers the power law equation; setting $n = 1$
 recovers the Bingham plastic equation.

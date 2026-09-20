@@ -28,8 +28,9 @@ $$
 J_A = \frac{N_A}{a} = -D_{AB}\frac{dC_A}{dy}
 $$
 
-- $J_A$ — mass flux of component A, in kilograms per square metre-second
-  ($\text{kg/(m}^2 \cdot \text{s)}$)
+- $J_A$ — mass flux of component A (rate of diffusive mass transport per
+  unit cross-sectional area, driven by the concentration gradient), in
+  kilograms per square metre-second ($\text{kg/(m}^2 \cdot \text{s)}$)
 - $N_A$ — rate of mass transfer of component A, in kilograms per second
   ($\text{kg/s}$)
 - $a$ — cross-sectional area, perpendicular to the direction of diffusion, in
@@ -92,10 +93,13 @@ $$
 N_A = k_L\, a\, (C^* - C)
 $$
 
-- $N_A$ — volumetric rate of mass transfer, in gram-mole per cubic metre
-  per second ($\text{gmol}/(\text{m}^3 \cdot \text{s})$)
-- $k_L$ — (liquid) film mass-transfer coefficient, in metres per second
-  ($\text{m/s}$)
+- $N_A$ — volumetric rate of mass transfer (how fast solute crosses the
+  interface into the bulk liquid, driven by the gap between saturation and
+  bulk concentration), in gram-mole per cubic metre per second
+  ($\text{gmol}/(\text{m}^3 \cdot \text{s})$)
+- $k_L$ — (liquid) film mass-transfer coefficient (how fast a solute
+  molecule crosses the stagnant film — sets the pace of interfacial
+  transfer), in metres per second ($\text{m/s}$)
 - $a$ — interfacial area per unit volume, in square metres per cubic
   metre ($\text{m}^2/\text{m}^3$)
 - $C^*$ — saturation concentration: the maximum concentration of the
@@ -121,8 +125,8 @@ $$
 k_L = \frac{D_{AB}}{\delta}
 $$
 
-- $k_L$ — (liquid) film mass-transfer coefficient, in metres per second
-  ($\text{m/s}$)
+- $k_L$ — (liquid) film mass-transfer coefficient (how fast a solute
+  molecule crosses the stagnant film), in metres per second ($\text{m/s}$)
 - $D_{AB}$ — diffusion coefficient of the solute through the liquid, in
   square metres per second ($\text{m}^2/\text{s}$)
 - $\delta$ — thickness of the stagnant film, in metres ($\text{m}$)
@@ -201,7 +205,9 @@ $$
 \varepsilon_g = \frac{V_g}{V_g + V_L}
 $$
 
-- $\varepsilon_g$ — gas hold-up, dimensionless (fraction, $0$–$1$)
+- $\varepsilon_g$ — gas hold-up (fraction of the dispersion's volume occupied
+  by gas bubbles at any instant — how much gas is retained in the liquid,
+  not the sparging flow rate), dimensionless (fraction, $0$–$1$)
 - $V_g$ — volume of gas (bubbles) in the dispersion, in cubic metres
   ($\text{m}^3$)
 - $V_L$ — volume of liquid in the dispersion, in cubic metres ($\text{m}^3$)
@@ -214,9 +220,11 @@ $$
 a = \frac{6\varepsilon_g}{d_b}
 $$
 
-- $a$ — interfacial area per unit volume, in square metres per cubic metre
-  ($\text{m}^2/\text{m}^3$)
-- $\varepsilon_g$ — gas hold-up, dimensionless
+- $a$ — interfacial area per unit volume (total gas-liquid contact surface
+  available for mass transfer, per unit liquid volume), in square metres
+  per cubic metre ($\text{m}^2/\text{m}^3$)
+- $\varepsilon_g$ — gas hold-up (fraction of dispersion volume occupied by
+  gas), dimensionless
 - $d_b$ — Sauter mean bubble diameter, in metres ($\text{m}$)
 
 The single-bubble worked example above used $a = 6/d$ as shorthand for a
@@ -337,8 +345,9 @@ $$
 k_L = 2\sqrt{\frac{D_{AB}}{\pi t_c}}
 $$
 
-- $k_L$ — liquid film mass-transfer coefficient, in metres per second
-  ($\text{m/s}$)
+- $k_L$ — liquid film mass-transfer coefficient (how fast a solute
+  molecule crosses into a fresh liquid element during its brief time at
+  the interface), in metres per second ($\text{m/s}$)
 - $D_{AB}$ — diffusion coefficient of the solute through the liquid, in
   square metres per second ($\text{m}^2/\text{s}$)
 - $t_c$ — contact time of a liquid element at the interface before it is
@@ -358,12 +367,14 @@ $$
 k_L = \sqrt{D_{AB}\, s}
 $$
 
-- $k_L$ — liquid film mass-transfer coefficient, in metres per second
-  ($\text{m/s}$)
+- $k_L$ — liquid film mass-transfer coefficient (how fast a solute
+  molecule crosses into a fresh liquid element before it is swept away),
+  in metres per second ($\text{m/s}$)
 - $D_{AB}$ — diffusion coefficient of the solute through the liquid, in
   square metres per second ($\text{m}^2/\text{s}$)
-- $s$ — fractional rate of surface renewal, in reciprocal seconds
-  ($\text{s}^{-1}$)
+- $s$ — fractional rate of surface renewal (probability per unit time
+  that a given liquid element gets swapped out for fresh bulk fluid), in
+  reciprocal seconds ($\text{s}^{-1}$)
 
 Like Higbie's theory, $k_L \propto D_{AB}^{0.5}$ — the two theories share
 the same diffusivity dependence even though they disagree on how contact
@@ -421,9 +432,13 @@ $$
 N_A = k_L a\, (C^*_{AL} - C_{AL})
 $$
 
-- $N_A$ — volumetric rate of oxygen transfer (OTR), in gram-mole per
-  cubic metre per second ($\text{gmol}/(\text{m}^3 \cdot \text{s})$)
-- $k_L a$ — volumetric mass transfer coefficient, in reciprocal seconds
+- $N_A$ — volumetric rate of oxygen transfer (OTR — how fast oxygen
+  crosses from gas bubbles into the broth; must keep pace with cellular
+  consumption for aerobic growth), in gram-mole per cubic metre per second
+  ($\text{gmol}/(\text{m}^3 \cdot \text{s})$)
+- $k_L a$ — volumetric mass transfer coefficient (lumps film coefficient
+  and interfacial area into one measurable term — the standard parameter
+  for bioreactor aeration design and scale-up), in reciprocal seconds
   ($\text{s}^{-1}$)
 - $C^*_{AL}$ — saturation concentration of oxygen in the liquid (its
   maximum solubility), in gram-mole per cubic metre ($\text{gmol/m}^3$)
@@ -449,9 +464,11 @@ $$
 
 - $p_{O_2}$ — partial pressure of oxygen in the gas phase, in pascals
   ($\text{Pa}$)
-- $H$ — Henry's law constant for oxygen in the liquid, in
-  pascal-cubic-metre per gram-mole ($\text{Pa}\cdot\text{m}^3/\text{gmol}$)
-  — depends on the gas, the liquid, and temperature
+- $H$ — Henry's law constant for oxygen in the liquid (measures how
+  reluctant the gas is to dissolve — higher $H$ means lower solubility at
+  the same partial pressure), in pascal-cubic-metre per gram-mole
+  ($\text{Pa}\cdot\text{m}^3/\text{gmol}$) — depends on the gas, the
+  liquid, and temperature
 - $C^*_{AL}$ — saturation concentration of oxygen in the liquid, in
   gram-mole per cubic metre ($\text{gmol/m}^3$)
 
@@ -892,6 +909,9 @@ $$
 k_L a = \frac{\ln\left(\dfrac{\bar{C}_{AL} - C_{AL_1}}{\bar{C}_{AL} - C_{AL_2}}\right)}{t_2 - t_1}
 $$
 
+- $k_L a$ — volumetric mass transfer coefficient (the aeration parameter
+  being measured, read off the slope of the reoxygenation recovery
+  curve), in reciprocal seconds ($\text{s}^{-1}$)
 - $t_0$ — time at which the oxygen supply is cut off
 - $t_1$, $t_2$ — two time points during reoxygenation, at which the
   instantaneous oxygen concentrations are $C_{AL_1}$ and $C_{AL_2}$
