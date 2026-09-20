@@ -112,6 +112,49 @@ difference between the saturation concentration and the bulk
 concentration, the more strongly the system pulls the solute into the
 liquid.
 
+### $k_L$ under film theory
+
+Film theory treats the film as a fixed-thickness layer crossed by
+steady-state molecular diffusion, which gives $k_L$ itself as
+
+$$
+k_L = \frac{D_{AB}}{\delta}
+$$
+
+- $k_L$ — (liquid) film mass-transfer coefficient, in metres per second
+  ($\text{m/s}$)
+- $D_{AB}$ — diffusion coefficient of the solute through the liquid, in
+  square metres per second ($\text{m}^2/\text{s}$)
+- $\delta$ — thickness of the stagnant film, in metres ($\text{m}$)
+
+$k_L$ is **directly (linearly) proportional to $D_{AB}$** — doubling the
+diffusivity, with film thickness $\delta$ unchanged, doubles $k_L$.
+
+#### Worked example: effect of doubling diffusivity on $k_L$
+
+**Question.** If the molecular diffusivity of a solute doubles while
+keeping all other physical parameters and film thickness constant,
+according to Whitman's film theory, the mass transfer coefficient $k_L$
+will:
+
+- (a) Increase by a factor of $1.41$ ($\sqrt{2}$)
+- (b) Increase by a factor of $2.0$
+- (c) Increase by a factor of $4.0$
+- (d) Remain unchanged
+
+**Solution.**
+
+1. Film theory gives $k_L = D_{AB}/\delta$ — a linear relationship
+   between $k_L$ and $D_{AB}$, with $\delta$ held fixed.
+2. Doubling $D_{AB}$ (with $\delta$ constant) doubles $k_L$ directly:
+   $k_{L,\text{new}} = (2D_{AB})/\delta = 2\,(D_{AB}/\delta) =
+   2\,k_{L,\text{old}}$.
+3. A factor of $\sqrt{2}$ (option a) is what penetration or surface
+   renewal theory would predict instead, since those give $k_L \propto
+   D_{AB}^{0.5}$ — not film theory.
+
+**Answer:** (b) — $k_L$ increases by a factor of $2.0$.
+
 ### Interfacial area per unit volume ($a$)
 
 **Interfacial area per unit volume** ($a$) is the total interfacial area
@@ -268,91 +311,109 @@ increases $a$.
 ### Volumetric mass transfer coefficient ($k_L a$)
 
 $k_L$ and $a$ are hard to measure separately, so they are lumped into a
-single **volumetric mass transfer coefficient**:
-
-$$
-N_A = k_L a\, (C^* - C)
-$$
-
-- $k_L a$ — volumetric mass transfer coefficient, in reciprocal seconds
-  ($\text{s}^{-1}$)
-- $N_A$ — volumetric rate of mass transfer, in gram-mole per cubic metre
-  per second ($\text{gmol}/(\text{m}^3 \cdot \text{s})$)
-- $C^*$ — saturation concentration, in gram-mole per cubic metre
-  ($\text{gmol/m}^3$)
-- $C$ — bulk concentration, in gram-mole per cubic metre
-  ($\text{gmol/m}^3$)
+single **volumetric mass transfer coefficient**, $k_L a$, in reciprocal
+seconds ($\text{s}^{-1}$) — the same film-theory rate equation as above,
+$N_A = k_L a\,(C^* - C)$, just written with $k_L$ and $a$ combined into
+one term instead of kept separate.
 
 $k_L$ and $a$ change together (e.g. faster impeller speed raises both),
 so they're rarely separated in practice. In aerobic fermentation, $A$
 is oxygen, so $k_L a$ represents the bioreactor's **oxygen transfer
 capacity** — the standard parameter for bioreactor design and scale-up.
 
-## Oxygen uptake in a bioreactor
+## Penetration and surface renewal theories
 
-### Oxygen solubility ($C^*$) and Henry's law
+**Penetration theory** and **surface renewal theory** replace film
+theory's stagnant film with short-lived liquid elements that arrive at
+the interface, exchange solute by unsteady-state diffusion, then get
+swept back into the bulk before equilibrium is reached.
 
-**Oxygen is a sparingly soluble gas** in aqueous media — at
-$25\,^\circ\text{C}$, water in equilibrium with ambient air holds only
-about $7$–$9\ \text{mg/L}$ dissolved O$_2$ ($\approx 0.2$–
-$0.3\ \text{mmol/L}$). This small number is exactly why $k_L a$ has to be
-so large in aerobic fermentation: the absolute driving force
-$(C^*_{AL} - C_{AL})$ available at any moment is tiny.
+### Higbie's penetration theory
 
-Henry's law sets $C^*$ from the partial pressure of oxygen in the gas
-phase:
+Every liquid element sits at the interface for the **same fixed contact
+time** $t_c$ before being replaced by fresh bulk fluid.
 
 $$
-C^*_{AL} = \frac{p_{O_2}}{H}
+k_L = 2\sqrt{\frac{D_{AB}}{\pi t_c}}
 $$
 
-- $C^*_{AL}$ — saturation concentration of oxygen in the liquid, in
-  gram-mole per cubic metre ($\text{gmol/m}^3$)
-- $p_{O_2}$ — partial pressure of oxygen in the gas phase, in pascals
-  ($\text{Pa}$)
-- $H$ — Henry's law constant for oxygen in the broth, in
-  pascal-cubic-metres per gram-mole ($\text{Pa}\cdot\text{m}^3/\text{gmol}$)
+- $k_L$ — liquid film mass-transfer coefficient, in metres per second
+  ($\text{m/s}$)
+- $D_{AB}$ — diffusion coefficient of the solute through the liquid, in
+  square metres per second ($\text{m}^2/\text{s}$)
+- $t_c$ — contact time of a liquid element at the interface before it is
+  replaced, in seconds ($\text{s}$) — assumed identical for every element
 
-**What raises $C^*$:**
-- **Higher headspace/total pressure** — for a fixed O$_2$ mole fraction in
-  the gas, raising total pressure raises $p_{O_2}$ proportionally, so
-  $C^*$ rises. This is why some high-cell-density fermentations run
-  pressurized: it raises the achievable driving force without needing
-  more $k_L a$.
+This gives $k_L \propto D_{AB}^{0.5}$ — a square-root dependence, unlike
+film theory's linear $k_L \propto D_{AB}^{1.0}$.
 
-**What lowers $C^*$:**
-- **Higher temperature** — gas dissolution is exothermic, so $C^*$ falls
-  as temperature rises (see Temperature under "Factors affecting $k_L a$"
-  below) — pulling in the opposite direction from higher headspace
-  pressure.
-- **Salting-out effect** — high concentrations of dissolved electrolytes
-  and sugars in the broth raise its ionic strength, which lowers gas
-  solubility. Concentrated fermentation media can measurably suppress
-  $C^*$ below the value for pure water.
+### Danckwerts' surface renewal theory
 
-#### Worked example: oxygen solubility claims
+Danckwerts kept the same short-lived-element picture but dropped the
+assumption of equal contact time: elements are replaced at random, with a
+**fractional rate of surface renewal** $s$ describing the probability per
+unit time that any given element gets swapped out.
 
-**Question.** Select the CORRECT statements regarding oxygen solubility
-in aqueous fermentation broth: (a) O$_2$ is a sparingly soluble gas, with
-$C^*$ typically around $7$–$9\ \text{mg/L}$ at $25\,^\circ\text{C}$ under
-ambient air. (b) Increasing bioreactor temperature increases $C^*$.
-(c) Increasing vessel headspace pressure increases $C^*$ according to
-Henry's law. (d) High concentrations of dissolved electrolytes and sugars
-decrease $C^*$ via the salting-out effect.
+$$
+k_L = \sqrt{D_{AB}\, s}
+$$
+
+- $k_L$ — liquid film mass-transfer coefficient, in metres per second
+  ($\text{m/s}$)
+- $D_{AB}$ — diffusion coefficient of the solute through the liquid, in
+  square metres per second ($\text{m}^2/\text{s}$)
+- $s$ — fractional rate of surface renewal, in reciprocal seconds
+  ($\text{s}^{-1}$)
+
+Like Higbie's theory, $k_L \propto D_{AB}^{0.5}$ — the two theories share
+the same diffusivity dependence even though they disagree on how contact
+time is distributed.
+
+### Comparing the three theories
+
+| Theory | Interface picture | Contact time assumption | $k_L$ vs. $D_{AB}$ |
+| --- | --- | --- | --- |
+| Whitman film theory | stagnant film, steady-state diffusion | not applicable (steady state) | $k_L \propto D_{AB}^{1.0}$ |
+| Higbie penetration theory | short-lived elements, unsteady diffusion | same fixed $t_c$ for every element | $k_L \propto D_{AB}^{0.5}$ |
+| Danckwerts surface renewal theory | short-lived elements, unsteady diffusion | random distribution of ages, rate $s$ | $k_L \propto D_{AB}^{0.5}$ |
+
+The $D_{AB}$ exponent identifies the theory family — **1.0 for film
+theory, 0.5 for either penetration or surface renewal.** Distinguishing
+Higbie from Danckwerts then comes down to the contact-time assumption,
+not the exponent: **fixed and equal (Higbie)** vs. **randomly
+distributed (Danckwerts).**
+
+#### Worked example: which theory does each statement describe?
+
+**Question.** Which of the following statements comparing mass transfer
+theories are correct?
+
+- (a) Whitman's film theory predicts $k_L$ is directly proportional to
+  $D_{AB}$ raised to the power $1.0$.
+- (b) Higbie's penetration theory predicts $k_L$ is proportional to
+  $D_{AB}$ raised to the power $0.5$.
+- (c) Danckwerts' surface renewal theory assumes all liquid elements stay
+  at the interface for the exact same contact time.
+- (d) Both Higbie's and Danckwerts' theories predict $k_L$ is
+  proportional to $\sqrt{D_{AB}}$.
 
 **Solution.**
 
-1. (a) is the standard textbook solubility value for O$_2$ in water at
-   room temperature under air — correct.
-2. Gas dissolution is exothermic, so solubility falls as temperature
-   rises, not rises — (b) is false.
-3. Henry's law, $C^*_{AL} = p_{O_2}/H$, makes $C^*$ directly proportional
-   to the partial pressure of O$_2$; raising headspace pressure raises
-   $p_{O_2}$ and therefore $C^*$ — (c) is correct.
-4. Dissolved electrolytes and sugars raise the broth's ionic strength,
-   which suppresses gas solubility (salting-out) — (d) is correct.
+1. Film theory models the film as a fixed-thickness, steady-state
+   diffusion path: $k_L = D_{AB}/\delta$, which is linear in $D_{AB}$.
+   **(a) is correct.**
+2. Higbie's $k_L = 2\sqrt{D_{AB}/(\pi t_c)}$ is a square-root dependence.
+   **(b) is correct.**
+3. "Exact same contact time for every element" is Higbie's assumption,
+   not Danckwerts' — Danckwerts specifically replaced it with a random
+   distribution of surface ages. **(c) is incorrect**, since it describes
+   the wrong theory.
+4. Danckwerts' $k_L = \sqrt{D_{AB}\, s}$ is also a square-root dependence,
+   matching Higbie's. **(d) is correct.**
 
-**Answer:** (a), (c), and (d) are correct; (b) is false.
+**Answer:** (a), (b), and (d) are correct; (c) is incorrect.
+
+## Oxygen uptake in a bioreactor
 
 ### Rate of oxygen transfer
 
@@ -368,6 +429,144 @@ $$
   maximum solubility), in gram-mole per cubic metre ($\text{gmol/m}^3$)
 - $C_{AL}$ — instantaneous concentration of oxygen in the liquid, in
   gram-mole per cubic metre ($\text{gmol/m}^3$)
+
+### Henry's law and $C^*_{AL}$
+
+**Oxygen is a sparingly soluble gas** in aqueous media — at
+$25\,^\circ\text{C}$, water in equilibrium with ambient air holds only
+about $7$–$9\ \text{mg/L}$ dissolved O$_2$ ($\approx 0.2$–
+$0.3\ \text{mmol/L}$). This small number is exactly why $k_L a$ has to be
+so large in aerobic fermentation: the absolute driving force
+$(C^*_{AL} - C_{AL})$ available at any moment is tiny.
+
+$C^*_{AL}$ isn't a fixed property of oxygen — it's set by **Henry's
+law**, which relates the partial pressure of a gas above a liquid to its
+equilibrium (saturation) concentration dissolved in that liquid:
+
+$$
+p_{O_2} = H\, C^*_{AL}
+$$
+
+- $p_{O_2}$ — partial pressure of oxygen in the gas phase, in pascals
+  ($\text{Pa}$)
+- $H$ — Henry's law constant for oxygen in the liquid, in
+  pascal-cubic-metre per gram-mole ($\text{Pa}\cdot\text{m}^3/\text{gmol}$)
+  — depends on the gas, the liquid, and temperature
+- $C^*_{AL}$ — saturation concentration of oxygen in the liquid, in
+  gram-mole per cubic metre ($\text{gmol/m}^3$)
+
+For a fixed oxygen partial pressure in the sparged gas, $C^*_{AL} =
+p_{O_2}/H$ — so $C^*_{AL}$ moves opposite to $H$.
+
+#### Factors affecting $C^*_{AL}$
+
+Per $C^*_{AL} = p_{O_2}/H$, anything that changes $p_{O_2}$ or $H$
+changes $C^*_{AL}$:
+
+1. **Partial pressure of oxygen in the inlet gas, $p_{O_2}$.** Richer
+   oxygen content in the sparged gas (e.g. oxygen-enriched air) directly
+   raises $p_{O_2}$, and so $C^*_{AL}$.
+2. **Total headspace/system pressure.** By Dalton's law, $p_{O_2} =
+   y_{O_2}\, P_{total}$ — for the same gas composition, raising the total
+   pressure (as in a pressurized fermenter) raises $p_{O_2}$ in
+   proportion, and so $C^*_{AL}$. This is why pressurizing a fermenter is
+   a real technique for boosting oxygen supply.
+3. **Temperature.** $H$ **increases with temperature** — dissolving a
+   gas into a liquid is exothermic, so by Le Chatelier's principle,
+   raising temperature shifts the gas–liquid equilibrium back toward the
+   gas phase, and less gas stays dissolved:
+
+   $$
+   \text{Temperature}\uparrow \;\Rightarrow\; H\uparrow \;\Rightarrow\; C^*_{AL}\downarrow
+   $$
+
+   So a hotter broth has a **lower**, not higher, oxygen saturation
+   concentration — the opposite of what intuition about "warm liquids
+   dissolve more gas" might suggest. This is the same fact as the
+   temperature factor for $k_L a$ above, now traced back to its cause:
+   it's $H$ rising with temperature that shrinks $C^*$ and squeezes the
+   $(C^* - C)$ driving force.
+4. **Dissolved solutes (salts, sugars).** Dissolved electrolytes and
+   sugars in the medium raise the effective $H$ for oxygen — the
+   **salting-out effect** — so a real fermentation broth has a lower
+   $C^*_{AL}$ than pure water at the same temperature and $p_{O_2}$.
+
+#### Worked example: which factors affect $C^*$?
+
+**Question.** Which of the following physical factors influence the
+saturation dissolved oxygen concentration ($C^*$) in a bioreactor?
+
+- (a) Partial pressure of oxygen in the inlet gas stream
+- (b) Total bioreactor headspace pressure
+- (c) Temperature of the broth
+- (d) Concentration of dissolved salts and sugars in the medium
+
+**Solution.** All four are genuine factors, via $C^* = p_{O_2}/H$:
+
+1. (a) sets $p_{O_2}$ directly. **Correct.**
+2. (b) sets $p_{O_2}$ indirectly, through Dalton's law
+   ($p_{O_2} = y_{O_2} P_{total}$). **Correct.**
+3. (c) sets $H$ — higher temperature raises $H$ and lowers $C^*$.
+   **Correct.**
+4. (d) also sets $H$, via the salting-out effect — dissolved solutes
+   raise $H$ and lower $C^*$ relative to pure water. **Correct.**
+
+**Answer:** all four, (a)–(d), influence $C^*$.
+
+#### Worked example: true/false on oxygen transfer fundamentals
+
+**Question.** Which of the following statements regarding oxygen
+transfer in aerobic bioreactors is/are TRUE?
+
+- (a) The driving force for oxygen transfer across the liquid film is
+  $(C^* - C_L)$.
+- (b) The addition of surfactants/antifoam agents generally decreases
+  $k_L$ by adding interfacial resistance.
+- (c) Smaller bubble size increases the gas-liquid interfacial area per
+  unit volume $a$.
+- (d) Dissolved oxygen saturation solubility $C^*$ increases with
+  increasing temperature.
+
+**Solution.**
+
+1. The film-theory rate equation is $N_A = k_L a (C^* - C)$ — the
+   concentration gap between saturation and bulk is exactly the driving
+   force. **(a) is true.**
+2. Antifoam agents are surfactants: they add a resistive film at the
+   interface, lowering $k_L$. **(b) is true.**
+3. Smaller bubbles mean more total surface area for the same gas volume
+   ($a = 6/d$ for a sphere) — smaller $d$ gives larger $a$. **(c) is
+   true.**
+4. By Henry's law, $C^* = p_{O_2}/H$, and $H$ **increases** with
+   temperature (gas dissolution is exothermic) — so $C^*$ **decreases**
+   with temperature, not increases. **(d) is false.**
+
+**Answer:** (a), (b), and (c) are true; (d) is false.
+
+#### Worked example: oxygen solubility claims
+
+**Question.** Select the CORRECT statements regarding oxygen solubility
+in aqueous fermentation broth: (a) O$_2$ is a sparingly soluble gas, with
+$C^*$ typically around $7$–$9\ \text{mg/L}$ at $25\,^\circ\text{C}$ under
+ambient air. (b) Increasing bioreactor temperature increases $C^*$.
+(c) Increasing vessel headspace pressure increases $C^*$ according to
+Henry's law. (d) High concentrations of dissolved electrolytes and sugars
+decrease $C^*$ via the salting-out effect.
+
+**Solution.**
+
+1. (a) is the standard textbook solubility value for O$_2$ in water at
+   room temperature under air — correct.
+2. $H$ increases with temperature (gas dissolution is exothermic), so
+   $C^* = p_{O_2}/H$ falls as temperature rises, not rises — (b) is
+   false.
+3. Henry's law makes $C^*$ directly proportional to $p_{O_2}$; raising
+   headspace pressure raises $p_{O_2}$ (Dalton's law) and therefore
+   $C^*$ — (c) is correct.
+4. Dissolved electrolytes and sugars raise the broth's effective $H$
+   (salting-out), which lowers $C^*$ — (d) is correct.
+
+**Answer:** (a), (c), and (d) are correct; (b) is false.
 
 ![Path of an oxygen molecule from a gas bubble to a cell's reaction site, numbered in eight steps: (1) interior of the bubble to the gas-liquid interface, (2) across the gas-liquid interface, (3) through the liquid film around the bubble, (4) across the bulk liquid, (5) through the liquid film around the cell, (6) across the liquid-cell interface, (7) to an individual cell within a clump, (8) through the cytoplasm to the reaction site — with k_L a labeling the overall path](/notes/bioprocess-eng/oxygen-transfer-resistance-steps.png)
 
@@ -515,6 +714,11 @@ There's a reference bubble size around $2$–$3\ \text{mm}$:
   slightly lowers $k_L$ — but the resulting jump in interfacial area
   $a$ easily outweighs that drop, so $k_L a$ increases overall.
 
+**Sparger design sets the bubble size at the source.** A large single
+orifice sparger releases coarse bubbles; a **sintered (micro)sparger**
+forces gas through many fine pores instead, producing much smaller
+bubbles — pushing $a$, and so $k_L a$, up.
+
 ### 2. Viscosity
 
 - **Viscosity↑** → resistance to OTR increases → $k_L a$ decreases.
@@ -544,24 +748,50 @@ driving force behind it.
 
 - **Sparging (superficial gas) velocity↑** → gas hold-up $\varepsilon_g$↑
   → $a$ (and $k_L a$)↑, since $a = 6\varepsilon_g/d_b$ — see "Gas hold-up"
-  above.
+  above. Equivalently: more gas fed in means more gas held up and more
+  total interfacial area.
 - **Coalescence** → bubbles merge, $d_b$↑ → $a$↓ → $k_L a$↓. Coalescence
   always reduces interfacial area — it works against everything sparging
   and impeller shear are trying to achieve.
+- **Sparger design** matters too: a sintered microsparger produces much
+  finer bubbles than a large single orifice at the same flow rate,
+  raising $a$ (and $k_L a$) for the same gas input.
 
 ### 6. Antifoam agents
 
-Antifoams (commonly silicone-based) control foam but come at a direct
-cost to $k_L a$:
+Chemical antifoams (commonly silicone-based surfactants) control foam but
+come at a direct cost to $k_L a$, especially at high concentration:
 
 - They lower surface tension in a way that **promotes bubble
-  coalescence** (bigger bubbles, lower $a$).
+  coalescence** into fewer, larger bubbles (bigger $d_b$, lower $a$).
 - They form a hydrophobic film at the gas-liquid interface that adds its
   own resistance to O$_2$ diffusion, lowering $k_L$ directly.
 
 Excess antifoam is a common, easily overlooked way to cripple oxygen
 transfer even while foam is well controlled — dose the minimum needed,
 not the maximum tolerated.
+
+#### Worked example: which changes raise $k_L a$?
+
+**Question.** Which of the following operational modifications will
+result in an increase in $k_L a$ in an agitated bioreactor? (a) Increasing
+the impeller rotational speed ($N_i$) (b) Increasing the sparging gas
+flow rate (c) Adding a chemical antifoam agent at high concentration
+(d) Replacing a large single orifice sparger with a sintered microsparger.
+
+**Solution.**
+
+1. Higher impeller speed increases turbulence and breaks bubbles smaller
+   — $k_L a$ increases. **(a) is correct.**
+2. Higher gas flow rate means more gas hold-up and more total interfacial
+   area — $k_L a$ increases. **(b) is correct.**
+3. High-concentration antifoam promotes coalescence and adds interfacial
+   resistance, both of which lower $k_L a$ rather than raise it.
+   **(c) is incorrect.**
+4. A sintered microsparger produces much finer bubbles than a large
+   single orifice, raising $a$ — $k_L a$ increases. **(d) is correct.**
+
+**Answer:** (a), (b), and (d) increase $k_L a$; (c) decreases it.
 
 #### Worked example: which factors decrease $k_L a$
 
@@ -651,11 +881,10 @@ inlet and outlet total volumetric gas flow rates are nearly equal.
 
 ### 2. Dynamic gassing-out method (most important)
 
-Air supply to a respiring culture is cut off at $t_0$: with no more
-oxygen coming in, $C_{AL}$ falls as the cells keep consuming it (the
-OUR). Air is then switched back on, and $C_{AL}$ climbs back up toward
-a steady level $\bar{C}_{AL}$. Two points on that recovery curve,
-$(t_1, C_{AL_1})$ and $(t_2, C_{AL_2})$, give:
+The oxygen supply is interrupted at $t_0$, dissolved oxygen falls, supply
+is restored, and $C_{AL}$ climbs back up toward a steady level
+$\bar{C}_{AL}$. Two points on that recovery curve, $(t_1, C_{AL_1})$ and
+$(t_2, C_{AL_2})$, give:
 
 ![Dissolved oxygen C_AL plotted against time: a flat line drops sharply once air flow is stopped at t0 as the culture consumes oxygen (OUR), bottoms out, then climbs back up through two marked recovery points (t1, C_AL1) and (t2, C_AL2) toward a steady reoxygenated level C̄_AL](/notes/bioprocess-eng/dynamic-gassing-out-method-curve.png)
 
@@ -672,16 +901,45 @@ $$
 ($\ln$ is the natural log; if only base-10 log tables are available,
 $\ln x = 2.303 \log x$.)
 
-**De-oxygenation can be done two ways:** either simply cut off the air
-supply and let respiring cells consume the dissolved O$_2$ naturally (as
-above), or actively strip it by **sparging nitrogen gas** through the
-broth — useful when respiration alone is too slow, or when testing
-outside an active culture. Dissolved salts in the broth don't interfere
-with either variant; the method works in real fermentation media exactly
-as it does in plain water.
+This shared formula covers **two distinct named variants**, which differ
+in how de-oxygenation happens and — critically — in what $\bar{C}_{AL}$
+actually equals.
 
-**Probe lag is a real limitation.** The method assumes the
-dissolved-oxygen probe responds instantly to changes in $C_{AL}$, but
+#### Variant A: dynamic method with respiring cells (Taguchi–Humphrey)
+
+De-oxygenation happens through **the culture's own respiration**: cutting
+off the air supply is what starves the broth of oxygen, since the cells
+themselves consume the residual dissolved oxygen (this decline phase can
+even be used separately to read off the OUR). Air is then switched back
+on and $C_{AL}$ climbs back toward $\bar{C}_{AL}$.
+
+**$\bar{C}_{AL}$ vs. $C^*_{AL}$ — don't conflate them.** Because the
+respiring culture keeps consuming oxygen even during recovery, the level
+$C_{AL}$ actually settles at ($\bar{C}_{AL}$) sits *below* the true
+no-consumption saturation value ($C^*_{AL}$): $\bar{C}_{AL} < C^*_{AL}$.
+Using $C^*_{AL}$ in the ratio instead of $\bar{C}_{AL}$ gives the wrong
+$k_L a$. This variant specifically **requires a living, respiring
+culture** — unlike the variant below, and unlike the sulphite oxidation
+method, which needs oxygen consumption to be purely chemical, not
+biological.
+
+#### Variant B: physical gassing-out method (nitrogen stripping)
+
+The alternative way to de-oxygenate: actively strip dissolved O$_2$ by
+**sparging nitrogen gas** through the broth, with nothing biological
+consuming it. Air is then switched back on, and because nothing consumes
+oxygen during recovery, the system approaches the *true* saturation value
+directly — here $\bar{C}_{AL} = C^*_{AL}$, so the formula can safely be
+written with $C^*$. This variant is useful when respiration alone is too
+slow, or when characterizing a broth's $k_L a$ (e.g. its rheology effects)
+independent of any organism — it can be run on cell-free medium or before
+inoculation.
+
+**Dissolved salts don't interfere with either variant** — the method
+works in real fermentation media exactly as it does in plain water.
+
+**Probe lag is a real limitation, in either variant.** The method assumes
+the dissolved-oxygen probe responds instantly to changes in $C_{AL}$, but
 every DO probe has its own response time $\tau_p$ (set by its membrane
 and internal electrode geometry). If $\tau_p$ is comparable to or larger
 than $1/k_L a$, the probe can't keep up with the true recovery curve and
@@ -690,7 +948,35 @@ probe dynamics (e.g. fitting a first-order probe-response model) before
 $k_L a$ can be extracted correctly. A fast probe ($\tau_p \ll 1/k_L a$)
 avoids the correction entirely.
 
-#### Worked example: correctness checks on the dynamic gassing-out method
+#### Worked example: which assertions about the respiring-cells variant are correct?
+
+**Question.** Select the CORRECT assertions regarding the dynamic
+gassing-out method (Variant A, with a respiring culture) for determining
+$k_L a$:
+
+- (a) The broth is first de-oxygenated by sparging nitrogen gas.
+- (b) Dissolved oxygen is monitored as a function of time after air
+  sparging is resumed.
+- (c) The slope of $\ln[(C^* - C)/C^*]$ versus time yields $k_L a$.
+- (d) The method cannot be applied if living, respiring microorganisms
+  are present.
+
+**Solution.**
+
+1. In this variant, de-oxygenation comes specifically from the culture's
+   own respiration once air is cut off — nitrogen sparging belongs to
+   Variant B, not this one. **(a) is incorrect here.**
+2. This is exactly the recovery phase the method measures: air resumes
+   and $C_{AL}$ is tracked climbing back up. **(b) is correct.**
+3. The correct ratio uses $\bar{C}_{AL}$ (the level actually reached
+   under respiration), not $C^*_{AL}$ (the no-consumption saturation
+   value) — see the distinction above. **(c) is incorrect as stated.**
+4. The opposite is true: this variant is specifically designed to be used
+   **with** a living, respiring culture. **(d) is incorrect.**
+
+**Answer:** (b) only.
+
+#### Worked example: correctness checks across both variants
 
 **Question.** Regarding the dynamic gassing-out method for determining
 $k_L a$ in a fermenter, which of the following statements is/are
@@ -705,19 +991,26 @@ salts.
 
 **Solution.**
 
-1. Both de-oxygenation routes — cutting air, or sparging N$_2$ — are
-   standard variants of this method — (a) is correct.
-2. This is exactly the two-point form of the equation above: the ratio
-   $\ln[(\bar{C}_{AL}-C_{AL_1})/(\bar{C}_{AL}-C_{AL_2})]$ over the elapsed
-   time $(t_2-t_1)$ *is* the slope of $\ln(C^*-C_{AL})$ plotted against
-   $t$ — (b) is correct.
+1. Both routes are real — they're just the two different named variants
+   above (respiring-cells vs. nitrogen-stripping), not two options within
+   a single technique. **(a) is correct** as a statement about the method
+   family as a whole.
+2. This is the two-point slope form of the recovery curve. Note that
+   $C^*$ here is only literally exact for Variant B (nitrogen-stripped);
+   for Variant A the correct baseline is $\bar{C}_{AL}$, not the true
+   $C^*$ (see above). Read at the level this question intends, the
+   underlying "slope of $\ln(\text{driving force})$ vs. time" technique
+   is what yields $k_L a$ either way. **(b) is correct**, with that
+   caveat in mind.
 3. A slow DO probe can't track the true recovery curve once its own
    response time approaches the process time scale $1/k_L a$, so its lag
-   must be corrected for — (c) is correct.
+   must be corrected for — **(c) is correct.**
 4. Dissolved salts are present in essentially every real fermentation
-   broth and don't interfere with this method — (d) is false.
+   broth and don't interfere with this method — **(d) is false.**
 
-**Answer:** (a), (b), and (c) are correct; (d) is false.
+**Answer:** (a), (b), and (c) are correct; (d) is false — but remember
+which baseline ($C^*$ vs. $\bar{C}_{AL}$) is actually correct depends on
+which variant you're running.
 
 ### 3. Sulphite oxidation method
 
@@ -796,6 +1089,11 @@ first-order (b) Co$^{2+}$, zero-order (c) Fe$^{2+}$, second-order
   to low; **film theory** assumes a linear concentration profile across each
   stagnant film — steady-state diffusion, no accumulation, same reasoning as
   linear conduction through a wall.
+- **Film theory gives $k_L \propto D_{AB}^{1.0}$; penetration (Higbie) and
+  surface renewal (Danckwerts) theories both give $k_L \propto
+  D_{AB}^{0.5}$** — the two square-root theories differ only in their
+  contact-time assumption: fixed and equal (Higbie) vs. randomly
+  distributed (Danckwerts).
 - At the phase boundary itself there is no resistance — instantaneous
   equilibrium — and it's the **partition coefficient**, not diffusion, that
   decides the concentration jump between the two phases there.
