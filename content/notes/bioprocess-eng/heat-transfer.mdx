@@ -25,7 +25,8 @@ $$
 \hat{Q} = -kA\frac{dT}{dy}
 $$
 
-- $\hat{Q}$ — rate of heat transfer, in watts ($\text{W}$)
+- $\hat{Q}$ — rate of heat transfer (thermal energy crossing area $A$ per
+  unit time), in watts ($\text{W}$)
 - $k$ — thermal conductivity of the wall, in watts per metre-kelvin
   ($\text{W}/(\text{m} \cdot \text{K})$)
 - $A$ — area perpendicular to heat transfer, in square metres ($\text{m}^2$)
@@ -40,7 +41,8 @@ $$
 \hat{Q} = -kA\frac{T_2 - T_1}{y}
 $$
 
-- $\hat{Q}$ — rate of heat transfer, in watts ($\text{W}$)
+- $\hat{Q}$ — rate of heat transfer (thermal energy crossing area $A$ per
+  unit time), in watts ($\text{W}$)
 - $k$ — thermal conductivity of the wall, in watts per metre-kelvin
   ($\text{W}/(\text{m} \cdot \text{K})$)
 - $A$ — area perpendicular to heat transfer, in square metres ($\text{m}^2$)
@@ -81,9 +83,11 @@ $$
 \hat{Q} = hA \Delta T
 $$
 
-- $\hat{Q}$ — rate of heat transfer, in watts ($\text{W}$)
-- $h$ — individual heat transfer coefficient, in watts per square
-  metre-kelvin ($\text{W}/(\text{m}^2 \cdot \text{K})$)
+- $\hat{Q}$ — rate of heat transfer (thermal energy crossing area $A$ per
+  unit time), in watts ($\text{W}$)
+- $h$ — individual (film) heat transfer coefficient — how readily heat
+  crosses between the bulk fluid and the wall by convection, in watts per
+  square metre-kelvin ($\text{W}/(\text{m}^2 \cdot \text{K})$)
 - $A$ — area, in square metres ($\text{m}^2$)
 - $\Delta T$ — temperature gradient, in kelvin ($\text{K}$)
 
@@ -147,9 +151,12 @@ $$
 \hat{Q} = UA \Delta T_{LMTD}
 $$
 
-- $\hat{Q}$ — rate of heat transfer, in watts ($\text{W}$)
-- $U$ — overall heat transfer coefficient, in watts per square metre-kelvin
-  ($\text{W}/(\text{m}^2 \cdot \text{K})$)
+- $\hat{Q}$ — rate of heat transfer (thermal energy crossing area $A$ per
+  unit time), in watts ($\text{W}$)
+- $U$ — overall heat transfer coefficient (lumps both film coefficients and
+  the wall's own conduction resistance into one number, avoiding the need
+  to measure $\Delta T$ at each internal interface), in watts per square
+  metre-kelvin ($\text{W}/(\text{m}^2 \cdot \text{K})$)
 - $A$ — area, in square metres ($\text{m}^2$)
 - $\Delta T_{LMTD}$ — logarithmic mean temperature difference, in kelvin
   ($\text{K}$)
@@ -160,8 +167,9 @@ $$
 \frac{1}{U} = \frac{1}{h_1} + \frac{x}{k} + \frac{1}{h_2}
 $$
 
-- $U$ — overall heat transfer coefficient, in watts per square metre-kelvin
-  ($\text{W}/(\text{m}^2 \cdot \text{K})$)
+- $U$ — overall heat transfer coefficient (lumps both film coefficients and
+  the wall's own conduction resistance into one number), in watts per
+  square metre-kelvin ($\text{W}/(\text{m}^2 \cdot \text{K})$)
 - $h_1, h_2$ — individual film heat transfer coefficients on either side of
   the wall, in watts per square metre-kelvin ($\text{W}/(\text{m}^2 \cdot
   \text{K})$)
@@ -175,7 +183,9 @@ $$
 \Delta T_{LMTD} = \frac{\Delta T_2 - \Delta T_1}{\ln(\Delta T_2 / \Delta T_1)}
 $$
 
-- $\Delta T_{LMTD}$ — logarithmic mean temperature difference, in kelvin
+- $\Delta T_{LMTD}$ — logarithmic mean temperature difference (single
+  equivalent driving-force temperature for the whole exchanger, replacing
+  the $\Delta T$ that actually varies along its length), in kelvin
   ($\text{K}$)
 - $\Delta T_2, \Delta T_1$ — temperature differences at the two ends of the
   heat exchanger, in kelvin ($\text{K}$)
