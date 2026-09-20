@@ -19,10 +19,10 @@ electrons. No mobility or movement of matter is involved in conduction.
 
 ![Hot fluid on the left, cold fluid on the right, separated by a metal wall in the middle; an arrow through the wall marks the direction of heat flow, and the wall's thickness is labelled B](/notes/bioprocess-eng/conduction-hot-cold-fluid-metal-wall.png)
 
-### Rate of heat transfer by conduction (differential form)
+### Rate of heat transfer by conduction
 
 $$
-\hat{Q} = -kA\frac{dT}{dy}
+\hat{Q} = -kA\frac{dT}{dy} = -kA\frac{T_2 - T_1}{y}
 $$
 
 - $\hat{Q}$ — rate of heat transfer (thermal energy crossing area $A$ per
@@ -31,25 +31,17 @@ $$
   ($\text{W}/(\text{m} \cdot \text{K})$)
 - $A$ — area perpendicular to heat transfer, in square metres ($\text{m}^2$)
 - $dT/dy$ — temperature gradient, in kelvin per metre ($\text{K/m}$)
-
-The negative sign shows that heat is transferred from the hot side to the
-cold side.
-
-### Rate of heat transfer by conduction (finite-thickness form)
-
-$$
-\hat{Q} = -kA\frac{T_2 - T_1}{y}
-$$
-
-- $\hat{Q}$ — rate of heat transfer (thermal energy crossing area $A$ per
-  unit time), in watts ($\text{W}$)
-- $k$ — thermal conductivity of the wall, in watts per metre-kelvin
-  ($\text{W}/(\text{m} \cdot \text{K})$)
-- $A$ — area perpendicular to heat transfer, in square metres ($\text{m}^2$)
 - $T_2, T_1$ — temperatures either side of the wall, in kelvin ($\text{K}$)
 - $y$ — distance component of thickness, in metres ($\text{m}$)
 
-The sign in front of $kA$ depends on which temperature is subtracted first:
+The first form is differential — it holds at a point, for the local
+gradient $dT/dy$. Integrating it across a wall of constant thickness and
+conductivity gives the second, finite-thickness form, which swaps the
+gradient for the finite difference $(T_2 - T_1)/y$ across the whole wall.
+
+The negative sign shows that heat is transferred from the hot side to the
+cold side. In the finite-thickness form, the sign in front of $kA$ depends
+on which temperature is subtracted first:
 
 - Subtracting $T_{cold} - T_{hot}$: use a negative sign.
 - Subtracting $T_{hot} - T_{cold}$: use a positive sign.
@@ -93,10 +85,37 @@ $$
 
 $h$ depends on:
 
-- Viscosity.
-- Fluid film thickness.
-- Flow velocity.
-- Thermal conductivity.
+| Factor | Effect on $h$ |
+| --- | --- |
+| Higher flow velocity / agitation (more turbulence) | Increases $h$ — thins the boundary film |
+| Lower viscosity (e.g. higher temperature) | Increases $h$ — less resistance to flow near the wall |
+| Thicker fluid film / boundary layer | Decreases $h$ — more stagnant layer to conduct across |
+| Higher thermal conductivity of the fluid | Increases $h$ |
+| Fouling, biofilm, or cake buildup at the wall | Decreases $h$ — adds a stagnant insulating layer (captured separately as $R_f$) |
+
+#### Worked example: which changes increase h in a stirred-tank bioreactor
+
+**Question.** Which of the following operational modifications will increase
+the inside convective heat transfer coefficient ($h$) in a stirred tank
+bioreactor? (a) Increasing the impeller agitation speed (b) Increasing the
+broth temperature (which lowers viscosity) (c) Accumulation of a dense
+mycelial wall cake (d) Decreasing the broth flow velocity past the heat
+exchange surface.
+
+**Solution.**
+
+1. **(a) Increasing agitation speed** — raises turbulence and flow velocity
+   at the wall, thinning the boundary film. Increases $h$.
+2. **(b) Increasing broth temperature (lower viscosity)** — less resistance
+   to flow near the wall, effectively raising the Reynolds number. Increases
+   $h$.
+3. **(c) Mycelial wall cake** — a solid, low-conductivity layer stuck to the
+   wall acts as fouling: it adds resistance and dampens turbulence at the
+   surface. Decreases $h$.
+4. **(d) Decreasing flow velocity** — less turbulence, thicker boundary
+   film. Decreases $h$.
+
+**Answer:** (a) and (b) increase $h$; (c) and (d) decrease it.
 
 ## Nusselt number
 
@@ -164,7 +183,7 @@ $$
 ### Overall heat transfer coefficient from film coefficients
 
 $$
-\frac{1}{U} = \frac{1}{h_1} + \frac{x}{k} + \frac{1}{h_2}
+\frac{1}{U} = \frac{1}{h_1} + \frac{x}{k} + \frac{1}{h_2} + R_f
 $$
 
 - $U$ — overall heat transfer coefficient (lumps both film coefficients and
@@ -176,6 +195,17 @@ $$
 - $x$ — thickness of the wall, in metres ($\text{m}$)
 - $k$ — thermal conductivity of the wall, in watts per metre-kelvin
   ($\text{W}/(\text{m} \cdot \text{K})$)
+- $R_f$ — fouling resistance at a film surface (e.g. microbial biofilm or
+  scale buildup), in square metre-kelvin per watt ($\text{m}^2 \cdot
+  \text{K}/\text{W}$)
+
+All four terms are resistances in series, so $1/U$ is their sum — the same
+logic as resistors in series. Unlike $h_1$, $h_2$, and $k$, $R_f$ is not a
+fixed property: it starts near zero on a clean surface and grows over the
+run as biofilm, protein deposits, or scale build up, steadily lowering $U$
+for the same equipment. **Clean-in-place (CIP)** cycles reset $R_f$ back
+toward zero; equipment is often sized against an assumed fouled $U$ so it
+still performs adequately near the end of a cleaning cycle.
 
 ### Logarithmic mean temperature difference (LMTD)
 
@@ -189,6 +219,11 @@ $$
   ($\text{K}$)
 - $\Delta T_2, \Delta T_1$ — temperature differences at the two ends of the
   heat exchanger, in kelvin ($\text{K}$)
+
+**Special case — equal terminal differences.** When $\Delta T_1 = \Delta
+T_2$, the formula above is $0/0$ (indeterminate). Taking the limit as
+$\Delta T_2 \to \Delta T_1$ shows the log mean converges to the arithmetic
+mean, so $\Delta T_{LMTD} = \Delta T_1 = \Delta T_2$ in that case.
 
 ### Flow arrangement: parallel vs. counter-current
 
@@ -235,6 +270,24 @@ $\approx 64.87\,^\circ\text{C}$ for counter-current flow — the
 counter-current arrangement gives the larger LMTD for the same four
 terminal temperatures.
 
+#### Worked example: LMTD when the terminal differences are equal
+
+**Question.** A counter-current heat exchanger cools hot oil from
+$120\,^\circ\text{C}$ to $80\,^\circ\text{C}$ using cooling water that heats
+from $30\,^\circ\text{C}$ to $70\,^\circ\text{C}$. Find the LMTD.
+
+**Solution.**
+
+1. Counter-current flow: the hot inlet pairs with the cold outlet, and the
+   hot outlet pairs with the cold inlet.
+   - $\Delta T_1 = 120 - 70 = 50\,^\circ\text{C}$ (hot inlet, cold outlet)
+   - $\Delta T_2 = 80 - 30 = 50\,^\circ\text{C}$ (hot outlet, cold inlet)
+2. $\Delta T_1 = \Delta T_2$, so $\dfrac{\Delta T_2 - \Delta T_1}{\ln(\Delta
+   T_2/\Delta T_1)}$ is $0/0$. By the equal-terminal-differences limit,
+   $\Delta T_{LMTD} = \Delta T_1 = \Delta T_2$.
+
+**Answer:** LMTD $= 50.0\,^\circ\text{C}$.
+
 #### Why counter-current is never worse than parallel flow
 
 For fixed terminal temperatures (same hot-in/hot-out/cold-in/cold-out), let
@@ -264,6 +317,84 @@ at constant temperature. Then $\Delta T_1 = \Delta T_2$ for both
 arrangements and there is no difference between them. Outside that edge
 case, counter-current strictly wins.
 
+## Heat generation and removal in bioprocesses
+
+Aerobic fermentations generate **metabolic heat** as respiration proceeds,
+on top of any mechanical heat added by agitation — cooling equipment has to
+remove both, and metabolic heat is what usually dominates at scale.
+
+### Metabolic heat from oxygen consumption (Cooney's correlation)
+
+Heat release tracks oxygen consumption because both come from the same
+respiratory electron-transport reactions — the more $O_2$ the culture
+consumes, the more heat it releases.
+
+$$
+Q_{metabolic} = \Delta H_{O_2} \times n_{O_2}
+$$
+
+- $Q_{metabolic}$ — metabolic heat released by aerobic respiration, in
+  kilojoules ($\text{kJ}$)
+- $\Delta H_{O_2}$ — heat released per mole of oxygen consumed
+  (**Cooney's correlation**), approximately $460\,\text{kJ/mol}$
+  ($\approx 14\,\text{kJ/g}$ $O_2$, since $460/32 \approx 14.4$)
+- $n_{O_2}$ — moles of oxygen consumed by the culture ($\text{mol}$)
+
+### Scale-up heat transfer challenge
+
+$$
+\frac{A}{V} \propto \frac{D^2}{D^3} = \frac{1}{D}
+$$
+
+- $A$ — cooling surface area available (jacket or coil), in square metres
+  ($\text{m}^2$)
+- $V$ — reactor working volume, in cubic metres ($\text{m}^3$)
+- $D$ — characteristic vessel diameter, in metres ($\text{m}$)
+
+Reactor volume scales with $D^3$ but the wall area available for cooling
+only scales with $D^2$, so the specific cooling area $A/V$ falls as $1/D$.
+Metabolic heat generation scales roughly with volume (more broth, more
+respiring cells), so larger fermenters generate heat faster than their
+jacket area can remove it — the classic bioreactor scale-up cooling
+bottleneck.
+
+### Jacket vs. internal cooling coil
+
+| Feature | External jacket | Internal cooling coil |
+| --- | --- | --- |
+| Cooling area | Limited to the vessel wall | Extra area, added independently of vessel wall size |
+| Shear on cells | Low — no extra internal surfaces | Higher — coil surface adds turbulence near the cells |
+| Working volume | Unaffected | Reduced — the coil itself occupies working volume |
+| Typical use | Default choice; preferred for shear-sensitive cultures (e.g. animal cells) | Added at large scale when jacket area alone can't remove enough heat, for shear-tolerant microbial cultures |
+
+#### Worked example: evaluating heat generation and removal statements
+
+**Question.** Select the correct statements regarding heat generation and
+removal in aerobic bioprocesses: (a) Aerobic microbial growth is
+accompanied by heat release proportional to the rate of oxygen consumption.
+(b) The heat of fermentation can be estimated using Cooney's correlation:
+approximately $460\,\text{kJ}$ per mole of $O_2$ consumed (or
+$14\,\text{kJ}$ per g of $O_2$). (c) Scale-up of stirred fermenters creates
+heat transfer challenges because reactor volume scales with $D^3$, while
+surface area for cooling scales with $D^2$. (d) Internal cooling coils are
+preferred over external jackets for highly shear-sensitive animal cell
+cultures to minimize volume.
+
+**Solution.**
+
+1. **(a)** Metabolic heat comes from the same respiratory reactions that
+   consume $O_2$, so heat release tracks the oxygen uptake rate. Correct.
+2. **(b)** This is exactly Cooney's correlation above: $460\,\text{kJ/mol}\
+   O_2 \approx 14\,\text{kJ/g}\ O_2$. Correct.
+3. **(c)** $V \propto D^3$ and $A \propto D^2$, so specific cooling area
+   falls as $1/D$ — the standard scale-up cooling bottleneck. Correct.
+4. **(d)** Backwards on both counts: external jackets, not internal coils,
+   are preferred for shear-sensitive cultures, precisely because coils add
+   internal turbulence/shear and *reduce* usable working volume rather than
+   minimizing it. Incorrect.
+
+**Answer:** (a), (b), and (c) are correct; (d) is incorrect.
+
 ## Key points
 
 - **Conduction** moves heat via vibrational energy or free electrons, with
@@ -287,3 +418,10 @@ case, counter-current strictly wins.
 - The two arrangements only tie when one fluid doesn't change temperature at
   all (a condensing vapor or boiling liquid) — otherwise counter-current
   always wins.
+- Metabolic heat tracks oxygen consumption — **Cooney's correlation**:
+  $\approx 460\,\text{kJ/mol}\ O_2$ ($\approx 14\,\text{kJ/g}\ O_2$).
+- Scale-up hurts cooling because $V \propto D^3$ but cooling area $A
+  \propto D^2$, so $A/V \propto 1/D$; **external jackets** stay the default
+  (and are preferred for shear-sensitive cultures), while **internal
+  coils** add area at large scale at the cost of extra shear and working
+  volume.

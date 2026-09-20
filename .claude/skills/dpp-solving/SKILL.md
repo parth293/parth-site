@@ -30,8 +30,16 @@ already covered.
      was hard."
 4. **When there's a gap: explain the answer in chat first**, in full,
    before touching any file. Parth is trying to learn the concept, not just
-   get an edit — understanding comes before the note gets updated.
-5. **Then update the note** to add the missing concept, in the same pass:
+   get an edit — understanding comes before the note gets updated. This is
+   the teaching moment, not a formality to rush through: walk through *why*
+   each option is right or wrong, name the underlying principle, don't just
+   assert the letter. Don't compress this to save time — the note edit
+   (next step) is where things get compressed, not here.
+5. **Then update the note** to add the missing concept, in the same pass —
+   but the note is a cramming reference, not a transcript of the chat
+   explanation. Chat teaches; the note has to be scannable and recallable
+   under exam time pressure. Once the concept has been taught in chat,
+   distill it:
    - Follow [BIOPROCESS_ENG_GUIDE.md](../../../BIOPROCESS_ENG_GUIDE.md)
      exactly for anything in that pillar — one-line definition, mechanism,
      equations with every symbol/unit defined directly beneath (no
@@ -42,6 +50,12 @@ already covered.
      `**Question.**`, a `**Solution.**` with numbered steps, and a closing
      `**Answer:**` line — matching the shape already used in these notes
      (see `fluid-mechanics.mdx` or `mass-transfer.mdx` for the pattern).
+     Keep the **Solution** steps to the minimum needed to reconstruct the
+     answer — terse justifications, not the full didactic walkthrough
+     already given in chat. If the chat explanation ran long (multiple
+     paragraphs per option, worked derivations, analogies), the note
+     version should still be short: one line of reasoning per option/step,
+     not a restatement of the teaching.
    - Only add standard, correct textbook material to close the gap — never
      invent a fact, constant, or classification Parth hasn't confirmed. If
      something needed is genuinely uncertain, flag it and ask rather than
