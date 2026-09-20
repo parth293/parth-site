@@ -47,6 +47,7 @@ export function DocList({
                   <h3 className="truncate text-lg font-semibold tracking-[-0.01em] text-ink transition-colors group-hover:text-accent">
                     {doc.title}
                   </h3>
+                  {doc.draft ? <span className="label shrink-0">private</span> : null}
                 </Link>
                 {secondary ? (
                   <Link

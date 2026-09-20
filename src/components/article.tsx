@@ -16,9 +16,10 @@ export function ArticleHeader({ doc }: { doc: Doc }) {
       <h1 className="measure font-serif text-[clamp(2.5rem,5.5vw,3.75rem)] font-semibold tracking-[-0.02em] leading-[1.05] text-balance">
         {doc.title}
       </h1>
-      {doc.tags?.length ? (
+      {doc.tags?.length || doc.draft ? (
         <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          {doc.tags.map((tag) => (
+          {doc.draft ? <span className="label">private — not in public listings</span> : null}
+          {doc.tags?.map((tag) => (
             <span key={tag} className="label">#{tag}</span>
           ))}
         </div>

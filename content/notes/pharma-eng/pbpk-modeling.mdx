@@ -1,0 +1,70 @@
+---
+title: "PBPK modelling"
+date: "2026-09-19"
+summary: "Instead of abstract compartments, build a model that maps onto real anatomy — organ by organ, blood flow by blood flow — and simulate a drug's path through it."
+order: 5
+tags: ["pk-pd"]
+---
+
+Every model covered elsewhere in this pillar treats the body as abstract
+boxes — a "central compartment," a "peripheral compartment" — that a drug
+flows between according to fitted equations. It works, and it predicts
+clinical data well, but it's abstract: you can't point to the peripheral
+compartment on an anatomy diagram.
+
+Physiologically based pharmacokinetic (PBPK) modelling does something
+different. You build a model that maps directly onto real anatomy — the
+lungs, liver, kidneys, gut, muscle, fat, brain, heart — each as its own
+compartment, carrying real measured physiology: blood flow to that organ,
+enzyme activity there, plasma protein binding, transporter expression at
+the gut wall. Then you put a candidate drug into this virtual body,
+described only by its own physical and chemical properties — molecular
+weight, lipophilicity, protein binding — and simulate where it goes and how
+it's cleared, without having run a single clinical study yet.
+
+That's what makes PBPK unusually useful: it can predict drug behaviour in
+situations you have no data for at all — a paediatric patient, someone with
+kidney failure, a different ethnic population, a second drug on board — all
+from first principles.
+
+## Where it sits in development
+
+PBPK is the one modelling approach that genuinely spans the whole
+pipeline: predicting human PK from lab data before any human trial in
+discovery, translating animal data into a first-in-human dose,
+predicting PK in special populations in Phase I to avoid running a
+dedicated study for each one, and supporting or replacing clinical
+drug-drug interaction studies in later development. The regulatory
+significance here is real — the FDA now explicitly accepts PBPK model
+predictions in place of certain clinical studies, which is a mathematical
+model substituting for a trial, not just informing one.
+
+## What's actually settled, and what isn't
+
+The core PBPK theory — perfusion-limited and permeability-limited organ
+models — dates to the 1970s, and small-molecule PBPK for adults is
+commercially mature, implemented in established software (Simcyp,
+GastroPlus, the open-source PK-Sim). What's still frontier:
+
+- **Pediatric PBPK** has to model organ growth, enzyme maturation, and
+  changing body composition as a child develops — current models
+  approximate this, with the biggest gaps in neonates and infants.
+- **Biologic PBPK** — modelling FcRn-mediated recycling and
+  target-mediated tissue distribution for antibodies — is still evolving;
+  the mechanisms differ enough from small molecules that the standard PBPK
+  toolkit doesn't transfer cleanly.
+- **mRNA and gene therapy PBPK** is close to undeveloped: how a lipid
+  nanoparticle distributes, crosses into a cell, escapes the endosome, and
+  behaves intracellularly doesn't have a validated modelling framework
+  yet.
+- **Tumour PBPK** — how a drug actually distributes inside a solid
+  tumour, given uneven vasculature, elevated internal pressure, and
+  necrotic regions — is an active oncology-adjacent frontier.
+- **Drug-disease interactions**: liver cirrhosis, heart failure, obesity,
+  and inflammation all change the physiological parameters PBPK models
+  normally treat as fixed, and most drugs are labelled from healthy-adult
+  data even though the patients who need them often aren't healthy adults.
+
+Software licence costs and specific market-size figures for any of this
+change often enough that I'm not going to quote one here without a source
+to point at.

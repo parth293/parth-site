@@ -1,0 +1,72 @@
+---
+title: "Pharmacometrics"
+date: "2026-09-19"
+summary: "Not a subfield alongside ADME, PopPK, and PBPK — the discipline that uses all of them together to answer one question: what dose, for whom, at what point in their disease."
+order: 6
+tags: ["pk-pd"]
+---
+
+Each of the other PK/PD notes in this pillar answers one specific
+question. [ADME](/notes/pharma-eng/adme) asks what the body does to a drug
+physically.
+[Population pharmacokinetics](/notes/pharma-eng/population-pharmacokinetics)
+asks why the same dose behaves differently across people.
+[Nonlinear PK](/notes/pharma-eng/nonlinear-pk-modeling) asks what happens
+once the body's drug-handling systems saturate.
+[DDI](/notes/pharma-eng/drug-drug-interactions) asks how one drug changes
+what another does. [PBPK](/notes/pharma-eng/pbpk-modeling) asks whether all
+of that can be simulated in a body built from real anatomy.
+
+Pharmacometrics isn't another item on that list — it's the discipline that
+uses all of them together to answer the harder question underneath: given
+everything known about how a drug behaves, what dose, for which patients,
+at what stage of their disease, maximises benefit and minimises harm. A
+pharmacometrician builds models that connect drug concentration in the body
+(the PK side, using PopPK, PBPK, and nonlinear-PK tools as needed), drug
+effect on the body (the PD side — receptor occupancy, biomarker response,
+disease progression), patient variability, and clinical outcome — and the
+output isn't a graph, it's a quantitative basis for a real decision: which
+dose goes into Phase III, whether a trial can be shortened, what the label
+should say for children.
+
+## Where it sits in development
+
+Pharmacometrics is present at every stage of drug development, in a way no
+other discipline covered in this pillar is: exposure-response modelling
+selecting compounds in discovery, dose-escalation support in Phase I,
+go/no-go and dose-selection recommendations from Phase II data, trial
+simulation and adaptive design support in Phase III, and mandatory PopPK
+and exposure-response reports in the regulatory submission itself. The FDA
+has a dedicated pharmacometrics division inside its Office of Clinical
+Pharmacology; the EMA has an equivalent modelling and simulation working
+group. Both now use pharmacometric analysis to make approval decisions, not
+just to review submissions after the fact.
+
+## What's actually settled, and what isn't
+
+The methodological core — nonlinear mixed-effects modelling, NONMEM as the
+standard software, exposure-response analysis for small molecules — has
+been standard practice since the 1980s. The frontier is expanding faster
+here than in any of the other PK/PD subfields:
+
+- **Pharmacometrics for biologics and novel modalities** — monoclonal
+  antibodies, antibody-drug conjugates, mRNA, gene and cell therapy — is
+  roughly a decade behind small-molecule maturity, by most accounts I've
+  seen, though I can't point to a rigorous measurement of that gap.
+- **Disease progression modelling** — simulating not just drug behaviour
+  but how the disease itself evolves, and how treatment changes that
+  trajectory — is active and directly tied to reducing how much a trial
+  has to rely on real patients to find out what would happen.
+- **Model-informed precision dosing** — using real-time patient data plus
+  a Bayesian pharmacometric model to individualise a hospital patient's
+  dose — is already proven for a handful of drugs (vancomycin,
+  tacrolimus) and the open question is scaling it, not whether it works.
+  See [therapeutic drug monitoring](/notes/pharma-eng/therapeutic-drug-monitoring)
+  for where this connects to the bedside.
+- **Quantitative systems pharmacology (QSP)** — bridging pharmacometrics
+  with molecular-level systems biology — is the frontier this discipline
+  is actively growing into; see
+  [systems pharmacology](/notes/pharma-eng/systems-pharmacology).
+- **ML-augmented pharmacometrics** — hybrid models combining a mechanistic
+  PK/PD structure with machine-learning parameter estimation — is a live
+  research area, not a settled toolkit yet.

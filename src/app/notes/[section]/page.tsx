@@ -5,6 +5,7 @@ import { PageShell, PageHeader } from "@/components/page-shell";
 import { DocList } from "@/components/doc-list";
 import { Section, Status } from "@/components/record";
 import { getNotes, type Doc } from "@/lib/content";
+import { isUnlocked } from "@/lib/unlock";
 import { getFormulasForNote } from "@/lib/formulas";
 import { pillarBySlug, pillars, type PillarSlug } from "@/lib/site";
 
@@ -26,7 +27,7 @@ export default async function NotesSectionPage({ params }: Params) {
   const pillar = pillarBySlug[section as PillarSlug];
   if (!pillar) notFound();
 
-  const docs = await getNotes(pillar.slug);
+  const docs = await getNotes(pillar.slug, await isUnlocked());
 
   // Bioprocess-eng notes are built to be scanned for a formula fast — see
   // BIOPROCESS_ENG_GUIDE.md. Surface each note's Formulas tab right on the

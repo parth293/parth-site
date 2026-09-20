@@ -67,7 +67,12 @@ function readingMinutes(body: string): number {
   return Math.max(1, Math.round(words / 225));
 }
 
-async function readCollection(dir: string, collection: Doc["collection"], hrefBase: string): Promise<Doc[]> {
+async function readCollection(
+  dir: string,
+  collection: Doc["collection"],
+  hrefBase: string,
+  includeDrafts = false,
+): Promise<Doc[]> {
   let entries: string[];
   try {
     entries = await fs.readdir(dir);
@@ -95,7 +100,7 @@ async function readCollection(dir: string, collection: Doc["collection"], hrefBa
   );
 
   return docs
-    .filter((d) => !d.draft || process.env.NODE_ENV === "development")
+    .filter((d) => !d.draft || includeDrafts || process.env.NODE_ENV === "development")
     .sort((a, b) => {
       if (a.order != null && b.order != null) return a.order - b.order;
       if (a.order != null) return -1;
@@ -104,8 +109,13 @@ async function readCollection(dir: string, collection: Doc["collection"], hrefBa
     });
 }
 
-export function getNotes(pillar: PillarSlug): Promise<Doc[]> {
-  return readCollection(path.join(CONTENT_ROOT, "notes", pillar), pillar, `/notes/${pillar}`);
+export function getNotes(pillar: PillarSlug, includeDrafts = false): Promise<Doc[]> {
+  return readCollection(
+    path.join(CONTENT_ROOT, "notes", pillar),
+    pillar,
+    `/notes/${pillar}`,
+    includeDrafts,
+  );
 }
 
 export function getWriting(): Promise<Doc[]> {
@@ -125,8 +135,10 @@ export async function getAllDocs(): Promise<Doc[]> {
 export async function getDoc(
   collection: Doc["collection"],
   slug: string,
+  includeDrafts = false,
 ): Promise<Doc | undefined> {
-  const docs = collection === "writing" ? await getWriting() : await getNotes(collection);
+  const docs =
+    collection === "writing" ? await getWriting() : await getNotes(collection, includeDrafts);
   return docs.find((d) => d.slug === slug);
 }
 

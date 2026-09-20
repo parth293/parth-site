@@ -1,0 +1,134 @@
+---
+title: "A map of pharmaceutical sciences"
+date: "2026-09-19"
+updated: "2026-09-19"
+summary: "A living taxonomy of the field, domain by domain — with links wherever I've actually written the note, and a plain name everywhere I haven't yet."
+order: 0
+tags: ["reference"]
+---
+
+Ask a formulation scientist and a pharmacovigilance officer what they do all
+day and you'd struggle to guess they work in the same industry. One is
+choosing a coating polymer so a tablet survives stomach acid; the other is
+reading adverse-event reports seven years after that tablet shipped.
+"Pharmaceutical sciences" is not one field — it's roughly thirteen, loosely
+federated under a name that promises more coherence than the field actually
+has.
+
+I'm using this page as the index for the rest of this pillar. It lists the
+domains, with a one-line sense of what each one actually does, and links out
+wherever I've written the note — which right now means one branch,
+pharmacokinetics and pharmacodynamics, because that's the corner I've spent
+the most time in while deciding whether to go do a PhD in it. Everything
+else on this page is scaffolding: a name and a placeholder, not a claim that
+I understand it. I'll keep adding branches and links as I go deeper into
+other domains, so treat this as dated, not finished.
+
+## Medicinal chemistry
+
+Designing and synthesising the drug molecule itself — structure-activity
+relationships, computational molecular modelling, fragment-based drug
+discovery, prodrug design. The "what molecule do we even make" layer,
+upstream of everything else here.
+
+## Pharmacology
+
+How a drug interacts with the body at the mechanism level — receptor
+binding, signalling cascades, systems-level network behaviour. Includes
+[systems pharmacology](/notes/pharma-eng/systems-pharmacology), which is
+where this domain starts overlapping with PK/PD below: instead of one
+target, one effect, it treats a drug's effect as a perturbation to a whole
+biological network.
+
+## Pharmaceutics and drug delivery
+
+Turning a molecule into a product a patient can actually take: tablet and
+capsule design, controlled-release systems, nanoparticle and targeted
+delivery, transdermal and pulmonary routes. Biopharmaceutics — how the
+product's physical form governs how much drug actually reaches the
+bloodstream — sits here too, and connects directly into bioavailability
+work below.
+
+## Pharmacokinetics and pharmacodynamics (PK/PD)
+
+What the body does to a drug, and what the drug does to the body, expressed
+quantitatively. This is the branch I've actually written up:
+
+- [ADME](/notes/pharma-eng/adme) — absorption, distribution, metabolism,
+  excretion: the four-stage obstacle course every drug runs before it can do
+  anything useful.
+- [Population pharmacokinetics](/notes/pharma-eng/population-pharmacokinetics) —
+  why the same dose behaves differently across a real, diverse population,
+  and how to model that statistically.
+- [Nonlinear PK modelling](/notes/pharma-eng/nonlinear-pk-modeling) — what
+  happens once a drug saturates the systems that clear it, and the maths
+  that stops working when it does.
+- [Drug-drug interactions](/notes/pharma-eng/drug-drug-interactions) — how
+  one drug changes what another drug does, usually through a shared liver
+  enzyme.
+- [PBPK modelling](/notes/pharma-eng/pbpk-modeling) — building a virtual
+  human body, organ by organ, and simulating a drug's path through it
+  instead of fitting an abstract compartment model.
+- [Pharmacometrics](/notes/pharma-eng/pharmacometrics) — the integrating
+  discipline that uses all of the above to answer one question: what dose,
+  for which patient, at what stage of disease.
+- [Bioavailability and bioequivalence](/notes/pharma-eng/bioavailability-bioequivalence) —
+  the science that decides whether a generic tablet is allowed to be called
+  the same drug as the branded one.
+- [Therapeutic drug monitoring](/notes/pharma-eng/therapeutic-drug-monitoring) —
+  measuring a drug's level in an actual patient's blood and adjusting the
+  dose in real time, for the drugs where guessing by bodyweight isn't safe
+  enough.
+
+## Pharmacognosy and natural products
+
+Medicines from natural sources — phytochemistry, ethnopharmacology, marine
+and microbial natural products, traditional medicine systems. Not a domain
+I've looked into yet.
+
+## Pharmaceutical biotechnology
+
+Biologics: recombinant proteins, monoclonal antibodies, gene and cell
+therapy, mRNA, biosimilars, vaccine development, and the upstream/downstream
+bioprocessing that manufactures them. This is where I'd expect the most
+overlap with the [bioprocess-eng](/notes/bioprocess-eng) pillar once I write
+it up — not started here yet.
+
+## Toxicology
+
+Preclinical safety assessment, genotoxicity, organ-specific and
+reproductive toxicology, regulatory toxicology, risk assessment. Not
+started.
+
+## Clinical pharmacy
+
+Patient-facing drug therapy management — oncology, infectious disease,
+paediatric, geriatric, and critical care pharmacy practice. Not started.
+
+## Pharmaceutical analysis and quality
+
+The measurement layer: chromatography and spectroscopy, bioanalytical
+chemistry, stability and dissolution testing, quality control, GLP. Not
+started, though it borders GMP territory I already know from six years at
+Leucine — likely an early candidate for expansion.
+
+## Regulatory affairs and drug policy
+
+Approval pathways (FDA, EMA, ICH), GMP, pharmacovigilance, IP and patent
+law, orphan drug and generic drug policy. Also close to what I already know
+from work — another likely early expansion.
+
+## Pharmaceutical microbiology
+
+Sterility and endotoxin testing, microbial contamination control, aseptic
+processing, antibiotic and antiviral drug research. Not started.
+
+## Pharmacoepidemiology and pharmacoeconomics
+
+Population-level drug use, real-world evidence, adverse drug reaction
+surveillance, cost-effectiveness and health economics. Not started.
+
+## Social and behavioural pharmacy
+
+Medication adherence, patient communication, health literacy, access to
+medicines. Not started.
