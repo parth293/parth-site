@@ -72,30 +72,81 @@ RQ = \frac{\text{no. of moles of } CO_2 \text{ produced}}{\text{no. of moles of 
 $$
 
 - $RQ$ — respiratory quotient (ratio of CO$_2$ produced to O$_2$
-  consumed — indicates how reduced or oxidized the substrate is),
+  consumed — indicates how reduced or oxidized the substrate is: a
+  **reduced** substrate is rich in hydrogen relative to oxygen (fats,
+  hydrocarbons — still holds a lot of energy/available electrons, so
+  needs a lot of $O_2$ to fully combust), while an **oxidized** substrate
+  already has more oxygen bonded in and fewer available electrons left to
+  give up (organic acids, and $CO_2$ at the fully-oxidized extreme) — see
+  degree of reduction, below, for the precise measure of this),
   dimensionless
 
-- $RQ \approx 1$ for carbohydrates — little rearrangement needed between
-  substrate and $CO_2$.
-- $RQ < 1$ for more reduced substrates such as fats or hydrocarbons —
-  extra $O_2$ is needed per $CO_2$ released.
-- $RQ > 1$ for already-oxidized substrates, such as organic acids or amino
-  acids.
+**Physical significance.** $RQ$ is a direct readout of a culture's
+metabolic state, and it's cheap to measure in real time — off-gas analyzers
+on a fermenter track $CO_2$ and $O_2$ continuously without needing a liquid
+sample. That's why it's used industrially as a live process-monitoring
+signal: a shift in $RQ$ can flag a change in metabolic mode (oxidative vs.
+fermentative), a substrate switch, or an approaching oxygen limitation,
+often before anything else in the run shows it.
 
-#### Worked example: RQ for growth on glycine
+| Scenario | Typical $RQ$ | Why |
+| --- | --- | --- |
+| Aerobic growth on a carbohydrate (e.g. glucose → biomass + $CO_2$) | $\approx 1$ | little rearrangement needed between substrate and $CO_2$ |
+| Growth on fats, hydrocarbons, or with heavy lipid synthesis | $< 1$ | the reduced substrate/product needs extra $O_2$ per $CO_2$ |
+| Growth on organic acids or amino acids as substrate | $> 1$ | an already-oxidized substrate needs less $O_2$ per $CO_2$ |
+| Overflow metabolism on a carbohydrate (byproduct secreted instead of full respiration, e.g. acetate overflow in *E. coli*) | slightly $> 1$ | some carbon exits as a byproduct instead of being fully respired, so relatively less $O_2$ is used |
+| Pure anaerobic fermentation (e.g. to ethanol) | undefined / $\rightarrow \infty$ | no $O_2$ is consumed at all |
 
-**Question.** Using the balanced equation from the worked example above,
-find the respiratory quotient.
+$RQ$ can also shift **during growth on a fixed substrate**, not just from
+substrate choice — if part of the carbon is diverted into a byproduct
+("overflow metabolism") instead of going to biomass or full oxidation,
+that carbon carries electrons away with it instead of needing $O_2$ to
+dispose of them, so $O_2$ consumption drops relative to $CO_2$ evolution
+and $RQ$ creeps above $1$ even on a carbohydrate substrate. Two common
+real examples:
+
+- **Acetate overflow (*E. coli*)**: at high glycolytic flux, pyruvate is
+  produced faster than the TCA cycle/respiratory chain can process it, so
+  the excess is excreted as acetate (a mildly oxidized, growth-inhibiting
+  byproduct) instead of being fully respired.
+- **Crabtree effect (*S. cerevisiae*)**: even with plenty of $O_2$, yeast
+  growing fast on excess glucose ferments part of it to ethanol instead of
+  fully respiring it ("aerobic fermentation"). Ethanol is a *reduced*
+  byproduct, not oxidized, but $RQ$ still rises — diverting carbon away
+  from full respiration cuts $O_2$ use more than it cuts $CO_2$ evolution.
+
+The opposite happens when a cell synthesizes a highly-reduced product like
+lipid: that consumes extra $O_2$ relative to $CO_2$ released, pushing $RQ$
+below $1$.
+
+#### Worked example: interpreting an elevated RQ during aerobic growth
+
+**Question.** An aerobic culture converts glucose to biomass and $CO_2$.
+The measured $RQ = 1.05$. What does this indicate?
 
 **Solution.**
 
-1. From the worked example: $d = 1\ \text{mol } CO_2$ and
-   $a = 0.45\ \text{mol } O_2$.
-2. $RQ = d/a = 1/0.45$.
-3. $1/0.45 = 2.22$ (to two decimal places).
+1. Glucose is a carbohydrate, so the baseline expectation for straightforward
+   oxidative growth (biomass + $CO_2$ only) is $RQ \approx 1$.
+2. $1.05$ is slightly **above** that baseline, not below — ruling out
+   explanations that push $RQ$ **down** (heavy lipid/highly-reduced product
+   synthesis needs *extra* $O_2$ relative to $CO_2$) and explanations with no
+   $O_2$ consumption at all (pure anaerobic fermentation has no $O_2$ term,
+   so $RQ$ isn't a small number near $1$ — it's undefined/very large).
+3. A value *above* $1$ on a carbohydrate substrate points to some carbon
+   exiting as an **oxidized byproduct** (an organic acid, or other overflow
+   metabolite) instead of being fully respired — that carbon needs
+   comparatively less $O_2$, nudging $CO_2$ output up relative to $O_2$
+   consumed.
+4. Nitrogen fixation doesn't touch the carbon/$O_2$ balance at all, so it's
+   unrelated to any $RQ$ shift.
 
-**Answer:** $RQ \approx 2.22$ — well above $1$, consistent with glycine
-already being a partly-oxidized, nitrogen-rich substrate.
+**Answer:** Significant synthesis of oxidized organic acids or overflow
+metabolites. (Note: $RQ \approx 1$ is a rounded rule of thumb for
+carbohydrate substrates, not an exact value — reading a specific measured
+$RQ$ this way is a reasonable exam-level call, but a rigorous diagnosis
+would need the culture's actual yield to compute the true expected
+baseline before judging a deviation.)
 
 ## Available electrons
 
@@ -151,6 +202,23 @@ $$
   measures how reduced/energy-rich a substance is; higher $\gamma$ needs
   more $O_2$ to fully oxidize), dimensionless
 
+**Quick reference — valency (available e⁻ per atom):**
+
+| Element / species | Valency |
+| --- | --- |
+| $C$ | $+4$ |
+| $H$ | $+1$ |
+| $O$ | $-2$ |
+| $P$ | $+5$ |
+| $S$ | $+6$ |
+| $N$ — amine / $NH_3$ / $NH_2^-$ group | $-3$ |
+| $N$ — $N_2$ | $0$ |
+| $N$ — $NO_2^-$ (nitrite) | $+3$ |
+| $N$ — $NO_3^-$ (nitrate) | $+5$ |
+
+Biomass nitrogen is always at the $-3$ (amine) level regardless of the
+nitrogen source fed — see the common confusion note below.
+
 #### Worked example: degree of reduction of glycine
 
 **Question.** Find the degree of reduction of glycine.
@@ -187,33 +255,27 @@ single-carbon compound there is.
 are: every electron entering in the carbon source leaves again — in
 biomass, in extracellular product, or transferred to $O_2$ as the electron
 acceptor. This principle supplies the fifth equation the general growth
-equation is missing (see above).
+equation is missing (see above). Rather than memorizing a symbolic
+equation for it, apply the conservation idea directly each time:
 
-### Electron balance for growth alone
+> electrons in $=$ electrons in biomass $+$ electrons in product $+$
+> electrons to $O_2$ $+$ electrons spent reducing $N$
 
-$$
-\gamma_S w = \gamma_X c + 4a + 8n
-$$
-
-- $\gamma_S$ — degree of reduction of the carbon source (how reduced/
-  electron-rich the feedstock is, per carbon atom), dimensionless
-- $w$ — moles of carbon per mole of carbon source (mol)
-- $\gamma_X$ — degree of reduction of biomass (electron content of the cell
-  material per carbon atom — fixed by amine-nitrogen valency, independent
-  of the nitrogen source fed), dimensionless
-- $c$ — stoichiometric coefficient of biomass (mol)
-- $a$ — stoichiometric coefficient of $O_2$ (mol)
-- $n$ — moles of nitrate-nitrogen reduced to the amine level needed for
-  biomass (mol) — $0$ if $NH_3$ is the nitrogen source
-
-The $4a$ term is $O_2$ acting as the electron acceptor:
-$O_2 + 4H^+ + 4e^- \rightarrow 2H_2O$, so **one mole of $O_2$ is worth $4$
-electron equivalents**. The $8n$ term exists only when the nitrogen source
-is $NO_3^-$ (or another nitrogen source more oxidized than $NH_3$): biomass
-nitrogen is always incorporated at the amine level ($-3$ valency, same as
-$NH_3$), so nitrate nitrogen ($+5$ valency) has to be reduced by $8$
-electrons per atom before it can be used — electrons that come out of the
-carbon source's reducing power and compete with $O_2$ for them.
+- Electrons carried by a compound = its degree of reduction $\gamma$
+  (electrons per carbon atom) × the moles of carbon it contributes — on a
+  C-mole basis, that's just $\gamma \times$ (C-moles present); for a named
+  molecule like a product, it's $\gamma \times$ (carbon atoms per molecule)
+  × (moles of that molecule).
+- **One mole of $O_2$ = $4$ electron equivalents**, from
+  $O_2 + 4H^+ + 4e^- \rightarrow 2H_2O$ — divide the electrons left over
+  after biomass and product by $4$ to get moles of $O_2$.
+- **Reducing nitrogen costs electrons too**: biomass nitrogen is always
+  incorporated at the amine level ($-3$ valency, same as $NH_3$). If the
+  feed nitrogen source is more oxidized than that (e.g. $NO_3^-$, $+5$),
+  each mole of nitrogen atom reduced down to $-3$ before assimilation costs
+  $8$ electrons out of the substrate's budget, before anything reaches
+  biomass, product, or $O_2$. This term is $0$ whenever the nitrogen source
+  is already at the amine level ($NH_3$ or an amine).
 
 #### Worked example: electron balance with nitrate as the nitrogen source
 
@@ -224,47 +286,36 @@ glucose consumed, find the moles of $O_2$ consumed per mole of glucose.
 
 **Solution.**
 
-1. Degree of reduction of glucose: $\gamma_S = 4$ (from the table above),
-   with $w = 6$ carbon atoms per mole.
+1. Electrons entering with $1\ \text{mol}$ glucose: $\gamma_S \times
+   (\text{C atoms}) = 4 \times 6 = 24$ (from the degree-of-reduction table
+   above).
 2. Degree of reduction of biomass: $\gamma_X = 4(1) + 1.8 - 2(0.5) - 3(0.2)
    = 4.2$ — using amine-nitrogen valency, because that's the oxidation
    state nitrogen sits at once it's inside the cell, regardless of the feed.
-3. Moles of nitrogen reduced: the biomass formula has $\delta = 0.2$ mol N
-   per C-mole, and $c = 0.5\ \text{mol}$ biomass forms, so
-   $n = 0.2 \times 0.5 = 0.1\ \text{mol}$.
-4. Electron balance: $\gamma_S w = \gamma_X c + 4a + 8n$
-   $\Rightarrow 4(6) = 4.2(0.5) + 4a + 8(0.1)$
-   $\Rightarrow 24 = 2.1 + 4a + 0.8 \Rightarrow 4a = 21.1 \Rightarrow a =
-   5.275$.
+3. Electrons landing in biomass: $\gamma_X \times (\text{mol biomass}) =
+   4.2 \times 0.5 = 2.1$.
+4. Electrons spent reducing nitrogen: the biomass formula has $0.2\ \text{mol
+   N}$ per C-mole, and $0.5\ \text{mol}$ biomass forms, so
+   $0.2 \times 0.5 = 0.1\ \text{mol N}$ reduced, costing
+   $8 \times 0.1 = 0.8$ electrons.
+5. Electrons left for $O_2$: $24 - 2.1 - 0.8 = 21.1$.
+6. Moles of $O_2$: $21.1 / 4 = 5.275$.
 
 **Answer:** $5.275\ \text{mol}\ O_2$ per mole of glucose. Re-running the
-same balance with $NH_3$ instead ($n=0$) gives $a = 5.475\ \text{mol}$ —
-more $O_2$, not less. $\gamma_X$ was $4.2$ in both cases; what changed is
-that nitrate reduction diverted $0.8$ of the substrate's available
-electrons away from $O_2$, so less $O_2$ was needed to balance the rest.
+same balance with $NH_3$ instead (no nitrogen-reduction cost) gives
+$a = (24-2.1)/4 = 5.475\ \text{mol}$ — more $O_2$, not less. $\gamma_X$ was
+$4.2$ in both cases; what changed is that nitrate reduction diverted
+$0.8$ of the substrate's available electrons away from $O_2$, so less
+$O_2$ was needed to balance the rest.
 
-### Electron balance per C-mole of substrate
+### Working per C-mole of substrate
 
 Cell yield is often reported as $Y_{X/S}$ — **C-mol biomass per C-mol
 substrate**, not mole of biomass per mole of substrate. On that basis, one
-C-mole of substrate already stands in for $w=1$, so $Y_{X/S}$ can be
-substituted directly for $c$:
-
-$$
-\gamma_S = \gamma_X\, Y_{X/S} + 4a + 8n
-$$
-
-- $\gamma_S$ — degree of reduction of the substrate (how reduced/
-  electron-rich the feedstock is, per carbon atom), dimensionless
-- $\gamma_X$ — degree of reduction of biomass (electron content of the cell
-  material per carbon atom — fixed by amine-nitrogen valency, independent
-  of the nitrogen source fed), dimensionless
-- $Y_{X/S}$ — cell yield (what fraction of substrate carbon ends up as new
-  biomass, on a C-mole basis), C-mol biomass per C-mol substrate
-  (dimensionless)
-- $a$ — moles of $O_2$ consumed per C-mole of substrate (mol)
-- $n$ — moles of nitrate-nitrogen reduced per C-mole of substrate (mol) —
-  $0$ if $NH_3$ is the nitrogen source
+C-mole of substrate carries exactly $\gamma_S$ electrons (no multiplying by
+carbon count needed — that's what "per C-mole" already means), and
+$Y_{X/S}$ is directly the moles of biomass to plug into "electrons in
+biomass" above.
 
 #### Worked example: oxygen requirement from cell yield and degrees of reduction
 
@@ -275,10 +326,12 @@ $4.20$. Find the oxygen requirement $a$, in mol $O_2$ per C-mol glucose.
 
 **Solution.**
 
-1. $NH_3$ is the nitrogen source, so $n = 0$.
-2. $\gamma_S = \gamma_X Y_{X/S} + 4a \Rightarrow 4.00 = 4.20(0.50) + 4a$.
-3. $4.20 \times 0.50 = 2.10$.
-4. $4.00 - 2.10 = 1.90 = 4a \Rightarrow a = 0.475$.
+1. Electrons in, per C-mole of glucose: $\gamma_S = 4.00$.
+2. $NH_3$ is the nitrogen source, so nothing is spent reducing nitrogen.
+3. Electrons landing in biomass: $\gamma_X \times Y_{X/S} = 4.20 \times
+   0.50 = 2.10$.
+4. Electrons left for $O_2$: $4.00 - 2.10 = 1.90$.
+5. Moles of $O_2$: $1.90 / 4 = 0.475$.
 
 **Answer:** $a = 0.475\ \text{mol}\ O_2$ per C-mol glucose.
 
@@ -302,18 +355,11 @@ measured yields, or one measured yield plus the electron balance below.
 
 ### Electron balance with product formation
 
-$$
-\gamma_S w = \gamma_X c + \gamma_P j f + 4a + 8n
-$$
-
-- $\gamma_P$ — degree of reduction of the product (electron content of the
-  excreted product per carbon atom), dimensionless
-- $j$ — carbon atoms per product molecule (same $j$ as the product's
-  formula subscript above) — needed because, unlike biomass, the product
-  isn't written on a C-mole basis, so its electron total is
-  $\gamma_P \times j$ per mole, not $\gamma_P$ alone
-
-Setting $f = 0$ recovers the growth-only balance above.
+A product excreted from the cell is a third place electrons can land,
+alongside biomass and $O_2$ — its electron content is $\gamma_P \times j$
+per mole, where $j$ is carbon atoms per product molecule (needed because,
+unlike biomass, a product is written as the real molecule, not on a C-mole
+basis).
 
 #### Worked example: fermentation of glucose to ethanol
 
@@ -325,12 +371,13 @@ confirm the result conserves available electrons.
 **Solution.**
 
 1. Carbon balance: $6 = 2f + d$.
-2. No biomass and no $O_2$ means $c = 0, a = 0$ (and $n = 0$), so the
-   electron balance reduces to $\gamma_S w = \gamma_P j f$.
-3. $\gamma_S = 4$ (glucose, $6$ carbons) and $\gamma_P = 6$ (ethanol, $2$
-   carbons per molecule), from the degree-of-reduction table above:
-   $4(6) = 6(2)f \Rightarrow 24 = 12f \Rightarrow f = 2$.
-4. Substitute into the carbon balance: $6 = 2(2) + d \Rightarrow d = 2$.
+2. No biomass and no $O_2$ means every electron from the substrate has to
+   land in the product instead: electrons in = electrons in product.
+3. Electrons in $1\ \text{mol}$ glucose: $\gamma_S \times 6 = 4 \times 6 =
+   24$. Electrons per mole of ethanol: $\gamma_P \times j = 6 \times 2 =
+   12$ (from the degree-of-reduction table above).
+4. $24 = 12f \Rightarrow f = 2$.
+5. Substitute into the carbon balance: $6 = 2(2) + d \Rightarrow d = 2$.
 
 **Answer:** $C_6H_{12}O_6 \rightarrow 2\,C_2H_5OH + 2\,CO_2$ — the classic
 fermentation equation. All $24$ of glucose's available electrons land in
@@ -386,16 +433,9 @@ biomass (or in product) with none spent on $O_2$.
 
 ### Maximum biomass yield ($Y_{X/S}^{max}$)
 
-Setting $a = 0$ and $f = 0$ in the electron balance gives the ceiling on
-$c$:
-
-$$
-\gamma_S w = \gamma_X c_{max}
-$$
-
-- $c_{max}$ — moles of biomass per mole of substrate at the theoretical
-  ceiling (the highest possible biomass yield — reached only if every
-  substrate electron went to biomass, none to $O_2$) (mol)
+If no electrons are spent on $O_2$ or product, all of the substrate's
+electrons must land in biomass instead — that's the ceiling, $c_{max}$
+(moles of biomass per mole of substrate at the theoretical maximum).
 
 #### Worked example: maximum $Y_{X/S}$ for growth on glycine
 
@@ -404,9 +444,11 @@ basis.
 
 **Solution.**
 
-1. $c_{max} = \gamma_S w/\gamma_X = (3)(2)/4.2 = 1.43\ \text{mol
-   biomass/mol glycine}$.
-2. $Y_{X/S}^{max} = c_{max}MW_X/MW_S = (1.43)(24.63)/75.07 =
+1. Electrons in $1\ \text{mol}$ glycine: $\gamma_S \times (\text{C atoms})
+   = 3 \times 2 = 6$ (from the degree-of-reduction worked example above).
+2. With no $O_2$ and no product, all $6$ electrons must land in biomass:
+   $c_{max} = 6/\gamma_X = 6/4.2 = 1.43\ \text{mol biomass/mol glycine}$.
+3. $Y_{X/S}^{max} = c_{max}MW_X/MW_S = (1.43)(24.63)/75.07 =
    0.469\ \text{g/g}$.
 
 **Answer:** $Y_{X/S}^{max} \approx 0.47\ \text{g/g}$ — well above the
@@ -416,16 +458,10 @@ is a theoretical ceiling, not a target real aerobic growth reaches.
 
 ### Maximum product yield ($Y_{P/S}^{max}$)
 
-Setting $a = 0$ and $c = 0$ in the electron balance gives the ceiling on
-$f$:
-
-$$
-\gamma_S w = \gamma_P j f_{max}
-$$
-
-- $f_{max}$ — moles of product per mole of substrate at the theoretical
-  ceiling (the highest possible product yield — reached only if every
-  substrate electron went to product, none to $O_2$) (mol)
+Same idea, aimed at product instead: if no electrons are spent on $O_2$ or
+biomass, all of the substrate's electrons must land in product — the
+ceiling, $f_{max}$ (moles of product per mole of substrate at the
+theoretical maximum).
 
 #### Worked example: maximum $Y_{P/S}$ for glucose fermented to ethanol
 
@@ -463,6 +499,12 @@ $$
   substance ($\text{mol } O_2/\text{mol}$); multiply by $32\ \text{g/mol}$
   and divide by the molar mass for a mass basis ($\text{g } O_2/\text{g}$)
 
+The converse matters just as much: **any** biomass or extracellular product
+formed — even a partially-oxidized one like an organic acid — carries some
+of the substrate's electrons away with it, so the actual $O_2$ consumed is
+always *less* than ThOD. Complete oxidation to $CO_2$ is the only case that
+reaches the ThOD ceiling.
+
 #### Worked example: ThOD of glycine
 
 **Question.** Find the theoretical oxygen demand of glycine, in grams of
@@ -477,10 +519,10 @@ $O_2$ per gram of glycine.
 
 **Answer:** $\text{ThOD} \approx 0.64\ \text{g } O_2/\text{g glycine}$.
 
-$Y_{X/S}^{max}$, $Y_{P/S}^{max}$, and ThOD are the same electron balance
-($\gamma_S w = \gamma_X c + \gamma_P j f + 4a + 8n$), just with a different
-pair of terms zeroed out — all electrons to biomass, all to product, or
-all to $O_2$.
+$Y_{X/S}^{max}$, $Y_{P/S}^{max}$, and ThOD are all the same conservation
+idea (electrons in = electrons in biomass + electrons in product +
+electrons to $O_2$), just with a different pair of destinations zeroed
+out — all electrons to biomass, all to product, or all to $O_2$.
 
 ## Elemental composition of biomass
 
@@ -546,9 +588,9 @@ contribution of carbon to dry biomass, to two decimal places.
   what lets an electron balance replace an elemental balance when solving
   the general growth equation. $CO_2$ is the zero-point ($\gamma=0$); $CH_4$
   is the highest single-carbon value ($\gamma=8$).
-- **One mole of $O_2$ = $4$ electron equivalents** — this is the $4a$ term
-  in the available electron balance, and follows directly from
-  $O_2 + 4H^+ + 4e^- \rightarrow 2H_2O$.
+- **One mole of $O_2$ = $4$ electron equivalents** — the conversion used to
+  turn "electrons left over" into moles of $O_2$ in any electron balance,
+  and it follows directly from $O_2 + 4H^+ + 4e^- \rightarrow 2H_2O$.
 - **$\gamma_X$ (biomass) doesn't depend on the nitrogen source** — it's
   fixed by biomass's elemental composition, using amine-nitrogen ($-3$)
   valency, because that's the level nitrogen sits at once it's inside the
@@ -599,3 +641,11 @@ above, $c = 1\ \text{mol biomass/mol glycine}$ is already a molar ratio
 (not C-mole, since glycine has $2$ carbons), while $Y_{X/S} = 0.33\
 \text{g/g}$ is the same result on a mass basis — always check which basis
 a reported $Y_{X/S}$ is on before using it in a calculation.
+
+**"Nitrogen contributes zero available electrons"** — false. Nitrogen's
+valency is *variable* (it depends on the compound), which gets mistaken for
+*zero*. In biomass specifically it sits at the amine level, $-3$, a real
+nonzero (and negative) contribution — it's the $-3\delta$ term in every
+$\gamma_X$ calculation above, not an absent one. $N_2$ is the one case
+where nitrogen's valency actually is $0$, but that's a special case, not
+the general rule.
