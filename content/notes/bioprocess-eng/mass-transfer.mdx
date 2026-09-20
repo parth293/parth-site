@@ -948,6 +948,20 @@ probe dynamics (e.g. fitting a first-order probe-response model) before
 $k_L a$ can be extracted correctly. A fast probe ($\tau_p \ll 1/k_L a$)
 avoids the correction entirely.
 
+**What $1/k_L a$ physically means.** $k_L a$ has units of $\text{s}^{-1}$,
+so its reciprocal is a **time constant** — the characteristic time scale
+of reoxygenation, exactly like $\tau$ in any first-order approach to
+equilibrium. After one time constant ($t = 1/k_L a$) the system has
+closed $63\%$ of the gap to $\bar{C}_{AL}$; after three, $\sim95\%$; after
+five, essentially done. A well-aerated reactor with $k_L a =
+0.1\ \text{s}^{-1}$ reoxygenates on a $1/k_L a = 10\ \text{s}$ timescale;
+a poorly aerated one with $k_L a = 0.001\ \text{s}^{-1}$ takes
+$1/k_L a \approx 17\ \text{min}$. Comparing $\tau_p$ to $1/k_L a$ is just
+comparing the probe's own reaction speed to the reaction speed of the
+thing it's trying to measure — a probe with $\tau_p = 8\ \text{s}$ is
+badly lagged against the fast $10\ \text{s}$ case above but effectively
+instantaneous against the slow $17\ \text{min}$ one.
+
 #### Worked example: which assertions about the respiring-cells variant are correct?
 
 **Question.** Select the CORRECT assertions regarding the dynamic
