@@ -280,14 +280,14 @@ loops — one moving upward, one moving downward.
 
 ### Types of impellers
 
-| Impeller | Flow | Shear | $N_p$ | Best for |
-| --- | --- | --- | --- | --- |
-| Rushton turbine | Radial | High | $\approx 5.0$ | Aerobic microbial fermentation — top $O_2$ transfer |
-| Marine propeller | Axial | Low | $0.3$–$0.5$ | Mammalian / plant cell culture |
-| Hydrofoil (A310) | Axial | Low–moderate | $0.25$–$0.3$ | Energy-efficient mixing, microbial + cell culture |
-| Pitched blade turbine | Axial | Moderate | — | Viscous fluids, suspensions, enzymatic reactions |
-| Anchor | Tangential | Low | — | High-viscosity, wall-scraping (gels, creams) |
-| Helical ribbon | Axial / helical | Low | — | Very high-viscosity, non-Newtonian fluids |
+| Impeller | Flow | Shear | $N_p$ | Best for | Remember |
+| --- | --- | --- | --- | --- | --- |
+| Rushton turbine | Radial | High | $\approx 5.0$ | Aerobic microbial fermentation — top $O_2$ transfer | Highest shear/$N_p$ of the six — never for shear-sensitive cells |
+| Marine propeller | Axial | Low | $0.3$–$0.5$ | Mammalian / plant cell culture | Default gentle axial choice for delicate cultures |
+| Hydrofoil (A310) | Axial | Low–moderate | $0.25$–$0.3$ | Energy-efficient mixing, microbial + cell culture | Lowest $N_p$/power draw of the six — most energy-efficient |
+| Pitched blade turbine | Axial | Moderate | — | Viscous fluids, suspensions, enzymatic reactions | Only one that runs both up- and down-pumping |
+| Anchor | Tangential | Low | — | High-viscosity, wall-scraping (gels, creams) | Close-clearance, tangential — scrapes wall to prevent fouling |
+| Helical ribbon | Axial / helical | Low | — | Very high-viscosity, non-Newtonian fluids | Thickest, most viscosity-challenged fluids of the six |
 
 #### Rushton turbine
 
@@ -320,8 +320,9 @@ configurations.
 
 ![Anchor impeller shaped to match the curvature of the tank wall, used to scrape the vessel wall](/notes/bioprocess-eng/anchor-impeller.png)
 
-Blades match the tank wall's curvature and scrape it directly — the only one
-here built to prevent wall buildup.
+A **close-clearance impeller**: blades match the tank wall's curvature and
+scrape it directly, running in the tangential flow regime to prevent
+boundary-layer fouling — the only one here built to prevent wall buildup.
 
 #### Helical ribbon impeller
 
@@ -330,6 +331,48 @@ here built to prevent wall buildup.
 Ribbon blade spirals around the shaft — for the thickest, most
 viscosity-challenged fluids of the six (polymerization mixtures, biomass
 slurries).
+
+**Why it beats anchor at extreme viscosity: cavern formation.** A turbulent
+impeller (Rushton, propeller) needs inertia-driven eddies to carry momentum
+away from the blade — that only works at high Reynolds number. Past roughly
+$10,000$–$20,000\ \text{cP}$, flow around such an impeller is deep in the
+laminar (creeping-flow) regime: it churns only a small **cavern** of fluid
+immediately around itself, leaving the rest of the vessel — especially near
+the walls — stagnant. Anchor's close clearance fixes the wall-film part of
+this (it scrapes the boundary layer directly), but at the highest
+viscosities even the anchor's bulk turnover is too weak to reach the
+mid-radius, mid-height fluid. Helical ribbon solves this by spanning the
+full height and diameter of the vessel, dragging the entire cross-section in
+a continuous top-to-bottom screw motion — the standard choice once viscosity
+climbs high enough that anchor alone can no longer prevent stagnant zones.
+
+#### Worked example: impeller choice for a highly viscous mycelial broth
+
+**Question.** A fermentation of *Aspergillus niger* produces a broth with
+viscosity exceeding $100,000\ \text{cP}$ ($100\ \text{Pa} \cdot \text{s}$).
+Which impeller configuration best maintains bulk liquid motion and prevents
+stagnant zones near the wall: (a) single Rushton turbine at the bottom,
+(b) helical ribbon impeller, (c) high-speed marine propeller, or (d) a
+vibrating disc sparger?
+
+**Solution.**
+
+1. Filamentous fungi like *A. niger* grow as mycelial networks or pellets,
+   producing highly viscous, shear-thinning (pseudoplastic) broth — this is
+   the extreme end of the viscosity ladder.
+2. At $100,000\ \text{cP}$, flow around any impeller is in the laminar
+   (creeping-flow) regime — turbulent-style impellers (Rushton, propeller)
+   cannot propagate motion past a small cavern around the blade, so most of
+   the tank, especially near the wall, stays stagnant. This rules out (a)
+   and (c).
+3. A sparger distributes gas; it does not drive bulk liquid circulation, so
+   (d) is the wrong category of equipment for this question.
+4. Helical ribbon spans the full height and diameter of the vessel and
+   stays close to the wall along its entire helix, mechanically dragging
+   the whole cross-section top-to-bottom — the standard impeller for broths
+   past the viscosity where even anchor's bulk turnover is sufficient.
+
+**Answer: (b) Helical ribbon impeller.**
 
 ## Key points
 
