@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 import { PageShell, PageHeader } from "@/components/page-shell";
 import { DocList } from "@/components/doc-list";
 import { Section, Status } from "@/components/record";
-import { getNotes } from "@/lib/content";
+import { getNotes, type Doc } from "@/lib/content";
 import { isUnlocked } from "@/lib/unlock";
+import { getFormulasForNote } from "@/lib/formulas";
 import { pillarBySlug, pillars, type PillarSlug } from "@/lib/site";
 
 type Params = { params: Promise<{ section: string }> };
@@ -28,6 +29,22 @@ export default async function NotesSectionPage({ params }: Params) {
 
   const docs = await getNotes(pillar.slug, await isUnlocked());
 
+  // Bioprocess-eng notes are built to be scanned for a formula fast — see
+  // BIOPROCESS_ENG_GUIDE.md. Surface each note's Formulas tab right on the
+  // list, not just inside the article, for every note that has one.
+  let formulaHrefBySlug: Map<string, string> | null = null;
+  if (pillar.slug === "bioprocess-eng") {
+    const entries = await Promise.all(
+      docs.map(async (doc) => {
+        const formulas = await getFormulasForNote(pillar.slug, doc.slug);
+        return [doc.slug, formulas.length > 0] as const;
+      }),
+    );
+    formulaHrefBySlug = new Map(
+      entries.filter(([, hasFormulas]) => hasFormulas).map(([slug]) => [slug, `/notes/${pillar.slug}/${slug}/formulas`]),
+    );
+  }
+
   return (
     <PageShell>
       <PageHeader eyebrow="Notes" title={pillar.title} lede={pillar.description} />
@@ -47,6 +64,14 @@ export default async function NotesSectionPage({ params }: Params) {
         <DocList
           docs={docs}
           emptyMessage="This section is set up but not yet seeded. Articles land here as they get written."
+          getSecondaryLink={
+            formulaHrefBySlug
+              ? (doc: Doc) => {
+                  const href = formulaHrefBySlug!.get(doc.slug);
+                  return href ? { href, label: "Formulas" } : null;
+                }
+              : undefined
+          }
         />
       </Section>
     </PageShell>

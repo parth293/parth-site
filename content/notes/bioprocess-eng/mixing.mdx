@@ -72,6 +72,67 @@ A **sparger** introduces gases into the liquid medium.
 | Perforated plate | Lab scale | Con: pores get blocked by fungal mycelia |
 | Tri-nozzle sparger / ladder distributor (ladder sparger) | Industrial scale | Large pores — don't get blocked |
 
+## Turbulent eddies and the energy cascade
+
+Turbulent flow in a stirred tank is not one uniform swirl — it is made up of
+a **wide spectrum of eddy sizes**, from eddies comparable to the impeller
+itself down to eddies just large enough for viscosity to act on them.
+
+Energy moves through that spectrum in one direction, called the **energy
+cascade**:
+
+1. **Large eddies** (scale of the impeller/tank) extract kinetic energy
+   directly from the impeller's rotation.
+2. Large eddies break up into progressively smaller eddies, passing kinetic
+   energy down the size spectrum at each step.
+3. At the smallest scale — the **Kolmogorov microscale** ($\eta$) — eddies
+   are small enough that viscous forces dominate over inertial forces, and
+   kinetic energy is **dissipated as heat** by viscous friction. This is
+   where essentially all the dissipation happens, not at the large scale.
+
+### Shear damage from small eddies
+
+The Kolmogorov microscale sets the size of the smallest, most energetic
+eddies in the tank. When that scale approaches the size of a cell or hypha,
+the eddy's local velocity gradients generate high shear directly on the
+organism — this is why shear damage is worst in the immediate vicinity of the
+impeller blades, where eddies are smallest and most energetic.
+
+- **Filamentous fungi**: hyphae are long and rigid, easily fragmented by
+  small-eddy shear near the impeller.
+- **Animal cells**: no cell wall, so they are damaged by shear levels that
+  plant, fungal, or bacterial cells (which have a protective wall) would
+  tolerate.
+
+### Worked example: turbulent eddies in bioreactors (GATE-style)
+
+**Question.** Select the CORRECT statements regarding mixing and turbulent
+eddies in bioreactors:
+
+(a) Turbulent flow is characterized by a wide spectrum of eddy sizes.
+(b) Large eddies extract kinetic energy directly from the impeller and
+transfer it down to smaller eddies.
+(c) Viscous dissipation of kinetic energy into heat occurs primarily at the
+smallest eddy scale (Kolmogorov scale).
+(d) High shear in the immediate vicinity of impeller blades can cause shear
+damage to filamentous fungi and animal cells.
+
+**Solution.**
+
+1. (a) is the defining feature of turbulence used above — eddies range from
+   impeller/tank scale down to the Kolmogorov microscale — correct.
+2. (b) describes the energy cascade exactly: the impeller feeds kinetic
+   energy into the largest eddies first, and it passes down the size
+   spectrum from there — correct.
+3. (c) matches step 3 of the cascade: viscous forces only dominate at the
+   smallest (Kolmogorov) scale, which is where dissipation into heat
+   actually happens, not at the large scale — correct.
+4. (d) matches the shear-damage mechanism above: small, energetic eddies
+   near the impeller blades generate the highest local shear, damaging
+   rigid fungal hyphae and wall-less animal cells — correct.
+
+**Answer:** All four statements — (a), (b), (c), and (d) — are correct.
+
 ## Power consumption
 
 While mixing is important, bioreactors cannot be mixed at full speed. As
@@ -272,6 +333,13 @@ slurries).
 
 ## Key points
 
+- Turbulence is a **spectrum of eddy sizes**: the impeller feeds kinetic
+  energy into the largest eddies, it cascades down to progressively smaller
+  ones, and viscous dissipation into heat happens almost entirely at the
+  smallest (**Kolmogorov microscale**) eddies.
+- Shear damage is worst near the impeller blades, where the smallest,
+  most energetic eddies form — this is what fragments filamentous fungal
+  hyphae and lyses wall-less animal cells.
 - **Mixing time** should be minimized — a slow mix lets local pH or
   concentration spikes near the addition point kill nearby cells.
 - **Baffles** break circulatory flow and vortex formation, converting it
