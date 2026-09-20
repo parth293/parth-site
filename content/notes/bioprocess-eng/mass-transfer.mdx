@@ -112,6 +112,49 @@ difference between the saturation concentration and the bulk
 concentration, the more strongly the system pulls the solute into the
 liquid.
 
+### $k_L$ under film theory
+
+Film theory treats the film as a fixed-thickness layer crossed by
+steady-state molecular diffusion, which gives $k_L$ itself as
+
+$$
+k_L = \frac{D_{AB}}{\delta}
+$$
+
+- $k_L$ — (liquid) film mass-transfer coefficient, in metres per second
+  ($\text{m/s}$)
+- $D_{AB}$ — diffusion coefficient of the solute through the liquid, in
+  square metres per second ($\text{m}^2/\text{s}$)
+- $\delta$ — thickness of the stagnant film, in metres ($\text{m}$)
+
+$k_L$ is **directly (linearly) proportional to $D_{AB}$** — doubling the
+diffusivity, with film thickness $\delta$ unchanged, doubles $k_L$.
+
+#### Worked example: effect of doubling diffusivity on $k_L$
+
+**Question.** If the molecular diffusivity of a solute doubles while
+keeping all other physical parameters and film thickness constant,
+according to Whitman's film theory, the mass transfer coefficient $k_L$
+will:
+
+- (a) Increase by a factor of $1.41$ ($\sqrt{2}$)
+- (b) Increase by a factor of $2.0$
+- (c) Increase by a factor of $4.0$
+- (d) Remain unchanged
+
+**Solution.**
+
+1. Film theory gives $k_L = D_{AB}/\delta$ — a linear relationship
+   between $k_L$ and $D_{AB}$, with $\delta$ held fixed.
+2. Doubling $D_{AB}$ (with $\delta$ constant) doubles $k_L$ directly:
+   $k_{L,\text{new}} = (2D_{AB})/\delta = 2\,(D_{AB}/\delta) =
+   2\,k_{L,\text{old}}$.
+3. A factor of $\sqrt{2}$ (option a) is what penetration or surface
+   renewal theory would predict instead, since those give $k_L \propto
+   D_{AB}^{0.5}$ — not film theory.
+
+**Answer:** (b) — $k_L$ increases by a factor of $2.0$.
+
 ### Interfacial area per unit volume ($a$)
 
 **Interfacial area per unit volume** ($a$) is the total interfacial area
@@ -150,25 +193,107 @@ bubbles of the same total volume.
 ### Volumetric mass transfer coefficient ($k_L a$)
 
 $k_L$ and $a$ are hard to measure separately, so they are lumped into a
-single **volumetric mass transfer coefficient**:
-
-$$
-N_A = k_L a\, (C^* - C)
-$$
-
-- $k_L a$ — volumetric mass transfer coefficient, in reciprocal seconds
-  ($\text{s}^{-1}$)
-- $N_A$ — volumetric rate of mass transfer, in gram-mole per cubic metre
-  per second ($\text{gmol}/(\text{m}^3 \cdot \text{s})$)
-- $C^*$ — saturation concentration, in gram-mole per cubic metre
-  ($\text{gmol/m}^3$)
-- $C$ — bulk concentration, in gram-mole per cubic metre
-  ($\text{gmol/m}^3$)
+single **volumetric mass transfer coefficient**, $k_L a$, in reciprocal
+seconds ($\text{s}^{-1}$) — the same film-theory rate equation as above,
+$N_A = k_L a\,(C^* - C)$, just written with $k_L$ and $a$ combined into
+one term instead of kept separate.
 
 $k_L$ and $a$ change together (e.g. faster impeller speed raises both),
 so they're rarely separated in practice. In aerobic fermentation, $A$
 is oxygen, so $k_L a$ represents the bioreactor's **oxygen transfer
 capacity** — the standard parameter for bioreactor design and scale-up.
+
+## Penetration and surface renewal theories
+
+**Penetration theory** and **surface renewal theory** replace film
+theory's stagnant film with short-lived liquid elements that arrive at
+the interface, exchange solute by unsteady-state diffusion, then get
+swept back into the bulk before equilibrium is reached.
+
+### Higbie's penetration theory
+
+Every liquid element sits at the interface for the **same fixed contact
+time** $t_c$ before being replaced by fresh bulk fluid.
+
+$$
+k_L = 2\sqrt{\frac{D_{AB}}{\pi t_c}}
+$$
+
+- $k_L$ — liquid film mass-transfer coefficient, in metres per second
+  ($\text{m/s}$)
+- $D_{AB}$ — diffusion coefficient of the solute through the liquid, in
+  square metres per second ($\text{m}^2/\text{s}$)
+- $t_c$ — contact time of a liquid element at the interface before it is
+  replaced, in seconds ($\text{s}$) — assumed identical for every element
+
+This gives $k_L \propto D_{AB}^{0.5}$ — a square-root dependence, unlike
+film theory's linear $k_L \propto D_{AB}^{1.0}$.
+
+### Danckwerts' surface renewal theory
+
+Danckwerts kept the same short-lived-element picture but dropped the
+assumption of equal contact time: elements are replaced at random, with a
+**fractional rate of surface renewal** $s$ describing the probability per
+unit time that any given element gets swapped out.
+
+$$
+k_L = \sqrt{D_{AB}\, s}
+$$
+
+- $k_L$ — liquid film mass-transfer coefficient, in metres per second
+  ($\text{m/s}$)
+- $D_{AB}$ — diffusion coefficient of the solute through the liquid, in
+  square metres per second ($\text{m}^2/\text{s}$)
+- $s$ — fractional rate of surface renewal, in reciprocal seconds
+  ($\text{s}^{-1}$)
+
+Like Higbie's theory, $k_L \propto D_{AB}^{0.5}$ — the two theories share
+the same diffusivity dependence even though they disagree on how contact
+time is distributed.
+
+### Comparing the three theories
+
+| Theory | Interface picture | Contact time assumption | $k_L$ vs. $D_{AB}$ |
+| --- | --- | --- | --- |
+| Whitman film theory | stagnant film, steady-state diffusion | not applicable (steady state) | $k_L \propto D_{AB}^{1.0}$ |
+| Higbie penetration theory | short-lived elements, unsteady diffusion | same fixed $t_c$ for every element | $k_L \propto D_{AB}^{0.5}$ |
+| Danckwerts surface renewal theory | short-lived elements, unsteady diffusion | random distribution of ages, rate $s$ | $k_L \propto D_{AB}^{0.5}$ |
+
+The $D_{AB}$ exponent identifies the theory family — **1.0 for film
+theory, 0.5 for either penetration or surface renewal.** Distinguishing
+Higbie from Danckwerts then comes down to the contact-time assumption,
+not the exponent: **fixed and equal (Higbie)** vs. **randomly
+distributed (Danckwerts).**
+
+#### Worked example: which theory does each statement describe?
+
+**Question.** Which of the following statements comparing mass transfer
+theories are correct?
+
+- (a) Whitman's film theory predicts $k_L$ is directly proportional to
+  $D_{AB}$ raised to the power $1.0$.
+- (b) Higbie's penetration theory predicts $k_L$ is proportional to
+  $D_{AB}$ raised to the power $0.5$.
+- (c) Danckwerts' surface renewal theory assumes all liquid elements stay
+  at the interface for the exact same contact time.
+- (d) Both Higbie's and Danckwerts' theories predict $k_L$ is
+  proportional to $\sqrt{D_{AB}}$.
+
+**Solution.**
+
+1. Film theory models the film as a fixed-thickness, steady-state
+   diffusion path: $k_L = D_{AB}/\delta$, which is linear in $D_{AB}$.
+   **(a) is correct.**
+2. Higbie's $k_L = 2\sqrt{D_{AB}/(\pi t_c)}$ is a square-root dependence.
+   **(b) is correct.**
+3. "Exact same contact time for every element" is Higbie's assumption,
+   not Danckwerts' — Danckwerts specifically replaced it with a random
+   distribution of surface ages. **(c) is incorrect**, since it describes
+   the wrong theory.
+4. Danckwerts' $k_L = \sqrt{D_{AB}\, s}$ is also a square-root dependence,
+   matching Higbie's. **(d) is correct.**
+
+**Answer:** (a), (b), and (d) are correct; (c) is incorrect.
 
 ## Oxygen uptake in a bioreactor
 
@@ -186,6 +311,112 @@ $$
   maximum solubility), in gram-mole per cubic metre ($\text{gmol/m}^3$)
 - $C_{AL}$ — instantaneous concentration of oxygen in the liquid, in
   gram-mole per cubic metre ($\text{gmol/m}^3$)
+
+### Henry's law and $C^*_{AL}$
+
+$C^*_{AL}$ isn't a fixed property of oxygen — it's set by **Henry's
+law**, which relates the partial pressure of a gas above a liquid to its
+equilibrium (saturation) concentration dissolved in that liquid:
+
+$$
+p_{O_2} = H\, C^*_{AL}
+$$
+
+- $p_{O_2}$ — partial pressure of oxygen in the gas phase, in pascals
+  ($\text{Pa}$)
+- $H$ — Henry's law constant for oxygen in the liquid, in
+  pascal-cubic-metre per gram-mole ($\text{Pa}\cdot\text{m}^3/\text{gmol}$)
+  — depends on the gas, the liquid, and temperature
+- $C^*_{AL}$ — saturation concentration of oxygen in the liquid, in
+  gram-mole per cubic metre ($\text{gmol/m}^3$)
+
+For a fixed oxygen partial pressure in the sparged gas, $C^*_{AL} =
+p_{O_2}/H$ — so $C^*_{AL}$ moves opposite to $H$.
+
+#### Factors affecting $C^*_{AL}$
+
+Per $C^*_{AL} = p_{O_2}/H$, anything that changes $p_{O_2}$ or $H$
+changes $C^*_{AL}$:
+
+1. **Partial pressure of oxygen in the inlet gas, $p_{O_2}$.** Richer
+   oxygen content in the sparged gas (e.g. oxygen-enriched air) directly
+   raises $p_{O_2}$, and so $C^*_{AL}$.
+2. **Total headspace/system pressure.** By Dalton's law, $p_{O_2} =
+   y_{O_2}\, P_{total}$ — for the same gas composition, raising the total
+   pressure (as in a pressurized fermenter) raises $p_{O_2}$ in
+   proportion, and so $C^*_{AL}$. This is why pressurizing a fermenter is
+   a real technique for boosting oxygen supply.
+3. **Temperature.** $H$ **increases with temperature** — dissolving a
+   gas into a liquid is exothermic, so by Le Chatelier's principle,
+   raising temperature shifts the gas–liquid equilibrium back toward the
+   gas phase, and less gas stays dissolved:
+
+   $$
+   \text{Temperature}\uparrow \;\Rightarrow\; H\uparrow \;\Rightarrow\; C^*_{AL}\downarrow
+   $$
+
+   So a hotter broth has a **lower**, not higher, oxygen saturation
+   concentration — the opposite of what intuition about "warm liquids
+   dissolve more gas" might suggest. This is the same fact as the
+   temperature factor for $k_L a$ above, now traced back to its cause:
+   it's $H$ rising with temperature that shrinks $C^*$ and squeezes the
+   $(C^* - C)$ driving force.
+4. **Dissolved solutes (salts, sugars).** Dissolved electrolytes and
+   sugars in the medium raise the effective $H$ for oxygen — the
+   **salting-out effect** — so a real fermentation broth has a lower
+   $C^*_{AL}$ than pure water at the same temperature and $p_{O_2}$.
+
+#### Worked example: which factors affect $C^*$?
+
+**Question.** Which of the following physical factors influence the
+saturation dissolved oxygen concentration ($C^*$) in a bioreactor?
+
+- (a) Partial pressure of oxygen in the inlet gas stream
+- (b) Total bioreactor headspace pressure
+- (c) Temperature of the broth
+- (d) Concentration of dissolved salts and sugars in the medium
+
+**Solution.** All four are genuine factors, via $C^* = p_{O_2}/H$:
+
+1. (a) sets $p_{O_2}$ directly. **Correct.**
+2. (b) sets $p_{O_2}$ indirectly, through Dalton's law
+   ($p_{O_2} = y_{O_2} P_{total}$). **Correct.**
+3. (c) sets $H$ — higher temperature raises $H$ and lowers $C^*$.
+   **Correct.**
+4. (d) also sets $H$, via the salting-out effect — dissolved solutes
+   raise $H$ and lower $C^*$ relative to pure water. **Correct.**
+
+**Answer:** all four, (a)–(d), influence $C^*$.
+
+#### Worked example: true/false on oxygen transfer fundamentals
+
+**Question.** Which of the following statements regarding oxygen
+transfer in aerobic bioreactors is/are TRUE?
+
+- (a) The driving force for oxygen transfer across the liquid film is
+  $(C^* - C_L)$.
+- (b) The addition of surfactants/antifoam agents generally decreases
+  $k_L$ by adding interfacial resistance.
+- (c) Smaller bubble size increases the gas-liquid interfacial area per
+  unit volume $a$.
+- (d) Dissolved oxygen saturation solubility $C^*$ increases with
+  increasing temperature.
+
+**Solution.**
+
+1. The film-theory rate equation is $N_A = k_L a (C^* - C)$ — the
+   concentration gap between saturation and bulk is exactly the driving
+   force. **(a) is true.**
+2. Antifoam agents are surfactants: they add a resistive film at the
+   interface, lowering $k_L$. **(b) is true.**
+3. Smaller bubbles mean more total surface area for the same gas volume
+   ($a = 6/d$ for a sphere) — smaller $d$ gives larger $a$. **(c) is
+   true.**
+4. By Henry's law, $C^* = p_{O_2}/H$, and $H$ **increases** with
+   temperature (gas dissolution is exothermic) — so $C^*$ **decreases**
+   with temperature, not increases. **(d) is false.**
+
+**Answer:** (a), (b), and (c) are true; (d) is false.
 
 ![Path of an oxygen molecule from a gas bubble to a cell's reaction site, numbered in eight steps: (1) interior of the bubble to the gas-liquid interface, (2) across the gas-liquid interface, (3) through the liquid film around the bubble, (4) across the bulk liquid, (5) through the liquid film around the cell, (6) across the liquid-cell interface, (7) to an individual cell within a clump, (8) through the cytoplasm to the reaction site — with k_L a labeling the overall path](/notes/bioprocess-eng/oxygen-transfer-resistance-steps.png)
 
@@ -280,6 +511,11 @@ There's a reference bubble size around $2$–$3\ \text{mm}$:
   slightly lowers $k_L$ — but the resulting jump in interfacial area
   $a$ easily outweighs that drop, so $k_L a$ increases overall.
 
+**Sparger design sets the bubble size at the source.** A large single
+orifice sparger releases coarse bubbles; a **sintered (micro)sparger**
+forces gas through many fine pores instead, producing much smaller
+bubbles — pushing $a$, and so $k_L a$, up.
+
 ### 2. Viscosity
 
 - **Viscosity↑** → resistance to OTR increases → $k_L a$ decreases.
@@ -304,6 +540,47 @@ Temperature pulls $k_L a$ in two directions at once:
 
 So higher temperature speeds up transfer kinetics but weakens the
 driving force behind it.
+
+### 5. Aeration (gas flow) rate
+
+$k_L a$ increases with the sparging gas flow rate — more gas fed in means
+more gas holdup and more total interfacial area $a$.
+
+### 6. Antifoam agents
+
+Chemical antifoam agents are surfactants: at high concentration they
+**promote bubble coalescence** into fewer, larger bubbles and add a thin
+surfactant film at the interface. Both effects work against mass
+transfer — smaller $a$ from coalescence, extra resistance lowering
+$k_L$ — so **high antifoam concentration decreases $k_L a$**, even
+though antifoam is added for an unrelated reason (foam control).
+
+#### Worked example: which changes raise $k_L a$?
+
+**Question.** Which of the following operational modifications will
+result in an increase in the volumetric mass transfer coefficient
+($k_L a$) in an agitated bioreactor?
+
+- (a) Increasing the impeller rotational speed ($N_i$)
+- (b) Increasing the sparging gas flow rate
+- (c) Adding a chemical antifoam agent at high concentration
+- (d) Replacing a large single orifice sparger with a sintered
+  microsparger
+
+**Solution.**
+
+1. Higher impeller speed increases turbulence and breaks bubbles smaller
+   — $k_L a$ increases. **(a) is correct.**
+2. Higher gas flow rate means more gas holdup and more total interfacial
+   area — $k_L a$ increases. **(b) is correct.**
+3. A high concentration of antifoam promotes bubble coalescence and adds
+   interfacial resistance, both of which lower $k_L a$ rather than raise
+   it. **(c) is incorrect.**
+4. A sintered microsparger produces much finer bubbles than a large
+   single orifice, raising interfacial area $a$ — $k_L a$ increases.
+   **(d) is correct.**
+
+**Answer:** (a), (b), and (d) increase $k_L a$; (c) decreases it.
 
 ## Methods of measuring $k_L a$
 
@@ -350,6 +627,56 @@ $$
 ($\ln$ is the natural log; if only base-10 log tables are available,
 $\ln x = 2.303 \log x$.)
 
+**Deoxygenation happens through the culture's own respiration** —
+cutting off the air supply is what starves the broth of oxygen; nothing
+extra (like sparging nitrogen) needs to be added, since the cells
+themselves consume the residual dissolved oxygen.
+
+**Common confusion: $\bar{C}_{AL}$ vs. $C^*_{AL}$.** The formula above
+uses $\bar{C}_{AL}$ — the level dissolved oxygen actually settles at once
+air is back on, with cells still consuming — not $C^*_{AL}$, the
+theoretical saturation solubility with no consumption at all. Because the
+respiring culture keeps consuming oxygen during recovery,
+$\bar{C}_{AL} < C^*_{AL}$, so using $C^*_{AL}$ in the ratio instead gives
+the wrong result. The two only coincide when there's no oxygen
+consumption at all — e.g. a purely physical reaeration test with no
+cells present.
+
+This method's whole point is that it works **with** a living, respiring
+culture in place — unlike the sulphite oxidation method below, which
+needs oxygen consumption to be purely chemical, not biological, so it
+can't be run on an actual fermentation broth.
+
+#### Worked example: which assertions about the method are correct?
+
+**Question.** Select the CORRECT assertions regarding the dynamic
+gassing-out method for determining $k_L a$:
+
+- (a) The broth is first de-oxygenated by sparging nitrogen gas.
+- (b) Dissolved oxygen is monitored as a function of time after air
+  sparging is resumed.
+- (c) The slope of $\ln[(C^* - C)/C^*]$ versus time yields $k_L a$.
+- (d) The method cannot be applied if living, respiring microorganisms
+  are present.
+
+**Solution.**
+
+1. Deoxygenation comes from the culture's own respiration once air is
+   cut off — no nitrogen sparging needed. **(a) is incorrect.**
+2. This is exactly the recovery phase the method measures: air resumes
+   and $C_{AL}$ is tracked climbing back up. **(b) is correct.**
+3. The correct ratio uses $\bar{C}_{AL}$ (the level actually reached
+   under respiration), not $C^*_{AL}$ (the no-consumption saturation
+   value) — see the confusion note above. As written with $C^*$, this
+   would only hold if there were no ongoing oxygen consumption, which
+   contradicts a respiring culture. **(c) is incorrect as stated.**
+4. The opposite is true: this method is specifically designed to be used
+   **with** a living, respiring culture — that's exactly what
+   distinguishes it from the sulphite oxidation method. **(d) is
+   incorrect.**
+
+**Answer:** (b) only.
+
 ### 3. Sulphite oxidation method
 
 Sodium sulphite reacts with dissolved oxygen as fast as it enters the
@@ -375,6 +702,11 @@ $$
   to low; **film theory** assumes a linear concentration profile across each
   stagnant film — steady-state diffusion, no accumulation, same reasoning as
   linear conduction through a wall.
+- **Film theory gives $k_L \propto D_{AB}^{1.0}$; penetration (Higbie) and
+  surface renewal (Danckwerts) theories both give $k_L \propto
+  D_{AB}^{0.5}$** — the two square-root theories differ only in their
+  contact-time assumption: fixed and equal (Higbie) vs. randomly
+  distributed (Danckwerts).
 - At the phase boundary itself there is no resistance — instantaneous
   equilibrium — and it's the **partition coefficient**, not diffusion, that
   decides the concentration jump between the two phases there.
