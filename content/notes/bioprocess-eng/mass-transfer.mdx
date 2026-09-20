@@ -147,6 +147,124 @@ into 100 equal smaller bubbles?
 rising to $\approx 2790\ \text{m}^2/\text{m}^3$ once split into 100 smaller
 bubbles of the same total volume.
 
+### Gas hold-up ($\varepsilon_g$)
+
+**Gas hold-up** ($\varepsilon_g$) is the fraction of the gas-liquid
+dispersion's volume occupied by gas bubbles at any instant — not the
+sparging flow rate, but how much gas is actually held up inside the vessel
+while it rises through the liquid.
+
+$$
+\varepsilon_g = \frac{V_g}{V_g + V_L}
+$$
+
+- $\varepsilon_g$ — gas hold-up, dimensionless (fraction, $0$–$1$)
+- $V_g$ — volume of gas (bubbles) in the dispersion, in cubic metres
+  ($\text{m}^3$)
+- $V_L$ — volume of liquid in the dispersion, in cubic metres ($\text{m}^3$)
+
+$\varepsilon_g$ is what turns single-bubble geometry ($6/d$ for one sphere)
+into a vessel-level interfacial area. The general form folds it in
+directly:
+
+$$
+a = \frac{6\varepsilon_g}{d_b}
+$$
+
+- $a$ — interfacial area per unit volume, in square metres per cubic metre
+  ($\text{m}^2/\text{m}^3$)
+- $\varepsilon_g$ — gas hold-up, dimensionless
+- $d_b$ — Sauter mean bubble diameter, in metres ($\text{m}$)
+
+The single-bubble worked example above used $a = 6/d$ as shorthand for a
+*fixed* total gas volume — that special case works because $\varepsilon_g$
+is the same in both scenarios being compared, so it cancels out. For any
+absolute calculation, use the full $a = 6\varepsilon_g/d_b$.
+
+**What raises $\varepsilon_g$ (and generally $a$):**
+- **Higher superficial gas (sparging) velocity** — more gas fed per unit
+  time and cross-section means more gas volume held up in the liquid at
+  any instant.
+- **Smaller bubbles** — they rise more slowly, so they spend longer in the
+  liquid before escaping, raising hold-up for the same gas flow rate.
+
+**What lowers it:**
+- **Coalescence** — bubbles merging into larger ones increases $d_b$
+  directly and makes bubbles rise faster (less residence time), lowering
+  both $\varepsilon_g$ and $a$. Coalescence always works against
+  interfacial area, never for it.
+- **High viscosity** — thick, non-Newtonian broths often promote
+  coalescence and slow bubble breakup, generally reducing hold-up and $a$.
+
+**Electrolytes — two separate effects, easy to conflate.** Dissolved
+salts (e.g. NaCl, Na$_2$SO$_4$) do two unrelated things in a sparged
+system:
+
+- **They inhibit bubble coalescence.** Ions in solution stabilize the
+  thin liquid film between two approaching bubbles, preventing them from
+  merging. This keeps mean bubble diameter smaller and $a$ (and $k_La$)
+  higher than in pure water, at the same gas flow rate.
+- **They lower O$_2$ solubility ($C^*$) via salting-out** (see "Oxygen
+  solubility" below) — a completely separate mechanism (ionic strength
+  suppressing gas solubility, not bubble size).
+
+So electrolytes raise $a$/$k_La$ (via smaller, more stable bubbles) while
+simultaneously *lowering* $C^*$ (via salting-out) — two different
+variables, two different mechanisms, pulling in directions that don't
+cancel out predictably. There is no "salting-in" effect that raises
+O$_2$ solubility here — that term describes a different phenomenon
+(certain organic solutes becoming *more* soluble with certain salts), not
+this case.
+
+#### Worked example: electrolyte effects in a sparged bioreactor
+
+**Question.** Which of the following effects occur when pure
+electrolytes (salts such as NaCl or Na$_2$SO$_4$) are added to pure water
+in a sparged bioreactor? (a) Electrolytes inhibit bubble coalescence.
+(b) Mean bubble diameter decreases at high salt concentrations.
+(c) Interfacial area $a$ increases. (d) Oxygen solubility $C^*$ increases
+due to the salting-in effect.
+
+**Solution.**
+
+1. Ions stabilize the thin film between approaching bubbles, preventing
+   them from merging — (a) is correct.
+2. Coalescence inhibition means bubbles stay smaller instead of merging
+   into larger ones as salt concentration rises — (b) is correct.
+3. Smaller $d_b$ at roughly the same hold-up means $a = 6\varepsilon_g/d_b$
+   rises — (c) is correct.
+4. Electrolytes lower O$_2$ solubility via **salting-out**, not raise it
+   via "salting-in" — (d) gets both the direction and the name of the
+   effect wrong.
+
+**Answer:** (a), (b), and (c) are correct; (d) is false.
+
+#### Worked example: which statements about interfacial area are correct
+
+**Question.** Select the CORRECT statements regarding the gas-liquid
+interfacial area per unit volume $a$: (a) $a$ is related to gas hold-up
+($\varepsilon_g$) and bubble diameter ($d_b$) by $a = 6\varepsilon_g/d_b$.
+(b) High shear from Rushton turbines reduces mean bubble diameter, thereby
+increasing $a$. (c) Increasing gas sparging velocity increases gas
+hold-up, generally increasing $a$. (d) Coalescence of air bubbles
+increases $a$.
+
+**Solution.**
+
+1. (a) is exactly the general interfacial-area equation above — correct.
+2. Rushton turbines are high-shear radial impellers; that shear breaks
+   bubbles into smaller ones, and since $a \propto 1/d_b$, a smaller $d_b$
+   means a higher $a$ — (b) is correct.
+3. Higher sparging (superficial gas) velocity increases $\varepsilon_g$
+   (more gas held up in the dispersion at any instant); with $d_b$ roughly
+   unchanged, $a = 6\varepsilon_g/d_b$ rises too — (c) is correct.
+4. Coalescence merges small bubbles into larger ones, increasing $d_b$.
+   Since $a \propto 1/d_b$, this **decreases** $a$ — (d) is false; it
+   directly contradicts (b) and (c), which both work by keeping bubbles
+   small.
+
+**Answer:** (a), (b), and (c) are correct; (d) is false.
+
 ### Volumetric mass transfer coefficient ($k_L a$)
 
 $k_L$ and $a$ are hard to measure separately, so they are lumped into a
@@ -171,6 +289,70 @@ is oxygen, so $k_L a$ represents the bioreactor's **oxygen transfer
 capacity** — the standard parameter for bioreactor design and scale-up.
 
 ## Oxygen uptake in a bioreactor
+
+### Oxygen solubility ($C^*$) and Henry's law
+
+**Oxygen is a sparingly soluble gas** in aqueous media — at
+$25\,^\circ\text{C}$, water in equilibrium with ambient air holds only
+about $7$–$9\ \text{mg/L}$ dissolved O$_2$ ($\approx 0.2$–
+$0.3\ \text{mmol/L}$). This small number is exactly why $k_L a$ has to be
+so large in aerobic fermentation: the absolute driving force
+$(C^*_{AL} - C_{AL})$ available at any moment is tiny.
+
+Henry's law sets $C^*$ from the partial pressure of oxygen in the gas
+phase:
+
+$$
+C^*_{AL} = \frac{p_{O_2}}{H}
+$$
+
+- $C^*_{AL}$ — saturation concentration of oxygen in the liquid, in
+  gram-mole per cubic metre ($\text{gmol/m}^3$)
+- $p_{O_2}$ — partial pressure of oxygen in the gas phase, in pascals
+  ($\text{Pa}$)
+- $H$ — Henry's law constant for oxygen in the broth, in
+  pascal-cubic-metres per gram-mole ($\text{Pa}\cdot\text{m}^3/\text{gmol}$)
+
+**What raises $C^*$:**
+- **Higher headspace/total pressure** — for a fixed O$_2$ mole fraction in
+  the gas, raising total pressure raises $p_{O_2}$ proportionally, so
+  $C^*$ rises. This is why some high-cell-density fermentations run
+  pressurized: it raises the achievable driving force without needing
+  more $k_L a$.
+
+**What lowers $C^*$:**
+- **Higher temperature** — gas dissolution is exothermic, so $C^*$ falls
+  as temperature rises (see Temperature under "Factors affecting $k_L a$"
+  below) — pulling in the opposite direction from higher headspace
+  pressure.
+- **Salting-out effect** — high concentrations of dissolved electrolytes
+  and sugars in the broth raise its ionic strength, which lowers gas
+  solubility. Concentrated fermentation media can measurably suppress
+  $C^*$ below the value for pure water.
+
+#### Worked example: oxygen solubility claims
+
+**Question.** Select the CORRECT statements regarding oxygen solubility
+in aqueous fermentation broth: (a) O$_2$ is a sparingly soluble gas, with
+$C^*$ typically around $7$–$9\ \text{mg/L}$ at $25\,^\circ\text{C}$ under
+ambient air. (b) Increasing bioreactor temperature increases $C^*$.
+(c) Increasing vessel headspace pressure increases $C^*$ according to
+Henry's law. (d) High concentrations of dissolved electrolytes and sugars
+decrease $C^*$ via the salting-out effect.
+
+**Solution.**
+
+1. (a) is the standard textbook solubility value for O$_2$ in water at
+   room temperature under air — correct.
+2. Gas dissolution is exothermic, so solubility falls as temperature
+   rises, not rises — (b) is false.
+3. Henry's law, $C^*_{AL} = p_{O_2}/H$, makes $C^*$ directly proportional
+   to the partial pressure of O$_2$; raising headspace pressure raises
+   $p_{O_2}$ and therefore $C^*$ — (c) is correct.
+4. Dissolved electrolytes and sugars raise the broth's ionic strength,
+   which suppresses gas solubility (salting-out) — (d) is correct.
+
+**Answer:** (a), (c), and (d) are correct; (b) is false.
 
 ### Rate of oxygen transfer
 
@@ -204,6 +386,59 @@ resistances in series:
 **Step 3 — diffusion through the liquid film around the bubble — is the
 largest resistance**, which is why $k_L a$ (built around that film) is
 the parameter that governs overall oxygen transfer.
+
+This holds for **free unicellular cells in well-mixed suspension**, and
+rests on two other facts about the eight steps:
+
+- **Step 2 (gas-film resistance) is negligible.** O$_2$ diffuses roughly
+  four orders of magnitude faster in the gas phase than in the liquid
+  phase, so for a sparingly-soluble gas like O$_2$ almost all the
+  resistance sits on the liquid side of the interface — this is why only
+  the liquid-film coefficient ($k_L$) appears in $k_L a$, with no matching
+  gas-film term.
+- **Step 5 (liquid film around the cell) is negligible for small, free
+  cells.** A single bacterium or yeast cell is small enough, and its own
+  mass-transfer coefficient high enough, that this film contributes
+  almost nothing next to step 3 — don't confuse it with the bubble's film.
+
+**Exception: mycelial pellets.** For filamentous fungi growing as pellets
+or clumps (step 7 in the list), O$_2$ must additionally diffuse through
+the biomass matrix to reach cells at the core. Past a critical pellet
+radius, this **intra-pellet diffusion resistance** dominates instead —
+large enough pellets can starve their core of oxygen entirely (an anoxic
+core), even when $k_L a$ at the bubble is perfectly adequate. So "the
+liquid film around the bubble is always the dominant resistance" is only
+true for free-cell suspensions, not pelleted or flocculated growth.
+
+#### Worked example: which resistance dominates, and when
+
+**Question.** Which of the following statements about O$_2$ transfer
+resistances from a gas bubble to a microbial cell in a stirred bioreactor
+are correct? (a) For unicellular bacteria in well-mixed suspension, the
+primary resistance is the liquid film around the gas bubble. (b) Gas-film
+resistance is practically negligible. (c) For fungal mycelial pellets,
+intra-pellet O$_2$ diffusion is a significant resistance. (d) The liquid
+film around an individual bacterial cell is the dominant resistance for
+all aerobic bioprocesses.
+
+**Solution.**
+
+1. For free unicellular cells, step 3 (liquid film around the bubble) is
+   the largest of the eight resistances — (a) is correct.
+2. O$_2$'s gas-phase diffusivity is far higher than its liquid-phase
+   diffusivity, so the gas film (step 2) contributes negligible resistance
+   — (b) is correct.
+3. Mycelial pellets add an extra resistance step not present for free
+   cells: diffusion through the pellet's own biomass to reach interior
+   cells, which becomes dominant past a critical pellet size — (c) is
+   correct.
+4. (d) conflates two different films: the film around the *cell* (step 5,
+   negligible for small free cells) with the film around the *bubble*
+   (step 3, the actual dominant resistance) — and ignores that pellets
+   shift the dominant resistance elsewhere entirely. "For all aerobic
+   bioprocesses" is false.
+
+**Answer: (a), (b), and (c) are correct; (d) is false.**
 
 ### Factors affecting cellular oxygen demand
 
@@ -305,6 +540,51 @@ Temperature pulls $k_L a$ in two directions at once:
 So higher temperature speeds up transfer kinetics but weakens the
 driving force behind it.
 
+### 5. Gas sparging rate and coalescence
+
+- **Sparging (superficial gas) velocity↑** → gas hold-up $\varepsilon_g$↑
+  → $a$ (and $k_L a$)↑, since $a = 6\varepsilon_g/d_b$ — see "Gas hold-up"
+  above.
+- **Coalescence** → bubbles merge, $d_b$↑ → $a$↓ → $k_L a$↓. Coalescence
+  always reduces interfacial area — it works against everything sparging
+  and impeller shear are trying to achieve.
+
+### 6. Antifoam agents
+
+Antifoams (commonly silicone-based) control foam but come at a direct
+cost to $k_L a$:
+
+- They lower surface tension in a way that **promotes bubble
+  coalescence** (bigger bubbles, lower $a$).
+- They form a hydrophobic film at the gas-liquid interface that adds its
+  own resistance to O$_2$ diffusion, lowering $k_L$ directly.
+
+Excess antifoam is a common, easily overlooked way to cripple oxygen
+transfer even while foam is well controlled — dose the minimum needed,
+not the maximum tolerated.
+
+#### Worked example: which factors decrease $k_L a$
+
+**Question.** Which of the following factors will cause a DECREASE in
+$k_L a$ in an agitated fermenter? (a) Addition of excess chemical
+antifoam agents (b) Increase in broth apparent viscosity due to mycelial
+fungal growth (c) Increasing the agitation speed from $200$ rpm to
+$500$ rpm (d) Coalescence of smaller gas bubbles into larger bubbles.
+
+**Solution.**
+
+1. Excess antifoam promotes coalescence and adds its own interfacial
+   resistance — both lower $k_L a$ — (a) decreases it.
+2. Higher viscosity increases resistance to oxygen transfer, lowering
+   $k_L a$ — (b) decreases it.
+3. $k_L a$ increases directly with stirrer speed — raising rpm from
+   $200$ to $500$ *increases* $k_L a$, it doesn't decrease it — (c) is
+   not a decreasing factor.
+4. Coalescence increases $d_b$, which lowers $a$ and therefore
+   $k_L a$ — (d) decreases it.
+
+**Answer:** (a), (b), and (d) decrease $k_L a$; (c) increases it instead.
+
 ## Methods of measuring $k_L a$
 
 ### 1. Oxygen (gas) balance method
@@ -326,6 +606,48 @@ $$
 
 This measured $N_A$ is then equated to $N_A = k_L a\, (C^*_{AL} -
 C_{AL})$ to solve for $k_L a$.
+
+**Why it's useful:** this method is **non-invasive** — it samples the gas
+streams, not the broth — and can run **continuously throughout an active
+fermentation** without interrupting aeration or agitation, unlike the
+dynamic gassing-out method below. It needs accurate measurement of both
+inlet and outlet gas **flow rates and compositions** ($F_g$ and $C_{AG}$
+on each side); it does *not* need any knowledge of liquid film thickness
+— that's a film-theory construct behind $k_L$, not something this
+macroscopic gas-phase balance ever measures directly.
+
+**Simplifying the gas flow rates:** in general $F_g$ can differ between
+inlet and outlet, because O$_2$ is consumed and CO$_2$ is produced at
+different molar rates. If the **respiratory quotient**
+($RQ = $ moles CO$_2$ produced $/$ moles O$_2$ consumed) is close to
+$1$, the loss of O$_2$ moles is offset almost exactly by the gain of
+CO$_2$ moles, so the total inlet and outlet volumetric gas flow rates end
+up nearly equal ($F_{g,i} \approx F_{g,o}$) — simplifying the balance
+considerably.
+
+#### Worked example: what the off-gas balance method does and doesn't need
+
+**Question.** Select the CORRECT statements regarding the off-gas oxygen
+balancing method for measuring OTR: (a) It is a non-invasive, continuous
+method that can be applied during active fermentation. (b) It requires
+accurate measurement of inlet and exit gas flow rates and gas
+compositions. (c) It depends heavily on knowing the exact value of the
+liquid film thickness. (d) If respiratory quotient (RQ) is close to $1$,
+inlet and outlet total volumetric gas flow rates are nearly equal.
+
+**Solution.**
+
+1. The method only samples gas streams, never the broth, and runs
+   continuously without interrupting the process — (a) is correct.
+2. The defining equation needs exactly $F_g$ and $C_{AG}$ on both the
+   inlet and outlet sides — (b) is correct.
+3. Film thickness is a film-theory construct behind $k_L$, not something
+   this macroscopic gas-phase mass balance ever measures — (c) is false.
+4. $RQ \approx 1$ means moles of O$_2$ consumed $\approx$ moles of CO$_2$
+   produced, so the total gas-phase mole (and volumetric flow) count
+   barely changes between inlet and outlet — (d) is correct.
+
+**Answer:** (a), (b), and (d) are correct; (c) is false.
 
 ### 2. Dynamic gassing-out method (most important)
 
@@ -350,14 +672,90 @@ $$
 ($\ln$ is the natural log; if only base-10 log tables are available,
 $\ln x = 2.303 \log x$.)
 
+**De-oxygenation can be done two ways:** either simply cut off the air
+supply and let respiring cells consume the dissolved O$_2$ naturally (as
+above), or actively strip it by **sparging nitrogen gas** through the
+broth — useful when respiration alone is too slow, or when testing
+outside an active culture. Dissolved salts in the broth don't interfere
+with either variant; the method works in real fermentation media exactly
+as it does in plain water.
+
+**Probe lag is a real limitation.** The method assumes the
+dissolved-oxygen probe responds instantly to changes in $C_{AL}$, but
+every DO probe has its own response time $\tau_p$ (set by its membrane
+and internal electrode geometry). If $\tau_p$ is comparable to or larger
+than $1/k_L a$, the probe can't keep up with the true recovery curve and
+its reading lags behind reality — the raw data must then be corrected for
+probe dynamics (e.g. fitting a first-order probe-response model) before
+$k_L a$ can be extracted correctly. A fast probe ($\tau_p \ll 1/k_L a$)
+avoids the correction entirely.
+
+#### Worked example: correctness checks on the dynamic gassing-out method
+
+**Question.** Regarding the dynamic gassing-out method for determining
+$k_L a$ in a fermenter, which of the following statements is/are
+CORRECT? (a) De-oxygenation of the broth is achieved by sparging nitrogen
+gas or shutting off aeration while respiring cells consume oxygen.
+(b) The slope of the line obtained by plotting
+$\ln[(C^*-C_1)/(C^*-C_2)]$ against $(t_2-t_1)$ during re-aeration
+directly yields $k_L a$. (c) If the DO probe response time ($\tau_p$) is
+comparable to or larger than $1/k_L a$, probe lag must be corrected.
+(d) The method cannot be used if the liquid broth contains dissolved
+salts.
+
+**Solution.**
+
+1. Both de-oxygenation routes — cutting air, or sparging N$_2$ — are
+   standard variants of this method — (a) is correct.
+2. This is exactly the two-point form of the equation above: the ratio
+   $\ln[(\bar{C}_{AL}-C_{AL_1})/(\bar{C}_{AL}-C_{AL_2})]$ over the elapsed
+   time $(t_2-t_1)$ *is* the slope of $\ln(C^*-C_{AL})$ plotted against
+   $t$ — (b) is correct.
+3. A slow DO probe can't track the true recovery curve once its own
+   response time approaches the process time scale $1/k_L a$, so its lag
+   must be corrected for — (c) is correct.
+4. Dissolved salts are present in essentially every real fermentation
+   broth and don't interfere with this method — (d) is false.
+
+**Answer:** (a), (b), and (c) are correct; (d) is false.
+
 ### 3. Sulphite oxidation method
 
 Sodium sulphite reacts with dissolved oxygen as fast as it enters the
-liquid:
+liquid, catalysed by trace amounts of **Cu$^{2+}$ or Co$^{2+}$** (added as
+a copper or cobalt sulphate salt):
 
 $$
-\text{Na}_2\text{SO}_3 + 0.5\, \text{O}_2 \rightarrow \text{Na}_2\text{SO}_4
+\text{Na}_2\text{SO}_3 + 0.5\, \text{O}_2 \xrightarrow{\text{Cu}^{2+}/\text{Co}^{2+}} \text{Na}_2\text{SO}_4
 $$
+
+This only works because, at **moderate-to-high sulphite concentrations**
+(above roughly $0.04\ \text{kmol/m}^3$), the reaction is **zero-order**
+with respect to sulphite — the rate is independent of how much sulphite
+is left, so it stays fast enough to consume oxygen the instant it
+dissolves. That's what makes the method valid: the measured rate reflects
+pure mass transfer, not reaction kinetics. (At low sulphite concentration
+this breaks down — the reaction becomes rate-limiting instead, and the
+method no longer measures $k_L a$ correctly.)
+
+**Reaction order** describes how sensitive a reaction's rate is to a
+reactant's concentration, from the empirical rate law
+$\text{rate} = k[\text{A}]^n$. It's the reason zero-order is a
+requirement here, not just an incidental fact:
+
+| Order ($n$) | Rate law | If sulphite were consumed during the assay | Effect on the method |
+| --- | --- | --- | --- |
+| **Zero** ($n=0$, actual) | rate $=k$ | Rate stays constant — sulphite level doesn't matter | Works: measured rate = pure O$_2$ mass transfer |
+| **Half** ($n=0.5$) | rate $=k[\text{SO}_3^{2-}]^{0.5}$ | Rate drifts mildly as sulphite depletes | Partially confounded — some kinetic drift mixed into the reading |
+| **First** ($n=1$) | rate $=k[\text{SO}_3^{2-}]$ | Rate falls proportionally with sulphite | Confounded — can't tell a rate change from less O$_2$ arriving vs. less sulphite left |
+| **Second** ($n=2$) | rate $=k[\text{SO}_3^{2-}]^2$ | Rate falls off sharply (quadratically) | Worst case — small sulphite depletion swings the rate hard; kinetics dominate over mass transfer |
+
+As $n$ rises, the measured oxidation rate stops being a clean proxy for
+$k_L a$ and starts reflecting how much sulphite is left instead. The
+method is only valid in the concentration range where the reaction has
+settled into zero order — the one regime where the chemistry gets out of
+the way and lets the measurement see the physics (mass transfer)
+directly.
 
 Because the sulphite binds oxygen immediately, no free oxygen
 accumulates in solution — $C_{AL} = 0$ — so the driving force collapses
@@ -368,6 +766,29 @@ $$
 \qquad\Rightarrow\qquad
 k_L a = \frac{\text{OTR}}{C^*}
 $$
+
+#### Worked example: catalyst and reaction order in the sulphite method
+
+**Question.** During $k_L a$ measurement by the sulphite oxidation
+method, sodium sulphite is converted to sodium sulphate in the presence
+of a catalyst. The catalyst commonly used and the reaction order with
+respect to sulphite at moderate concentrations are: (a) Cu$^{2+}$,
+first-order (b) Co$^{2+}$, zero-order (c) Fe$^{2+}$, second-order
+(d) Zn$^{2+}$, half-order.
+
+**Solution.**
+
+1. Co$^{2+}$ (cobaltous sulphate) is a standard catalyst for this
+   reaction, alongside Cu$^{2+}$ — rules out (c) and (d), which use
+   catalysts not associated with this method.
+2. The method's validity depends on the reaction being fast enough to
+   never be rate-limiting: at moderate-to-high sulphite concentrations,
+   the rate is independent of sulphite concentration — zero-order.
+3. (a) pairs a valid catalyst with the wrong order (first-order would
+   make the reaction rate-limiting, defeating the method's purpose) — so
+   only (b) pairs a valid catalyst with the correct kinetics.
+
+**Answer: (b) Co$^{2+}$, zero-order.**
 
 ## Key points
 
