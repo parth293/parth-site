@@ -1,0 +1,290 @@
+---
+title: "Thermodynamics"
+date: "2026-09-18"
+summary: "Energy and work in bioprocessing, and what thermodynamics says about whether a process can happen at all."
+order: 7
+tags: ["thermodynamics"]
+---
+
+## Energy and work
+
+**Thermodynamics** studies energy transformations in the universe and tells
+us whether a given physical process is possible.
+
+### Energy
+
+**Energy** is the capacity to do work. One newton-metre is one joule
+(1 N·m = 1 J).
+
+A **calorie** (cal) is the heat energy needed to raise the temperature of
+1 gram of water by 1 °C; 1 cal = 4.184 J. A **kilocalorie** (kcal) is 1000
+calories: 1 kcal = 1000 cal = 4184 J.
+
+### Work
+
+**Work** can be defined two ways.
+
+#### Force–displacement form
+
+$$
+W = Fd
+$$
+
+- $W$ — work, joule (J)
+- $F$ — force, newton (N)
+- $d$ — displacement, metre (m)
+
+#### Pressure–volume form
+
+$$
+W = P\Delta V
+$$
+
+- $W$ — work, joule (J)
+- $P$ — pressure, pascal (Pa)
+- $\Delta V$ — change in volume, cubic metre (m³)
+
+## System, surroundings, and universe
+
+**System** is the matter within a specific region of space under
+consideration. **Surroundings** is the matter in the rest of the universe.
+System plus surroundings equals the universe.
+
+![Nested dashed-circle diagram: an inner circle labeled system sits inside an outer circle labeled surrounding, with the equation system plus surrounding equals universe](/notes/bioprocess-eng/system-surroundings-universe-diagram.png)
+
+### Types of system
+
+| System type | Mass transfer | Energy transfer |
+| --- | --- | --- |
+| Open | Yes | Yes |
+| Closed | No | Yes |
+| Isolated | No | No |
+
+## State functions
+
+**State functions** are properties that depend only on the initial and
+final state of the system, not on the path the system follows between
+them.
+
+**Pressure**, **volume**, **internal energy**, **enthalpy**, **entropy**,
+and **free energy** are all state functions. Because a state function's
+value depends only on the state, its change is written with $\Delta$ — for
+example $\Delta U$ for the change in internal energy.
+
+**Work** and **heat** depend on the path the system follows, not just its
+initial and final state, so they are **path functions** — non-state
+functions.
+
+| | State function | Path function |
+| --- | --- | --- |
+| Depends on | Initial and final state only | Path taken |
+| Examples | Pressure, volume, internal energy, enthalpy, entropy, free energy | Work, heat |
+| Change written as | $\Delta X$ | Not written with $\Delta$ |
+
+## Zeroth law of thermodynamics
+
+The **zeroth law of thermodynamics** states that if system A is in
+thermal equilibrium with system B, and system B is in thermal equilibrium
+with system C, then system A is also in thermal equilibrium with system C.
+
+Two systems are in **thermal equilibrium** when no net heat flows between
+them — they are at the same temperature. The zeroth law is what makes
+temperature a well-defined, measurable property: a thermometer (system B)
+can be brought into equilibrium with A, then with C, and if both read the
+same temperature, A and C are in equilibrium with each other without ever
+being placed in contact.
+
+## First law of thermodynamics
+
+The **first law of thermodynamics** states that the total energy of a
+system and its surroundings is constant.
+
+Energy can neither be created nor destroyed — it can only be transformed
+from one form to another. This is the **law of conservation of energy**.
+
+## Internal energy
+
+**Internal energy** is the total energy contained within a system. It is
+a state function, and it can change only if energy flows into or out of
+the system as heat or work.
+
+$$
+\Delta U = U_2 - U_1
+$$
+
+- $\Delta U$ — change in internal energy, joule (J)
+- $U_2$ — final internal energy of the system, joule (J)
+- $U_1$ — initial internal energy of the system, joule (J)
+
+Internal energy also changes according to how heat and work cross the
+system boundary:
+
+$$
+\Delta U = \pm q \pm w
+$$
+
+- $q$ — heat transferred across the system boundary, joule (J)
+- $w$ — work transferred across the system boundary, joule (J)
+
+![Box labeled system with heat q and work w arrows shown entering and leaving, next to the equation delta U equals plus-minus q plus-minus w and the sign convention list](/notes/bioprocess-eng/first-law-sign-convention-diagram.png)
+
+- $+q$ — heat gained by the system
+- $-q$ — heat lost by the system
+- $+w$ — work done on the system
+- $-w$ — work done by the system
+
+At constant volume, $\Delta V = 0$, so no pressure–volume work is done and
+the first law reduces to $\Delta U = q_v$ — the change in internal energy
+equals the heat exchanged at constant volume.
+
+## Enthalpy
+
+In biological systems, volume is not constant — pressure is constant
+instead. This is why **enthalpy** is introduced: it is the heat exchanged
+at constant pressure.
+
+When volume changes at constant pressure, part of the energy released
+goes into pushing back the surroundings — the $P\Delta V$ term — energy
+spent, but not felt as heat. Enthalpy is internal energy plus that
+unavoidable boundary-pushing work, so $\Delta H$ is the part left over as
+heat a thermometer or calorimeter actually detects. This is why a vented
+bioreactor, whose pressure stays roughly constant while its volume does
+not, is tracked by enthalpy rather than internal energy.
+
+$$
+\Delta H = \Delta U + P\Delta V
+$$
+
+- $\Delta H$ — change in enthalpy, joule (J)
+- $\Delta U$ — change in internal energy, joule (J)
+- $P$ — pressure, pascal (Pa)
+- $\Delta V$ — change in volume, cubic metre (m³)
+
+At constant pressure, $\Delta H = q_p$ — the change in enthalpy equals the
+heat exchanged at constant pressure. A positive $\Delta H$ is
+**endothermic** (the system absorbs heat); a negative $\Delta H$ is
+**exothermic** (the system releases heat).
+
+If both pressure and volume are constant, $\Delta V = 0$, so
+$P\Delta V = 0$ and $\Delta H = \Delta U$.
+
+Enthalpy is itself a state function, because it is built from a
+combination of other state functions — internal energy, pressure, and
+volume.
+
+#### Worked example: enthalpy vs. internal energy in a vented bioreactor
+
+**Question.** An aerobic fermentation runs in a bioreactor vented to hold
+a constant headspace pressure of 101.3 kPa (1 atm). Over one hour, the
+culture's respiration is exothermic enough that the cooling jacket has to
+remove 850 kJ of heat to hold temperature — so $q_p = -850$ kJ. Off-gas
+analysis shows CO$_2$ production exceeds O$_2$ consumption enough that the
+gas phase expands by 50 L ($5.0 \times 10^{-2}$ m³) over that hour. Find
+$\Delta U$ for the hour, and compare it with $\Delta H$.
+
+**Solution.**
+1. At constant pressure, $\Delta H = q_p = -850$ kJ.
+2. Compute the pressure–volume work term:
+   $P\Delta V = 101{,}300\ \text{Pa} \times 0.050\ \text{m}^3 = 5{,}065\ \text{J} \approx 5.1$ kJ.
+3. Rearrange $\Delta H = \Delta U + P\Delta V$ to solve for $\Delta U$:
+   $\Delta U = \Delta H - P\Delta V = -850 - 5.1 = -855.1$ kJ.
+
+**Answer:** $\Delta U \approx -855.1$ kJ, compared with $\Delta H = -850$
+kJ — a difference of about 5 kJ, or roughly 0.6% of the total.
+
+That 5 kJ is real energy: it is what left the system as gas-phase
+expansion work against the vent, not as heat the jacket could remove.
+It is small here because the gas volume change is small relative to the
+heat released, but it is exactly the term you would need to close an
+energy balance around the headspace or size an off-gas system — and in a
+sealed, gas-generating process where $\Delta V$ is larger, it stops being
+a rounding error.
+
+### Bond energy
+
+**Bond energy** (or bond enthalpy) is the energy required to break a
+bond — breaking a bond is endothermic. Forming a bond releases energy —
+bond formation is exothermic. Bond energy is itself an enthalpy term.
+
+## Entropy
+
+**Entropy** is a measure of randomness, disorder, or chaos in a system.
+Systems with low entropy are structured and ordered; systems with high
+entropy are less structured.
+
+Examples of increasing entropy:
+
+- Ice → water — a fixed, ordered crystal lattice becomes a disordered
+  liquid; entropy increases.
+- Starch → glucose — one large ordered polymer breaks into many small,
+  freely moving molecules; entropy increases.
+- Glucose → carbon dioxide and water — one molecule becomes several
+  simpler, more freely moving molecules; entropy increases.
+- Folded protein → unfolded protein — a defined three-dimensional
+  structure unravels into a disordered chain; entropy increases.
+
+Ecological succession also illustrates changing structure over time:
+**pioneer** (or founder) **community** → **seral community** →
+**climax community** — a sparse, simple community develops into a
+complex, highly structured ecosystem, so entropy decreases (order
+increases) as succession proceeds.
+
+### Entropy in biochemical systems
+
+**Bond order.** Going from single bonds to double bonds to triple bonds,
+entropy decreases — a single bond allows free rotation around it, while
+double and triple bonds are progressively more rigid and restrict
+molecular motion.
+
+**Monomers versus polymers.** A polymer is more ordered than its free
+monomers, so it has lower entropy — glycogen (a polymer) has lower
+entropy than free glucose (its monomer).
+
+## Second law of thermodynamics
+
+The **second law of thermodynamics** states that the total entropy of a
+system and its surroundings always increases for an irreversible
+process.
+
+Naturally occurring processes proceed toward **equilibrium** — a state of
+minimum potential energy — and systems tend to flow from ordered states
+toward disordered states.
+
+$$
+\Delta S = S_2 - S_1
+$$
+
+- $\Delta S$ — change in entropy, joule per kelvin (J/K)
+- $S_2$ — final entropy of the system, joule per kelvin (J/K)
+- $S_1$ — initial entropy of the system, joule per kelvin (J/K)
+
+For a spontaneous (irreversible) process, $\Delta S > 0$.
+
+### Biological systems and the second law
+
+Biological systems are not exceptions to the second law. When part of a
+system appears to become more ordered — a growing cell assembling
+disordered nutrients into ordered biomass, for instance — the entropy of
+the surroundings increases by more than enough to compensate, so the
+total entropy of system plus surroundings still increases.
+
+#### Worked example: does a growing cell violate the second law?
+
+**Question.** Over one hour, a growing microbial culture assembles
+disordered nutrients (glucose, amino acids) into ordered biomass,
+decreasing the system's entropy by $\Delta S_{sys} = -2.5$ kJ/K. In that
+same hour, the culture's respiration releases 850 kJ of heat to the
+surroundings (the reactor's cooling water), held at a constant
+$T = 310$ K (37 °C). Find $\Delta S_{surr}$ and $\Delta S_{universe}$, and
+check whether the second law holds.
+
+**Solution.**
+1. For a large reservoir at constant temperature, heat released by the
+   system raises the surroundings' entropy by $\Delta S_{surr} = q / T$.
+2. $\Delta S_{surr} = \dfrac{850{,}000\ \text{J}}{310\ \text{K}} \approx 2{,}742\ \text{J/K} \approx 2.74$ kJ/K.
+3. $\Delta S_{universe} = \Delta S_{sys} + \Delta S_{surr} = -2.5 + 2.74 = +0.24$ kJ/K.
+
+**Answer:** $\Delta S_{universe} \approx +0.24$ kJ/K — positive, so the
+second law holds. The cell's own entropy fell, but the heat it released
+into the surroundings raised their entropy by more, so the total for
+system plus surroundings still increased.
