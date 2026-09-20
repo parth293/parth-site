@@ -157,6 +157,58 @@ $$
 > to get $\hat{Q}$ you need $h$; to get $h$ you need the Nusselt number; to
 > get the Nusselt number you need $k_{fb}$; and for $k_{fb}$ you use $Pr$.
 
+## Conductive resistance of a wall
+
+**Conductive (thermal) resistance** is how much a layer of material resists
+heat flow, per unit area — thicker or less-conductive material resists
+more, the same logic as electrical resistance.
+
+$$
+R_{cond} = \frac{x}{k}
+$$
+
+- $R_{cond}$ — conductive thermal resistance per unit area, in square
+  metre-kelvin per watt ($\text{m}^2 \cdot \text{K}/\text{W}$)
+- $x$ — thickness of the layer, in metres ($\text{m}$)
+- $k$ — thermal conductivity of the layer's material, in watts per
+  metre-kelvin ($\text{W}/(\text{m} \cdot \text{K})$)
+
+For a **composite wall** (several layers stacked in the direction of heat
+flow, e.g. a metal shell plus insulation), each layer's resistance adds,
+the same as resistors in series:
+
+$$
+R_{total} = \sum_i \frac{x_i}{k_i}
+$$
+
+- $R_{total}$ — total conductive resistance of the composite wall per unit
+  area, in square metre-kelvin per watt ($\text{m}^2 \cdot \text{K}/\text{W}$)
+- $x_i, k_i$ — thickness and thermal conductivity of layer $i$, in metres
+  ($\text{m}$) and watts per metre-kelvin ($\text{W}/(\text{m} \cdot
+  \text{K})$) respectively
+
+If convective film resistances aren't negligible, they add into the same
+sum as $1/h$ terms — see the overall-$U$ equation below, which is exactly
+this same series-resistance idea with the film coefficients included.
+
+#### Worked example: composite bioreactor wall
+
+**Question.** A composite bioreactor wall has an inner stainless steel
+sheet ($x = 5\ \text{mm}$, $k = 15\ \text{W}/(\text{m}\cdot\text{K})$) and
+outer insulation ($x = 25\ \text{mm}$, $k = 0.05\ \text{W}/(\text{m}\cdot
+\text{K})$). Convective resistances are negligible. Find the total
+conductive resistance per unit area.
+
+**Solution.**
+
+1. Steel: $R_1 = 0.005/15 = 0.000333\ (\text{m}^2\cdot\text{K})/\text{W}$.
+2. Insulation: $R_2 = 0.025/0.05 = 0.500\ (\text{m}^2\cdot\text{K})/\text{W}$.
+3. $R_{total} = R_1 + R_2 = 0.500\ (\text{m}^2\cdot\text{K})/\text{W}$ (to
+   3 d.p.) — the insulation dominates since its conductivity is $300\times$
+   lower than the steel's.
+
+**Answer:** $R_{total} \approx 0.500\ (\text{m}^2\cdot\text{K})/\text{W}$.
+
 ## Overall heat transfer coefficient
 
 The chain above requires measuring $\Delta T$ at each interface inside the

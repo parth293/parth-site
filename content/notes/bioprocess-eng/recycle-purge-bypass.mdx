@@ -34,6 +34,40 @@ conversion; as the recycle ratio grows large, per-pass performance
 approaches that of a CSTR (the lowest per-pass conversion for a given
 volume), even as overall conversion of fresh feed climbs.
 
+## Dilution rate, HRT, and washout
+
+A **chemostat** is a continuous bioreactor: fresh medium flows in and an
+equal volume of liquid (with whatever cells are suspended in it) flows out,
+continuously, keeping the reactor volume constant.
+
+$$
+D = \frac{F}{V} \qquad\qquad \text{HRT} = \frac{V}{F} = \frac{1}{D}
+$$
+
+- $D$ — dilution rate (how fast the reactor volume is being flushed and
+  replaced with fresh feed), $\text{h}^{-1}$
+- $F$ — feed flow rate, $\text{L/h}$
+- $V$ — reactor (working) volume, $\text{L}$
+- $\text{HRT}$ — hydraulic retention time (average time a parcel of liquid
+  spends in the reactor before it flows out — pure plumbing, no biology
+  involved), $\text{h}$
+
+In a normal chemostat (no recycle), cells are just suspended in that
+liquid and leave with it at the same rate, so **biomass residence time
+equals HRT** — cells are being physically flushed out at rate $D$
+regardless of how fast they grow.
+
+For the population to survive, cells must regrow at least as fast as
+they're flushed out. Growth rate is capped at $\mu_{max}$ (the fastest that
+organism can divide, under ideal conditions), so:
+
+- $D < \mu_{max}$: cells regrow faster than they're flushed out — population
+  reaches steady state.
+- $D > \mu_{max}$: cells are flushed out faster than they can replace
+  themselves — the population shrinks toward zero. This is **washout**: the
+  reactor empties itself of cells even though liquid keeps flowing through
+  normally.
+
 ## Cell recycle and washout
 
 **Cell recycle** separates cells out of a bioreactor's outflow (settler,
@@ -41,24 +75,40 @@ centrifuge, or membrane) and pumps them back into the tank, so only
 cell-free liquid actually leaves — like a sieve that catches marbles while
 water drains straight through.
 
-In a normal chemostat, liquid and cells leave at the same rate, so cells
-must regrow exactly as fast as they're flushed out. Push the flow rate past
-$\mu_{max}$ (the fastest cells can grow) and they're flushed out faster than
-they can replace themselves — **washout**.
-
 Cell recycle decouples the two residence times a simple chemostat locks
 together:
 
-- **Hydraulic retention time (HRT)** $= V/F = 1/D$ — how long the liquid
-  stays in the reactor.
-- **Biomass retention time** — how long cells stay, now stretched out
-  because the separator returns them instead of letting them leave.
+- **Hydraulic retention time (HRT)** $= 1/D$ — unchanged, since it's set by
+  the liquid flow rate alone.
+- **Biomass residence time** — stretched out, because the separator returns
+  cells instead of letting them leave with the liquid.
 
-Because cells are held back rather than washed out with the liquid, they no
-longer need to grow as fast as the liquid flows through — so the reactor
-can run at a dilution rate above $\mu_{max}$ without washing out. The better
-the separator concentrates cells back into the recycle stream, the further
-above $\mu_{max}$ the flow rate can go before washout.
+Because cells are held back rather than washed out with the liquid, the
+*effective* rate at which cells actually exit the system is much lower than
+$D$ — set by how good the separator is, not by the liquid flow rate. So the
+reactor can run at a dilution rate above $\mu_{max}$ without washing out.
+The better the separator concentrates cells back into the recycle stream,
+the further above $\mu_{max}$ the flow rate can go before washout.
+
+#### Worked example: does cell recycle prevent washout above $\mu_{max}$?
+
+**Question.** True or false: cell recycle uncouples the hydraulic retention
+time from the biomass residence time, enabling operation at dilution rates
+higher than $\mu_{max}$ without washout.
+
+**Solution.**
+
+1. Without recycle, HRT and biomass residence time are the same thing
+   (cells leave with the liquid at rate $D$), so washout is unavoidable once
+   $D > \mu_{max}$.
+2. With recycle, the separator returns cells to the tank, so HRT stays
+   $1/D$ (liquid-only) while biomass residence time stretches out — the two
+   are no longer equal.
+3. Because cells are no longer actually leaving at rate $D$, the reactor can
+   run at $D > \mu_{max}$ without the population being flushed out faster
+   than it can regrow.
+
+**Answer:** True.
 
 ## Bypass
 
