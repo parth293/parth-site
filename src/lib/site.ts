@@ -17,7 +17,8 @@ export type PillarSlug =
   | "bioprocess-eng"
   | "biotech-eng"
   | "gtm-eng"
-  | "gate-eng";
+  | "gate-eng"
+  | "life-eng";
 
 export type Pillar = {
   slug: PillarSlug;
@@ -68,6 +69,14 @@ export const pillars: readonly Pillar[] = [
       "The GATE Biotechnology syllabus and past papers, worked the way an engineer studies for an exam — taxonomy first, then tagged, solved papers against it.",
     description:
       "Working notes built for GATE Biotechnology prep: the syllabus broken into a section → topic → item taxonomy, past papers solved question-by-question and tagged against that tree, and book-coverage tracking to see which regions of the syllabus are still thin.",
+  },
+  {
+    slug: "life-eng",
+    title: "Life Engineering",
+    summary:
+      "A working curriculum for what to deliberately teach my daughter before adulthood — principles and skills, not facts, tracked against age milestones.",
+    description:
+      "A parenting project treated like an engineering one: a single evolving master list of the principles and skills I want my daughter to have before she is functionally independent, organised by age milestone, plus the reasoning behind each edition as the list changes.",
   },
 ] as const;
 
