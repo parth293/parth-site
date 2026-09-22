@@ -294,3 +294,55 @@ check whether the second law holds.
 second law holds. The cell's own entropy fell, but the heat it released
 into the surroundings raised their entropy by more, so the total for
 system plus surroundings still increased.
+
+### Entropy of the surroundings
+
+$$
+\Delta S_{surr} = -\dfrac{\Delta H_{sys}}{T_{surr}}
+$$
+
+- $\Delta S_{surr}$ — change in entropy of the surroundings, joule per
+  kelvin (J/K)
+- $\Delta H_{sys}$ — change in enthalpy of the system, joule (J)
+- $T_{surr}$ — temperature of the surroundings, kelvin (K)
+
+A negative $\Delta H_{sys}$ (an **exothermic** reaction) raises
+$\Delta S_{surr}$; a positive $\Delta H_{sys}$ (an **endothermic**
+reaction) lowers it.
+
+## Gibbs free energy
+
+**Gibbs free energy** ($G$) is the energy available to do actual work.
+$\Delta G$ is used to assess whether a reaction is spontaneous.
+
+$$
+\Delta G = \Delta H - T\Delta S
+$$
+
+- $\Delta G$ — change in Gibbs free energy, joule (J)
+- $\Delta H$ — change in enthalpy, joule (J)
+- $T$ — absolute temperature, kelvin (K)
+- $\Delta S$ — change in entropy, joule per kelvin (J/K)
+
+| $\Delta G$ | Reaction |
+| --- | --- |
+| Negative | Spontaneous |
+| Positive | Non-spontaneous |
+| Zero | At equilibrium |
+
+### Predicting spontaneity from $\Delta H$ and $\Delta S$
+
+| $\Delta H$ | $\Delta S$ | Spontaneity |
+| --- | --- | --- |
+| Negative | Positive | Always spontaneous |
+| Positive | Negative | Never spontaneous |
+| Negative | Negative | Depends on the magnitudes of $\Delta H$ and $T\Delta S$ — spontaneous only if $\Delta G$ works out negative |
+| Positive | Positive | Depends on the magnitudes of $\Delta H$ and $T\Delta S$ — spontaneous only if $\Delta G$ works out negative |
+
+![Three panels comparing a spontaneous reaction (delta G negative, exergonic, K greater than 1), a non-spontaneous reaction (delta G positive, endergonic, K less than 1), and a reaction at equilibrium (delta G zero, K equals 1), each showing the free energy versus reaction coordinate curve](/notes/bioprocess-eng/gibbs-free-energy-spontaneity-diagram.png)
+
+A substance at its melting temperature is at equilibrium between solid
+and liquid phases, so $\Delta G = 0$ there.
+
+$\Delta G$ says nothing about the **rate** of a reaction — only whether it
+is spontaneous, not whether it is fast or slow.
