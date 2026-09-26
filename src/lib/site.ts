@@ -18,7 +18,8 @@ export type PillarSlug =
   | "biotech-eng"
   | "gtm-eng"
   | "gate-eng"
-  | "life-eng";
+  | "life-eng"
+  | "book-notes";
 
 export type Pillar = {
   slug: PillarSlug;
@@ -77,6 +78,14 @@ export const pillars: readonly Pillar[] = [
       "A working curriculum for what to deliberately teach my daughter before adulthood — principles and skills, not facts, tracked against age milestones.",
     description:
       "A parenting project treated like an engineering one: a single evolving master list of the principles and skills I want my daughter to have before she is functionally independent, organised by age milestone, plus the reasoning behind each edition as the list changes.",
+  },
+  {
+    slug: "book-notes",
+    title: "Book Notes",
+    summary:
+      "Working notes on books as I read them — the arguments worth keeping, not a summary of the whole book.",
+    description:
+      "Notes taken while reading, organised one book per note: the core argument, the techniques or frameworks worth remembering, and where they've actually applied outside the book.",
   },
 ] as const;
 
