@@ -57,6 +57,7 @@ export function SiteHeader() {
         row; a little extra air at the top costs less than an overlap. */}
     <div className={trail ? "h-28" : "h-20"} aria-hidden="true" />
     <div
+      data-site-chrome="header"
       className={`fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-3 transition-all duration-200 ease-out focus-within:translate-y-0 focus-within:opacity-100 ${
         visible ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
       }`}
