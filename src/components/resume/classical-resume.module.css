@@ -1,0 +1,505 @@
+/*
+ * "Classical" — a self-contained design system for the printable resume
+ * only. Deliberately isolated from the site-wide tokens in globals.css (see
+ * DESIGN_PROCESS.md): the resume is a document meant to leave the site as a
+ * PDF, so it keeps its own fonts/palette rather than inheriting the
+ * technical-editorial system the rest of the site uses.
+ */
+
+.page {
+  --color-text: #201f1d;
+  --color-accent: #b68235;
+  --color-accent-600: #a06f24;
+  --color-accent-700: #7d5411;
+  --color-accent-800: #5a3b0a;
+  /* A hairline tint of the ink over the page's own background, not a fixed
+     gray — this is what the reference export actually uses for the
+     stats-grid rules and the Experience/Education title underlines (the
+     lead section title, Summary, carries no rule at all). */
+  --color-divider: color-mix(in srgb, var(--color-text) 16%, transparent);
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+  --color-accent-900: #3a270d;
+
+  --font-heading: var(--resume-font-heading), "Cormorant Garamond", serif;
+  --font-body: var(--resume-font-body), "Lora", serif;
+
+  --space-1: 4.6px;
+  --space-2: 9.2px;
+  --space-3: 13.8px;
+  --space-4: 18.4px;
+
+  /* min() so a narrower window shrinks the page instead of forcing the
+     whole site to scroll horizontally — print still gets the literal
+     210mm via the @media print override below. */
+  width: min(210mm, 100%);
+  min-height: 297mm;
+  margin-inline: auto;
+  padding: 0.5in;
+  box-sizing: border-box;
+  /* Plain white paper, not a tinted "card" — the gray swatch in the design
+     system's styles.css (--color-bg) turned out to be the surrounding app
+     canvas behind the document, never the page itself; a pixel-diff against
+     a reference export confirmed the real page is white. */
+  background: #fff;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page h4,
+.page h5,
+.page h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-2);
+}
+
+.page a {
+  color: var(--color-accent-700);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+.page a:hover {
+  color: var(--color-accent-600);
+  text-decoration: underline;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+  border-bottom: 1.5px solid var(--color-accent);
+}
+
+.name {
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  margin: 0;
+  line-height: 1;
+}
+
+.tagline {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--color-neutral-800);
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1) var(--space-2);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-neutral-700);
+}
+
+.dot {
+  color: var(--color-accent);
+}
+
+.section {
+  padding-top: var(--space-3);
+}
+
+.sectionTight {
+  break-inside: avoid;
+}
+
+.sectionTitle {
+  color: var(--color-accent-700);
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+/* Summary — the first section title in the document — carries no rule at
+   all in the reference export; only the later ones (Experience, Education)
+   get the divider underline. */
+.sectionTitleFirst {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.summary {
+  font-size: 12.75px;
+  line-height: 1.45;
+  text-align: justify;
+  hyphens: auto;
+  margin: 0;
+}
+
+.roleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.companyName {
+  margin: 0;
+  font-size: 23px;
+}
+
+.institutionName {
+  margin: 0;
+  font-size: 22px;
+}
+
+.period {
+  font-size: 13px;
+  font-feature-settings: "tnum";
+  color: var(--color-neutral-700);
+}
+
+.roleTitle {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.progression {
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--color-neutral-700);
+  margin: 0 0 var(--space-2);
+  line-height: 1.5;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+  margin: var(--space-1) 0 var(--space-2);
+  break-inside: avoid;
+}
+
+.stat {
+  padding: var(--space-2) var(--space-3);
+  border-left: 1px solid var(--color-divider);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.statValue {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.statArrow {
+  color: var(--color-accent);
+}
+
+.statLabel {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-neutral-700);
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: 12.75px;
+  line-height: 1.45;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.highlights p {
+  margin: 0;
+}
+
+.highlightLead {
+  font-family: var(--font-heading);
+  font-size: 16.5px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--color-accent-800);
+}
+
+.degree {
+  font-size: 13px;
+  margin: 0;
+}
+
+.honours {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--color-accent-800);
+  margin: 0;
+}
+
+/* ─── Style variants — same content, different color/weight treatment,
+   matching the three hand-exported looks this was built from ──────────── */
+
+.page[data-style="print-safe"] {
+  --color-text: #000;
+  --color-neutral-500: #000;
+  --color-neutral-700: #000;
+  --color-neutral-800: #000;
+  --color-accent: #6b4200;
+  --color-accent-600: #5a3700;
+  --color-accent-700: #4a2d00;
+  --color-accent-800: #3d2500;
+  font-weight: 500;
+}
+.page[data-style="print-safe"] .sectionTitle {
+  color: var(--color-accent-700);
+  font-size: 11px;
+  border-bottom-width: 1px;
+}
+.page[data-style="print-safe"] .statLabel {
+  font-weight: 600;
+}
+.page[data-style="print-safe"] .highlightLead {
+  font-weight: 600;
+  font-style: normal;
+  font-size: 15px;
+  color: var(--color-accent-800);
+}
+
+.page[data-style="bold"] {
+  --color-neutral-500: var(--color-neutral-600);
+}
+.page[data-style="bold"] .name,
+.page[data-style="bold"] .tagline,
+.page[data-style="bold"] .statValue {
+  font-weight: 600;
+}
+.page[data-style="bold"] .header {
+  border-bottom-color: var(--color-accent-700);
+}
+.page[data-style="bold"] .dot,
+.page[data-style="bold"] .statArrow {
+  color: var(--color-accent-700);
+}
+.page[data-style="bold"] .contact,
+.page[data-style="bold"] .period,
+.page[data-style="bold"] .progression,
+.page[data-style="bold"] .statLabel {
+  color: var(--color-neutral-900);
+}
+.page[data-style="bold"] .sectionTitle {
+  color: var(--color-accent-900);
+  font-weight: 600;
+  font-size: 11px;
+  border-bottom-width: 1px;
+  border-bottom-color: var(--color-neutral-600);
+}
+.page[data-style="bold"] .highlightLead {
+  font-weight: 600;
+  font-style: normal;
+  font-size: 15px;
+  color: var(--color-accent-900);
+}
+.page[data-style="bold"] .honours {
+  color: var(--color-accent-900);
+}
+.page[data-style="bold"] a {
+  color: var(--color-accent-900);
+}
+
+/* Readability pass from reviewer feedback (Akshi Jhawar, 2026-01-10): a
+   sans-serif body face, and a tinted strip behind each of the three broad
+   section headings so they're easier to pick out while scanning. Headings
+   (name, company, role title) stay in Cormorant Garamond — only the running
+   prose that was flagged as hard to read switches face. */
+.page[data-style="sans"] {
+  --font-body: var(--resume-font-sans), system-ui, sans-serif;
+}
+.page[data-style="sans"] .sectionTitle {
+  display: block;
+  background: color-mix(in srgb, var(--color-accent) 10%, white);
+  border-bottom: none;
+  padding: 7px 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+/* ─── Screen chrome around the document — never printed ─────────────── */
+
+.screen {
+  padding-block: var(--space-4, 24px) 48px;
+}
+
+.actions {
+  width: min(210mm, 100%);
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  /* A toolbar, not two buttons competing for the same spot: the style
+     picker anchors the left edge (over the page's left edge below), the
+     icon-only download control anchors the right edge (over the page's
+     right edge) — space-between reads intentionally here because the two
+     ends now line up with the page they sit above. */
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.styleSelectWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.styleSelectLabel {
+  font-family: var(--resume-font-heading), "Cormorant Garamond", serif;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: #605d5d;
+}
+
+.styleSelect {
+  appearance: none;
+  font-family: var(--resume-font-heading), "Cormorant Garamond", serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #7d5411;
+  background-color: #f3f2f2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%237d5411' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  border: 1px solid #a06f24;
+  border-radius: 3px;
+  padding: 9px 32px 9px 14px;
+  cursor: pointer;
+}
+.styleSelect:hover {
+  background-color: color-mix(in srgb, #b68235 14%, #f3f2f2);
+}
+.styleSelect:focus-visible {
+  outline: 2px solid #a06f24;
+  outline-offset: 2px;
+}
+
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  color: #7d5411;
+  background: #f3f2f2;
+  border: 1px solid #a06f24;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.downloadButton:hover {
+  background: color-mix(in srgb, #b68235 14%, transparent);
+}
+.downloadButton:focus-visible {
+  outline: 2px solid #a06f24;
+  outline-offset: 2px;
+}
+
+/* No base rule here on purpose — it would win over .actions's own
+   `display: flex` (same specificity, later in the file), which silently
+   turned the style switcher + download button into plain inline content
+   with no layout and no gap between them. This class only needs to do
+   anything at print time. */
+
+/* ─── Print — same palette as the screen, just A4-shaped ─────────────── */
+/* The PDF is meant to read as the same page as the website, not a
+   separate print-safe variant — no color overrides here. Only layout: A4
+   sizing, fitting the content to one page, and stripping site chrome. */
+
+@media print {
+  /* margin: 0, not 0.5in — the @page margin box is reserved, unprintable
+     paper: no background color can ever reach it, which is what was
+     leaving a hard white strip around the gray card no matter what the
+     content's own background was set to. Full bleed here, and the 0.5in
+     inset moves to .page's own padding below, so the gray fills the
+     physical page edge-to-edge and the whitespace comes from inside it. */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  .noPrint {
+    display: none !important;
+  }
+
+  .screen {
+    padding: 0;
+  }
+
+  .page {
+    /* Trimmed ~15% from screen spacing — just enough to keep the one-page
+       layout from spilling Education onto a lone second page once real
+       print fonts/metrics replace the screen render. Screen view is
+       untouched; this only applies inside @media print. */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 0.5in;
+  }
+
+  .summary,
+  .highlights p {
+    line-height: 1.38;
+  }
+
+  :global([data-site-chrome="header"]),
+  :global(body > footer),
+  :global(body > div[aria-hidden="true"]) {
+    display: none !important;
+  }
+
+  :global(body),
+  :global(main) {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
